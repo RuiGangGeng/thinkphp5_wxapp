@@ -27,7 +27,7 @@
 				<view style="width:450rpx;margin-left:22rpx;float:left;">
 					<view style="font-size: 34rpx;color:#424242;">{{i.good.name}}</view>
 					<view style="height:10rpx;"></view>
-					<view style="font-size:28rpx;color:#A1A1A1;">{{i.good.specifications}}</view>
+					<view style="font-size:28rpx;color:#A1A1A1;">规格：{{i.good.specifications}}</view>
 					<view style="font-size:28rpx;color:#A1A1A1;">单价：￥{{i.price}}元</view>
 					<view style="font-size:28rpx;color:#A1A1A1;">数量：{{i.number}}</view>
 				</view>
