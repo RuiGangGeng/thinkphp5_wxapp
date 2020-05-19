@@ -1,0 +1,30 @@
+<!--pages/resultpay/resultpay.wxml-->
+
+<!-- 支付成功展示开始 -->
+<view class="paymsg">
+	<view class="msgbody" hidden="{{!flag}}">
+		<icon type="success" size="70" color="#3B9B39"></icon>
+		<view class="colorbla">支付成功</view>
+		<!-- <view class="paymsg">尊敬的顾客，欢迎您再次光临！</view> -->
+		<view class="paymsg">
+			<text>店家将以最快速度将订单送到您的手中</text>
+			<text>请小主耐心等待呦~</text>
+		</view>
+
+	</view>
+	<!-- 支付成功展示结束 -->
+
+	<!-- 支付失败展示结束 -->
+	<view class="msgbody" hidden="{{flag}}">
+		<icon type="warn" size="70" color="#ccc"></icon>
+		<view>支付失败</view>
+		<view class="paymsg">
+			<text>尊敬的顾客，请重新发起支付吧！</text>
+		</view>
+	</view>
+</view>
+<!-- 支付失败展示结束 -->
+
+<view class="btnBox">
+	<view class="btn" bindtap="goindex">返回首页</view>
+</view>

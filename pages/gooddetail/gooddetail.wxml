@@ -1,0 +1,61 @@
+<!-- 头图信息开始 -->
+<image src="{{good.detailimg}}" class="images"></image>
+<!-- 头图信息结束 -->
+
+
+<view class="flexrow">
+	<view class="flexspace">
+		<view class="texttwoline name">{{good.name}}</view>
+		<view class="texttwoline">{{good.specifications}}</view>
+		<view class="sendpdt">送货上门</view>
+		<view class="priceBox">
+			<text class="text-danger">￥{{good.price0}}<text class="prrice">.{{good.price1}}</text></text>
+			<text class="lineThrough mar20">￥{{good.price_orig}}</text>
+			<image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{item}}"></image>
+			<block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
+				<view wx:if="{{dayItem.id == item.id}}" class="numoncar">{{dayItem.count}}</view>
+			</block>
+			<!-- <text class="mar20 floatr" bindtap="addToCart" data-msg="{{good}}">加入购物车</text> -->
+		</view>
+	</view>
+</view>
+
+<view class="show">
+	<view class="title">价格说明</view>
+	<view class="content">
+		<text>划线价格:</text>划线的价格并非《中华人民共和国价格法》及《禁止价格欺诈行为的规定》等相关法律法规中所指商品“原价” 的含义，仅为到家平台商家处商品的供应商指导价或建议零售价， <text>并非商品原价。</text>
+	</view>
+	<view class="content">
+		<text>未划线价格:</text>未划线的价格指该商家处商品在京东到家平台实时标价,具体成交价格根据商品参加的活动，或者您使用优惠券等发生变化，最终以订单结算页面价格为准。
+	</view>
+</view>
+
+
+<!-- 底部购物车开始 -->
+<view class="accounts flex">
+	<view class="checkAll flex text-normal">
+		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
+			<image src="/image/goodcar.png" class="goodcar"></image>
+			<view class="cricle" wx:if="{{pdtincar.totalGoods}}">{{pdtincar.totalGoods}}</view>
+		</navigator>
+	</view>
+	<view class="payaccount">
+		<view>
+			合计:
+			<text class="colorr" wx:if="{{pdtincar.totalPrice}}">￥{{pdtincar.totalPrice}}</text>
+		</view>
+		<view class="colorg">
+			已优惠:
+			<text wx:if="{{pdtincar.totalFavorable}}">￥{{pdtincar.totalFavorable}}</text>
+		</view>
+	</view>
+
+	<view class="flex" wx:if="{{!pdtincar.totalPrice}}">
+		<view class="nobalance text-lg text-fff">去结算</view>
+	</view>
+
+	<view class="flex" bindtap="godoorder" wx:if="{{pdtincar.totalPrice}}">
+		<view class="balance text-lg text-fff">去结算</view>
+	</view>
+</view>
+<!-- 底部购物车结束 -->

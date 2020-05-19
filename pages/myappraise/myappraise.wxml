@@ -1,0 +1,25 @@
+<view class="container">
+	<view wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index" class="backitem">
+		<view class="header">
+			<view style="font-weight:bold;">{{item.shop.name}}</view>
+		</view>
+		<view class="itemmsg" wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="in">
+			<image src="{{i.good.image}}" class="itemimg"></image>
+			<view class="msgin">
+				<view  style="font-size:34rpx;">{{i.good.name}}</view>
+				<view class="colorg mart10">规格：{{i.good.specifications}}</view>
+				<view class="colorg">单价：￥{{i.price}}元</view>
+				<view class="colorg">数量：{{i.number}}</view>
+			</view>
+		</view>
+		<view class="textright">合计:
+			<text class="text-danger">￥{{item.price}}</text>
+		</view>
+		<view class="fuck">
+			<navigator url="/pages/appraise/appraise?id={{item.id}}" class="textright dingdan mycolor" bindtap="goappraise">订单详情</navigator>
+		</view>
+	</view>
+	<view wx:if="{{list.length == 0}}">
+		<text class="noData">暂无数据</text>
+	</view>
+</view>

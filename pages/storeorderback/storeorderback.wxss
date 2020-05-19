@@ -1,0 +1,172 @@
+.order-title {
+  width: 100%;
+  height: 130rpx;
+  display: flex;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #CCC;
+}
+
+.order-address {
+  width: 450rpx;
+  float: left;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+}
+.order-address text{
+  width: 380rpx;
+  height: 70rpx;
+  align-items: flex-start;
+}
+
+.order-phone {
+  font-size: 26rpx;
+  float: left;
+  width: 220rpx;
+  height: calc(100 - 35rpx);
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 35rpx;
+}
+
+.order-phone image {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 5rpx;
+}
+
+.order-address image {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  display: block;
+  margin-right: 10rpx;
+}
+.textoneline {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.select-all{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 35rpx;
+  box-sizing: border-box;
+}
+
+.checkbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 125rpx;
+}
+
+.checkbox >view{
+  min-width: 55rpx;
+}
+
+/*复选框外框样式*/
+checkbox .wx-checkbox-input {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #999;
+  border-radius: 100%;
+}
+/*复选框外框选中样式*/
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border-color: #3cbcee;
+}
+/*复选框选中后内部样式*/
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 60%;
+  height: 60%;
+  background: #3cbcee;
+  border-radius: 100%;
+  content: '';
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+.order-details{
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+}
+.order-details-img,.order-details-img image {
+  width: 100rpx;
+  height: 80rpx;
+  margin: 0 15rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.order-details-img image{
+  margin: unset;
+}
+
+.order-details-name{
+  margin: 0 25rpx;
+  width: 250rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.order-details-value{
+  width: 160rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 35rpx;
+}
+
+.order-details-value button{
+  height: 48rpx; 
+  width: 48rpx!important;
+  background: unset;
+  border: unset;
+  padding: unset!important;
+  margin: unset;
+  line-height: unset;
+  border-radius: 100rpx;
+  color: #38a435;
+  border: 1rpx solid #38a435;
+}
+
+.order-details-value button:last-child{
+  background: #38a435;
+  color: white;
+}
+
+.btn{
+  width: 360rpx!important;
+  height: 90rpx;
+  background: #38a435!important;
+  color: white!important;
+  border: unset!important;
+  margin:150rpx auto;
+}
+
+.textoneline {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

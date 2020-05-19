@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navigation": "/components/navigation/navigation"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "商品分类"
+}

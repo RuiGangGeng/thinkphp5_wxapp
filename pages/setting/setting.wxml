@@ -1,0 +1,2 @@
+<!--pages/setting/setting.wxml-->
+<button open-type="openSetting" type="parimary">点击开启位置信息授权</button>

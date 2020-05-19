@@ -1,0 +1,81 @@
+<!--评价订单详情-->
+
+<view class="marleft30 text-danger">已评价</view>
+<view class="marleft30" style="font-size:30rpx;">您已评价，感谢您的宝贵意见</view>
+
+<!-- 订单信息会员、商铺信息开始 -->
+<view class="appraisebody">
+	<view class="address1">
+		<view style="display:flex; align-items:center;">
+			<image src="/image/location1.png" class="img1"></image>
+			<view>收货人：{{info.contact}} {{info.phone}}</view>
+		</view>
+		<view class="mar35">{{info.address}}</view>
+	</view>
+
+
+	<view class="shopmsg">
+		<view class="order-details-text">
+			<view class="icon_shop">
+				<image src="/image/house1.png"></image>
+			</view>
+			<view class="shop-name">{{info.shop.name}}</view>
+		</view>
+		<view class="itemmsg" wx:for="{{goods}}" wx:key="index">
+			<image src="{{item.good.image}}" class="itemimg"></image>
+			<view class="msgin">
+				<view style="font-size:34rpx;">{{item.good.name}}</view>
+				<view class="gray mar10">规格：{{item.good.specifications}}</view>
+				<view class="gray">单价：{{item.price}}</view>
+				<view class="gray">数量：{{item.number}}</view>
+			</view>
+		</view>
+		<view class="textright">合计:
+			<text class="text-danger">￥{{info.price}}</text>
+		</view>
+	</view>
+</view>
+<!-- 订单信息会员、商铺信息结束 -->
+
+<!-- 打分评价开始 -->
+<view class="pingshop">
+	<view class="container">
+		<view class='stars'>
+			<view class='content'>
+				<view>给门店打分</view>
+				<view>
+					<view wx:for="{{stars}}" wx:key="" style='background:url("{{item.flag==1?item.bgImg:item.bgfImg}}") no-repeat top; background-size:100%;' data-index="{{index}}" bindtap='score'></view>
+				</view>
+			</view>
+			<view class="raisetitle">评论</view>
+			<view class='reviews'>
+				<textarea value="{{info.comment}}"></textarea>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 打分评价结束 -->
+
+<!-- 订单信息展示开始 -->
+<view class="inorder font30">
+	<view class="ordermsg">
+		<view class="msgitem">
+			<text>下单时间：</text>
+			<text>{{info.createTime}}</text>
+		</view>
+		<view class="msgitem">
+			<text>订单编号:</text>
+			<text>{{info.order_number}}</text>
+		</view>
+		<view class="msgitem">
+			<text>支付方式:</text>
+			<text>微信</text>
+		</view>
+		<view class="msgitem0">
+			<text>交易流水号:</text>
+			<text>{{info.transaction}}</text>
+		</view>
+	</view>
+</view>
+
+<!-- 订单信息展示结束 -->

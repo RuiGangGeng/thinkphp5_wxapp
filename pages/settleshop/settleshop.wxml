@@ -1,0 +1,46 @@
+<!--pages/settled/settled.wxml-->
+
+<view class="infobody" hidden="{{flag}}">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <input hidden="t" name="uid" value="{{uid}}"></input>
+    <input hidden="t" name="lat" value="{{lat}}"></input>
+    <input hidden="t" name="lng" value="{{lng}}"></input>
+    <view class="lineitem">
+      <view>商铺名称</view>
+      <input name="name" value="" placeholder="您的商铺名称，32字以内"></input>
+    </view>
+    <view class="lineitem" bindtap="chooseMyLocation">
+      <view>所在地址</view>
+      <block wx:if="{{region}}">
+        <text>{{region}}</text>
+      </block>
+      <text wx:else style="color:#808080">请选择您的商铺地址</text>
+      <input hidden="t" name="community" value="{{region}}"></input>
+    </view>
+    <view class="lineitem">
+      <view>详细地址</view>
+      <input name="address" value="" placeholder="详细地址，50字以内8"></input>
+    </view>
+    <view class="lineitem">
+      <view>联系人</view>
+      <input name="contact" placeholder="您的姓名，6字以内" value=""></input>
+    </view>
+    <view class="lineitem">
+      <view>联系电话</view>
+      <input name="phone" value="" placeholder="请输入您的联系电话"></input>
+    </view>
+
+
+		<view class="btnBox"> 
+			<button type="primary" form-type="submit"  class="btn">提交</button>
+		</view>
+  </form>
+</view>
+
+<!-- 提交表单后的状态 -->
+<view class="conter" hidden="{{!flag}}">
+  <icon type="success" size="70"></icon>
+  <view class="mar2">提交成功</view>
+  <view class="mar4">提交成功，我们会尽快与您取得联系</view>
+</view>
+<!-- 提交表单后的状态 -->

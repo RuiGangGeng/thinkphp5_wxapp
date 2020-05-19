@@ -1,0 +1,10 @@
+@import '/pages/managshop/managshop.wxss';
+
+.search_box view{
+    width: 120rpx;
+    height: 100%;
+    color: #39a336;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

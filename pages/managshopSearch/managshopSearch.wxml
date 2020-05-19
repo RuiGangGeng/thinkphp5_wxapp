@@ -1,0 +1,25 @@
+<view class="caontainer">
+	<view class="search_box">
+		<icon type="search" size="17"></icon>
+		<input placeholder="搜索商家商品" bindinput="bindinput" bindfocus="bindfocus" bindblur="bindblur"></input>
+        <view wx:if="{{show_button}}" bindtap="search">搜索</view>
+	</view>
+	<scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
+		<view class="item" wx:for="{{list}}" wx:key="index">
+			<image src="{{item.image}}" class="goods-image"></image>
+			<view class="goods_info">
+				<view class="texttwoline">{{item.name}} </view>
+				<view class="goods_price">
+					<text>￥{{item.price}}</text>
+					<image src="/image/pdtup.png" catchtap="changegood" data-act="up_goods" data-id="{{item.id}}"></image>
+					<image src="/image/pdtdown.png" catchtap="changegood" data-act="down_goods" data-id="{{item.id}}"></image>
+					<image src="/image/del.png" catchtap="changegood" data-act="delete_goods" data-id="{{item.id}}"></image>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<view wx:if="{{list.length == 0 && noSearch}}">
+		<text class="noData" style="font-size: 28rpx;">抱歉，没有找到"{{searchKey}}"的相关查询结果</text>
+	</view>
+</view>

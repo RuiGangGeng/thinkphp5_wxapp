@@ -1,0 +1,40 @@
+/* pages/addcate/addcate.wxss */
+
+.colorgreen {
+  background: #38a435; 
+  color: #fff;
+  width: 200rpx;
+  height: 50rpx;
+  border-radius: 10rpx;
+  margin: 40rpx 0 40rpx 25rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+textarea {
+  border: 1rpx solid #808080;
+  box-shadow: 0 0 3rpx #ccc;
+  width: 700rpx;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  margin: 0 25rpx;
+  height: 180rpx;
+  box-sizing: border-box;
+}
+button{
+    width: 360rpx!important;
+    height: 90rpx;
+    background: #38a435!important;
+    color: white!important;
+    border: unset!important;
+}
+.btnBox{
+  position: fixed;
+  bottom: 180rpx;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 90rpx;
+}

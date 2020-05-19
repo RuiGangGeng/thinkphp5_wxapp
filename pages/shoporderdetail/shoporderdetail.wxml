@@ -1,0 +1,61 @@
+<!--pages/shoporderdetail/shoporderdetail.wxml-->
+<view class="fadedf"></view>
+
+<view class="top">
+	<view>
+		<text>{{info.contact}}</text>
+		<text>{{info.phone}}</text>
+	</view>
+	<view class="texttwoline colorgray">{{info.address}}</view>
+</view>
+
+<view class="title">订单</view>
+
+<view class="mar1 backcor">
+	<view class="orderitem" wx:for="{{goods}}" wx:key="index">
+		<image src="{{item.good.image}}" class="imgdetail"></image>
+		<view class="width75">
+			<view class="textinline">{{item.good.name}}</view>
+			<view class="colorgray textinline small">{{item.good.specifications}}</view>
+			<view class="flexrow">
+				<view>￥{{item.price}}</view>
+				<view class="colorgray">x{{item.number}}</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="margin1 small">
+		<view class="flexrow">
+			<view>商品金额</view>
+			<view>￥{{info.price}}</view>
+		</view>
+		<view class="flexrow">
+			<view>优惠券</view>
+			<view>￥-0.00</view>
+		</view>
+	</view>
+
+	<view class="flexrow marb ">
+		<view>金额合计</view>
+		<view class="text-danger">￥{{info.price}}</view>
+	</view>
+</view>
+
+<view class="backcorx">
+	<view class="flexrow">
+		<view>订单编号</view>
+		<view>{{info.order_number}}</view>
+	</view>
+	<view class="flexrow">
+		<view>支付方式</view>
+		<view>微信</view>
+	</view>
+	<view class="flexrow">
+		<view>下单时间</view>
+		<view>{{info.createTime}}</view>
+	</view>
+	<view class="flexrow">
+		<view>备注</view>
+		<view>{{info.remark==null?info.remark:'无'}}</view>
+	</view>
+</view>

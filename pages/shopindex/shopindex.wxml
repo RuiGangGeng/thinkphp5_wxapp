@@ -1,0 +1,90 @@
+<!--pages/shopindex/shopindex.wxml-->
+<view class="faded"></view>
+
+<!-- 头图信息开始 -->
+<view class="shopheader shadow10 width94">
+
+	<!-- 轮播图开始 -->
+	<swiper autoplay="true" interval="3000" duration="500" circular="true">
+		<block wx:for="{{swiper}}" wx:key="index">
+			<swiper-item>
+				<image src="{{shopdata.image}}" class="shopIndItemImg"></image>
+			</swiper-item> 
+		</block>
+	</swiper>
+	<!-- 轮播图结束 -->
+	<!-- 商家地址电话 开始 -->
+	<view class="shopinfo">
+		<view class="location">
+			<image class="shoplogo" src="/image/location.png"></image>
+		</view>
+		<view class="shopinfo-item">
+			<view class="testnowarp">{{shopdata.address}}</view>
+			<view>配送约{{shopdata.deliveryTime}} {{shopdata.phone}}</view>
+		</view>
+	</view>
+	<!-- 商家地址电话 开始 -->
+</view>
+<!-- 头图信息结束 -->
+
+<!-- 分类导航开始 -->
+<view class="shopcates shadow10 width94">
+	<view class="cateitem" bindtap="navito" data-cateid="1">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/1.jpg"></image>
+		<view>新鲜水果</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="2">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/2.jpg"></image>
+		<view>时令蔬菜</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="3">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/3.jpg"></image>
+		<view>肉禽蛋品</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="4">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/4.jpg"></image>
+		<view>米面粮油</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="5">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/5.jpg"></image>
+		<view>海鲜水产</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="6">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/6.jpg"></image>
+		<view>休闲零食</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="7">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/7.jpg"></image>
+		<view>日用百货</view>
+	</view>
+	<view class="cateitem" bindtap="navito" data-cateid="8">
+		<image src="https://www.ananw.cn/public/shop/public/uploads/category/8.jpg"></image>
+		<view>其他商品</view>
+	</view>
+</view>
+<!-- 分类导航结束 -->
+
+<!-- 直播插图开始 -->
+<image src="https://www.ananw.cn/public/shop/public/uploads/category/bbee80bcbed4a9569b4471713e82a52e.png" class="online"></image>
+<!-- 直播插图开始 -->
+
+<!-- 店内公告开始 -->
+<view class="shopnotice shadow10 width94">
+	<view class="noticehesder">
+		<image src="/image/house.png"></image>
+		<view>店内公告</view>
+	</view>
+</view>
+
+<view class="noticebody shadow10 width94">
+	<view class="noticeitem" bindtap="gonotice" wx:if="{{notice}}" wx:for="{{notice}}"  wx:key="index" data-id="{{item.id}}">
+		<image src="{{imgBaseUrl}}{{item.image}}" class="itemimg"></image>
+		<view class="noticemsg">
+			<view>
+				<view class="texttwoline">{{item.title}}</view>
+			</view>
+			<view class="itemtime">{{item.createTime}}</view>
+		</view>
+	</view>
+</view>
+<!-- 店内公告结束 -->

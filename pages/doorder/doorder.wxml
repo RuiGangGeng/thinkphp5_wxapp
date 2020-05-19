@@ -1,0 +1,73 @@
+<!--pages/doorder/doorder.wxml-->
+<view class="faded"></view>
+
+<!-- 未选中地址展示开始 -->
+<view class="address width94" bindtap="addaddress" hidden="t">
+    <view class="itemleft colorgreen">收货地址</view>
+    <view class="itemright colorgray">去添加 ></view>
+</view>
+<!-- 未选中地址展示结束 -->
+
+<!-- 选中地址展示开始 -->
+<view class="addrbody" bindtap="addaddress">
+    <view class="addrinfo">
+        <text textinline>{{userdefaultAddress.address}}{{userdefaultAddress.house}}</text>
+        <image src="/image/icon_right.png" style="width: 14rpx; height: 21rpx;"></image>
+    </view>
+    <view class="addrpel textinline">
+        <text>{{userdefaultAddress.contact}}</text>
+        <text>{{userdefaultAddress.phone}}</text>
+    </view>
+    <view class="warning text-danger ">温馨提示:请注意仔细核对，防止送错您的商品。</view>
+</view>
+<!-- 选中地址展示结束 -->
+
+<!-- 订单展示开始 -->
+<view class="orderbody width94">
+    <view class="columncenter">
+        <view class="colorgreen">{{shopInfo.name}}</view>
+        <view class="font31" style="font-size: 28rpx; margin: 20rpx 25rpx;">超市地址：{{shopInfo.address}}</view>
+    </view>
+
+    <view class="orderitem" wx:for="{{oederInfo.commodity}}">
+        <image src="{{item.image}}" class="goodimg"></image>
+        <view class="goodmsg">
+            <view class="infoheader">{{item.name}}</view>
+            <view class="colora8">规格:{{item.specifications}}</view>
+            <view class="colora8">单价:{{item.price}}</view>
+            <view class="flexbetw colora8">
+                <text>数量:{{item.count}}</text>
+                <view class="pricemar3">
+                    <text class="bigprice">￥{{item.price*item.count}}</text>
+                    <text class="smalleprice">.00</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</view>
+<form  bindsubmit="formSubmit" bindreset="formReset">
+    <view class="msgleav">店家留言板:</view>
+    <textarea name="words" placeholder="请将您需要配送时间告知店家吧~" placeholder-style="font-size:30rpx;"></textarea>
+
+<!-- 订单展示结束 -->
+
+<!-- 底部结算栏开始 -->
+<view class="accounts">
+    <view class="account flex">
+        <view class="font301">
+            <view>合计:
+                <text class="price">￥{{oederInfo.totalPrice}}</text>
+            </view>
+            <view>
+                <text style="color: #a1a1a1;">共</text>
+                <text class="price0">{{oederInfo.account}}</text>
+                <text style="color: #a1a1a1;">件商品</text>
+            </view>
+        </view>
+        <button class="balance text-lg text-fff"  form-type="submit">提交订单 </button>
+    </view>
+</view>
+<!-- 底部结算栏结束 -->
+</form>
+

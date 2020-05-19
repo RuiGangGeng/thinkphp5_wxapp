@@ -1,0 +1,19 @@
+<!--pages/noticedel/noticedel.wxml-->
+
+<!-- 颜色渐变样式开始 -->
+<view class="fadedcolor">
+</view>
+<!-- 颜色渐变样式结束 -->
+
+<view class="noticebody">
+  <view class="noticetil">{{notice.title}}</view>
+  <view class="timecolor">{{notice.createtime}}</view>
+  <!-- 富文本解析开始 -->
+  <image src="https://www.ananw.cn/public/shop/public/uploads/category/3.jpg" class="noticeimg"></image>
+  <!--pages/about/about.wxml-->
+  <import src="../../wxParse/wxParse.wxml" />
+  <!-- 这一块是富文本 显示的内容区 -->
+  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+
+  <!-- 富文本解析结束 -->
+</view>

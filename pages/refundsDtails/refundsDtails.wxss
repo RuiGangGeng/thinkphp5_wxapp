@@ -1,0 +1,234 @@
+/* pages/refunds/refunds.wxss */
+
+.status-box {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.status-box .status-label {
+  width: 150rpx;
+  height: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #353535;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.status-box .status-label.active {
+  color: #39a336;
+  border-bottom: 6rpx solid #39a336;
+}
+
+.status-box .status-label .red-dot {
+  width: 16rpx;
+  height: 16rpx;
+  position: absolute;
+  left: 125rpx;
+  top: 20rpx;
+  background-color: #39a336;
+  border-radius: 50%;
+}
+
+page {
+  background-color: #f2f2f2;
+}
+
+.backitem {
+  width: 94%;
+  margin-left: 3%;
+  margin-top: 2%;
+  border-radius: 15rpx;
+  background-color: #fff;
+  padding-bottom: 5%;
+  border: 1rpx solid #CCC;
+}
+
+page {
+  padding-bottom: 35rpx;
+}
+
+.shopmsg {
+  width: 100%;
+  margin-top: 2%;
+  border-radius: 15rpx;
+  background-color: #fff;
+  padding-bottom: 5%;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 15rpx;
+  border-bottom: 1rpx solid #d7d7d7;
+}
+
+.itemimg {
+  width: 172rpx;
+  height: 172rpx;
+  border-radius: 15rpx;
+}
+
+.itemmsg {
+  padding: 0 15rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.msgin {
+  margin-left: 3%;
+}
+
+.textright {
+  text-align: right;
+  margin-right: 3%;
+  font-size: 31rpx;
+}
+
+.size25 {
+  font-size: 25rpx;
+}
+
+.dingdan {
+  height: 50rpx;
+  border: 1rpx solid #ccc;
+  width: 140rpx;
+  border-radius: 140rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  float: right;
+  color: #767676;
+}
+
+.colorg {
+  color: #808080;
+  font-size: 30rpx;
+}
+
+.mar30 {
+  margin-top: 15rpx;
+}
+
+.colorgreen {
+  color: #39a336;
+  font-size: 31rpx;
+}
+
+.img {
+  width: 28rpx;
+  height: 35rpx;
+  margin: auto 10rpx;
+}
+
+.imgq image{
+  width: 35rpx;
+  height: 33rpx;
+  display: block;
+  line-height: unset;
+}
+
+.lineone {
+  display: flex;
+}
+
+.mar15 {
+  margin-top: 15rpx;
+}
+
+.mar40 {
+  margin-left: 47rpx;
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.inorder {
+  padding: 20rpx;
+}
+
+.mar20 {
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 33rpx;
+}
+
+.text-danger {
+  color: #ff7202;
+}
+
+.address {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+}
+
+.ordermsg {
+  margin-top: 3%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+  color: #666666;
+}
+
+.msgitem {
+  display: flex;
+  justify-content: space-between;
+  height: 75rpx;
+  border-bottom: 1rpx solid #d7d7d7;
+  line-height: 75rpx;
+  color: #808080;
+}
+
+.msgitem0 {
+  display: flex;
+  justify-content: space-between;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #808080;
+}
+
+.msgitem0 text {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.msgitem text {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.shop-name {
+  font-size: 37rpx;
+  font-weight: 550;
+  color: #262626;
+  float: left;
+}
+
+.icon_shop image {
+  width: 35rpx;
+  height: 33rpx;
+  display: block;
+  line-height: unset;
+  margin: 0 15rpx 0 25rpx;
+}
+.order-details-text{
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1rpx solid #d7d7d7;
+  font-weight: bold;
+}

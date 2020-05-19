@@ -1,0 +1,64 @@
+<view class="fadedf">
+</view>
+<!--搜索栏 -->
+<navigation id='Navigation' show-search='{{true}}'></navigation>
+
+<!--分类tab切换  -->
+<view class="category-wrapper">
+	<!--分类  -->
+	<view class="sidebar-wrapper">
+		<view class="category-item {{select == index ? 'active': ''}}" hover-class="hover" wx:for="{{categories}}" wx:key="index" id="{{item.id}}" bindtap='categoryClick'>
+			<view class="{{select == index ? 'diamond': 'nodiamond'}}"></view>{{item.name}}
+		</view>
+	</view>
+	<!--结果列表  -->
+	<view class="result-wrapper" wx:if="{{goodsList.length > 0}}">
+		<view class="goods-item" wx:for="{{goodsList}}" wx:key="index" catchtap="gooddetail" data-id="{{item.id}}">
+			<image src="{{item.image}}" class="goods-image"></image>
+			<view class="goods-info">
+				<view class="textinline hei150">{{item.name}}</view>
+				<view class="goods-text">
+					<view class="sendpdt">送货上门</view>
+					<view class="price-wrapper">
+						<text class="price">￥{{item.price0}}<text class="money">.{{item.price1}}</text></text>
+						<text class="oldprice">￥{{item.price_orig}}</text>
+						<image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{item}}"></image>
+						<block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
+							<view wx:if="{{dayItem.id == item.id}}" class="numoncar">{{dayItem.count}}</view>
+						</block>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+	<!-- 无数据展示效果 -->
+	<view class="noData result-wrapper result-wrappers" wx:if="{{goodsList.length == 0}}">
+		暂无数据
+	</view>
+</view>
+
+<!-- 底部购物车开始 -->
+<view class="accounts flex">
+	<view class="checkAll flex text-normal">
+		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
+			<image src="/image/goodcar.png" class="goodcar"></image>
+			<view class="cricle" wx:if="{{totalGoods}}">{{totalGoods}}</view>
+		</navigator>
+	</view>
+	<view class="payaccount">
+		<view style="font-size:28rpx">
+			合计:
+			<text class="colorr" wx:if="{{totalPrice}}">￥{{totalPrice}}</text>
+		</view>
+		<view class="colorg">
+			已优惠:
+			<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text>
+		</view>
+	</view>
+
+	<view wx:if="{{!totalPrice}}" class="nobalance text-lg text-fff">去结算</view>
+
+	<view bindtap="godoorder" wx:if="{{totalPrice}}" class="balance text-lg text-fff">去结算</view>
+</view>
+<!-- 底部购物车结束 -->

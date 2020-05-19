@@ -1,0 +1,181 @@
+/**index.wxss**/
+
+/* 头部样式 */
+
+.weight700 {
+    font-weight: bold;
+}
+
+.txercont {
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    height: 44px;
+    width: 68%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.bodytitle {
+    font-weight: bold;
+    font-size: 38rpx;
+}
+
+.flexcenter {
+    display: flex;
+    align-items: center;
+    font-size: 27rpx;
+}
+
+.imgback {
+    position: absolute;
+    height: 350rpx;
+    z-index: -1;
+    width: 100%;
+}
+
+.imgstar {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 5rpx;
+}
+
+.imgfront {
+    z-index: 2;
+    width: 710rpx;
+    height: 420rpx;
+    margin: 0 20rpx;
+}
+
+/* 地址样式 */
+
+.addrleft {
+    font-size: 26rpx;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #383838;
+    width: 610rpx;
+}
+
+.address {
+    border-radius: 6px;
+    box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+    width: 710rpx;
+    height: 65rpx;
+    margin: 10rpx 20rpx 0 20rpx;
+    box-sizing: border-box;
+    padding: 0 15rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addrtext {
+    color: #a8a8a8;
+    display: block;
+    margin-left: 15rpx;
+    width: 420rpx;
+}
+
+.gtimg {
+    width: 28rpx;
+    height: 35rpx;
+}
+
+.gtimg1 {
+    width: 21rpx;
+    height: 35rpx;
+}
+
+/* 附近门店样式 */
+
+.bodyhead {
+    color: #434343;
+    display: flex;
+    margin-top: 60rpx;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.diamond {
+    width: 1.5%;
+    height: 39rpx;
+    background-color: #39a337;
+    margin-right: 3%;
+}
+
+.shopitem {
+    width: 700rpx;
+    height: 210rpx;
+    padding: 35rpx 15rpx 0 15rpx;
+    margin: 0 25rpx;
+    border-bottom: 1rpx solid #eee;
+    box-sizing: border-box;
+}
+
+.shoptitle {
+    font-size: 30rpx;
+    font-weight: blod;
+}
+
+.outline {
+    display: inlineblock;
+    margin-top: 6rpx;
+    width: 170rpx;
+    text-align: right;
+}
+
+.padd5 {
+    margin: 5% 2%;
+}
+.shopaddr{
+    width: 480rpx;
+
+}
+.buypdt {
+    color: #fff;
+    background-color: #39a336;
+    height: 50rpx;
+    width: 145rpx;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28rpx;
+}
+
+.shopmidd {
+    display: flex;
+    font-size: 26rpx;
+    justify-content: space-between;
+    color: #a8a8a8;
+    height: 60rpx;
+    align-items: center;
+}
+
+.gap {
+    color: #39a336;
+    font-size: 26rpx;
+}
+
+.outgap {
+    color: #a8a8a8;
+    display: flex;
+    justify-content: space-between;
+    font-size: 26rpx;
+}
+
+.scanpdt {
+    color: #fff;
+    background-color: #a8a8a8;
+    height: 50rpx;
+    width: 145rpx;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28rpx;
+}

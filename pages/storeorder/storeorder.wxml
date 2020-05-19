@@ -1,0 +1,47 @@
+<view class="container">
+	<view class="status-box">
+		<view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="index" data-index="{{index}}">
+			{{item.name}}
+		</view>
+	</view>
+	<view class="order-list" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">
+		<view class="order" bindtap="order_details" data-id="{{item.id}}">
+			<view class="order-title">
+				<view class="order-address">
+					<open-data type="userAvatarUrl"></open-data>
+					<text class="texttwoline">{{item.address}}</text>
+				</view>
+				<view class="order-phone" catchtap="makeCall" data-phone="{{item.phone}}">
+					<image src="/image/phone.png"></image>
+					<text>{{item.phone}}</text>
+				</view>
+			</view>
+			<view class="order-details">
+				<view class="order-details-img">
+					<view wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="index">
+						<image src="{{i.good.image}}"></image><text class="textoneline">{{i.good.name}}</text>
+					</view>
+				</view>
+				<view class="order-details-text">
+					<text class="text-danger">￥{{item.price}}</text>
+					<text>共{{item.number}}件</text>
+				</view>
+			</view>
+			<view class="order-ctrl">
+				<button wx:if="{{item.status < 3}}" type="primary" data-id="{{item.id}}" catchtap="order_back" plain="true" class="btn">退单</button>
+				<button wx:if="{{item.status == 1}}" type="primary" data-id="{{item.id}}" catchtap="order_confirm" class="btn btn-wihte">接单</button>
+				<!-- <button wx:if="{{item.status == 2}}" type="primary" data-id="{{item.id}}" catchtap="send_order" class="btn btn-wihte">发货</button> -->
+				<button wx:if="{{item.status == 3}}" type="primary" data-id="{{item.id}}" class="btn btn-wihte">配送中</button>
+				<button wx:if="{{item.status == 5}}" type="primary" data-id="{{item.id}}" class="btn btn-wihte">已完成</button>
+				<button wx:if="{{item.status == 6}}" type="primary" data-id="{{item.id}}" catchtap="refuse_order" plain="true" class="btn">拒绝</button>
+				<button wx:if="{{item.status == 6}}" type="primary" data-id="{{item.id}}" catchtap="agree_order" class="btn btn-wihte">退款</button>
+			</view>
+		</view>
+	</view>
+
+	<!-- 无数据 -->
+	<view class="no-order" wx:if="{{list.length == 0}}" style="height: 100vh;">
+		<image src="/image/empty_order.png" class="no-order-img"></image>
+		<view class="text">还没有订单呢</view>
+	</view>
+</view>

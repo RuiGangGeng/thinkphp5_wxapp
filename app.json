@@ -1,0 +1,72 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/gooddetail/gooddetail",
+        "pages/addcoupon/addcoupon",
+        "pages/storeorderback/storeorderback",
+        "pages/storeorder/storeorder",
+        "pages/shoporderdetail/shoporderdetail",
+        "pages/addpdt/addpdt",
+        "pages/addcate/addcate",
+        "pages/managshop/managshop",
+        "pages/my/my",
+        "pages/login/login",
+        "pages/order/order",
+        "pages/doorder/doorder",
+        "pages/cart/cart",
+        "pages/search/search",
+        "pages/goodcate/goodcate",
+        "pages/dingdanxiangqing/dingdanxiangqing",
+        "pages/feedback/feedback",
+        "pages/address/address",
+        "pages/setting/setting",
+        "pages/addressadd/addressadd",
+        "pages/myappraise/myappraise",
+        "pages/appraise/appraise",
+        "pages/refunds/refunds",
+        "pages/noticedel/noticedel",
+        "pages/shopindex/shopindex",
+        "pages/resultpay/resultpay",
+        "pages/settleshop/settleshop",
+        "pages/comments/comments",
+        "pages/refundsDtails/refundsDtails",
+        "pages/managshopSearch/managshopSearch"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#000",
+        "selectedColor": "#39a335",
+        "borderStyle": "white",
+        "backgroundColor": "#f2f2f2",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "image/index.png",
+                "selectedIconPath": "image/indexed.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "iconPath": "image/goodcar.png",
+                "selectedIconPath": "image/goodcared.png",
+                "text": "购物车"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "iconPath": "image/wode.png",
+                "selectedIconPath": "image/woded.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "您的位置信息将用于获取周边商户"
+        }
+    },
+    "sitemapLocation": "sitemap.json"
+}

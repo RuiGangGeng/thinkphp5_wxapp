@@ -1,0 +1,36 @@
+<!--pages/addpdt/addpdt.wxml-->
+<view class="fadedf"></view>
+<form bindsubmit="upload">
+	<textarea class="discript" name="name" placeholder="商品名称和描述"></textarea>
+	<view class="padd5">
+		<view>上传商品缩略图</view>
+		<view class="bond" bindtap="chooseImage">
+			<image src="{{param.image}}"></image>
+		</view>
+		<view>上传商品图片</view>
+		<view class="bond" bindtap="choosedetailimg">
+			<image src="{{param.detailimg}}"></image>
+		</view>
+		<view class="flexrow">
+			<text>售价:</text>
+			<input placeholder="￥0.00" name="price" type="digit"></input>
+		</view>
+		<view class="flexrow">
+			<text>原价:</text>
+			<input placeholder="￥0.00" name="price_orig" type="digit"></input>
+		</view>
+		<view class="flexrow">
+			<text>规格:</text>
+			<input placeholder="请填写" name="specifications" ></input>
+		</view>
+		<view class="flexrow">
+			<text>商品分类</text>
+			<picker class="colrgreen" bindchange="bindPicker" data-name="categorysSelectName" data-param="category_id" data-list="categorys" range="{{categorys}}" range-key="name">
+				<view>{{categorysSelectName}}</view>
+			</picker>
+		</view>
+		<view class="btnBox">
+			<button form-type="submit" class="btn" disabled="{{onSync}}">发布</button>
+		</view>
+	</view>
+</form>

@@ -1,0 +1,53 @@
+<!--pages/addcoupon/addcoupon.wxml-->
+<view class="fadedf"></view>
+<view class="shop_info">
+	<view class="logo">
+		<image src="{{info.image}}" class="headl"></image>
+	</view>
+	<view class="shop_text">
+		<view class="textinline">{{info.name}}</view>
+		<view class="shop_detail">
+			<view class="textinline">{{info.address}}</view>
+			<view class="textinline">{{info.deliveryTime}}</view>
+		</view>
+	</view>
+</view>
+
+
+<view class="item">
+	<view class="bond">√</view>
+	<view>满100减5</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满100减5</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满100减5</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满150减10</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满200减20</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满100减6</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满150减12</view>
+</view>
+<view class="item">
+	<view class="bond">√</view>
+	<view>满200减15</view>
+</view>
+
+
+<view class="btnBox">
+	<button type="primary">确定</button>
+</view>

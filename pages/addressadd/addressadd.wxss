@@ -1,0 +1,106 @@
+/* pages/addressadd/addressadd.wxss */
+page{
+  height: 100%;
+}
+form{
+  font-size: 32rpx;
+  height: 100%;
+  display:block;
+}
+.body {
+  padding: 20rpx;
+}
+.wide{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 31rpx;
+}
+.mar3{
+  margin-left:3%; 
+}
+.mar2{
+  margin-left: 2%;
+  width: 440rpx;
+}
+.mar1{
+  margin-left: 1%;
+}
+.part1{
+  display: block;
+  width: 150rpx;
+  text-align: left;
+}
+.addressthree {
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #d7d7d7;
+  padding: 0 20rpx;
+  justify-content: space-between;
+}
+.itemimg{
+  width: 65rpx;
+  height: 65rpx;
+}
+.addresstwo {
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #d7d7d7;
+  padding: 0 20rpx;
+}
+.black{
+    color: #000;
+}
+.color{
+    color: #808080;
+}
+.colorgray{ 
+  float: right;
+}
+.fff{
+    background: #fff;
+}
+.colorgray0{ 
+  float: right;
+  margin-right: 9rpx;
+}
+
+.colorgray image{
+  width: 35rpx;
+  height: 45rpx;
+}
+.mar30{
+  width: 360rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button::after{
+  border: 1px solid #39a336;
+}
+.btn{
+  width: 360rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
+  background: #39a336;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnfa{
+    background-color: #fff;
+    color: #39a336;
+}
+
+.btnBox{
+  position: fixed;
+  bottom: 100rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

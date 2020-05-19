@@ -1,0 +1,180 @@
+/* pages/doorder/doorder.wxss */
+@import '../cart/cart.wxss';
+
+page {
+  background-color: #f2f2f2;
+}
+
+.addrinfo {
+  font-size: 30rpx;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addrpel {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.warning {
+  font-size: 28rpx;
+  margin: 20rpx 0;
+  color: #ff5546;
+}
+
+.addrpel text {
+  margin-right: 20rpx;
+}
+button{
+  border-radius: unset;
+}
+.addrbody {
+  width: 94%;
+  margin-left: 3%;
+  margin-top: 40rpx;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+  border-radius: 10rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.colora8 {
+  color: #a8a8a8;
+  font-size: 26rpx;
+  margin-top: 1%;
+}
+
+.bigprice {
+  color: #ff5546;
+  font-size: 45rpx;
+}
+
+.smalleprice {
+  color: #ff5546;
+  font-size: 25rpx;
+}
+
+.width94 {
+  width: 94%;
+  margin-left: 3%;
+  background-color: #fff;
+}
+
+.address {
+  display: flex;
+  justify-content: space-between;
+  height: 90rpx;
+  margin-top: 3%;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+.itemleft {
+  margin-left: 2%;
+}
+
+.itemright {
+  margin-right: 2%;
+}
+
+.infoheader {
+  margin-bottom: 3%;
+}
+
+.colorgreen {
+  color: #39a335;
+  font-size: 34rpx;
+  margin-left: 25rpx;
+  margin-top: 10rpx;
+}
+
+.font31 {
+  font-size: 31rpx;
+}
+
+.pricemar3 {
+  margin-right: 3%;
+}
+
+.colorgray {
+  color: #a8a8a8;
+}
+
+.orderbody {
+  margin-top: 2%;
+  border-radius: 15rpx;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+}
+
+.columncenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 140rpx;
+  padding-left: 2%;
+}
+
+.goodimg {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 15rpx;
+  margin-left: 2%;
+}
+
+.orderitem {
+  display: flex;
+  padding-bottom: 1%;
+  border-top: 1rpx solid #ccc;
+  padding-top: 4%;
+}
+
+.goodmsg {
+  flex: 1;
+  margin-left: 2%;
+  position: relative;
+}
+
+.flexbetw {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  color: #ff5546;
+  margin-right: 2%;
+}
+
+.price0 {
+  font-size: 30rpx;
+  color: #ff5546;
+  margin-right: 2%;
+}
+
+.msgleav {
+  margin-left: 6%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+textarea {
+  margin-left: 3%;
+  border-radius: 10rpx;
+  background-color: #fff;
+  padding: 30rpx;
+  font-size: 33rpx;
+  height: 115rpx;
+  width: 86%;
+  margin-bottom: 150rpx;
+  box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+  font-size: 26rpx;
+  color: #a1a1a1;
+}
+
+.font301{
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  flex: 1;
+}

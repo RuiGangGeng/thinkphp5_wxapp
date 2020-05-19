@@ -1,0 +1,39 @@
+<view class="order">
+	<view class="order-title">
+		<view class="order-address">
+			<image src="http://img.dcdy81.com/img/zixun/zixunchanggui10.png"></image>
+			<text class="texttwoline">北京市建国路88号四号楼1705</text>
+		</view>
+		<view class="order-phone" catchtap="makeCall" data-phone="17853609200">
+			<image src="/image/phone.png"></image>
+			<text>17853609200</text>
+		</view>
+	</view>
+
+	<view class="select-all" bindtap="select_all">选择全部</view>
+
+	<checkbox-group bindchange="checkboxChange" class="order-details">
+		<label class="checkbox" wx:for="{{items}}" wx:key="index">
+			<checkbox value="{{index}}" checked="{{item.checked}}"/>
+			<view class="order-details-img">
+				<image src="{{item.url}}"></image>
+			</view>
+			<view class="order-details-name">
+				<text class="textoneline">{{item.name}}</text>
+				<text class="text-danger">￥{{item.price}}</text>
+			</view>
+			<view>
+				<text>*{{item.value}}</text>
+			</view>
+			<view class="order-details-value">
+        <button bindtap="valuedown" data-index="{{index}}">-</button>
+				<text>{{item.v}}</text>
+        <button bindtap="valueup" data-index="{{index}}">+</button>
+			</view>
+		</label>
+	</checkbox-group>
+
+	<view class="order-ctrl">
+		<button bindtap="order_back" plain="true" class="btn">确定</button>
+	</view>
+</view>

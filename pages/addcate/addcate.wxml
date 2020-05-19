@@ -1,0 +1,7 @@
+<!--pages/addcate/addcate.wxml-->
+<view class="fadedf"></view>
+<view class="colorgreen">添加产品分类</view>
+<textarea placeholder="产品分类"></textarea>
+<view class="btnBox">
+	<button type="primary" bindtap="">确定</button>
+</view>

@@ -1,0 +1,21 @@
+<view class="container">
+	<view class="faded"></view>
+	<!-- 意见发表开始 -->
+	<form bindsubmit="submit" wx:if="{{flag}}">
+		<textarea name='content' placeholder="请输入您的反馈内容,我们会第一时间给予解决~" placeholder-style="font-size:28rpx;" class="width90"></textarea>
+		<view class="btn">
+			<button type="primary" form-type="submit" disabled="{{onSync}}">提交</button>
+		</view>
+
+	</form>
+	<!-- 意见发表结束 -->
+
+
+	<!-- 意见提交成功开始 -->
+	<view class="sucview" wx:if="{{!flag}}">
+		<icon type="success" size="70"></icon>
+		<view class="mar20">提交成功</view>
+		<view class="colorgray">提交成功,感谢您的宝贵意见</view>
+	</view>
+	<!-- 意见提交成功过结束 -->
+</view>

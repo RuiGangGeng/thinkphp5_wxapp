@@ -1,0 +1,2 @@
+<!--pages/login/login.wxml-->
+<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">微信登录</button>

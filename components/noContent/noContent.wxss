@@ -1,0 +1,32 @@
+/* components/noContent/noContent.wxss */
+.noContent {
+  margin: 60rpx 0;
+  text-align: center;
+}
+.img {
+  width: 500rpx;
+  height: 300rpx;
+  vertical-align: middle;
+}
+.noContent-info {
+  margin: 20rpx 0;
+  text-align: center;
+}
+.title {
+  font-size: 31rpx;
+  color: #a1a1a1;
+}
+.subTitle {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #aaa;
+}
+.btn-custom {
+  margin-top: 150rpx;
+  width: 360rpx;
+  background-color: #39a336;
+  color: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size:36rpx;
+}

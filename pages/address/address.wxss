@@ -1,0 +1,164 @@
+/* pages/address/address.wxss */
+
+.inmiddle {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.itemimg0 {
+    width: 40rpx;
+    height: 45rpx;
+    margin: 0 10rpx;
+}
+
+.colorgray {
+    color: #a8a8a8;
+}
+
+radio {
+    transform: scale(0.8);
+}
+
+.colorwhite {
+    color: #fff;
+    background-color: #39a336;
+    width: 360rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 15rpx;
+    margin: 20% auto;
+}
+
+.itemimg {
+    width: 35rpx;
+    height: 42rpx;
+    margin-top: 2rpx;
+    margin-left: 10rpx;
+}
+
+.hasaddress {
+    margin: 0 25rpx;
+}
+
+.addressitem {
+    padding: 15rpx;
+    border-bottom: 1rpx solid #d7d7d7;
+}
+
+.fristitem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.location {
+    align-items: center;
+    font-size: 33rpx;
+    font-weight: bold;
+    flex: 1;
+    margin-left: 5rpx;
+}
+
+.sconitem {
+    color: #a8a8a8;
+    font-size: 28rpx;
+    margin-left: 60rpx;
+    margin-top:10rpx;
+}
+
+.threitem {
+    text-align: right;
+}
+
+.btn {
+    width: 200rpx;
+    height: 60rpx;
+    border: 1rpx solid #39a335;
+    border-radius: 10rpx;
+    margin: 100rpx auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goshopping {
+    width: 360rpx;
+    height: 90rpx;
+    background-color: #39a335;
+    color: #fff;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 90rpx;
+    margin: 450rpx 0;
+    bottom: 60rpx;
+}
+
+.uppart {
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.deloneaddress {
+    position: absolute;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    height: 2000rpx;
+    background-color: rgba(178, 178, 178, 0.8);
+}
+
+.width92 {
+    width: 86%;
+    margin-left: 7%;
+    background-color: #fff;
+    margin-top: 40%;
+    border-radius: 15rpx;
+    position: fixed;
+}
+
+.opt {
+    width: 50%;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+}
+
+.downpart {
+    display: flex;
+    justify-content: space-between;
+    border: 1rpx solid #f2f2f2;
+}
+
+.colorgray {
+    color: #a8a8a8;
+    font-size: 30rpx;
+}
+
+.cen {
+    border-right: 1rpx solid #f2f2f2;
+}
+
+.con {
+    color: #39a335;
+}
+
+page {
+    height: 100%;
+}
+
+.container {
+    max-height: 100%;
+    padding-bottom: 280rpx;
+}
+
+.disabled {
+    background-color: #ccc;
+}

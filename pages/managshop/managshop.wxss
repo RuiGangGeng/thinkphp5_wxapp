@@ -1,0 +1,270 @@
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  overflow: hidden;
+}
+
+.shop_info {
+  height: 205rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 135rpx;
+  height: 135rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #CCC;
+  overflow: hidden;
+}
+
+.logo image {
+  width: 135rpx;
+  height: 135rpx;
+}
+
+.shop_text {
+  height: 135rpx;
+  width: 545rpx;
+  font-size: 34rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.shop_detail {
+  font-size: 26rpx;
+  color: #606060;
+}
+
+.coupons {
+  width: 100%;
+  box-sizing: border-box;
+  height: 45rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25rpx;
+  font-size: 26rpx;
+}
+
+.coupons_title {
+  width: 75rpx;
+  height: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #39a336;
+  border-radius: 10rpx;
+}
+
+.coupons_list {
+  width: 550rpx;
+  height: 45rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.coupons_add {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 100%;
+  border: 3rpx solid #39a336;
+  color: #39a336;
+  font-size: 35rpx;
+  text-align: center;
+  line-height: 36rpx;
+}
+
+.search_box {
+  position: relative;
+  width: 700;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 25rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+
+.search_box input {
+  font-size: 28rpx;
+  height: 55rpx;
+  width: 100%;
+  background: #f1f1f1;
+  border-radius: 100rpx;
+  padding: 0 35rpx 0 65rpx;
+}
+
+.search_box icon {
+  position: absolute;
+  top: 38rpx;
+  left: 25rpx;
+}
+
+.operate {
+  height: 180rpx;
+  width: 700rpx;
+  margin: 0 25rpx;
+}
+
+.operateone {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operateone>view:first-child,
+.operatetwo>view:first-child {
+  width: 200rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.operateone>view:last-child {
+  width: 500rpx;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.operateone>view:last-child text {
+  display: flex;
+  width: 100rpx;
+  justify-content: center;
+  align-items: center;
+  color: #4b4b4b;
+}
+
+.operatetwo {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operatetwo navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450rpx;
+  height: 50rpx;
+  border-radius: 8rpx;
+  background: #39a336;
+  color: white;
+  font-size: 26rpx;
+}
+
+scroll-view {
+  height: calc(100% - 15rpx);
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 545rpx);
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 200rpx;
+  height: 100%;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+.sidebar view {
+  height: 85rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #292929;
+  font-size: 28rpx;
+}
+
+.list {
+  width: 700rpx;
+  margin: 0 25rpx;
+  border-top: 1rpx solid #e1e1e1;
+  height: 100%;
+  overflow-x: scroll;
+}
+
+.item {
+  width: 100%;
+  height: 200rpx;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+  border-bottom: 2rpx solid #ededed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list .item:last-child {
+  border-bottom: none;
+  margin-bottom: 80rpx;
+}
+
+.item>image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 10rpx;
+}
+
+.goods_info {
+  width: 360rpx;
+  height: 130rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.goods_info image {
+  width: 35rpx;
+  height: 37rpx;
+}
+
+.goods_price {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goods_price>text {
+  color: #ee6054;
+  display: block;
+  width: 155rpx;
+  height: 100%;
+}
+
+.select {
+  background: #39a336;
+  color: white !important;
+  border-radius: 10rpx;
+}
+
+.active {
+  background: #39a336;
+  color: white !important;
+}

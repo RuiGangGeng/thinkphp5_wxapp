@@ -1,0 +1,94 @@
+<!--pages/cart/cart.wxml-->
+
+<view class="fadedf"></view>
+<view id="cart">
+
+    <!-- 购物车为空开始 -->
+    <view hidden="{{flag}}">
+        <no-content types="cart" title="购物车为空,去挑选商品吧" btn="去逛逛"></no-content>
+    </view>
+    <!-- 购物车为空结束 -->
+
+    <!-- 购物车存在订单开始 -->
+    <view hidden="{{!flag}}">
+        <block wx:for="{{commodities}}" wx:for-item="shop" wx:key="index">
+            <!-- 购物车商品 -->
+            <view class="commodity-box">
+                <view class="shopincart {{index != 0?'bacolor':''}}" catchtap="changeT" data-shopid="{{shop.shopid}}" hidden="{{!shop.shopName}}">
+                    <view class="namemar">{{shop.shopName}}</view>
+
+                    <image src="/image/down.png" class="gtimg" wx:if="{{shop.ishow}}"></image>
+                    <image src="/image/gt.png" class="gtimg" wx:if="{{!shop.ishow}}"></image>
+
+                </view>
+                <view class="itembody" hidden="{{shop.ishow ? false : true}}">
+                    <view class="box-header flex" style="padding-left:2%">
+                        <view class="checkbox" data-shopIdx="{{index}}" data-type="shop" catchtap="checked">
+                            <cus-checkbox checked="{{shop.selected}}"></cus-checkbox>
+                        </view>
+                        <view class="shop flex">
+                            <view class="shop-name text-sm text-333">全选</view>
+                        </view>
+                        <view class="eidt text-sm text-333 text-a1a1 small" data-shopid="{{shop.shopid}}" catchtap="goshop">再逛逛</view>
+                    </view>
+                    <view class="box-body flex">
+                        <block wx:for="{{shop.commodity}}" wx:for-item="commodity" wx:for-index="idx" wx:key="idx">
+                            <view class="item" hidden="{{!commodity.count >0}}">
+                                <view class="commodity-item flex {{ shop.isEdit ? 'animated' : '' }}">
+                                    <view class="checkbox" data-shopidx="{{index}}" data-index="{{idx}}" data-type="commodity" catchtap="checked">
+                                        <cus-checkbox checked="{{commodity.selected}}"></cus-checkbox>
+                                    </view>
+                                    <view class="commodity-img">
+                                        <image class="img1" src="https://www.ananw.cn/public/shop/public/uploads/category/1.jpg"></image>
+                                    </view>
+                                    <view class="commodity-info flex">
+                                        <view class="commodity-name line2 text-sm text-333">{{commodity.name}}</view>
+                                        <view class="commodity-params text-sm" wx:if="{{commodity.id}}">送货上门</view>
+                                        <view class="commodity-price flex">
+                                            <view class="price text-normal">
+                                                <text class="text-sm price">￥</text>{{commodity.price0}}.
+                                                <text class="text-sm price">{{commodity.price1}}</text>
+                                                <text class="text-sm gray">￥{{commodity.price_orig}}</text> </view>
+                                            <view class="btn-group flex flex-center">
+                                                <view class="btn btn-decrease" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
+                                                <view class="btn btn-count text-normal">{{commodity.count}}</view>
+                                                <view class="btn btn-increase" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'increase'}}" catchtap="change">+</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!-- 购物车存在订单结束 -->
+
+
+    <!-- 底部结算栏 -->
+    <view class="accounts" hidden="{{!flag}}">
+        <view class="colorgray" hidden="t">请进行单门店支付,避免出现错误哦~</view>
+        <view class="colorgray" hidden="t">消费满￥20直接上门配送</view>
+        <view class="colorgray" hidden="t">消费满￥20上门配送，还差
+            <text class="price">10</text>元哦~</view>
+        <view class="account flex">
+            <view class="font30" style="margin-left: 30rpx;">
+                <view>合计:
+                    <text class="price">￥{{accountInfo.allAccount}}</text>
+                </view>
+                <view>
+                    <text class="text-a1a1" style="font-size: 26rpx;">共</text>
+                    <text class="price" style="font-size: 26rpx;">{{accountInfo.allCount}}</text>
+                    <text class="text-a1a1" style="font-size: 26rpx;">件商品</text>
+                </view>
+            </view>
+            <view class="balance text-lg text-fff" catchtap="doorder">立即支付 </view>
+        </view>
+    </view>
+    <!-- </block> -->
+
+    <!-- </block> -->
+
+</view>

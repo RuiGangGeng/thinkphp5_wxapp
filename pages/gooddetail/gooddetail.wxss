@@ -1,0 +1,87 @@
+/* pages/gooddetail/gooddetail.wxss */
+@import '../shopindex/shopindex.wxss';
+@import '../goodcate/goodcate.wxss';
+
+.flexrow {
+  width: 100%;
+  /* height: 240rpx; */
+  box-sizing: border-box;
+  padding: 25rpx;
+  margin: 15rpx 0;
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+}
+
+.name {
+  font-size: 36rpx;
+}
+
+.floatr {
+  float: right;
+}
+
+.mar20 {
+  margin-left: 20rpx;
+  color: #808080;
+  font-size: 28rpx;
+}
+
+.shopcar {
+  width: 77rpx;
+  height: 77rpx;
+  position: absolute;
+  right: 15rpx;
+  bottom: 0;
+}
+
+.flexspace {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 700rpx;
+  font-size: 28rpx;
+  position: relative;
+  height: 230rpx;
+}
+
+.prrice{
+  font-size: 28rpx;
+}
+.priceBox {
+  font-size: 40rpx;
+}
+
+.googimg {
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 10rpx;
+  border-radius: 10rpx;
+}
+
+.images {
+  width: 750rpx;
+  height: 750rpx;
+  display: block;
+}
+
+.show {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 15rpx auto 110rpx auto;
+  padding: 25rpx;
+  font-size: 24rpx;
+  background: white;
+  color: #808080;
+}
+.title{
+  font-size: 30rpx;
+  color: #434343;
+}
+.content text{
+  font-weight: bold;
+  color: #434343;
+}
+.content{
+  margin: 10rpx 0;
+}

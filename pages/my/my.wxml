@@ -1,0 +1,99 @@
+<view class="container">
+	<view class="header">
+		<view class="headImg">
+			<open-data type="userAvatarUrl"></open-data>
+		</view>
+		<view class="user_nickname">
+			<open-data type="userNickName"></open-data>
+		</view>
+		<image src="/image/index_PC.jpg" class="header_bg"></image>
+	</view>
+	<view class="my_order">
+		<navigator url="/pages/order/order?status=0" class="cell-row">
+			<text class="myo">我的订单</text>
+			<text class="look_all">查看全部 <text class="angle"></text></text>
+		</navigator>
+		<view class="custom_nav">
+			<navigator url="/pages/order/order?status=1" class="button">
+				<image class="button_imgge" src="../../image/logo/pay.png"></image>
+				<view class="button_text">待付款</view>
+				<view  wx:if="{{order_0!==false}}" class="sup sup_show">{{order_0}}</view>
+			</navigator>
+			<navigator url="/pages/order/order?status=2" class="button">
+				<image class="button_imgge" src="../../image/logo/send.png"></image>
+				<view class="button_text">待发货</view>
+				<view  wx:if="{{order_1!==false}}" class="sup sup_show">{{order_1}}</view>
+			</navigator>
+			<navigator url="/pages/order/order?status=3"  class="button">
+				<image class="button_imgge" src="../../image/logo/take.png"></image>
+				<view class="button_text">待收货</view>
+				<view  wx:if="{{order_3!==false}}" class="sup sup_show">{{order_3}}</view>
+			</navigator>
+			<navigator url="/pages/order/order?status=4" class="button">
+				<image class="button_imgge" src="../../image/logo/speek.png"></image>
+				<view class="button_text">待评价</view>
+				<view  wx:if="{{order_4!==false}}" class="sup sup_show">{{order_4}}</view>
+			</navigator>
+		</view>
+	</view>
+	<view class="my_order">
+		<navigator url="/pages/refunds/refunds" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/sail.png"  style="width: 41rpx; height: 40rpx;"></image>
+				<text>退款/售后</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+		<navigator url="/pages/myappraise/myappraise" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/praise.png"  style="width: 41rpx; height: 39rpx;"></image>
+				<text>我的评价</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+		<navigator url="/pages/address/address" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/addr.png"  style="width: 41rpx; height: 36rpx;"></image>
+				<text>我的送货地址</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+		<navigator url="/pages/feedback/feedback" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/msg.png" style="width: 41rpx; height: 36rpx;"></image>
+				<text>意见反馈</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+		<navigator wx:if="{{!shop.id}}" url="/pages/settleshop/settleshop" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/word.png" style="width: 41rpx; height: 41rpx;"></image>
+				<text>商铺加盟合作</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+
+		<!-- <navigator url="/pages/storeorderback/storeorderback" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/word.png" style="width: 41rpx; height: 41rpx;"></image>
+				<text>商铺退单订单</text>
+			</view>
+			<text class="angle"></text>
+		</navigator> -->
+
+		<navigator wx:if="{{shop.id}}" url="/pages/storeorder/storeorder?shop_id={{shop.id}}" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/word.png" style="width: 41rpx; height: 41rpx;"></image>
+				<text>商铺全部订单</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+		<navigator wx:if="{{shop.id}}" url="/pages/managshop/managshop?shop_id={{shop.id}}" class="nav_item">
+			<view class="nav_item_text">
+				<image src="../../image/logo/word.png" style="width: 41rpx; height: 41rpx;"></image>
+				<text>商铺管理</text>
+			</view>
+			<text class="angle"></text>
+		</navigator>
+	</view>
+</view>
