@@ -78,10 +78,10 @@ page {
 }
 
 .itemmsg {
-  padding: 0 15rpx;
+  padding: 0 25rpx;
   display: flex;
   align-items: center;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
 }
 
 .msgin {

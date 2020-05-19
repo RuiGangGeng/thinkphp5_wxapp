@@ -16,7 +16,7 @@
 			<text class="text-danger">￥{{item.price}}</text>
 		</view>
 		<view class="fuck">
-			<navigator url="/pages/appraise/appraise?id={{item.id}}" class="textright dingdan mycolor" bindtap="goappraise">订单详情</navigator>
+			<navigator url="/pages/appraise/appraise?id={{item.id}}" class="textright dingdan mycolor">订单详情</navigator>
 		</view>
 	</view>
 	<view wx:if="{{list.length == 0}}">

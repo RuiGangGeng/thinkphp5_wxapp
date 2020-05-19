@@ -44,7 +44,7 @@
 			<view class='content'>
 				<view>给门店打分</view>
 				<view>
-					<view wx:for="{{stars}}" wx:key="" style='background:url("{{item.flag==1?item.bgImg:item.bgfImg}}") no-repeat top; background-size:100%;' data-index="{{index}}" bindtap='score'></view>
+					<view wx:for="{{stars}}" wx:key="index" style='background:url("{{item.flag==1?item.bgImg:item.bgfImg}}") no-repeat top; background-size:100%;' data-index="{{index}}" bindtap='score'></view>
 				</view>
 			</view>
 			<view class="raisetitle">评论</view>

@@ -21,7 +21,9 @@ Page({
 
 	// 搜索框获取焦点
 	searchFocus: function () {
+		let recentSearch = wx.getStorageSync('recentSearch') || [];
 		this.setData({
+			recentSearch: recentSearch,
 			searchHidden: true,
 			noneHidden: true,
 			search: false,
@@ -92,6 +94,9 @@ Page({
 			let recentSearch = wx.getStorageSync('recentSearch') || [];
 			if (!app.isStrInArray(keywords, recentSearch)) {
 				recentSearch.unshift(that.data.searchKey);
+				if (recentSearch.length > 5) {
+					recentSearch = recentSearch.slice(0,4)
+				}
 				wx.setStorageSync('recentSearch', recentSearch)
 				that.setData({
 					recentSearch: recentSearch,
@@ -109,7 +114,7 @@ Page({
 
 		util.wxRequest("wechat/Shop/getSearch", param, res => {
 			let temp = that.data.list.concat(res.data.data)
-			
+
 			for (let i of temp) {
 				i.price1 = i.price.split('.')[1]
 				i.price0 = i.price.split('.')[0]
