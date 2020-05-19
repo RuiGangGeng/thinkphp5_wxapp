@@ -29,7 +29,7 @@
         <view class="font31" style="font-size: 28rpx; margin: 20rpx 25rpx;">超市地址：{{shopInfo.address}}</view>
     </view>
 
-    <view class="orderitem" wx:for="{{oederInfo.commodity}}">
+    <view class="orderitem" wx:for="{{oederInfo.commodity}}" wx:key="index">
         <image src="{{item.image}}" class="goodimg"></image>
         <view class="goodmsg">
             <view class="infoheader">{{item.name}}</view>

@@ -20,28 +20,28 @@ Page({
         }],
         stars: [{
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host+"public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host+"public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host+"public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host+"public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host+"public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host+"public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host+"public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host+"public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host+"public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host+"public/uploads/category/fstar.png"
             }
         ],
         currentType: 0,
