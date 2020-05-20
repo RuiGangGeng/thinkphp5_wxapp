@@ -9,7 +9,7 @@ Page({
         cart_img: "http://gw.alicdn.com/tfscom/TB1xdQSJFXXXXcuXXXXy7S8WFXX-176-176.png",
 
         // 加入购物车的商品
-        commodities: [],   
+        commodities: [],
         account: 0,
         accountInfo: {
             allCount: 0,
