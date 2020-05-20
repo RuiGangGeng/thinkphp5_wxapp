@@ -11,7 +11,7 @@ Page({
         delete_: false
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
         let that = this
         util.wxRequest("wechat/User/getAddress", {
             uid: app.globalData.user.id,
@@ -23,7 +23,7 @@ Page({
                 })
 
                 // 设置默认地址
-                for (let i of data) {
+                for (let i of data.data) {
                     i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
                 }
                 if (data.length > 4) {
@@ -36,7 +36,7 @@ Page({
     },
 
     // 设置默认地址
-    setDefault: function (e) {
+    setDefault: function(e) {
         var that = this;
         let addrId = e.currentTarget.dataset.id;
         let url = 'wechat/User/set_default';
@@ -79,7 +79,7 @@ Page({
     },
 
     //删除地址
-    deladdress: function (e) {
+    deladdress: function(e) {
         var that = this;
         if (e.currentTarget.dataset.default == 1) {
             wx.showModal({
@@ -92,7 +92,7 @@ Page({
         wx.showModal({
             title: '提示',
             content: '你确认移除吗',
-            success: function (res) {
+            success: function(res) {
                 let url = 'wechat/User/del_address';
                 let params = {
                     uid: app.globalData.user.id,
@@ -108,13 +108,13 @@ Page({
                             duration: 2000
                         });
                     }
-                }, data => { }, data => { });
+                }, data => {}, data => {});
             }
         });
     },
 
     //编辑地址
-    editaddress: function (e) {
+    editaddress: function(e) {
         var addrId = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '/pages/addressadd/addressadd?id=' + addrId,
@@ -122,18 +122,18 @@ Page({
     },
 
     //点击去购物
-    goshopping: function () {
+    goshopping: function() {
         wx.switchTab({
             url: '/pages/index/index',
         })
     },
 
     // 提示不可新增地址
-    no_add_address: function () {
+    no_add_address: function() {
         wx.showToast({
             title: '不可超过五个收货地址',
             icon: 'none'
         })
     }
-    
+
 })

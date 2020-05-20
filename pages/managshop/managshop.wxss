@@ -148,7 +148,9 @@ page {
   width: 100rpx;
   justify-content: center;
   align-items: center;
-  color: #4b4b4b;
+  margin: 0 10rpx;
+  font-size: 28rpx;
+  padding: 5rpx;
 }
 
 .operatetwo {

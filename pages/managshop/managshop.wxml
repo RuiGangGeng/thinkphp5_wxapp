@@ -1,77 +1,83 @@
 <view class="container">
-	<!-- 头部渐变色开始 -->
-	<view class="fadedf"></view>
-	<!-- 商铺信息展示部分开始 -->
-	<view class="header">
-		<view class="shop_info">
-			<view class="logo">
-				<image src="{{shop_info.image}}"></image>
-			</view>
-			<view class="shop_text">
-				<view class="textinline">{{shop_info.name}}</view>
-				<view class="shop_detail">
-					<view class="textinline">{{shop_info.address}}</view>
-					<view class="textinline">{{shop_info.deliveryTime}}</view>
-				</view>
-			</view>
-		</view>
-		<!-- 中部满减开始 -->
-		<navigator url="/pages/addcoupon/addcoupon?shop_id={{shop_id}}" class="coupons">
-			<view class="coupons_title">满减</view>
-			<view class="coupons_list" wx:for="{{coupons}}" wx:key="index">
-				<view>{{item.name}}</view>,
-			</view>
-			<view class="coupons_add">+</view>
-		</navigator>
-		<!-- 中部满减结束 -->
-	</view>
-	<!-- 搜索框开始 -->
-	<view class="search_box">
-		<icon type="search" size="17"></icon>
-		<input placeholder="搜索商家商品" bindfocus="bindfocus"></input>
-	</view>
-	<!-- 筛选表头 和 添加商品 -->
-	<view class="operate">
-		<view class="operateone">
-			<view>精选商品</view>
-			<view>
-				<text class="{{select==1?'select':''}}" bindtap="changeSelect" data-status="1">上架</text>
-				<text class="{{select==0?'select':''}}" bindtap="changeSelect" data-status="0">下架</text>
-				<text class="{{select==2?'select':''}}" bindtap="changeSelect" data-status="2">价格</text>
-				<view>
-					<view class="triangle-up"></view>
-					<view class="triangle-down"></view>
-				</view>
-			</view>
-		</view>
-		<view class="operatetwo">
-			<view>查看分类</view>
-			<navigator url="/pages/addpdt/addpdt?shop_id={{shop_id}}" class="manitemr" catchtap="addpdt">添加商品</navigator>
-		</view>
-	</view>
-
-	<!-- 数据展示 和TAB -->
-	<view class="content">
-		<!--分类  -->
-		<view class="sidebar">
-			<view class="{{category_index == item.id ? 'active': ''}}" wx:for="{{categorys}}" data-id="{{item.id}}" wx:key="index" bindtap='categoryClick'>
-				{{item.name}}
-			</view>
-		</view>
-		<!--结果列表  -->
-		<scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
-			<view class="item" wx:for="{{list}}" wx:key="index">
-				<image src="{{item.image}}" class="goods-image"></image>
-				<view class="goods_info">
-					<view class="texttwoline">{{item.name}} </view>
-					<view class="goods_price">
-						<text>￥{{item.price}}</text>
-						<image src="/image/pdtup.png" catchtap="changegood" data-act="up_goods" data-id="{{item.id}}"></image>
-						<image src="/image/pdtdown.png" catchtap="changegood" data-act="down_goods" data-id="{{item.id}}"></image>
-						<image src="/image/del.png" catchtap="changegood" data-act="delete_goods" data-id="{{item.id}}"></image>
-					</view>
-				</view>
-			</view>
-		</scroll-view>
-	</view>
+    <!-- 头部渐变色开始 -->
+    <view class="fadedf"></view>
+    <!-- 商铺信息展示部分开始 -->
+    <view class="header">
+        <view class="shop_info">
+            <view class="logo">
+                <image src="{{shop_info.image}}"></image>
+            </view>
+            <view class="shop_text">
+                <view class="textinline">{{shop_info.name}}</view>
+                <view class="shop_detail">
+                    <view class="textinline">{{shop_info.address}}</view>
+                    <view class="textinline">{{shop_info.deliveryTime}}</view>
+                </view>
+            </view>
+        </view>
+        <!-- 中部满减开始 -->
+        <navigator url="/pages/addcoupon/addcoupon?shop_id={{shop_id}}" class="coupons">
+            <view class="coupons_title">满减</view>
+            <view class="coupons_list" wx:for="{{coupons}}" wx:key="index">
+                <view>{{item.name}}</view>
+                ,
+            </view>
+            <view class="coupons_add">+</view>
+        </navigator>
+        <!-- 中部满减结束 -->
+    </view>
+    <!-- 搜索框开始 -->
+    <view class="search_box">
+        <icon type="search" size="17"></icon>
+        <input placeholder="搜索商家商品" bindfocus="bindfocus"></input>
+    </view>
+    <!-- 筛选表头 和 添加商品 -->
+    <view class="operate">
+        <view class="operateone">
+            <view>精选商品</view>
+            <view>
+                <text class="{{select==1?'select':''}}" bindtap="changeSelect" data-status="1">
+                    上架
+                </text>
+                <text class="{{select==0?'select':''}}" bindtap="changeSelect" data-status="0">
+                    下架
+                </text>
+                <!-- <text class="{{select==2?'select':''}}" bindtap="changeSelect" data-status="2">价格</text> -->
+                <view>
+                    <view class="triangle-up"></view>
+                    <view class="triangle-down"></view>
+                </view>
+            </view>
+        </view>
+        <view class="operatetwo">
+            <view>查看分类</view>
+            <navigator url="/pages/addpdt/addpdt?shop_id={{shop_id}}" class="manitemr" catchtap="addpdt">
+                添加商品
+            </navigator>
+        </view>
+    </view>
+    <!-- 数据展示 和TAB -->
+    <view class="content">
+        <!-- 分类 -->
+        <view class="sidebar">
+            <view class="{{category_index == item.id ? 'active': ''}}" wx:for="{{categorys}}" data-id="{{item.id}}" wx:key="index" bindtap='categoryClick'>
+                {{item.name}}
+            </view>
+        </view>
+        <!-- 结果列表 -->
+        <scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
+            <view class="item" wx:for="{{list}}" wx:key="index">
+                <image src="{{item.image}}" class="goods-image"></image>
+                <view class="goods_info">
+                    <view class="texttwoline">{{item.name}}</view>
+                    <view class="goods_price">
+                        <text>￥{{item.price}}</text>
+                        <image src="/image/pdtup.png" catchtap="changegood" data-act="up_goods" data-id="{{item.id}}"></image>
+                        <image src="/image/pdtdown.png" catchtap="changegood" data-act="down_goods" data-id="{{item.id}}"></image>
+                        <image src="/image/del.png" catchtap="changegood" data-act="delete_goods" data-id="{{item.id}}"></image>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
 </view>
