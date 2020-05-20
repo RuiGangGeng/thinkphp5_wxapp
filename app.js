@@ -21,7 +21,7 @@ App({
             }
         })
     },
-
+ 
     globalData: {
         debug: true, // 是否开启调试
         api_host: 'https://www.ananw.cn/public/shop/', // 全局请求URL
