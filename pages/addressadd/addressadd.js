@@ -1,12 +1,10 @@
 // pages/addressadd/addressadd.js
-const app = getApp();
-const util = require('../../utils/util.js');
-const phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+const app = getApp()
+const util = require('../../utils/util.js')
+const phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/
 Page({
 
-    /**
-     * 页面的初始数据
-     */
+
     data: {
         house: '',
         contact: '',
@@ -16,49 +14,25 @@ Page({
         phone: ''
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
+    onLoad: function (options) {
         if (options.id != undefined) {
-            this.address(options.id);
+            this.address(options.id)
             this.setData({
                 no: true
             })
         }
     },
 
-    // 改变保存按钮状态
-    changebtn: function(that) {
-        if (that.data.address && that.data.house && that.data.linku && that.data.linkph) {
-            that.setData({
-                no: true
-            })
-        } else {
-            that.setData({
-                no: false
-            })
-        }
-    },
-
-    // 门牌号失焦事件
-    housewords: function(e) {
-            this.setData({
-                house: e.detail.value,
-            })
-            var that = this;
-        that.changebtn(that)
-
-    },
-    //   输入手机号
-    valuein: function(e) {
+    // 输入手机号
+    valuein: function (e) {
         this.setData({
             color: 'black'
         })
     },
+
     // 清空手机号
-    clearvalue: function(e) {
-        var that = this;
+    clearvalue: function (e) {
+        var that = this
         that.setData({
             phone: '',
             color: 'color',
@@ -67,118 +41,95 @@ Page({
         })
         that.changebtn(that)
     },
-    // 联系人失焦事件
-    linkuwords: function(e) {
 
-     
-            var that = this;
-            that.setData({
-                linku: e.detail.value,
-            })
-            that.changebtn(that)
-
-    },
-
-    // 手机号失焦事件
-    linkphup: function(e) { 
-            var that = this;
-            that.setData({
-                linkph: e.detail.value
-            })
-            that.changebtn(that)
-    },
-
-    address: function(id) {
-        let that = this;
-        let url = 'wechat/User/edit_address';
+    // 修改地址场景=》填充数据
+    address: function (id) {
+        let that = this
+        let url = 'wechat/User/edit_address'
         let params = {
             id: id
-        };
+        }
         util.wxRequest(url, params, data => {
             that.setData({
                 addr: data,
             })
-        });
+        })
     },
 
     // 提交
-    formSubmit: function(res) {
-        let that = this;
-        let value = res.detail.value;
-        value.uid = app.globalData.user.id;
+    formSubmit: function (res) {
+        let that = this
+        let value = res.detail.value
+        value.uid = app.globalData.user.id
         if (!value.address) {
             wx.showToast({
                 title: '请填写收货地址',
                 icon: 'none',
             })
-            return;
+            return
         }
         if (!value.house) {
             wx.showToast({
                 title: '请填写门牌号',
                 icon: 'none',
             })
-            return;
+            return
         }
         if (value.house.length == 0 || value.house.length > 30) {
             wx.showToast({
                 title: '门牌号字数在30字内',
                 icon: 'none',
             })
-            return;
+            return
         }
         if (!value.contact || value.contact > 12) {
             wx.showToast({
                 title: '联系人字数在12字内',
                 icon: 'none',
             })
-            return;
+            return
         }
         if (!value.phone) {
             wx.showToast({
                 title: '请输入手机号',
                 icon: 'none',
             })
-            return;
+            return
         }
         if (!phoneRexp.test(value.phone)) {
             wx.showToast({
                 title: '手机号格式不正确',
                 icon: 'none',
             })
-            return;
+            return
         }
-        let url = '/wechat/User/addAddress';
+        let url = '/wechat/User/addAddress'
         let params = {
             value: value
-        };
+        }
+
         util.wxRequest(url, params, data => {
+            wx.showToast({
+                title: data.msg,
+                icon: data.code == 1 ? 'success' : 'none',
+            })
+
             if (data.code == 1) {
-                wx.showToast({
-                    title: data.msg,
-                    icon: 'success',
-                });
-                setTimeout(function() {
+                setTimeout(function () {
                     wx.navigateTo({
                         url: '/pages/address/address',
                     })
                 }, 1000)
-            } else {
-                wx.showToast({
-                    title: data.msg,
-                    icon: 'error',
-                });
             }
-
-        });
+        })
     },
 
     // 点击地址填写
-    location: function() {
-        var that = this;
+    location: function () {
+        var that = this
         wx.getSetting({
-            success: function(res) {
-                var locascope = res.authSetting['scope.userLocation'];
+            success: function (res) {
+                var locascope = res.authSetting['scope.userLocation']
                 if (locascope == 'undefined') {
                     wx.navigateTo({
                         url: '/pages/setting/setting',
@@ -189,7 +140,7 @@ Page({
                     })
                 } else {
                     wx.chooseLocation({
-                        success: function(res) {
+                        success: function (res) {
                             getApp().globalData.debug ? console.log(res) : ''
                             that.setData({
                                 address: res.address,
@@ -203,18 +154,48 @@ Page({
         })
     },
 
-    // 授意用户开启权限
-    // 打开权限设置页提示框
-    showSettingToast: function(e) {
+    // 授意用户开启权限 打开权限设置页提示框
+    showSettingToast: function (e) {
         wx.showModal({
             title: '定位服务未开启',
             confirmText: '请在“设置->应用权限”中打开位置权限',
             showCancel: false,
             content: e,
-            success: function(res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                        url: '../setting/setting',
+            success: function (res) {
+                setTimeout(function () {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '../setting/setting',
+                        })
+                    }
+                }, 1500)
+            }
+        })
+    },
+
+    // 获取用户授权 回调新增地址
+    bindgetuserinfo: function (e) {
+        getApp().globalData.debug ? console.log(e) : ''
+
+        // 检查是否授权
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']) {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                    let param = {
+                        user_id: getApp().globalData.user.id,
+                        rawData: e.detail.rawData,
+                    }
+                    // 校验 session_key 同时更新用户信息
+                    util.wxRequest("/wechat/User/wx_auth", param, res => {
+                        if (res.data.code === 200) {
+                            getApp().globalData.debug ? console.log(getApp().globalData) : ''
+                        }
+                    })
+                } else {
+                    wx.showToast({
+                        title: '您取消了授权',
+                        icon: 'none'
                     })
                 }
             }

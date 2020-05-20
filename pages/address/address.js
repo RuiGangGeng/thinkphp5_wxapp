@@ -3,9 +3,6 @@ const app = getApp();
 const util = require('../../utils/util.js');
 Page({
 
-    /**
-     * 页面的初始数据
-     */
     data: {
         has_address: false,
         can_add_address: true,
@@ -14,26 +11,26 @@ Page({
         delete_: false
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
         let that = this
         util.wxRequest("wechat/User/getAddress", {
             uid: app.globalData.user.id,
         }, data => {
-            that.setData({
-                has_address: true,
-                address: data
-            })
-            // 设置默认地址
-            for (let i of data) {
-                i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
-            }
-            if (data.length > 4) {
-                this.setData({
-                    can_add_address: false
+            if (data.code == 200) {
+                that.setData({
+                    has_address: true,
+                    address: data.data
                 })
+
+                // 设置默认地址
+                for (let i of data) {
+                    i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
+                }
+                if (data.length > 4) {
+                    this.setData({
+                        can_add_address: false
+                    })
+                }
             }
         });
     },
@@ -138,4 +135,5 @@ Page({
             icon: 'none'
         })
     }
+    
 })
