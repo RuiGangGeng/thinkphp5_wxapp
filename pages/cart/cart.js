@@ -324,7 +324,7 @@ Page({
                     number:totala,
                     price:totalp
                 },
-                order_detail = {
+                order_detail:{
                     order_detail: order_detail
                 }
         }
