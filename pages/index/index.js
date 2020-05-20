@@ -61,7 +61,7 @@ Page({
     onShow: function () {
         // 设置顶部偏移
         var titlehei = app.globalData.status_bar_height
-        var margintop = titlehei * 2 - 0 + 44 + 80
+        var margintop = titlehei * 2 - 0 + 44 + 52
         var titlmargintop = titlehei * 2
 
         this.setData({
