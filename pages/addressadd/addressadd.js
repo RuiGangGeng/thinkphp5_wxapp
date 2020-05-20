@@ -136,7 +136,7 @@ Page({
                     })
                 } else if (locascope == false) {
                     wx.navigateTo({
-                        url: '/pages/setting/setting',
+                        url: '/pages/setting/setting', 
                     })
                 } else {
                     wx.chooseLocation({
