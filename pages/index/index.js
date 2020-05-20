@@ -12,9 +12,9 @@ Page({
     },
 
     // 小程序加载
-    onLoad: function () {
+    onLoad: function() {
         let that = this
-        // 获取缓存设置 tabar 的数字角标
+            // 获取缓存设置 tabar 的数字角标
         var num = wx.getStorageSync('pdtincar')
         if (num * 1 > 0) {
             var numstr = num.account.toString()
@@ -29,20 +29,20 @@ Page({
         if (app.globalData.user) {
             that.checkAddress(app.globalData.user.id)
         } else {
-            app.userInfoReadyCallback = function (res) {
+            app.userInfoReadyCallback = function(res) {
                 that.checkAddress(res.id)
             }
         }
     },
 
     // 检查是否存在默认地址
-    checkAddress: function (id) {
+    checkAddress: function(id) {
         let that = this
         util.wxRequest("wechat/user/checkAddress", {
             id: id
         }, res => {
             if (res.code == 200) {
-                app.globalData.defaultaddress = res.data.address
+                app.globalData.defaultaddress = res.data
                 app.globalData.user_address = res.data.address + res.data.house
                 app.globalData.addrss_id = res.data.id
 
@@ -58,7 +58,7 @@ Page({
         })
     },
 
-    onShow: function () {
+    onShow: function() {
         // 设置顶部偏移
         var titlehei = app.globalData.status_bar_height
         var margintop = titlehei * 2 - 0 + 44 + 52
@@ -80,17 +80,17 @@ Page({
     },
 
     // 前往商铺首页
-    goshop: function (e) {
+    goshop: function(e) {
         wx.navigateTo({
             url: '/pages/shopindex/shopindex?shopid=' + e.currentTarget.dataset.shopid,
         })
     },
 
-    loadShops: function () {
+    loadShops: function() {
         util.wxRequest('wechat/user/loadShops', { id: app.globalData.addrss_id }, res => {
             // 计算门店显示进店购物或者去逛逛
             let shops = res.data
-            shops.forEach(function (item, index) {
+            shops.forEach(function(item, index) {
                 item.can = (item.deliveryGap - item.distance).toFixed(2);
                 item.gap = (item.distance / 1000).toFixed(1);
             })
