@@ -1,17 +1,14 @@
 <!-- pages/addressadd/addressadd.wxml -->
 <form bindsubmit="formSubmit">
     <view class="fadedf"></view>
-    <input hidden="{{true}}" name="lat" value="{{lat ? lat : addr.lat}}"></input>
-    <input hidden="{{true}}" name="lng" value="{{lng ? lng : addr.lng}}"></input>
-    <input hidden="{{true}}" name="id" value="{{addr.id}}"></input>
     <view class="body">
         <view class="addressthree" bindtap="location">
             <view class="wide">
                 <view class="part1">收货地址</view>
-                <input hidden="{{true}}" type="text" name="address" value="{{address ? address : addr.address}}"></input>
-                <view class="mar2 textinline" style="{{address ? address : addr.address ? addr.address : 'color:#808080'}}">
-                    {{address ? address : addr.address ? addr.address : '请填写'}}
+                <view class="mar2 textinline" wx:if="{{has_location}}" style="{{addr.address ? 'block' : 'color:#808080'}}">
+                    {{addr.address ? addr.address : '请填写'}}
                 </view>
+                <button wx:if="{{!has_location}}" open-type="openSetting" class="btns" bindopensetting="location">点击授权位置信息</button>
             </view>
             <view class="colorgray">
                 <image src="/image/gt.png"></image>
@@ -20,14 +17,14 @@
         <view class="wide addresstwo">
             <view class="part1">门牌号</view>
             <view class="mar2">
-                <input class="textinline" type="text" value="{{addr.house}}" bindblur="housewords" name="house" placeholder="例：6号楼2单元608室"></input>
+                <input class="textinline" type="text" maxlength="30" value="{{addr.house}}" bindinput="housewords" name="house" placeholder="例：6号楼2单元608室"></input>
             </view>
         </view>
         <view class="addressthree">
             <view class="wide">
                 <view class="part1">联系人</view>
                 <view class="mar2">
-                    <input type="text" class="textinline" value="{{addr.contact}}" bindblur="linkuwords" name="contact" placeholder="联系人姓名"></input>
+                    <input type="text" class="textinline" maxlength="12" value="{{addr.contact}}" bindinput="linkuwords" name="contact" placeholder="联系人姓名"></input>
                 </view>
             </view>
             <image class="colorgray itemimg" src="/image/phonebook.png"></image>
@@ -36,8 +33,7 @@
             <view class="wide">
                 <view class="part1">手机号</view>
                 <view class="mar2">
-                    <input type="text" wx:if="{{addr.phone}}" value="{{addr.phone}}" bindblur="linkphwords" name="phone" placeholder="{{writephone}}"></input>
-                    <input type="text" wx:else class="{{color}}" value="{{phone}}" bindblur="linkphup" bindinput="valuein" name="phone" placeholder="联系人电话"></input>
+                    <input type="text" value="{{addr.phone}}" bindinput="linkphwords" placeholder="联系人电话"></input>
                 </view>
             </view>
             <icon type="clear" size="20" color="#CACACC" class="colorgray0" catchtap="clearvalue"></icon>
@@ -45,9 +41,7 @@
     </view>
     <view class="btnBox">
         <!-- form-type="submit" -->
-        <button wx:if="{{no}}" type="primary" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" class="mar30 btn">
-            保存
-        </button>
+        <button wx:if="{{no}}" type="primary" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" class="mar30 btn" disabled="{{onSync}}">保存</button>
         <button class="mar30 btnfa" wx:else>保存</button>
     </view>
 </form>

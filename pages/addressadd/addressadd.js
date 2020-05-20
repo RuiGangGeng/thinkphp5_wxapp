@@ -1,49 +1,34 @@
-// pages/addressadd/addressadd.js
+import WxValidate from '../../utils/WxValidate.js'
 const app = getApp()
 const util = require('../../utils/util.js')
-const phoneRexp = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/
 Page({
 
 
     data: {
-        house: '',
-        contact: '',
-        phone: '',
         no: false,
-        color: '',
-        phone: ''
+        addr: {},
+        has_location: true,
+        onAsync: false
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
+        let that = this
         if (options.id != undefined) {
             this.address(options.id)
-            this.setData({
-                no: true
-            })
         }
-    },
 
-    // 输入手机号
-    valuein: function (e) {
-        this.setData({
-            color: 'black'
-        })
-    },
+        that.initValidate()
 
-    // 清空手机号
-    clearvalue: function (e) {
-        var that = this
-        that.setData({
-            phone: '',
-            color: 'color',
-            no: false,
-            linkph: false
-        })
-        that.changebtn(that)
+        // 轮询验证 时间来不及做事实验证
+        setInterval(() => {
+            that.setData({
+                no: this.ValidateName.checkForm(that.data.addr)
+            })
+        }, 300);
     },
 
     // 修改地址场景=》填充数据
-    address: function (id) {
+    address: function(id) {
         let that = this
         let url = 'wechat/User/edit_address'
         let params = {
@@ -56,66 +41,109 @@ Page({
         })
     },
 
+    // 选择地址
+    location: function() {
+        var that = this
+        wx.getSetting({
+            success: function(res) {
+                var locascope = res.authSetting['scope.userLocation']
+                if (locascope == 'undefined') {
+                    that.showSettingToast()
+                } else if (locascope == false) {
+                    that.showSettingToast()
+                } else {
+                    that.setData({
+                        has_location: true
+                    })
+                    wx.chooseLocation({
+                        success: function(res) {
+                            getApp().globalData.debug ? console.log(res) : ''
+                            that.setData({
+                                'addr.address': res.address,
+                                'addr.lat': res.latitude,
+                                'addr.lng': res.longitude
+                            })
+                        },
+                        fail: function(res) {
+                            res.errMsg == "chooseLocation:fail auth deny" ? that.showSettingToast() : ''
+                        }
+                    })
+                }
+            },
+        })
+    },
+
+    // 输入门牌号
+    housewords: function(e) {
+        this.setData({
+            'addr.house': e.detail.value,
+        })
+    },
+
+    // 输入联系人
+    linkuwords: function(e) {
+        this.setData({
+            'addr.contact': e.detail.value,
+        })
+    },
+
+    // 输入手机号
+    linkphwords: function(e) {
+        this.setData({
+            'addr.phone': e.detail.value,
+        })
+    },
+
+    // 清空手机号
+    clearvalue: function(e) {
+        this.setData({
+            'addr.phone': '',
+        })
+    },
+
     // 提交
-    formSubmit: function (res) {
+    formSubmit: function() {
         let that = this
-        let value = res.detail.value
-        value.uid = app.globalData.user.id
-        if (!value.address) {
+
+        let id = { uid: app.globalData.user.id }
+
+        Object.assign(that.data.addr, id);
+
+        // 验证
+        if (!this.ValidateName.checkForm(that.data.addr)) {
+            const error = this.ValidateName.errorList[0]
             wx.showToast({
-                title: '请填写收货地址',
-                icon: 'none',
+                title: error.msg,
+                icon: "none"
             })
-            return
-        }
-        if (!value.house) {
-            wx.showToast({
-                title: '请填写门牌号',
-                icon: 'none',
+            that.setData({
+                onAsync: false
             })
-            return
-        }
-        if (value.house.length == 0 || value.house.length > 30) {
-            wx.showToast({
-                title: '门牌号字数在30字内',
-                icon: 'none',
-            })
-            return
-        }
-        if (!value.contact || value.contact > 12) {
-            wx.showToast({
-                title: '联系人字数在12字内',
-                icon: 'none',
-            })
-            return
-        }
-        if (!value.phone) {
-            wx.showToast({
-                title: '请输入手机号',
-                icon: 'none',
-            })
-            return
-        }
-        if (!phoneRexp.test(value.phone)) {
-            wx.showToast({
-                title: '手机号格式不正确',
-                icon: 'none',
-            })
-            return
-        }
-        let url = '/wechat/User/addAddress'
-        let params = {
-            value: value
+            return false
         }
 
-        util.wxRequest(url, params, data => {
+        util.wxRequest('wechat/User/addAddress', that.data.addr, data => {
             wx.showToast({
                 title: data.msg,
                 icon: data.code == 1 ? 'success' : 'none',
             })
 
+            if (data.code == 200) {
+
+                // 新用户新增地址需要重新拉取商店列表
+                app.globalData.refresh = true
+                app.globalData.user_address = that.data.addr.address + that.data.addr.house
+                app.globalData.defaultaddress = that.data.addr.address
+
+                setTimeout(function() {
+                    wx.switchTab({
+                        url: '/pages/index/index',
+                    })
+                }, 1000)
+            }
+
             if (data.code == 1) {
-                setTimeout(function () {
+                setTimeout(function() {
                     wx.navigateTo({
                         url: '/pages/address/address',
                     })
@@ -124,57 +152,20 @@ Page({
         })
     },
 
-    // 点击地址填写
-    location: function () {
-        var that = this
-        wx.getSetting({
-            success: function (res) {
-                var locascope = res.authSetting['scope.userLocation']
-                if (locascope == 'undefined') {
-                    wx.navigateTo({
-                        url: '/pages/setting/setting',
-                    })
-                } else if (locascope == false) {
-                    wx.navigateTo({
-                        url: '/pages/setting/setting',
-                    })
-                } else {
-                    wx.chooseLocation({
-                        success: function (res) {
-                            getApp().globalData.debug ? console.log(res) : ''
-                            that.setData({
-                                address: res.address,
-                                lat: res.latitude,
-                                lng: res.longitude
-                            })
-                        },
-                    })
-                }
-            }
-        })
-    },
-
     // 授意用户开启权限 打开权限设置页提示框
-    showSettingToast: function (e) {
-        wx.showModal({
-            title: '定位服务未开启',
-            confirmText: '请在“设置->应用权限”中打开位置权限',
-            showCancel: false,
-            content: e,
-            success: function (res) {
-                setTimeout(function () {
-                    if (res.confirm) {
-                        wx.navigateTo({
-                            url: '../setting/setting',
-                        })
-                    }
-                }, 1500)
-            }
+    showSettingToast: function(e) {
+        wx.showToast({
+            title: '请授权获取位置信息',
+            icon: 'none'
+        })
+        this.setData({
+            has_location: false
         })
     },
 
     // 获取用户授权 回调新增地址
-    bindgetuserinfo: function (e) {
+    bindgetuserinfo: function(e) {
+        let that = this
         getApp().globalData.debug ? console.log(e) : ''
 
         // 检查是否授权
@@ -183,12 +174,13 @@ Page({
                 if (res.authSetting['scope.userInfo']) {
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                     let param = {
-                        user_id: getApp().globalData.user.id,
-                        rawData: e.detail.rawData,
-                    }
-                    // 校验 session_key 同时更新用户信息
+                            user_id: getApp().globalData.user.id,
+                            rawData: e.detail.rawData,
+                        }
+                        // 校验 session_key 同时更新用户信息 
                     util.wxRequest("/wechat/User/wx_auth", param, res => {
-                        if (res.data.code === 200) {
+                        if (res.code === 200) {
+                            that.formSubmit()
                             getApp().globalData.debug ? console.log(getApp().globalData) : ''
                         }
                     })
@@ -200,6 +192,38 @@ Page({
                 }
             }
         })
+    },
+
+    // 验证
+    initValidate: function() {
+        const rules = {
+            address: {
+                required: true,
+            },
+            house: {
+                required: true,
+            },
+            contact: {
+                required: true,
+            },
+            phone: {
+                required: true,
+                tel: true
+            },
+        }
+        const messages = {
+            address: {
+                required: "请选择地址",
+            },
+            house: {
+                required: "请输入门牌号信息",
+            },
+            contact: {
+                required: "请输入联系人信息",
+            },
+
+        }
+        this.ValidateName = new WxValidate(rules, messages)
     }
 
 })

@@ -13,11 +13,11 @@ Page({
         onAsync: false,
     },
 
-    onLoad: function (e) {
+    onLoad: function(e) {
         this.setData({
-            'param.shop_id' : e.shop_id
-        })
-        // 获取分类
+                'param.shop_id': e.shop_id
+            })
+            // 获取分类
         util.wxRequest("wechat/Shop/get_category", {}, res => {
             this.setData({
                 categorys: res.data
@@ -29,13 +29,13 @@ Page({
 
 
     // 选择图像
-    chooseImage: function (e) {
+    chooseImage: function(e) {
         let that = this
         wx.chooseImage({
             count: 1,
             sizeType: ['compressed'],
             sourceType: ['album'],
-            success: function (res) {
+            success: function(res) {
                 let image = res.tempFilePaths[0]
                 that.setData({
                     'param.image': image,
@@ -45,13 +45,13 @@ Page({
     },
 
     // 选择图像
-    choosedetailimg: function (e) {
+    choosedetailimg: function(e) {
         let that = this
         wx.chooseImage({
             count: 1,
             sizeType: ['compressed'],
             sourceType: ['album'],
-            success: function (res) {
+            success: function(res) {
                 let detailimg = res.tempFilePaths[0]
                 that.setData({
                     'param.detailimg': detailimg,
@@ -61,7 +61,7 @@ Page({
     },
 
     // 选择Picker
-    bindPicker: function (e) {
+    bindPicker: function(e) {
         let that = this
         let name = e.currentTarget.dataset.name
         let list = e.currentTarget.dataset.list
@@ -80,7 +80,7 @@ Page({
     },
 
     // 上传
-    upload: function (e) {
+    upload: function(e) {
         let that = this
         if (that.data.onAsync) {
             return false;
@@ -89,6 +89,7 @@ Page({
                 onAsync: true
             })
         }
+
         Object.assign(that.data.param, e.detail.value);
 
         // 验证
@@ -112,7 +113,7 @@ Page({
             url: app.globalData.api_host + "wechat/Util/upload",
             filePath: that.data.param.image,
             name: 'file',
-            success: function (res) {
+            success: function(res) {
                 if (JSON.parse(res.data).code == 200) {
                     that.setData({
                         'param.image': JSON.parse(res.data).data,
@@ -121,7 +122,7 @@ Page({
                         url: app.globalData.api_host + "wechat/Util/upload",
                         filePath: that.data.param.detailimg,
                         name: 'file',
-                        success: function (res) {
+                        success: function(res) {
                             if (JSON.parse(res.data).code == 200) {
                                 that.setData({
                                     'param.detailimg': JSON.parse(res.data).data,
@@ -136,12 +137,12 @@ Page({
     },
 
     // 提交
-    submit: function () {
+    submit: function() {
         let that = this
         util.wxRequest("wechat/shop/add_goods", that.data.param, res => {
             res.code == 200 ? (wx.showToast({
                 title: res.msg,
-            }), setTimeout(function () {
+            }), setTimeout(function() {
                 wx.navigateBack({})
             }, 1500)) : (
                 wx.showToast({
@@ -156,7 +157,7 @@ Page({
     },
 
     // 验证
-    initValidate: function () {
+    initValidate: function() {
         const rules = {
             name: {
                 required: true,
