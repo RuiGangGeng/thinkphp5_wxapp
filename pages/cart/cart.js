@@ -298,6 +298,10 @@ Page({
 
     //提交订单
     doorder: function () {
+        wx.removeStorageSync('makeorder');
+        var myorder = this.data.commodities
+        var orderdata = {}
+        var uid = app.globalData.user.id
         wx.navigateTo({
             url: '/pages/doorder/doorder',
         })
