@@ -131,7 +131,6 @@ Page({
             if (data.code == 200) {
 
                 // 新用户新增地址需要重新拉取商店列表
-                app.globalData.refresh = true
                 app.globalData.user_address = that.data.addr.address + that.data.addr.house
                 app.globalData.defaultaddress = that.data.addr.address
 
