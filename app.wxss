@@ -57,7 +57,7 @@ page{
 .fadedf {
   height: 15rpx;
   width: 100%;
-  box-shadow: 0 0 10rpx #a8a8a8;
+  box-shadow: 0 0 10rpx #22222222;
 }
 
 body {
