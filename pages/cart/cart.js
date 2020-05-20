@@ -304,17 +304,28 @@ Page({
         var totala = 0 //订单总数量
         var totalp = 0  //订单总金额
         var order_detail = [] //订单详情
+        var flag = false
+        var shopname =null
+        var shopaddress = null
         for (var i of myorder) {
             for (var s of i.commodity) {
                 if (s.selected) {
+                    flag = true
                     totala = totala * 1 + s.count * 1
                     totalp = (totalp * 1 + s.count * s.price * 1).toFixed(2)
                     order_detail.concat(s)
                 }
+
+            }
+            if(flag){
+                shopname = i.shopname
+                shopaddress = i.shopaddress
             }
         }
         var orderdata = {
                 type:'cart',
+                shopname:shopname,
+                shopaddress:shopaddress,
                 order: {
                     uid: app.globalData.user.id,
                     shop_id: order_detail[0].shop_id,

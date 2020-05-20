@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        cat:false,//订单来自页面false:门店下单；true:购物车下单
         flag: false, //防止重复下单
         shopid: null, //选中的门店ID
         shopInfo: null, //选中的门店信息详情、含配送能力 can>0 可以配送
@@ -25,15 +26,28 @@ Page({
     onLoad: function(options) {
         var pdtincar = wx.getStorageSync('pdtincar');
         var myorder = wx.getStorageSync('makeorder');
-        var shops = wx.getStorageSync('shops');
-        var shopInfo = {};
-        if (myorder && myorder[0] && shops && shops[0]) {
-            var shopid = myorder[0].shopid;
-            shops.forEach(function(item, index) {
-                if (item.id == shopid) {
-                    shopInfo = item;
-                }
+        if(myorder && myorder.hasOwnProperty('type')){
+            var oederInfo = myorder.order_detail
+            var shopid = myorder.order.shop_id
+            var shopInfo = {
+                name:myorder.shopname,
+                address:myorder.shopaddress
+            }
+            this.setData({
+                cat:true
             })
+
+        } else {
+            var shops = wx.getStorageSync('shops');
+            var shopInfo = {};
+            if (myorder && myorder[0] && shops && shops[0]) {
+                var shopid = myorder[0].shopid;
+                shops.forEach(function(item, index) {
+                    if (item.id == shopid) {
+                        shopInfo = item;
+                    }
+                })
+            }
         }
         this.setData({
             userdefaultAddress: app.globalData.defaultaddress,
@@ -112,7 +126,11 @@ Page({
                 })
                 var code = res.code;
                 if (code == 200){
-                    var clearCart = wx.getStorageSync('makeorder')[0];
+                    if(cat){
+                        var clearCart = wx.getStorageSync('makeorder').order_detail
+                    } else {
+                        var clearCart = wx.getStorageSync('makeorder')[0];
+                    }
                     storage._clearPdtPay(clearCart);
                 }
                 wx.setStorageSync('makeorder', null);
