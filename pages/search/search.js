@@ -92,7 +92,7 @@ Page({
 		let keywords = that.data.searchKey
 		if (keywords !== '') {
 			let recentSearch = wx.getStorageSync('recentSearch') || [];
-			if (!app.isStrInArray(keywords, recentSearch)) {
+			if (!that.isStrInArray(keywords, recentSearch)) {
 				recentSearch.unshift(that.data.searchKey);
 				if (recentSearch.length > 5) {
 					recentSearch = recentSearch.slice(0,4)
@@ -141,4 +141,15 @@ Page({
 
 		})
 	},
+
+	// 判断是否某个元素 是否存在于一维数组（这个函数可用 includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。）
+	isStrInArray: function (item, arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == item) {
+                return true;
+            }
+        }
+        return false;
+	},
+	
 })

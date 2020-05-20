@@ -6,11 +6,6 @@
     <view>
       <text class="weight700">邻里快达.社区配送</text>
     </view>
-    <view class="flexcenter" bindtap="docollect">
-      <image wx:if="{{iscollect}}" src="/image/fstar.png" class="imgstar"></image>
-      <image wx:if="{{!iscollect}}" src="/image/star.png" class="imgstar"></image>
-      <text>收藏</text>
-    </view>
   </view>
   <image src="{{top_bg}}" class="imgback"></image>
   <image src="{{banner_image}}" class="imgfront" style="margin-top:{{margintop}}rpx"></image>
