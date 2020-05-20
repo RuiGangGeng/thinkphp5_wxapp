@@ -29,7 +29,7 @@ Page({
                 (item.commodity).forEach(function (items, indexs) {
                     if (items.selected) {
                         allCount = allCount + items.count;
-                        allAccount = (allAccount*1 + items.price * items.count).toFixed(2);
+                        allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
                     }
                 })
             })
@@ -48,8 +48,8 @@ Page({
             console.log(wx.getStorageSync('pdtincar'))
             var commodities = wx.getStorageSync('pdtincar').commodities;
 
-            for(let i of commodities){
-                for(let s of i.commodity){
+            for (let i of commodities) {
+                for (let s of i.commodity) {
                     s.price0 = s.price.split('.')[0]
                     s.price1 = s.price.split('.')[1]
                 }
@@ -88,16 +88,16 @@ Page({
         var allCount = this.data.accountInfo.allCount;
         var allAccount = this.data.accountInfo.allAccount;
         if (event === 'decrease') {
-            if (allCount - 1 >0){
+            if (allCount - 1 > 0) {
                 allCount = allCount - 1;
                 allAccount = allAccount - commodities[shopidx]['commodity'][commodityidx].price * 1;
             } else {
                 allCount = 0;
                 allAccount = 0;
             }
-            
+
             if (count - 1 == 0) {
-                
+
                 // wx.showToast({ title: "宝贝数量已经不能再减少啦！", icon: 'none' });
                 commodities[shopidx].totalPrice = (commodities[shopidx].totalPrice * 1 - commodities[shopidx]['commodity'][commodityidx].price * 1).toFixed(0);
 
@@ -123,8 +123,8 @@ Page({
                 var numstr = this.data.account * 1 - 1;
             }
         } else if (event === 'increase') {
-            allCount = allCount*1 + 1;
-            allAccount = allAccount*1 + commodities[shopidx]['commodity'][commodityidx].price * 1;
+            allCount = allCount * 1 + 1;
+            allAccount = allAccount * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1;
             commodities[shopidx].totalPrice = (commodities[shopidx].totalPrice * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1).toFixed(0);
 
             commodities[shopidx].totalfav = (commodities[shopidx].totalfav * 1 - commodities[shopidx]['commodity'][commodityidx].price * 1 + commodities[shopidx]['commodity'][commodityidx].price_orig * 1).toFixed(0);
@@ -164,7 +164,7 @@ Page({
     checked: function (ev) {
         let dataset = ev.currentTarget.dataset;
         console.log(dataset)
-       var commodities = [].slice.call(this.data.commodities),
+        var commodities = [].slice.call(this.data.commodities),
             type = dataset.type,
             shopidx = dataset.shopidx;
         if (type === 'shop') {
@@ -298,6 +298,48 @@ Page({
 
     //提交订单
     doorder: function () {
+        wx.setStorageSync('makeorder',null);
+        var myorder = this.data.commodities
+
+        var totala = 0 //订单总数量
+        var totalp = 0  //订单总金额
+        var order_detail = [] //订单详情
+        var flag = false
+        var shopname =null
+        var shopaddress = null
+        for (var i of myorder) {
+            for (var s of i.commodity) {
+                if (s.selected) {
+                    flag = true
+                    totala = totala * 1 + s.count * 1
+                    totalp = (totalp * 1 + s.count * s.price * 1).toFixed(2)
+                    order_detail.concat(s)
+                }
+
+            }
+            if(flag){
+                shopname = i.shopname
+                shopaddress = i.shopaddress
+            }
+        }
+        var orderdata = {
+                type:'cart',
+                shopname:shopname,
+                shopaddress:shopaddress,
+                order: {
+                    uid: app.globalData.user.id,
+                    shop_id: order_detail[0].shop_id,
+                    contact: this.data.userdefaultAddress.contact,
+                    phone: this.data.userdefaultAddress.phone,
+                    address: this.data.userdefaultAddress.address + this.data.userdefaultAddress.house,
+                    number:totala,
+                    price:totalp
+                },
+                order_detail:{
+                    order_detail: order_detail
+                }
+        }
+        wx.setStorageSync('makeorder',orderdata);
         wx.navigateTo({
             url: '/pages/doorder/doorder',
         })
