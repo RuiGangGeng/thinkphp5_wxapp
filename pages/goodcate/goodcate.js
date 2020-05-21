@@ -61,7 +61,7 @@ Page({
             var pagearr = pdtincar.commodities;
             var pagegoodsincar = [];
             pagearr.forEach(function (item, index) {
-                if (item.shopid == options.shop_id) {
+                if (item && item.shopid == options.shop_id) {
                     pagegoodsincar = item.commodity
                 }
             })
@@ -89,6 +89,7 @@ Page({
             var arr = []
         } else {
             var arr = pdtincar.commodities;
+            console.log(arr)
         }
         var totalGoods = false;
         var totalPrice = false;
@@ -99,7 +100,7 @@ Page({
             num = 0;
         }
         for (let i = 0; i < num; i++) {
-            if (arr[i].shopid == id) {
+            if (arr[i] && arr[i].shopid == id) {
                 totalGoods = arr[i].account;
                 totalPrice = arr[i].totalPrice;
                 totalFavorable = arr[i].totalfav;
