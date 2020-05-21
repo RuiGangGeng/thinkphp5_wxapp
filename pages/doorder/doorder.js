@@ -24,14 +24,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var shops = wx.getStorageSync('shops');
+        var shops = app.globalData.shops;
         var pdtincar = wx.getStorageSync('pdtincar');
-        
         var myorder = wx.getStorageSync('makeorder');
         var shopInfo = {};
         console.log(myorder);
-        if (myorder && myorder.hasOwnProperty('type')) {
-            var oederInfo = myorder.order_detail
+        if (myorder.hasOwnProperty('type')) {
+            
             var shopid = myorder.shop_id
             if (shops) {
                 for (let i of shops) {
@@ -43,30 +42,34 @@ Page({
                 }
             }
             this.setData({
-                cat: true
+                cat: true,
+                oederInfo:myorder,
+                shopInfo: shopInfo,
+                userdefaultAddress: app.globalData.defaultaddress,
+                shopid: shopid,
+                myorder: myorder,
+                pdtincar: pdtincar
             })
 
-        }
-        if (myorder && !myorder.hasOwnProperty('type') && myorder[0] && myorder[0].shopid && shops && shops[0]) {
+        } else {
             var shopid = myorder[0].shopid;
-            shops.forEach(function (item, index) {
-                if (item.id == shopid) {
-                    shopInfo = item;
-                }
-            })
+            if (shops) {
+                shops.forEach(function (item, index) {
+                    if (item.id == shopid) {
+                        shopInfo = item;
+                    }
+                })
+            }
             this.setData({
-                cat: true
+                userdefaultAddress: app.globalData.defaultaddress,
+                shopInfo: shopInfo,
+                oederInfo: myorder[0],
+                shopid: shopid,
+                myorder: myorder,
+                pdtincar: pdtincar
             })
         }
 
-        this.setData({
-            userdefaultAddress: app.globalData.defaultaddress,
-            shopInfo: shopInfo,
-            oederInfo: myorder[0],
-            shopid: shopid,
-            myorder: myorder,
-            pdtincar: pdtincar
-        })
     },
 
 
@@ -131,18 +134,21 @@ Page({
             order: order,
             order_detail: order_detail
         }, res => {
+            var that = this
             wx.showToast({
                 title: res.msg,
                 duration: 1500
             })
             var code = res.code;
             if (code == 200) {
-                if (cat) {
-                    var clearCart = wx.getStorageSync('makeorder').order_detail
+                if (that.data.cat) {
+                    var clearCart = wx.getStorageSync('makeorder').commodity
+                    var acconutde = that.data.oederInfo.account
                 } else {
                     var clearCart = wx.getStorageSync('makeorder')[0];
+                    var acconutde = that.data.oederInfo.account
                 }
-                storage._clearPdtPay(clearCart);
+                storage._clearPdtPay(clearCart,acconutde);//删除已下单的购物车商品
             }
             wx.setStorageSync('makeorder', null);
             setTimeout(res => {

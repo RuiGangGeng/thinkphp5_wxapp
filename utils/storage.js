@@ -102,11 +102,11 @@ class Storage {
   }
 
   //下单后清除已下单的商品
-  _clearPdtPay(clearCart) {
+  _clearPdtPay(clearCart,acconutde) {
     var pdtincar = wx.getStorageSync('pdtincar');
     console.log(clearCart);
     console.log(pdtincar);
-    pdtincar.account = pdtincar.account - clearCart.account;
+    pdtincar.account = pdtincar.account - acconutde;
     if (pdtincar.account == 0) {
       pdtincar = null;
     } else {
@@ -132,8 +132,8 @@ class Storage {
         }
       })
     }
-
     wx.setStorageSync('pdtincar', pdtincar);
+    this._reVoluationCart()
   }
 
   //删除购物车内null的数据
@@ -171,7 +171,44 @@ class Storage {
     }
   }
 
+  //取得购车车内所有商品id
+  _getAllGoodidIncart(callback){
+    var pdt = wx.getStorageSync('pdtincar')
+    var ids = ''
+    if(pdt){
+      var commodities = pdt.commodities
+      commodities.forEach(function(item,index){
+        var commodity = item.commodity
+        commodity.forEach(function(item,index){
+          if(ids.length == 0){
+            ids = item.id
+          } else {
+            ids = ids + ',' + item.id
+          }
+        })
+      })
+    }
+    callback && callback(ids)
+  }
 
+  //取得点击支付时所有订单商品的id
+  _getAllGoodidTopay(callback){
+    var makeorder = wx.getStorageSync('makeorder')
+    var ids = []
+    if(makeorder){
+      var commodity = makeorder.commodity
+      commodity.forEach(function(item,index){
+        if(ids.length == 0){
+          ids = item.id
+        } else {
+          ids = ids + ',' + item.id
+
+        }
+      })
+    }
+    callback && callback(ids)
+  }
+  
 }
 
 export default Storage

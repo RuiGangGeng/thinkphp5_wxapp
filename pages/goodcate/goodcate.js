@@ -203,7 +203,6 @@ Page({
             }
         })
         wx.setStorageSync('makeorder', arr)
-        wx.setStorageSync('shops', app.globalData.shops)
         wx.navigateTo({
             url: '/pages/doorder/doorder',
         })
