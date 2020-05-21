@@ -8,31 +8,38 @@ Page({
         can_add_address: true,
         address: [],
         addrId: false,
-        delete_: false
+        delete_: false,
+        has_login: true
     },
 
     onLoad: function(options) {
         let that = this
-        util.wxRequest("wechat/User/getAddress", {
-            uid: app.globalData.user.id,
-        }, data => {
-            if (data.code == 200) {
-                that.setData({
-                    has_address: true,
-                    address: data.data
-                })
-
-                // 设置默认地址
-                for (let i of data.data) {
-                    i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
-                }
-                if (data.length > 4) {
-                    this.setData({
-                        can_add_address: false
+        if (app.globalData.user.phone == null) {
+            that.setData({
+                has_login: false
+            })
+        } else {
+            util.wxRequest("wechat/User/getAddress", {
+                uid: app.globalData.user.id,
+            }, data => {
+                if (data.code == 200) {
+                    that.setData({
+                        has_address: true,
+                        address: data.data
                     })
+
+                    // 设置默认地址
+                    for (let i of data.data) {
+                        i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
+                    }
+                    if (data.length > 4) {
+                        this.setData({
+                            can_add_address: false
+                        })
+                    }
                 }
-            }
-        });
+            })
+        }
     },
 
     // 设置默认地址
@@ -60,6 +67,9 @@ Page({
                 for (let i of temp) {
                     if (i.id == addrId) {
                         i.is_default = 1
+                        app.globalData.user_address = i.address + i.house
+                        app.globalData.defaultaddress = i
+                        app.globalData.addrss_id = i.id
                     } else {
                         i.is_default = ''
                     }
@@ -134,6 +144,27 @@ Page({
             title: '不可超过五个收货地址',
             icon: 'none'
         })
-    }
+    },
 
+    // 授权手机号
+    bindgetphonenumber: function(e) {
+        let that = this
+        let param = {
+            user_id: app.globalData.user.id,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+        }
+        util.wxRequest("wechat/User/wx_auth_phone", param, data => {
+            if (data.code == 200) {
+                that.setData({
+                    has_login: true
+                })
+                wx.showToast({
+                    title: data.msg,
+                    icon: data.code == 200 ? 'success' : 'none'
+                })
+                app.globalData.user.phone = data.data
+            }
+        })
+    }
 })

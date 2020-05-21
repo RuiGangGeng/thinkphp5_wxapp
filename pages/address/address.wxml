@@ -1,60 +1,66 @@
 <!-- 默认地址状态开始 -->
 <view wx:if="{{has_address}}" class="container">
-	<view class="fadedf"></view>
-	<view class="hasaddress" wx:for="{{address}}" wx:key="index">
-		<view class="addressitem">
-			<view class="fristitem">
-            <image src="/image/location1.png" class="itemimg"></image>
-				<view class="location">
-					<view>{{item.address}}{{item.house}}</view>
-				</view>
-				<view class="address-icon" bindtap="setDefault" data-id="{{item.id}}">
-					<radio checked="{{item.is_default==1?true:false}}" color="#FF5450" value="{{index}}" />
-				</view>
-			</view>
-			<view class="sconitem">{{item.contact}} {{item.phone}}</view>
-			<view class="threitem">
-				<image src="/image/edit.png" data-id="{{item.id}}" class="itemimg0" catchtap="editaddress"></image>
-				<image src="/image/del.png" data-id="{{item.id}}" data-default="{{item.is_default}}" class="itemimg0" catchtap="deladdress"></image>
-			</view>
-		</view>
-	</view>
-
-	<navigator url="/pages/addressadd/addressadd" class="btn" bindtap="addaddrsee" wx:if="{{can_add_address}}">继续添加+</navigator>
-	<view class="btn disabled" wx:if="{{!can_add_address}}" bindtap="no_add_address">继续添加+</view>
-	<view class="btnBox">
-		<view class="goshopping" bindtap="goshopping">去购物</view>
-	</view>
+    <view class="fadedf"></view>
+    <view class="hasaddress" wx:for="{{address}}" wx:key="index">
+        <view class="addressitem">
+            <view class="fristitem">
+                <image src="/image/location1.png" class="itemimg"></image>
+                <view class="location">
+                    <view>{{item.address}}{{item.house}}</view>
+                </view>
+                <view class="address-icon" bindtap="setDefault" data-id="{{item.id}}">
+                    <radio checked="{{item.is_default==1?true:false}}" color="#FF5450" value="{{index}}" />
+                </view>
+            </view>
+            <view class="sconitem">{{item.contact}} {{item.phone}}</view>
+            <view class="threitem">
+                <image src="/image/edit.png" data-id="{{item.id}}" class="itemimg0" catchtap="editaddress"></image>
+                <image src="/image/del.png" data-id="{{item.id}}" data-default="{{item.is_default}}" class="itemimg0" catchtap="deladdress"></image>
+            </view>
+        </view>
+    </view>
+    <navigator url="/pages/addressadd/addressadd" class="btn" bindtap="addaddrsee" wx:if="{{can_add_address}}">
+        继续添加+
+    </navigator>
+    <view class="btn disabled" wx:if="{{!can_add_address}}" bindtap="no_add_address">继续添加+</view>
+    <view class="btnBox">
+        <view class="goshopping" bindtap="goshopping">去购物</view>
+    </view>
 </view>
 <!-- 默认地址状态结束 -->
-
-
 <!-- 无地址信息时展示开始 -->
 <view wx:if="{{!has_address}}" class="container">
-	<view class="fadedf"></view>
-	<view class="inmiddle">
-		<icon type="warn" size="70" color="#C0C0C0"></icon>
-	</view>
-	<view class="inmiddle colorgray">无收货地址，快来告诉我吧</view>
-	<navigator url="/pages/addressadd/addressadd" class="inmiddle colorwhite">添加收货地址+</navigator>
+    <view class="fadedf"></view>
+    <view class="inmiddle">
+        <icon type="warn" size="70" color="#C0C0C0"></icon>
+    </view>
+    <view class="inmiddle colorgray">无收货地址，快来告诉我吧</view>
+    <navigator url="/pages/addressadd/addressadd" class="inmiddle colorwhite">添加收货地址+</navigator>
 </view>
 <!-- 无地址信息时展示结束 -->
-
-
-
 <!-- 弹窗 -->
 <view class="deloneaddress" wx:if="{{delete_}}">
-	<view class="width92">
-		<view class="uppart">
-			<view>温馨提示</view>
-			<view>您确定要删除该收货地址吗?</view>
-			<view class="colorgray">同泽园东里16号楼6单元602</view>
-			<view class="colorgray">张三 15076518767</view>
-		</view>
-		<view class="downpart">
-			<view class="cen opt" catchtap="censle">取消</view>
-			<view class="con opt" catchtap="confirm">删除</view>
-		</view>
-	</view>
+    <view class="width92">
+        <view class="uppart">
+            <view>温馨提示</view>
+            <view>您确定要删除该收货地址吗?</view>
+            <view class="colorgray">同泽园东里16号楼6单元602</view>
+            <view class="colorgray">张三 15076518767</view>
+        </view>
+        <view class="downpart">
+            <view class="cen opt" catchtap="censle">取消</view>
+            <view class="con opt" catchtap="confirm">删除</view>
+        </view>
+    </view>
 </view>
 <!-- 弹窗 -->
+<!-- 登录提示框 -->
+<view class="loginShadow" wx:if="{{!has_login}}">
+    <view class="login">
+        <text>尊敬的用户，请登录</text>
+        <button open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">
+            微信授权手机号登录
+        </button>
+    </view>
+</view>
+<!-- 登录提示框 -->

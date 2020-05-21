@@ -41,7 +41,7 @@
     </view>
     <view class="btnBox">
         <!-- form-type="submit" -->
-        <button wx:if="{{no}}" type="primary" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo" class="mar30 btn" disabled="{{onAsync}}">保存</button>
+        <button wx:if="{{no}}" type="primary"  bindtap="bindgetuserinfo" class="mar30 btn" disabled="{{onAsync}}">保存</button>
         <button class="mar30 btnfa" wx:else>保存</button>
     </view>
 </form>

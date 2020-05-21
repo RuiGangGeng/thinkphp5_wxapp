@@ -5,11 +5,8 @@ import Storage from '../../utils/storage';
 var storage = new Storage();
 Page({
 
-    /**
-     * 页面的初始数据
-     */
     data: {
-        cat: false,//订单来自页面false:门店下单；true:购物车下单
+        cat: false, //订单来自页面false:门店下单；true:购物车下单
         flag: false, //防止重复下单
         shopid: null, //选中的门店ID
         shopInfo: null, //选中的门店信息详情、含配送能力 can>0 可以配送
@@ -20,17 +17,14 @@ Page({
         pdtincar: null
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
+    onLoad: function(options) {
         var shops = app.globalData.shops;
         var pdtincar = wx.getStorageSync('pdtincar');
         var myorder = wx.getStorageSync('makeorder');
         var shopInfo = {};
         console.log(myorder);
         if (myorder.hasOwnProperty('type')) {
-            
+
             var shopid = myorder.shop_id
             if (shops) {
                 for (let i of shops) {
@@ -43,7 +37,7 @@ Page({
             }
             this.setData({
                 cat: true,
-                oederInfo:myorder,
+                oederInfo: myorder,
                 shopInfo: shopInfo,
                 userdefaultAddress: app.globalData.defaultaddress,
                 shopid: shopid,
@@ -54,7 +48,7 @@ Page({
         } else {
             var shopid = myorder[0].shopid;
             if (shops) {
-                shops.forEach(function (item, index) {
+                shops.forEach(function(item, index) {
                     if (item.id == shopid) {
                         shopInfo = item;
                     }
@@ -72,23 +66,23 @@ Page({
 
     },
 
-
     //添加地址
-    addaddress: function () {
+    addaddress: function() {
         wx.navigateTo({
             url: '/pages/address/address',
         })
     },
 
     //获取留言
-    makewords: function (e) {
+    makewords: function(e) {
         console.log(e)
         this.setData({
             leaveawords: e.detail.value
         })
     },
+
     //提交支付
-    formSubmit: function (e) {
+    formSubmit: function(e) {
         if (this.data.flag) {
             wx.showToast({
                 title: '请不要重复下单',
@@ -128,19 +122,13 @@ Page({
         this.setData({
             flag: true
         })
+
         //调用订单创建接口
-        util.wxRequest(
-            'wechat/order/createOrder', {
-            order: order,
-            order_detail: order_detail
-        }, res => {
+        util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
             var that = this
-            wx.showToast({
-                title: res.msg,
-                duration: 1500
-            })
-            var code = res.code;
-            if (code == 200) {
+            if (res.code == 200) {
+
+                // 判断订单为什么来自商家还是购物车
                 if (that.data.cat) {
                     var clearCart = wx.getStorageSync('makeorder').commodity
                     var acconutde = that.data.oederInfo.account
@@ -148,16 +136,36 @@ Page({
                     var clearCart = wx.getStorageSync('makeorder')[0];
                     var acconutde = that.data.oederInfo.account
                 }
-                storage._clearPdtPay(clearCart,acconutde);//删除已下单的购物车商品
-            }
-            wx.setStorageSync('makeorder', null);
-            setTimeout(res => {
-                wx.redirectTo({
-                    url: '/pages/resultpay/resultpay?code=' + code,
-                })
-            }, 2000)
 
-        }
-        )
+                // 删除已下单的购物车商品
+                storage._clearPdtPay(clearCart, acconutde);
+                wx.setStorageSync('makeorder', null)
+
+                // 发起支付
+                wx.requestPayment({
+                    timeStamp: res.data.timeStamp + '',
+                    nonceStr: res.data.nonceStr,
+                    package: res.data.package,
+                    signType: res.data.signType,
+                    paySign: res.data.sign,
+                    success() {
+                        setTimeout(res => {
+                            wx.redirectTo({
+                                url: '/pages/resultpay/resultpay?code=200',
+                            })
+                        }, 2000)
+                    },
+                    fail(e) {
+                        if (e.errMsg == "requestPayment:fail cancel") {
+                            setTimeout(res => {
+                                wx.redirectTo({
+                                    url: '/pages/resultpay/resultpay?code=500',
+                                })
+                            }, 2000)
+                        }
+                    }
+                })
+            }
+        })
     }
 })
