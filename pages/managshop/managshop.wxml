@@ -19,9 +19,7 @@
         <navigator url="/pages/addcoupon/addcoupon?shop_id={{shop_id}}" class="coupons">
             <view class="coupons_title">满减</view>
             <view class="coupons_list" wx:for="{{coupons}}" wx:key="index">
-                <view>{{item.name}}</view>
-                ,
-            </view>
+                <view>{{item.name}}</view>,</view>
             <view class="coupons_add">+</view>
         </navigator>
         <!-- 中部满减结束 -->
@@ -36,24 +34,18 @@
         <view class="operateone">
             <view>精选商品</view>
             <view>
-                <text class="{{select==1?'select':''}}" bindtap="changeSelect" data-status="1">
-                    上架
-                </text>
-                <text class="{{select==0?'select':''}}" bindtap="changeSelect" data-status="0">
-                    下架
-                </text>
-                <!-- <text class="{{select==2?'select':''}}" bindtap="changeSelect" data-status="2">价格</text> -->
+                <text class="{{select==1?'select':''}}" bindtap="changeSelect" data-status="1">上架</text>
+                <text class="{{select==0?'select':''}}" bindtap="changeSelect" data-status="0">下架</text>
+                <!-- <text class="{{select==2?'select':''}}" bindtap="changeSelect" data-status="2">价格</text>
                 <view>
                     <view class="triangle-up"></view>
                     <view class="triangle-down"></view>
-                </view>
+                </view> -->
             </view>
         </view>
         <view class="operatetwo">
             <view>查看分类</view>
-            <navigator url="/pages/addpdt/addpdt?shop_id={{shop_id}}" class="manitemr" catchtap="addpdt">
-                添加商品
-            </navigator>
+            <navigator url="/pages/addpdt/addpdt?shop_id={{shop_id}}" class="manitemr" catchtap="addpdt">添加商品</navigator>
         </view>
     </view>
     <!-- 数据展示 和TAB -->

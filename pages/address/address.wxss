@@ -62,7 +62,7 @@ radio {
     color: #a8a8a8;
     font-size: 28rpx;
     margin-left: 60rpx;
-    margin-top:10rpx;
+    margin-top: 10rpx;
 }
 
 .threitem {
@@ -72,7 +72,7 @@ radio {
 .btn {
     width: 200rpx;
     height: 60rpx;
-    border: 1rpx solid #39a335;
+    border: 1rpx solid #39a336;
     border-radius: 10rpx;
     margin: 100rpx auto 0;
     display: flex;
@@ -83,7 +83,7 @@ radio {
 .goshopping {
     width: 360rpx;
     height: 90rpx;
-    background-color: #39a335;
+    background-color: #39a336;
     color: #fff;
     border-radius: 10rpx;
     display: flex;
@@ -147,7 +147,7 @@ radio {
 }
 
 .con {
-    color: #39a335;
+    color: #39a336;
 }
 
 page {
@@ -157,8 +157,48 @@ page {
 .container {
     max-height: 100%;
     padding-bottom: 280rpx;
+    box-sizing: border-box;
 }
 
 .disabled {
     background-color: #ccc;
+}
+
+.loginShadow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.login {
+    width: 600rpx;
+    background: white;
+    border-radius: 10rpx;
+    height: 360rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10rpx #22222222;
+}
+
+.login text {
+    font-size: 40rpx;
+    height: 150rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login button {
+    background: #39a336;
+    width: 80%;
+    margin: auto;
+    color: white;
 }
