@@ -59,7 +59,7 @@ Page({
             })
             console.log(ids)
             var goodsmsg = null
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data:JSON.stringify(pdt.)}, data => {
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data:JSON.stringify(pdt.commodities)}, data => {
                 console.log(data)
                 goodsmsg = data.data
             })
