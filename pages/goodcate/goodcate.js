@@ -49,7 +49,7 @@ Page({
         page: 0,
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
         this.setData({
             shopname: options.shopname
         })
@@ -60,7 +60,7 @@ Page({
         if (pdtincar) {
             var pagearr = pdtincar.commodities;
             var pagegoodsincar = [];
-            pagearr.forEach(function (item, index) {
+            pagearr.forEach(function(item, index) {
                 if (item && item.shopid == options.shop_id) {
                     pagegoodsincar = item.commodity
                 }
@@ -77,14 +77,8 @@ Page({
         that.loadData()
     },
 
-    /**
-     * 计算本门店的购物车信息，赋值到UI
-     * @pdtincar 购物车缓存
-     * @that
-     * @id 门店id
-     * @return 当前门店商品数量，合计金额，合计优惠
-     */
-    countInfoAtThisShop: function (pdtincar, that, id) {
+    // 计算本门店的购物车信息，赋值到UI
+    countInfoAtThisShop: function(pdtincar, that, id) {
         if (!pdtincar) {
             var arr = []
         } else {
@@ -114,7 +108,7 @@ Page({
     },
 
     // 点击搜索  组件事件没有捕获到
-    gosearch: function () {
+    gosearch: function() {
         app.globalData.shop_id = this.data.shopid
         wx.navigateTo({
             url: '/pages/search/search'
@@ -122,7 +116,7 @@ Page({
     },
 
     // 切换分类
-    categoryClick: function (event) {
+    categoryClick: function(event) {
         this.setData({
             select: event.target.id - 1,
             goodsList: [],
@@ -140,7 +134,7 @@ Page({
     },
 
     // 加入购物车
-    addToCart: function (e) {
+    addToCart: function(e) {
         var data = e.currentTarget.dataset.msg;
 
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0;
@@ -165,7 +159,7 @@ Page({
         var newgoodsincar = that.data.goodsincar;
         if (newgoodsincar) {
             var s = false;
-            newgoodsincar.forEach(function (item, index) {
+            newgoodsincar.forEach(function(item, index) {
                 if (item.id == data.id) {
                     item.count = item.count * 1 + 1;
                     s = true;
@@ -189,15 +183,15 @@ Page({
     },
 
     // 点击去结算
-    godoorder: function () {
+    godoorder: function() {
         wx.removeStorageSync('makeorder');
         //设置当前门店购物车商品为选中状态
         var shop_id = this.data.shopid;
         var arr = wx.getStorageSync('pdtincar').commodities;
-        arr.forEach(function (item, index) {
+        arr.forEach(function(item, index) {
             if (item.shopid == shop_id) {
                 item.selected = true;
-                (item.commodity).forEach(function (item, index) {
+                (item.commodity).forEach(function(item, index) {
                     item.selected = true;
                 })
             }
@@ -209,12 +203,12 @@ Page({
     },
 
     // 上拉加载
-    onReachBottom: function () {
+    onReachBottom: function() {
         this.loadData()
     },
 
     // 加载数据
-    loadData: function () {
+    loadData: function() {
         let that = this;
 
         let param = {
@@ -229,9 +223,9 @@ Page({
         util.wxRequest("wechat/Shop/get_goods", param, res => {
             let temp = that.data.goodsList.concat(res.data.data)
 
-            for(let i of temp){
+            for (let i of temp) {
                 i.price1 = i.price.split('.')[1]
-                i.price0  = i.price.split('.')[0]
+                i.price0 = i.price.split('.')[0]
             }
 
             that.setData({

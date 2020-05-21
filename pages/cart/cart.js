@@ -1,7 +1,7 @@
 import Storage from '../../utils/storage'
 var storage = new Storage();
 const util = require('../../utils/util.js')
-// pages/cart/cart.js
+    // pages/cart/cart.js
 const app = getApp();
 Page({
 
@@ -19,7 +19,7 @@ Page({
         checkedAll: false,
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
 
         wx.setStorageSync('makeorder', null)
         var pdt = wx.getStorageSync('pdtincar');
@@ -28,9 +28,9 @@ Page({
         var allAccount = 0;
         if (pdt) {
             var arr = pdt.commodities;
-            arr.forEach(function (item, index) {
+            arr.forEach(function(item, index) {
                 if (item != null) {
-                    (item.commodity).forEach(function (items, indexs) {
+                    (item.commodity).forEach(function(items, indexs) {
                         if (items && items.selected) {
                             allCount = allCount + items.count;
                             allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
@@ -47,7 +47,7 @@ Page({
         })
     },
 
-    onShow: function () {
+    onShow: function() {
         storage._reVoluationCart()
 
         var pdt = wx.getStorageSync('pdtincar')
@@ -59,7 +59,7 @@ Page({
             })
             console.log(ids)
             var goodsmsg = null
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data:JSON.stringify(pdt.)}, data => {
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt) }, data => {
                 console.log(data)
                 goodsmsg = data.data
             })
@@ -185,12 +185,12 @@ Page({
 
 
     // 选择 店铺 或 商品
-    checked: function (ev) {
+    checked: function(ev) {
         let dataset = ev.currentTarget.dataset;
         console.log(dataset)
         var commodities = [].slice.call(this.data.commodities);
         var shopchoose = '';
-        commodities.forEach(function (item, index) {
+        commodities.forEach(function(item, index) {
             if (item) {
                 if (item.selected) {
                     shopchoose = item.shopid;
@@ -198,7 +198,7 @@ Page({
                 if (item.selected == false) {
                     var newarr = item.commodity;
                     if (newarr) {
-                        newarr.forEach(function (item, index) {
+                        newarr.forEach(function(item, index) {
                             if (item) {
                                 if (item.selected) {
                                     shopchoose = item.shop_id;
@@ -357,12 +357,12 @@ Page({
     },
 
     //开闭订单商店
-    changeT: function (e) {
+    changeT: function(e) {
         console.log(e)
         var shopid = e.currentTarget.dataset.shopid;
         var shoplist = this.data.commodities;
         console.log(shoplist)
-        shoplist.forEach(function (item, index) {
+        shoplist.forEach(function(item, index) {
             if (item) {
                 if (item.shopid == shopid) {
                     if (item.ishow == undefined || item.ishow == false) {
@@ -380,7 +380,7 @@ Page({
     },
 
     //再逛逛
-    goshop: function (e) {
+    goshop: function(e) {
         console.log(e)
         var shopid = e.currentTarget.dataset.shopid;
         wx.navigateTo({
@@ -389,7 +389,7 @@ Page({
     },
 
     //提交订单
-    doorder: function () {
+    doorder: function() {
         var cart = this.data.commodities
         var shop_id = null
         var orderinfo = {}
@@ -403,8 +403,8 @@ Page({
                     if (s && s.selected) {
                         shop_id = s.shop_id
                         commodity = commodity.concat(s)
-                        // totalnumber = totalnumber + s.count*1
-                        // totalprice = (totalprice - 0 + s.count*s.price).toFixed(2)
+                            // totalnumber = totalnumber + s.count*1
+                            // totalprice = (totalprice - 0 + s.count*s.price).toFixed(2)
                     }
                 }
             }
