@@ -26,12 +26,14 @@ Page({
         if (pdt) {
             var arr = pdt.commodities;
             arr.forEach(function (item, index) {
-                (item.commodity).forEach(function (items, indexs) {
-                    if (items.selected) {
-                        allCount = allCount + items.count;
-                        allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
-                    }
-                })
+                if (item != null) {
+                    (item.commodity).forEach(function (items, indexs) {
+                        if (items && items.selected) {
+                            allCount = allCount + items.count;
+                            allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
+                        }
+                    })
+                }
             })
         }
         this.setData({
@@ -47,14 +49,17 @@ Page({
         if (wx.getStorageSync('pdtincar')) {
             console.log(wx.getStorageSync('pdtincar'))
             var commodities = wx.getStorageSync('pdtincar').commodities;
-
             for (let i of commodities) {
-                for (let s of i.commodity) {
-                    s.price0 = s.price.split('.')[0]
-                    s.price1 = s.price.split('.')[1]
+                if (i && i.commodity) {
+                    for (let s of i.commodity) {
+                        if (s && s.price) {
+                            s.price0 = s.price.split('.')[0]
+                            s.price1 = s.price.split('.')[1]
+                        }
+
+                    }
                 }
             }
-
             this.setData({
                 commodities: commodities
             })
@@ -91,14 +96,8 @@ Page({
             if (allCount - 1 > 0) {
                 allCount = allCount - 1;
                 allAccount = allAccount - commodities[shopidx]['commodity'][commodityidx].price * 1;
-            } else {
-                allCount = 0;
-                allAccount = 0;
             }
-
             if (count - 1 == 0) {
-
-                // wx.showToast({ title: "宝贝数量已经不能再减少啦！", icon: 'none' });
                 commodities[shopidx].totalPrice = (commodities[shopidx].totalPrice * 1 - commodities[shopidx]['commodity'][commodityidx].price * 1).toFixed(0);
 
                 commodities[shopidx].totalfav = (commodities[shopidx].totalfav * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1 - commodities[shopidx]['commodity'][commodityidx].price_orig * 1).toFixed(0);
@@ -122,6 +121,8 @@ Page({
                 }
                 var numstr = this.data.account * 1 - 1;
             }
+            allCount = 0;
+            allAccount = 0;
         } else if (event === 'increase') {
             allCount = allCount * 1 + 1;
             allAccount = allAccount * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1;
@@ -156,19 +157,54 @@ Page({
 
         numstr = numstr.toString();
         app.setCartNum(numstr)
-        wx.setStorageSync('pdtincar', pdtincar);
-        console.log(wx.getStorageSync('pdtincar'))
+        if (pdtincar){
+            wx.setStorageSync('pdtincar', pdtincar);
+        } else {
+            wx.setStorageSync('pdtincar', null);
+        }
+
         this.onLoad();
     },
+
+
     // 选择 店铺 或 商品
     checked: function (ev) {
         let dataset = ev.currentTarget.dataset;
         console.log(dataset)
-        var commodities = [].slice.call(this.data.commodities),
-            type = dataset.type,
-            shopidx = dataset.shopidx;
+        var commodities = [].slice.call(this.data.commodities);
+        var shopchoose = '';
+        commodities.forEach(function (item, index) {
+            if (item) {
+                if (item.selected) {
+                    shopchoose = item.shopid;
+                }
+                if (item.selected == false) {
+                    var newarr = item.commodity;
+                    if (newarr) {
+                        newarr.forEach(function (item, index) {
+                            if (item) {
+                                if (item.selected) {
+                                    shopchoose = item.shop_id;
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        })
+        console.log(shopchoose);
+        var type = dataset.type;
+        var shopidx = dataset.shopidx;
         if (type === 'shop') {
+            console.log(commodities[shopidx].shopid);
+            if (shopchoose && shopchoose != commodities[shopidx].shopid) {
+                wx.showToast({
+                    title: '但门店',
+                })
+                return;
+            }
             let selected = commodities[shopidx]['selected'];
+            console.log(selected)
             if (selected) {
                 // 取消选中当前店铺包括商品全部
                 this.setSelected(commodities, shopidx, null, false);
@@ -177,12 +213,20 @@ Page({
                 this.setSelected(commodities, shopidx, null, true);
             }
         } else {
-            let commodityIdx = dataset.index,
-                selected = commodities[shopidx]['commodity'][commodityIdx].selected;
+            let commodityIdx = dataset.index;
+            var selected = commodities[shopidx]['commodity'][commodityIdx].selected;
             if (selected) {
                 // 取消选中当前店铺包括商品全部
                 this.setSelected(commodities, shopidx, commodityIdx, false);
             } else {
+                console.log(commodities[shopidx]['commodity'][commodityIdx].shop_id)
+                var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id;
+                if (shopchoose && shopchoose != shopsid) {
+                    wx.showToast({
+                        title: '但门店',
+                    })
+                    return;
+                }
                 // 全部选中当前店铺包括商品
                 this.setSelected(commodities, shopidx, commodityIdx, true);
             }
@@ -200,8 +244,8 @@ Page({
             shop['selected'] = !checked;
             shop['commodity'].forEach(i => {
                 i['selected'] = !checked;
-                allCount += i['count'];
-                allAccount += i['price'] * i['count'];
+                allCount = allCount + i['count'] * 1;
+                allAccount = allAccount + i['price'] * 1 * i['count'] * 1;
             })
         });
 
@@ -216,39 +260,62 @@ Page({
     },
 
     setSelected(commodities, shopidx, commodityIdx, boolean) {
-        if (!commodities || shopidx == undefined) return;
 
+        if (!commodities || shopidx == undefined) return;
         let allCount = 0,
             allAccount = 0,
             accountInfo = Object.assign({}, this.data.accountInfo);
         if (commodityIdx == undefined) {
             commodities[shopidx]['selected'] = boolean;
-            commodities[shopidx].commodity.forEach(item => {
-                item['selected'] = boolean;
-                allCount += item['count'];
-                allAccount += item['price'] * item['count'];
-            });
+
             if (!boolean) {
-                allAccount = allAccount * -1;
-                allCount = allCount * -1
-            };
+                commodities[shopidx].commodity.forEach(item => {
+                    console.log('全取消', item)
+                    if (item) {
+                        item['selected'] = boolean;
+                        allCount = allCount * 1 - item['count'] * 1;
+                        allAccount = allAccount * 1 - item['price'] * item['count'];
+                    }
+                });
+                allAccount = allAccount * 1;
+                allCount = allCount * 1;
+            } else {
+                commodities[shopidx].commodity.forEach(item => {
+                    console.log('全选', item)
+                    item['selected'] = boolean;
+                    allCount = allCount * 1 + item['count'] * 1;
+                    allAccount = allAccount * 1 + item['price'] * item['count'];
+                });
+                allAccount = allAccount * 1;
+                allCount = allCount * 1;
+            }
         } else {
             commodities[shopidx].commodity[commodityIdx]['selected'] = boolean;
-            allCount += commodities[shopidx].commodity[commodityIdx]['count'];
-            allAccount += commodities[shopidx].commodity[commodityIdx]['price'] * commodities[shopidx].commodity[commodityIdx]['count'];
+
             if (!boolean) {
-                allAccount = allAccount * -1;
-                allCount = allCount * -1
-            };
+                allCount = allCount * 1 - commodities[shopidx].commodity[commodityIdx]['count'] * 1;
+                allAccount = allAccount * 1 - commodities[shopidx].commodity[commodityIdx]['price'] * commodities[shopidx].commodity[commodityIdx]['count'] * 1;
+                allAccount = allAccount * 1;
+                allCount = allCount * 1;
+            } else {
+
+                allCount = allCount * 1 + commodities[shopidx].commodity[commodityIdx]['count'] * 1;
+                allAccount = allAccount * 1 + commodities[shopidx].commodity[commodityIdx]['price'] * commodities[shopidx].commodity[commodityIdx]['count'] * 1;
+                allAccount = allAccount * 1;
+                allCount = allCount * 1;
+            }
             let result = true;
             commodities[shopidx].commodity.forEach(item => {
-                result = result && item['selected']
+                console.log('单一选中', item)
+                if (item) {
+                    result = result && item['selected']
+                }
             });
             commodities[shopidx]['selected'] = result;
         }
 
-        accountInfo['allCount'] += allCount;
-        accountInfo['allAccount'] += allAccount;
+        accountInfo['allCount'] = accountInfo['allCount'] * 1 + allCount * 1;
+        accountInfo['allAccount'] = accountInfo['allAccount'] * 1 + allAccount * 1;
 
         this.setData({
             commodities,
@@ -273,11 +340,13 @@ Page({
         var shoplist = this.data.commodities;
         console.log(shoplist)
         shoplist.forEach(function (item, index) {
-            if (item.shopid == shopid) {
-                if (item.ishow == undefined || item.ishow == false) {
-                    shoplist[index].ishow = true;
-                } else {
-                    shoplist[index].ishow = false;
+            if (item) {
+                if (item.shopid == shopid) {
+                    if (item.ishow == undefined || item.ishow == false) {
+                        shoplist[index].ishow = true;
+                    } else {
+                        shoplist[index].ishow = false;
+                    }
                 }
             }
         })
@@ -298,48 +367,6 @@ Page({
 
     //提交订单
     doorder: function () {
-        wx.setStorageSync('makeorder',null);
-        var myorder = this.data.commodities
-
-        var totala = 0 //订单总数量
-        var totalp = 0  //订单总金额
-        var order_detail = [] //订单详情
-        var flag = false
-        var shopname =null
-        var shopaddress = null
-        for (var i of myorder) {
-            for (var s of i.commodity) {
-                if (s.selected) {
-                    flag = true
-                    totala = totala * 1 + s.count * 1
-                    totalp = (totalp * 1 + s.count * s.price * 1).toFixed(2)
-                    order_detail.concat(s)
-                }
-
-            }
-            if(flag){
-                shopname = i.shopname
-                shopaddress = i.shopaddress
-            }
-        }
-        var orderdata = {
-                type:'cart',
-                shopname:shopname,
-                shopaddress:shopaddress,
-                order: {
-                    uid: app.globalData.user.id,
-                    shop_id: order_detail[0].shop_id,
-                    contact: this.data.userdefaultAddress.contact,
-                    phone: this.data.userdefaultAddress.phone,
-                    address: this.data.userdefaultAddress.address + this.data.userdefaultAddress.house,
-                    number:totala,
-                    price:totalp
-                },
-                order_detail:{
-                    order_detail: order_detail
-                }
-        }
-        wx.setStorageSync('makeorder',orderdata);
         wx.navigateTo({
             url: '/pages/doorder/doorder',
         })
