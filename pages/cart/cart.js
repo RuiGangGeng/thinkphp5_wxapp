@@ -73,7 +73,6 @@ Page({
                             s.price0 = s.price.split('.')[0]
                             s.price1 = s.price.split('.')[1]
                         }
-
                     }
                 }
             }
