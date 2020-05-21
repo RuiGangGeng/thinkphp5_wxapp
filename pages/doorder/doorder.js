@@ -9,46 +9,56 @@ Page({
      * 页面的初始数据
      */
     data: {
-        cat:false,//订单来自页面false:门店下单；true:购物车下单
+        cat: false,//订单来自页面false:门店下单；true:购物车下单
         flag: false, //防止重复下单
         shopid: null, //选中的门店ID
         shopInfo: null, //选中的门店信息详情、含配送能力 can>0 可以配送
         userdefaultAddress: null, //默认地址
         oederInfo: null, //订单信息
         leaveawords: null, //留言板
-        myorder:null,
-        pdtincar:null
+        myorder: null,
+        pdtincar: null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
+        var shops = wx.getStorageSync('shops');
         var pdtincar = wx.getStorageSync('pdtincar');
+        
         var myorder = wx.getStorageSync('makeorder');
-        if(myorder && myorder.hasOwnProperty('type')){
+        var shopInfo = {};
+        console.log(myorder);
+        if (myorder && myorder.hasOwnProperty('type')) {
             var oederInfo = myorder.order_detail
-            var shopid = myorder.order.shop_id
-            var shopInfo = {
-                name:myorder.shopname,
-                address:myorder.shopaddress
+            var shopid = myorder.shop_id
+            if (shops) {
+                for (let i of shops) {
+                    if (i) {
+                        if (i.id == shopid) {
+                            shopInfo = i
+                        }
+                    }
+                }
             }
             this.setData({
-                cat:true
+                cat: true
             })
 
-        } else {
-            var shops = wx.getStorageSync('shops');
-            var shopInfo = {};
-            if (myorder && myorder[0] && shops && shops[0]) {
-                var shopid = myorder[0].shopid;
-                shops.forEach(function(item, index) {
-                    if (item.id == shopid) {
-                        shopInfo = item;
-                    }
-                })
-            }
         }
+        if (myorder && !myorder.hasOwnProperty('type') && myorder[0] && myorder[0].shopid && shops && shops[0]) {
+            var shopid = myorder[0].shopid;
+            shops.forEach(function (item, index) {
+                if (item.id == shopid) {
+                    shopInfo = item;
+                }
+            })
+            this.setData({
+                cat: true
+            })
+        }
+
         this.setData({
             userdefaultAddress: app.globalData.defaultaddress,
             shopInfo: shopInfo,
@@ -59,22 +69,23 @@ Page({
         })
     },
 
+
     //添加地址
-    addaddress: function() {
+    addaddress: function () {
         wx.navigateTo({
             url: '/pages/address/address',
         })
     },
 
     //获取留言
-    makewords: function(e) {
+    makewords: function (e) {
         console.log(e)
         this.setData({
             leaveawords: e.detail.value
         })
     },
     //提交支付
-    formSubmit: function(e) {
+    formSubmit: function (e) {
         if (this.data.flag) {
             wx.showToast({
                 title: '请不要重复下单',
@@ -117,30 +128,30 @@ Page({
         //调用订单创建接口
         util.wxRequest(
             'wechat/order/createOrder', {
-                order: order,
-                order_detail: order_detail
-            }, res => {
-                wx.showToast({
-                    title: res.msg,
-                    duration: 1500
-                })
-                var code = res.code;
-                if (code == 200){
-                    if(cat){
-                        var clearCart = wx.getStorageSync('makeorder').order_detail
-                    } else {
-                        var clearCart = wx.getStorageSync('makeorder')[0];
-                    }
-                    storage._clearPdtPay(clearCart);
+            order: order,
+            order_detail: order_detail
+        }, res => {
+            wx.showToast({
+                title: res.msg,
+                duration: 1500
+            })
+            var code = res.code;
+            if (code == 200) {
+                if (cat) {
+                    var clearCart = wx.getStorageSync('makeorder').order_detail
+                } else {
+                    var clearCart = wx.getStorageSync('makeorder')[0];
                 }
-                wx.setStorageSync('makeorder', null);
-                setTimeout(res => {
-                    wx.redirectTo({
-                        url: '/pages/resultpay/resultpay?code=' + code,
-                    })
-                }, 2000)
-
+                storage._clearPdtPay(clearCart);
             }
+            wx.setStorageSync('makeorder', null);
+            setTimeout(res => {
+                wx.redirectTo({
+                    url: '/pages/resultpay/resultpay?code=' + code,
+                })
+            }, 2000)
+
+        }
         )
     }
 })

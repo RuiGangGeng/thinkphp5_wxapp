@@ -1,5 +1,7 @@
 const app = getApp()
 const util = require('../../utils/util.js')
+import Storage from '../../utils/storage'
+var storage = new Storage();
 Page({
 
     data: {
@@ -13,10 +15,11 @@ Page({
 
     // 小程序加载
     onLoad: function() {
+        storage._reVoluationCart()
         let that = this
             // 获取缓存设置 tabar 的数字角标
         var num = wx.getStorageSync('pdtincar')
-        if (num * 1 > 0) {
+        if (num) {
             var numstr = num.account.toString()
             if (numstr - 0 > 0) {
                 this.setData({
