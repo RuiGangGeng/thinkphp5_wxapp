@@ -1,5 +1,6 @@
 import Storage from '../../utils/storage'
 var storage = new Storage();
+const util = require('../../utils/util.js')
 // pages/cart/cart.js
 const app = getApp();
 Page({
@@ -19,8 +20,8 @@ Page({
     },
 
     onLoad: function (options) {
-        storage._reVoluationCart()
-        wx.setStorageSync('makeorder',null)
+
+        wx.setStorageSync('makeorder', null)
         var pdt = wx.getStorageSync('pdtincar');
         console.log(pdt)
         var allCount = 0;
@@ -47,9 +48,24 @@ Page({
     },
 
     onShow: function () {
+        storage._reVoluationCart()
 
-        if (wx.getStorageSync('pdtincar')) {
-            var commodities = wx.getStorageSync('pdtincar').commodities;
+        var pdt = wx.getStorageSync('pdtincar')
+
+        if (pdt) {
+            var ids = null
+            storage._getAllGoodidIncart(res => {
+                ids = res
+            })
+            console.log(ids)
+            var goodsmsg = null
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data:JSON.stringify(pdt.)}, data => {
+                console.log(data)
+                goodsmsg = data.data
+            })
+            console.log(goodsmsg)
+
+            var commodities = pdt.commodities;
             for (let i of commodities) {
                 if (i && i.commodity) {
                     for (let s of i.commodity) {
@@ -64,7 +80,7 @@ Page({
             this.setData({
                 commodities: commodities
             })
-            var numstr = wx.getStorageSync('pdtincar').account.toString();
+            var numstr = pdt.account.toString();
         } else {
             var numstr = '0';
             this.setData({
@@ -158,7 +174,7 @@ Page({
 
         numstr = numstr.toString();
         app.setCartNum(numstr)
-        if (pdtincar){
+        if (pdtincar) {
             wx.setStorageSync('pdtincar', pdtincar);
         } else {
             wx.setStorageSync('pdtincar', null);
@@ -286,10 +302,10 @@ Page({
             } else {
                 commodities[shopidx].commodity.forEach(item => {
                     console.log('全选', item)
-                    if(item){
+                    if (item) {
                         item['selected'] = boolean;
-                    allCount = allCount * 1 + item['count'] * 1;
-                    allAccount = allAccount * 1 + item['price'] * item['count'];
+                        allCount = allCount * 1 + item['count'] * 1;
+                        allAccount = allAccount * 1 + item['price'] * item['count'];
                     }
                 });
                 allAccount = allAccount * 1;
@@ -377,16 +393,16 @@ Page({
         var cart = this.data.commodities
         var shop_id = null
         var orderinfo = {}
-        var order_detail = []
+        var commodity = []
         var totalnumber = 0
         var totalprice = 0
         var flag = false
-        for(let i of cart){
-            if(i){
-                for(let s of i.commodity){
-                    if(s && s.selected){
+        for (let i of cart) {
+            if (i) {
+                for (let s of i.commodity) {
+                    if (s && s.selected) {
                         shop_id = s.shop_id
-                        order_detail = order_detail.concat(s)
+                        commodity = commodity.concat(s)
                         // totalnumber = totalnumber + s.count*1
                         // totalprice = (totalprice - 0 + s.count*s.price).toFixed(2)
                     }
@@ -404,14 +420,14 @@ Page({
         //     }
         // }
         orderinfo = {
-            type:'cart',
-            shop_id:shop_id,
-            totalnumber:this.data.accountInfo.allCount,
-            totalprice:this.data.accountInfo.allAccount,
-            order_detail:order_detail
+            type: 'cart',
+            shop_id: shop_id,
+            account: this.data.accountInfo.allCount,
+            totalPrice: this.data.accountInfo.allAccount,
+            commodity: commodity
         }
         console.log(orderinfo)
-        wx.setStorageSync('makeorder',orderinfo)
+        wx.setStorageSync('makeorder', orderinfo)
         wx.navigateTo({
             url: '/pages/doorder/doorder',
         })
