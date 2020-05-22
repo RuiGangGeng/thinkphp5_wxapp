@@ -3,7 +3,7 @@ Page({
     data: {
         shop_id: null,
         shop_info: null,
-        categorys: [],
+        categories: [],
         category_index: null,
         coupons: [],
         list: [],
@@ -15,17 +15,8 @@ Page({
         },
     },
 
-    onLoad: function (options) {
+    onLoad: function(options) {
         let that = this;
-
-        // 获取屏幕宽度 
-        wx.getSystemInfo({
-            success(res) {
-                that.setData({
-                    screenWidth: 750 / res.screenWidth
-                })
-            }
-        })
 
         // 获取商家ID
         that.setData({
@@ -33,32 +24,34 @@ Page({
         })
 
         // 获取商家基本信息
-        util.wxRequest("wechat/Shop/getShopInfo", {
-            shop_id: options.shop_id
-        }, res => {
-            that.setData({
-                shop_info: res.data
-            })
+        util.wxRequest("wechat/Shop/getShopInfo", { shop_id: options.shop_id }, res => {
+            if (res.code == 200) {
+                that.setData({
+                    shop_info: res.data
+                })
+            }
         })
 
         // 获取分类
-        util.wxRequest("wechat/Shop/get_category", {}, res => {
-            that.setData({
-                categorys: res.data
-            })
+        util.wxRequest("wechat/Shop/getCategories", { shop_id: options.shop_id }, res => {
+            if (res.code == 200) {
+                that.setData({
+                    categories: res.data
+                })
+            }
         })
 
         // 获取满减信息
-        util.wxRequest("wechat/Shop/getCouponInfo", {
-            shop_id: options.shop_id
-        }, res => {
-            that.setData({
-                coupons: res.data
-            })
+        util.wxRequest("wechat/Shop/getCouponInfo", { shop_id: options.shop_id }, res => {
+            if (res.code == 200) {
+                that.setData({
+                    coupons: res.data
+                })
+            }
         })
     },
 
-    onShow: function () {
+    onShow: function() {
         this.setData({
             list: [],
             page: 0
@@ -67,7 +60,7 @@ Page({
     },
 
     // 点击筛选条件
-    changeSelect: function (e) {
+    changeSelect: function(e) {
         let that = this
         let status = e.currentTarget.dataset.status
         let param = that.data.param
@@ -87,26 +80,25 @@ Page({
         that.loadData();
     },
 
+    // 跳转到编辑页面
+    navEdit: function(e) {
+        return
+        wx.navigateTo({
+            url: '/pages/addpdt/addpdt?shop_id=' + this.data.shop_id + '&id=' + e.currentTarget.dataset.id
+        })
+    },
+
     // 上架 下架 删除
-    changegood: function (e) {
+    changegood: function(e) {
         let that = this
         let act = e.currentTarget.dataset.act
-        let id = e.currentTarget.dataset.id
-        let param = {
-            id: id
-        }
-        util.wxRequest("wechat/shop/" + act, param, res => {
-            if (res.code == 200) {
-                wx.showToast({
-                    title: res.msg,
-                })
-            } else {
-                wx.showToast({
-                    title: res.msg,
-                    icon: "none"
-                })
-            }
-        }, res => { }, res => {
+
+        util.wxRequest("wechat/shop/" + act, { id: e.currentTarget.dataset.id }, res => {
+            wx.showToast({
+                title: res.msg,
+                icon: res.code == 200 ? 'success' : "none"
+            })
+        }, res => {}, res => {
             that.setData({
                 list: [],
                 page: 0
@@ -116,7 +108,7 @@ Page({
     },
 
     // 点击分类
-    categoryClick: function (e) {
+    categoryClick: function(e) {
         let that = this
         let id = e.currentTarget.dataset.id
         let param = that.data.param
@@ -131,28 +123,34 @@ Page({
     },
 
     // 加载数据
-    loadData: function () {
+    loadData: function() {
         let that = this;
+
         let param = {
             shop_id: that.data.shop_id,
             page: that.data.page + 1,
         }
+
         Object.assign(param, that.data.param);
+
         util.wxRequest("wechat/Shop/get_goods", param, res => {
             let temp = that.data.list.concat(res.data.data)
+
             that.setData({
                 page: res.data.current_page,
                 list: temp
             })
+
             res.data.data.length == 0 ? wx.showToast({
                 title: '暂无更多数据',
                 icon: "none"
             }) : ''
+
         })
     },
 
     // 点击搜索
-    bindfocus: function (e) {
+    bindfocus: function(e) {
         wx.navigateTo({
             url: '/pages/managshopSearch/managshopSearch?shop_id=' + this.data.shop_id,
         })

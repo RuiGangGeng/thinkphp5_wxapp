@@ -44,7 +44,7 @@
 </view>
 <view class="noticebody shadow10 width94">
     <view class="noticeitem" bindtap="gonotice" wx:if="{{notice}}" wx:for="{{notice}}" wx:key="index" data-id="{{item.id}}">
-        <image src="{{imgBaseUrl}}{{item.image}}" class="itemimg"></image>
+        <image src="{{item.image}}" class="itemimg"></image>
         <view class="noticemsg">
             <view>
                 <view class="texttwoline">{{item.title}}</view>

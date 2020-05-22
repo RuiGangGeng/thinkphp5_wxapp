@@ -241,7 +241,7 @@
 
 .result-wrapper {
   background: #fff;
-  padding-bottom: 85rpx;
+  padding-bottom: 45rpx;
   position: absolute;
   right: 0;
   width: 590rpx;
@@ -251,8 +251,8 @@
 .result-wrapper::after {
   content: "我是有底线的";
   position: absolute;
-  bottom: 40rpx;
-  left: 178rpx;
+  bottom: 10rpx;
+  left: 212rpx;
   font-size: 26rpx;
   color: #a1a1a1;
 }

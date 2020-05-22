@@ -52,13 +52,13 @@
     <view class="content">
         <!-- 分类 -->
         <view class="sidebar">
-            <view class="{{category_index == item.id ? 'active': ''}}" wx:for="{{categorys}}" data-id="{{item.id}}" wx:key="index" bindtap='categoryClick'>
+            <view class="{{category_index == item.id ? 'active': ''}}" wx:for="{{categories}}" data-id="{{item.id}}" wx:key="index" bindtap='categoryClick'>
                 {{item.name}}
             </view>
         </view>
         <!-- 结果列表 -->
         <scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
-            <view class="item" wx:for="{{list}}" wx:key="index">
+            <view class="item" wx:for="{{list}}" wx:key="index" bindtap="navEdit" data-id="{{item.id}}">
                 <image src="{{item.image}}" class="goods-image"></image>
                 <view class="goods_info">
                     <view class="texttwoline">{{item.name}}</view>

@@ -3,25 +3,40 @@ const util = require('../../utils/util.js');
 //获取应用实例
 const app = getApp()
 Page({
+
     data: {
         param: {
             image: '/image/add_goods.png',
             detailimg: '/image/add_goods.png',
         },
-        categorys: [],
-        categorysSelectName: "请选择",
+        categories: [],
+        categoriesSelectName: "请选择",
         onAsync: false,
     },
 
     onLoad: function(e) {
         this.setData({
-                'param.shop_id': e.shop_id
+            'param.shop_id': e.shop_id
+        })
+
+        // 更新之前获取商品信息
+        if (typeof e.id !== undefined) {
+            util.wxRequest("wechat/Shop/get_good", { id: e.id }, res => {
+                if (res.code == 200) {
+                    this.setData({
+                        param: res.data
+                    })
+                }
             })
-            // 获取分类
-        util.wxRequest("wechat/Shop/get_category", {}, res => {
-            this.setData({
-                categorys: res.data
-            })
+        }
+
+        // 获取分类
+        util.wxRequest("wechat/Shop/getCategories", { shop_id: this.data.param.shop_id }, res => {
+            if (res.code == 200) {
+                this.setData({
+                    categories: res.data
+                })
+            }
         })
 
         this.initValidate()

@@ -11,51 +11,18 @@ Page({
         shopid: false,
         shopname: false,
         select: 0,
-        categories: [{
-                id: 1,
-                name: '新鲜水果'
-            },
-            {
-                id: 2,
-                name: '时令果蔬'
-            },
-            {
-                id: 3,
-                name: '肉禽蛋品'
-            },
-            {
-                id: 4,
-                name: '米面粮油'
-            },
-            {
-                id: 5,
-                name: '海鲜水产'
-            },
-            {
-                id: 6,
-                name: '休闲零食'
-            },
-            {
-                id: 7,
-                name: '日用百货'
-            },
-            {
-                id: 8,
-                name: '其他商品'
-            }
-        ],
+        categories: [],
         goodsList: [],
         goodsincar: [],
         page: 0,
     },
 
     onLoad: function(options) {
-        this.setData({
-            shopname: options.shopname
-        })
+        var that = this;
 
         app.globalData.shop_id = options.shop_id;
         var shopid = options.shop_id
+
         var pdtincar = wx.getStorageSync('pdtincar');
         if (pdtincar) {
             var pagearr = pdtincar.commodities;
@@ -67,14 +34,33 @@ Page({
             })
         }
 
-        var that = this;
-        that.countInfoAtThisShop(pdtincar, that, options.shop_id)
         that.setData({
             goodsincar: pagegoodsincar,
-            select: options.cateid - 1,
             shopid: shopid,
+            shopname: options.shopname
         })
-        that.loadData()
+
+        that.countInfoAtThisShop(pdtincar, that, options.shop_id)
+
+        // 获取门店分类  回调之后再获取产品
+        util.wxRequest('wechat/Shop/getCategories', { shop_id: options.shop_id }, res => {
+            if (res.code == 200) {
+                that.setData({
+                    categories: res.data
+                })
+
+                for (let i = 0; i < that.data.categories.length; i++) {
+                    if (that.data.categories[i].id == options.cateid) {
+                        that.setData({
+                            select: i,
+                        })
+                    }
+                }
+
+                that.loadData()
+            }
+        })
+
     },
 
     // 计算本门店的购物车信息，赋值到UI
@@ -83,7 +69,6 @@ Page({
             var arr = []
         } else {
             var arr = pdtincar.commodities;
-            console.log(arr)
         }
         var totalGoods = false;
         var totalPrice = false;

@@ -223,8 +223,8 @@ scroll-view {
 }
 
 .list .item:last-child {
-    border-bottom: none;
-    margin-bottom: 80rpx;
+    /* border-bottom: none; */
+    margin-bottom: 45rpx;
 }
 
 .item>image {
