@@ -20,6 +20,7 @@
   width: 94%;
   z-index: 99;
 	margin-left: 3%;
+  padding-bottom: 6rpx;
   border-bottom: 1rpx solid #D7D7D7;
 }
 .header .line {
@@ -59,25 +60,25 @@
   transform: translateX(-50%);
 }
 .header .search-box{
-  border-radius: 27px;
+  border-radius: 30rpx;
 	background: hsla(0, 0%, 100%, .6);
-	height: 65rpx;
+	height: 60rpx;
 	width: 100%;
 	background: #f0f0f0;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+  margin-top: 20rpx;
 }
 .header .search-box text{
 	height: 30px;
 	line-height: 30px;
 	color: #B5B5B5;
-	font-size: 31rpx;
-	margin-left: 5rpx;
+	font-size: 28rpx;
 }
 .header .search-box image{
-	height: 40rpx;
-	width: 40rpx;
+	height: 35rpx;
+	width: 35rpx;
 	margin-left: 14px;
   margin-right: 14px;
 }

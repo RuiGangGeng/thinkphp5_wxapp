@@ -16,7 +16,7 @@
 }
 
 radio {
-    transform: scale(0.8);
+    transform: scale(1);
 }
 
 .colorwhite {
@@ -31,9 +31,8 @@ radio {
 
 .itemimg {
     width: 35rpx;
-    height: 42rpx;
-    margin-top: 2rpx;
-    margin-left: 10rpx;
+    height: 45rpx;
+    margin: 5rpx 10rpx;
 }
 
 .hasaddress {
@@ -41,7 +40,7 @@ radio {
 }
 
 .addressitem {
-    padding: 15rpx;
+    padding:30rpx 10rpx;
     border-bottom: 1rpx solid #d7d7d7;
 }
 
@@ -61,12 +60,15 @@ radio {
 .sconitem {
     color: #a8a8a8;
     font-size: 28rpx;
+    float: left;
+    width: 70%;
     margin-left: 60rpx;
     margin-top: 10rpx;
 }
 
 .threitem {
     text-align: right;
+    margin-top: 30rpx;
 }
 
 .btn {
@@ -96,7 +98,7 @@ radio {
     display: flex;
     justify-content: center;
     height: 90rpx;
-    margin: 450rpx 0;
+    margin: 450rpx 0 0;
     bottom: 60rpx;
 }
 

@@ -50,8 +50,8 @@ form {
 }
 
 .itemimg {
-    width: 65rpx;
-    height: 65rpx;
+    width: 40rpx;
+    height: 40rpx;
 }
 
 .addresstwo {
@@ -80,11 +80,10 @@ form {
 
 .colorgray0 {
     float: right;
-    margin-right: 9rpx;
 }
 
 .colorgray image {
-    width: 35rpx;
+    width: 45rpx;
     height: 45rpx;
 }
 
@@ -114,6 +113,7 @@ button::after {
 .btnfa {
     background-color: #fff;
     color: #39a336;
+    font-weight: bold;
 }
 
 .btnBox {

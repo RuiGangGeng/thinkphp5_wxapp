@@ -101,7 +101,7 @@ Page({
         var addrId = e.currentTarget.dataset.id;
         wx.showModal({
             title: '提示',
-            content: '你确认移除吗',
+            content: '您确定要删除该收获地址吗？',
             success: function(res) {
                 let url = 'wechat/User/del_address';
                 let params = {
