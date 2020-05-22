@@ -1,7 +1,7 @@
 const util = require('utils/util.js')
 App({
 
-    onLaunch: function () {
+    onLaunch: function() {
         let that = this
 
         // 微信登录 注意登录和授权是不一样的
@@ -21,14 +21,14 @@ App({
             }
         })
     },
- 
+
     globalData: {
         debug: true, // 是否开启调试
         api_host: 'https://www.ananw.cn/public/shop/', // 全局请求URL
 
         user: null, // 服务器端用户信息
         user_address: null, // 默认地址信息 合并手机号
-        defaultaddress: null,// 默认地址信息 不合并手机号
+        defaultaddress: null, // 默认地址信息 不合并手机号
         addrss_id: false, // 默认地址的id
 
         shops: null, //门店列表，含距离、配送能力等信息
@@ -42,7 +42,7 @@ App({
     },
 
     // 购物车底部导航数字
-    setCartNum: function (accountincart) {
+    setCartNum: function(accountincart) {
         if (accountincart * 1 > 0) {
             wx.setTabBarBadge({
                 index: 1,
