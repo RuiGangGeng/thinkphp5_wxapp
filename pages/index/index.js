@@ -93,10 +93,11 @@ Page({
         util.wxRequest('wechat/user/loadShops', { id: app.globalData.addrss_id }, res => {
             // 计算门店显示进店购物或者去逛逛
             let shops = res.data
-            shops.forEach(function(item, index) {
+
+            for (let item of shops) {
                 item.can = (item.deliveryGap - item.distance).toFixed(2);
                 item.gap = (item.distance / 1000).toFixed(1);
-            })
+            }
 
             app.globalData.shops = shops
             this.setData({
