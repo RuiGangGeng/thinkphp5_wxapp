@@ -120,7 +120,7 @@ image {
 
 .online {
   width: 100%;
-  height: 215rpx;
+  height: 200rpx;
 }
 
 /* 店内公告样式 */
