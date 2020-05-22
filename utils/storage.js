@@ -208,6 +208,23 @@ class Storage {
     }
     callback && callback(ids)
   }
+
+  //获取订单详情的购物车数据
+  _getGoodInCart(id,callback){
+    var pdt = wx.getStorageSync('pdtincar'); 
+    var good = null
+    if(pdt){
+        var commodities = pdt.commodities
+        commodities.forEach(function(item,index){
+            item.commodity.forEach(function(item,index){
+                if(item.id == id){
+                    good = item
+                }
+            })
+        })
+    }
+      callback && callback(good)
+  }
   
 }
 
