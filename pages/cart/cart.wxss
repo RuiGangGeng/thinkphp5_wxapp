@@ -1,9 +1,11 @@
 /* pages/cart/cart.wxss */
-
+page{
+  background: #F4F4F4;
+}
 .itembody {
   background-color: #fff;
   margin-top: 1%;
-  border: 1rpx solid #ccc;
+  border: 1rpx solid #eee;
   border-radius: 10rpx;
   overflow: hidden;
 }
@@ -52,7 +54,7 @@
   justify-content: space-between;
   align-items: center;
   color: #19a335;
-  border: 1rpx solid #ccc;
+  border: 1rpx solid #eee;
   border-radius: 10rpx;
   background: #f9f9f9;
 }

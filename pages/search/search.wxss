@@ -3,10 +3,11 @@
 
 .type-header-menu {
   height: 120rpx;
-  width: 100%;
+  width: 94%;
+  margin: 0 3%;
   background-color: #fff;
   z-index: 99;
-  border-bottom: 1rpx solid #f8f8f8;
+  border-bottom: 1px solid #ddd;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -17,12 +18,10 @@
   border: none;
 }
 .type-header-menu .type-search {
-  width: 690rpx;
-  margin-left: 30rpx;
   position: relative;
-  height: 66rpx;
+  height: 60rpx;
   overflow: hidden;
-  margin-top: 30rpx;
+  margin-top: 40rpx;
   box-sizing: border-box;
 }
 
@@ -46,7 +45,7 @@
 }
 
 .type-header-menu .type-search .active {
-  width: 525rpx;
+  width: 75%;
   transition: all 0.6s;
 }
 
@@ -54,8 +53,9 @@
   float: right;
   line-height: 60rpx;
   color: #39a357;
-  font-size: 34rpx;
-  width: 100rpx;
+  font-size: 30rpx;
+  width: 15%;
+  font-weight: bold;
   text-align: center;
 }
 .goods-none {
@@ -142,26 +142,23 @@
   padding: 0 3px;
 }
 .search-cont-box{
-	padding: 0 30rpx;
+	padding: 0 50rpx;
 }
 .search-cont-box .title-and-btn{
 	display: flex;
 	justify-content: space-between;
 	padding: 30rpx 0 20rpx 0;
+  font-size: 30rpx;
 }
 .search-cont-box .title-and-btn .btn image{
-	height: 48rpx;
-	width: 48rpx;
-}
-.search-cont-box .title-and-btn .title{
-	font-size: 34rpx;
+	height: 30rpx;
+	width: 30rpx;
 }
 .search-cont-box .keywords-li{
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
   color: #777;
-  font-size: 33rpx;
 }
 .search-cont-box .keywords-li .item{
 	font-size: 32rpx;

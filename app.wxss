@@ -260,7 +260,7 @@ body {
 
 .noData {
   color: #5a5a5a;
-  font-size: 45rpx;
+  font-size: 32rpx;
   display: block;
   text-align: center;
   margin-top: 300rpx;
