@@ -53,7 +53,7 @@
 /* 地址样式 */
 
 .addrleft {
-    font-size: 26rpx;
+    font-size: 24rpx;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -63,15 +63,19 @@
 
 .address {
     border-radius: 6px;
-    box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
-    width: 710rpx;
-    height: 65rpx;
-    margin: 10rpx 20rpx 0 20rpx;
+    border:1px solid #eee;
+    width: 700rpx;
+    height: 60rpx;
+    margin: 10rpx 24rpx 0 24rpx;
     box-sizing: border-box;
-    padding: 0 15rpx;
+    padding: 0 25rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.addrleft_title{
+  margin-left: 20rpx;
 }
 
 .addrtext {
@@ -96,30 +100,29 @@
 .bodyhead {
     color: #434343;
     display: flex;
-    margin-top: 60rpx;
+    margin: 60rpx 0 20rpx;
     justify-content: flex-start;
     align-items: center;
 }
 
 .diamond {
-    width: 1.5%;
-    height: 39rpx;
+    width: 2%;
+    height: 40rpx;
     background-color: #39a337;
-    margin-right: 3%;
+    margin-right: 4%;
 }
 
 .shopitem {
-    width: 700rpx;
-    height: 210rpx;
-    padding: 35rpx 15rpx 0 15rpx;
-    margin: 0 25rpx;
+    height: 220rpx;
+    padding: 40rpx 15rpx 0 15rpx;
+    margin: 0 34rpx;
     border-bottom: 1rpx solid #eee;
     box-sizing: border-box;
 }
 
 .shoptitle {
     font-size: 30rpx;
-    font-weight: blod;
+    font-weight: bold;
 }
 
 .outline {
@@ -140,8 +143,9 @@
     color: #fff;
     background-color: #39a336;
     height: 50rpx;
-    width: 145rpx;
-    border-radius: 10rpx;
+    line-height: 50rpx;
+    width: 160rpx;
+    border-radius: 12rpx;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,8 +177,8 @@
     color: #fff;
     background-color: #a8a8a8;
     height: 50rpx;
-    width: 145rpx;
-    border-radius: 10rpx;
+    width: 160rpx;
+    border-radius: 12rpx;
     display: flex;
     justify-content: center;
     align-items: center;

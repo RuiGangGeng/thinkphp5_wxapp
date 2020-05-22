@@ -12,13 +12,13 @@
 .numoncar {
   position: absolute;
   right: 0;
-  bottom: 50rpx;
-  width: 40rpx;
-  height: 40rpx;
+  bottom: 45rpx;
+  width: 35rpx;
+  height: 35rpx;
   background-color: #ff5546;
   color: #fff;
   text-align: center;
-  line-height: 40rpx;
+  line-height: 35rpx;
   border-radius: 100%;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .colorg {
-  color: #ccc;
+  color: #bbb;
   margin-right: 30rpx;
 }
 
@@ -164,8 +164,8 @@
 }
 
 .shopcar {
-  width: 77rpx;
-  height: 77rpx;
+  width: 65rpx;
+  height: 65rpx;
   position: absolute;
   right: 0;
   bottom: 0;

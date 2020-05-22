@@ -9,7 +9,8 @@ page {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 30rpx;
+  font-size: 28rpx;
+  margin-top: 5rpx;
 }
 
 .shopIndItemImg {
@@ -77,6 +78,7 @@ image {
 
 .shopinfo-item {
   height: 100%;
+  margin-top: 5rpx;
   width: 630rpx;
   font-size: 24rpx;
 }
@@ -139,10 +141,10 @@ image {
 }
 
 .noticehesder image {
-  width: 45rpx;
-  height: 45rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-left: 3%;
-  margin-right: 1%;
+  margin-right: 2%;
 }
 
 .noticebody {
