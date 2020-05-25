@@ -15,7 +15,7 @@
 					{{item.status == 3? "待收货":''}}
 					{{item.status == 4? "待评价":''}}
                 </view>
-                <view style="margin-left:25rpx;line-height:95rpx;display:inline-block;font-size:37rpx;font-weight:bold;color:#252525;">
+                <view class="textinline" style="width: 530rpx; margin-left:25rpx;line-height:95rpx;display:inline-block;font-size:37rpx;font-weight:bold;color:#252525;">
                     {{item.shop.name}}
                 </view>
             </view>

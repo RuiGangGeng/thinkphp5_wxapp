@@ -6,7 +6,7 @@
     <swiper autoplay="true" interval="3000" duration="500" circular="true">
         <block wx:for="{{swiper}}" wx:key="index">
             <swiper-item>
-                <image src="{{shopdata.image}}" class="shopIndItemImg"></image>
+                <image src="{{item}}" class="shopIndItemImg"></image>
             </swiper-item>
         </block>
     </swiper>

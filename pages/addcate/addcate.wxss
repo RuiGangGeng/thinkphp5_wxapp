@@ -1,40 +1,73 @@
-/* pages/addcate/addcate.wxss */
-
-.colorgreen {
-  background: #38a435; 
-  color: #fff;
-  width: 200rpx;
-  height: 50rpx;
-  border-radius: 10rpx;
-  margin: 40rpx 0 40rpx 25rpx;
-  font-size: 26rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-textarea {
-  border: 1rpx solid #808080;
-  box-shadow: 0 0 3rpx #ccc;
-  width: 700rpx;
-  border-radius: 15rpx;
-  padding: 20rpx;
-  margin: 0 25rpx;
-  height: 180rpx;
-  box-sizing: border-box;
-}
-button{
+button {
     width: 360rpx!important;
     height: 90rpx;
     background: #38a435!important;
     color: white!important;
     border: unset!important;
 }
-.btnBox{
-  position: fixed;
-  bottom: 180rpx;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 90rpx;
+
+.btnBox {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 90rpx;
+    margin-top: 150rpx;
+}
+
+.image {
+    font-size: 200rpx;
+    width: 200rpx;
+    height: 200rpx;
+    border: 1rpx dashed #ccc;
+    text-align: center;
+    line-height: 170rpx;
+    color: #ccc;
+    margin-top: 25rpx;
+    border-radius: 10rpx;
+    background: #f8f7fc;
+    overflow: hidden;
+}
+
+.image image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.form {
+    width: 700rpx;
+    margin: auto;
+}
+
+.item {
+    width: 100%;
+    border-bottom: 1rpx solid #d7d7d7;
+    min-height: 125rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item label {
+    width: 160rpx;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item input {
+    width: 540rpx;
+    height: 100%;
+    display: block;
+}
+
+.column {
+    padding: 25rpx 0;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.noneBorder {
+    border: none;
 }

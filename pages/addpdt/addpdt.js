@@ -20,7 +20,7 @@ Page({
         })
 
         // 更新之前获取商品信息
-        if (typeof e.id !== undefined) {
+        if (e.id) {
             util.wxRequest("wechat/Shop/get_good", { id: e.id }, res => {
                 if (res.code == 200) {
                     this.setData({

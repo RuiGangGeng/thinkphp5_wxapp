@@ -25,7 +25,7 @@ Page({
                     title: res.data.name,
                 })
 
-                let swiper = [res.data.image]
+                let swiper = res.data.image
                 this.setData({
                     shopdata: res.data,
                     shopname: res.data.name,

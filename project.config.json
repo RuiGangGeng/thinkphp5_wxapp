@@ -61,30 +61,9 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/gooddetail/gooddetail",
-					"pathName": "pages/gooddetail/gooddetail",
-					"query": "id=1",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/goodcate/goodcate",
-					"pathName": "pages/goodcate/goodcate",
-					"query": "shop_id=5",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "pages/my/my",
-					"pathName": "pages/my/my",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/cart/cart",
-					"pathName": "pages/cart/cart",
-					"query": "",
+					"name": "pages/addcate/addcate",
+					"pathName": "pages/addcate/addcate",
+					"query": "shop_id=1",
 					"scene": null
 				}
 			]

@@ -32,15 +32,6 @@ Page({
             }
         })
 
-        // 获取分类
-        util.wxRequest("wechat/Shop/getCategories", { shop_id: options.shop_id }, res => {
-            if (res.code == 200) {
-                that.setData({
-                    categories: res.data
-                })
-            }
-        })
-
         // 获取满减信息
         util.wxRequest("wechat/Shop/getCouponInfo", { shop_id: options.shop_id }, res => {
             if (res.code == 200) {
@@ -52,11 +43,21 @@ Page({
     },
 
     onShow: function() {
-        this.setData({
+        let that = this;
+        // 获取分类
+        util.wxRequest("wechat/Shop/getCategories", { shop_id: that.data.shop_id }, res => {
+            if (res.code == 200) {
+                that.setData({
+                    categories: res.data
+                })
+            }
+        })
+
+        that.setData({
             list: [],
             page: 0
         })
-        this.loadData();
+        that.loadData();
     },
 
     // 点击筛选条件

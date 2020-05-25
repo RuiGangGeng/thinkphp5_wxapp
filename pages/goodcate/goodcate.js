@@ -102,8 +102,16 @@ Page({
 
     // 切换分类
     categoryClick: function(event) {
+        let that = this
+        for (let i = 0; i < that.data.categories.length; i++) {
+            if (that.data.categories[i].id == event.target.id) {
+                that.setData({
+                    select: i,
+                })
+            }
+        }
+
         this.setData({
-            select: event.target.id - 1,
             goodsList: [],
             page: 0
         })
@@ -200,7 +208,7 @@ Page({
             status: 1,
             page: that.data.page + 1,
             shop_id: that.data.shopid,
-            category_id: that.data.select + 1
+            category_id: that.data.categories[that.data.select].id
         }
 
         Object.assign(param, that.data.param);
