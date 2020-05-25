@@ -190,7 +190,7 @@ Page({
             }
         })
         wx.setStorageSync('makeorder', arr)
-        wx.navigateTo({
+        wx.redirectTo({
             url: '/pages/doorder/doorder',
         })
     },

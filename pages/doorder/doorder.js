@@ -1,4 +1,3 @@
-// pages/doorder/doorder.js
 const util = require('../../utils/util.js');
 const app = getApp();
 import Storage from '../../utils/storage';
@@ -149,19 +148,15 @@ Page({
                     signType: res.data.signType,
                     paySign: res.data.sign,
                     success() {
-                        setTimeout(res => {
-                            wx.redirectTo({
-                                url: '/pages/resultpay/resultpay?code=200',
-                            })
-                        }, 2000)
+                        wx.redirectTo({
+                            url: '/pages/resultpay/resultpay?code=200',
+                        })
                     },
                     fail(e) {
                         if (e.errMsg == "requestPayment:fail cancel") {
-                            setTimeout(res => {
-                                wx.redirectTo({
-                                    url: '/pages/resultpay/resultpay?code=500',
-                                })
-                            }, 2000)
+                            wx.redirectTo({
+                                url: '/pages/resultpay/resultpay?code=500',
+                            })
                         }
                     }
                 })
