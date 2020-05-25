@@ -10,7 +10,6 @@ Page({
         swiper: [],
         shopid: false,
         shopname: false,
-        imgBaseUrl: '',
     },
 
     onLoad: function(options) {
@@ -26,7 +25,7 @@ Page({
                     title: res.data.name,
                 })
 
-                let swiper = [res.data.image]
+                let swiper = res.data.image
                 this.setData({
                     shopdata: res.data,
                     shopname: res.data.name,
@@ -47,14 +46,11 @@ Page({
         // 获取门店公告
         util.wxRequest('wechat/Shop/getNotice', { shop_id: options.shopid }, res => {
             if (res.code == 200) {
-                var notice = res.data.total > 0 ? res.data.data : null;
                 this.setData({
-                    notice: notice,
-                    imgBaseUrl: app.globalData.api_host
+                    notice: res.data,
                 })
             }
         })
-
 
     },
 
@@ -66,7 +62,7 @@ Page({
         })
     },
 
-    //点击店内公告
+    // 点击店内公告
     gonotice: function(e) {
         var noticeid = e.currentTarget.dataset.cateid;
         wx.navigateTo({

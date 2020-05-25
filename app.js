@@ -26,7 +26,7 @@ App({
         debug: true, // 是否开启调试
         api_host: 'https://www.ananw.cn/public/shop/', // 全局请求URL
 
-        user: null, // 服务器端用户信息
+        user: { id: 1 }, // 服务器端用户信息
         user_address: null, // 默认地址信息 合并手机号
         defaultaddress: null, // 默认地址信息 不合并手机号
         addrss_id: false, // 默认地址的id

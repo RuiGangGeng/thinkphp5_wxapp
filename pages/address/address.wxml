@@ -35,7 +35,7 @@
         <icon type="warn" size="70" color="#C0C0C0"></icon>
     </view>
     <view class="inmiddle colorgray">无收货地址，快来告诉我吧</view>
-    <navigator url="/pages/addressadd/addressadd" class="inmiddle colorwhite">添加收货地址+</navigator>
+    <navigator url="/pages/addressadd/addressadd" class="inmiddle colorwhite" wx:if="{{has_login}}">添加收货地址+</navigator>
 </view>
 <!-- 无地址信息时展示结束 -->
 <!-- 弹窗 -->

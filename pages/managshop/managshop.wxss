@@ -67,7 +67,7 @@ page {
 }
 
 .coupons_list {
-    width: 550rpx;
+    width: 620rpx;
     height: 45rpx;
     display: flex;
     justify-content: flex-start;
@@ -162,7 +162,7 @@ page {
     justify-content: space-between;
 }
 
-.operatetwo navigator {
+.manitemr {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,6 +172,11 @@ page {
     background: #39a336;
     color: white;
     font-size: 26rpx;
+}
+
+.mini {
+    width: 150rpx;
+    margin-left: 22rpx;
 }
 
 scroll-view {
@@ -223,8 +228,8 @@ scroll-view {
 }
 
 .list .item:last-child {
-    border-bottom: none;
-    margin-bottom: 80rpx;
+    /* border-bottom: none; */
+    margin-bottom: 45rpx;
 }
 
 .item>image {

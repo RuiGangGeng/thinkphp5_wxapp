@@ -1,7 +1,20 @@
-<!--pages/addcate/addcate.wxml-->
 <view class="fadedf"></view>
-<view class="colorgreen">添加产品分类</view>
-<textarea placeholder="产品分类"></textarea>
+<view class="form">
+    <view class="item">
+        <label>分类名称：</label>
+        <input placeholder="请输入名称" maxlength="4" bindinput="bindInput" data-field="name" value="{{param.name}}"></input>
+    </view>
+    <view class="item">
+        <label>排序规则：</label>
+        <input placeholder="请输入排序" type="number" maxlength="1" bindinput="bindInput" data-field="sort" value="{{param.sort}}"></input>
+    </view>
+    <view class="item column noneBorder">
+        <label>分类图片</label>
+        <view class="image" bindtap="chooseImage">
+            <image src="{{param.image}}"></image>
+        </view>
+    </view>
+</view>
 <view class="btnBox">
-	<button type="primary" bindtap="">确定</button>
+    <button type="primary" bindtap="onSubmit">确定</button>
 </view>

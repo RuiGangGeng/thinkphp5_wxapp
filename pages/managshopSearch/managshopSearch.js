@@ -9,14 +9,14 @@ Page({
         show_button: true
     },
 
-    onLoad: function (e) {
+    onLoad: function(e) {
         this.setData({
             shop_id: e.shop_id
         })
     },
 
     // 监听搜索框输入
-    bindinput: function (e) {
+    bindinput: function(e) {
         this.setData({
             searchKey: e.detail.value,
             show_button: true
@@ -24,7 +24,7 @@ Page({
     },
 
     // 点击搜索
-    search: function (e) {
+    search: function(e) {
         this.setData({
             page: 0,
             list: [],
@@ -34,7 +34,7 @@ Page({
     },
 
     // 上架 下架 删除
-    changegood: function (e) {
+    changegood: function(e) {
         let that = this
         let act = e.currentTarget.dataset.act
         let id = e.currentTarget.dataset.id
@@ -62,12 +62,12 @@ Page({
     },
 
     // 上拉加载
-    onReachBottom: function () {
+    onReachBottom: function() {
         this.loadData()
     },
 
     // 加载数据
-    loadData: function () {
+    loadData: function() {
         let that = this;
 
         let param = {
@@ -90,16 +90,21 @@ Page({
                 })
             }
 
+            res.data.data.length == 0 ? wx.showToast({
+                title: '暂无更多数据',
+                icon: "none"
+            }) : ''
+
         })
     },
 
-    bindfocus: function (e) {
+    bindfocus: function(e) {
         this.setData({
             show_button: true
         })
     },
 
-    bindblur: function (e) {
+    bindblur: function(e) {
         this.setData({
             show_button: true
         })
