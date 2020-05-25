@@ -8,7 +8,7 @@
     </view>
   </view>
   <image src="{{top_bg}}" class="imgback"></image>
-  <image src="{{banner_image}}" class="imgfront" style="margin-top:{{margintop}}rpx"></image>
+  <image src="{{banner_image}}" class="imgfront" style="margin-top:{{margintop}}rpx" bindtap="videoPlay"></image>
 </view>
 <!-- 头部图片样式结束-->
 

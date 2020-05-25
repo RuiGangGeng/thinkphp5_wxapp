@@ -79,7 +79,7 @@
 }
 
 .shop-name {
-  font-size: 37rpx;
+  font-size: 32rpx;
   font-weight: 550;
   color: #262626;
   float: left;

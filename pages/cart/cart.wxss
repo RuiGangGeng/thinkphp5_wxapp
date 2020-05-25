@@ -1,7 +1,4 @@
 /* pages/cart/cart.wxss */
-page{
-  background: #F4F4F4;
-}
 .itembody {
   background-color: #fff;
   margin-top: 1%;
@@ -46,6 +43,7 @@ page{
 
 .namemar {
   margin-left: 2%;
+  font-weight: bold;
 }
 
 .shopincart {
@@ -156,7 +154,7 @@ page{
   justify-content: space-between;
   flex: 1;
   height: 175rpx;
-  margin-left: 2%;
+  margin-left: 3%;
 }
 
 .commodity-params {
@@ -182,19 +180,20 @@ page{
 }
 
 .btn {
-  padding: 10rpx;
+  padding: 8rpx;
+  margin: 0 6rpx;
 }
 
 .btn-decrease, .btn-increase {
   color: #878787;
-  width: 25rpx;
-  height: 25rpx;
+  width: 20rpx;
+  height: 20rpx;
+  line-height: 20rpx;
   border: 1rpx solid;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  margin-right: 2%;
 }
 
 /* 结算 */

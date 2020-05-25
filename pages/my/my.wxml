@@ -39,7 +39,7 @@
 	<view class="my_order">
 		<navigator url="/pages/refunds/refunds" class="nav_item">
 			<view class="nav_item_text">
-				<image src="../../image/logo/sail.png"  style="width: 41rpx; height: 40rpx;"></image>
+				<image src="../../image/logo/sail.png"  style="width: 41rpx; height: 41rpx;"></image>
 				<text>退款/售后</text>
 			</view>
 			<text class="angle"></text>

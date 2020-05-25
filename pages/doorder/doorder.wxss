@@ -81,14 +81,14 @@ button{
 }
 
 .infoheader {
-  margin-bottom: 3%;
+  margin-bottom: 4%;
 }
 
 .colorgreen {
   color: #39a335;
-  font-size: 34rpx;
-  margin-left: 25rpx;
-  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 10rpx;
 }
 
 .font31 {
@@ -96,7 +96,8 @@ button{
 }
 
 .pricemar3 {
-  margin-right: 3%;
+  margin-right: 6%;
+  margin-top: -10rpx;
 }
 
 .colorgray {
@@ -113,27 +114,27 @@ button{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 140rpx;
+  height: 130rpx;
   padding-left: 2%;
 }
 
 .goodimg {
-  width: 180rpx;
-  height: 180rpx;
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 15rpx;
-  margin-left: 2%;
+  margin-left: 4%;
 }
 
 .orderitem {
   display: flex;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   border-top: 1rpx solid #ccc;
   padding-top: 4%;
 }
 
 .goodmsg {
   flex: 1;
-  margin-left: 2%;
+  margin-left: 4%;
   position: relative;
 }
 

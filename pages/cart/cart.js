@@ -357,7 +357,7 @@ Page({
 
     //开闭订单商店
     changeT: function(e) {
-        console.log(e)
+        console.log(e.currentTarget.dataset.shopid)
         var shopid = e.currentTarget.dataset.shopid;
         var shoplist = this.data.commodities;
         console.log(shoplist)
