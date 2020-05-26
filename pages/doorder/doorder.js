@@ -18,7 +18,10 @@ Page({
 
     onLoad: function(options) {
         var shops = app.globalData.shops;
+        console.log(shops);
         var pdtincar = wx.getStorageSync('pdtincar');
+      console.log(pdtincar);
+
         var myorder = wx.getStorageSync('makeorder');
         var shopInfo = {};
         console.log(myorder);
@@ -125,6 +128,7 @@ Page({
         //调用订单创建接口
         util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
             var that = this
+          console.log(wx.getStorageSync('makeorder'));
             if (res.code == 200) {
 
                 // 判断订单为什么来自商家还是购物车

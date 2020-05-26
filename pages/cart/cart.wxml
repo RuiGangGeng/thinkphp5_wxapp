@@ -39,7 +39,7 @@
                                         <cus-checkbox checked="{{commodity.selected}}"></cus-checkbox>
                                     </view>
                                     <view class="commodity-img">
-                                        <image class="img1" src="https://www.ananw.cn/public/shop/public/uploads/category/1.jpg"></image>
+                                        <image class="img1" src="{{commodity.image}}"></image>
                                     </view>
                                     <view class="commodity-info flex">
                                         <view class="commodity-name line2 text-sm text-333">{{commodity.name}}</view>

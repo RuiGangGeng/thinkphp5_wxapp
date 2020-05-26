@@ -76,7 +76,7 @@ Page({
                     }
                 }
             }
-            commodities[0].ishow = true
+            // commodities[0].ishow = true
             this.setData({
                 commodities: commodities
             })
