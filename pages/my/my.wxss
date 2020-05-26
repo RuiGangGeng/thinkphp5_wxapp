@@ -1,4 +1,3 @@
-page,
 .container {
     width: 100%;
     height: 100%;
@@ -54,7 +53,6 @@ page,
     width: 100%;
     height: 100%;
 }
-
 
 .cell-row__footer {
     color: #888;
@@ -313,10 +311,42 @@ page,
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
 }
 
 .nav_item_text image {
     display: block;
-    margin-right: 30rpx; 
+    margin-right: 30rpx;
+}
+
+.headers {
+    margin: 90rpx 0 90rpx 50rpx;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    width: 650rpx;
+    height: 300rpx;
+    line-height: 450rpx;
+}
+
+.headers image {
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.content {
+    margin-left: 50rpx;
+    margin-bottom: 90rpx;
+}
+
+.content text {
+    display: block;
+    color: #9d9d9d;
+    margin-top: 40rpx;
+}
+
+.bottom {
+    background: #39a336;
+    border-radius: 80rpx;
+    margin: 70rpx 50rpx;
+    font-size: 35rpx;
+    color: white;
 }

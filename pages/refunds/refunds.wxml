@@ -9,7 +9,7 @@
 <view class="list" wx:if="{{list.length > 0}}">
 	<view class="backitem" wx:for="{{list}}" wx:key="index">
 		<view class="header">
-			<view style="font-weight: bold;">{{item.shop.name}}</view>
+			<view style="font-weight: bold;width: 520rpx;" class="textinline">{{item.shop.name}}</view>
 			<view class="colorgreen">
 				{{item.status == 6 ? '待退款':''}}
 				{{item.status == 7 ? '退款成功':''}}

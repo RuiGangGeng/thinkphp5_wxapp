@@ -18,17 +18,20 @@ Page({
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                    that.setData({ auth: true })
+                    wx.getUserInfo({
+                        success: e => {
 
-                    let param = {
-                        user_id: getApp().globalData.user.id,
-                        rawData: e.detail.rawData,
-                    }
+                            let param = {
+                                user_id: getApp().globalData.user.id,
+                                rawData: e.rawData,
+                            }
 
-                    // 校验 session_key 同时更新用户信息
-                    util.wxRequest("/wechat/User/wx_auth", param, res => {
-                        if (res.code === 200) {
-                            getApp().globalData.debug ? console.log(getApp().globalData) : ''
+                            // 更新用户信息
+                            util.wxRequest("/wechat/User/wx_auth_user", param, res => {
+                                if (res.code === 200) {
+                                    that.setData({ auth: true })
+                                }
+                            })
                         }
                     })
                 }
