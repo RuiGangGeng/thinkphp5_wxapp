@@ -76,6 +76,7 @@ Page({
                     }
                 }
             }
+            commodities[0].ishow = true
             this.setData({
                 commodities: commodities
             })
@@ -360,7 +361,6 @@ Page({
         console.log(e.currentTarget.dataset.shopid)
         var shopid = e.currentTarget.dataset.shopid;
         var shoplist = this.data.commodities;
-        console.log(shoplist)
         shoplist.forEach(function(item, index) {
             if (item) {
                 if (item.shopid == shopid) {
