@@ -146,11 +146,11 @@ Page({
 
                 // 发起支付
                 wx.requestPayment({
-                    timeStamp: res.data.timeStamp + '',
-                    nonceStr: res.data.nonceStr,
-                    package: res.data.package,
-                    signType: res.data.signType,
-                    paySign: res.data.sign,
+                    timeStamp: res.data.pay.timeStamp + '',
+                    nonceStr: res.data.pay.nonceStr,
+                    package: res.data.pay.package,
+                    signType: res.data.pay.signType,
+                    paySign: res.data.pay.sign,
                     success() {
                         wx.redirectTo({
                             url: '/pages/resultpay/resultpay?code=200',
@@ -162,6 +162,9 @@ Page({
                                 url: '/pages/resultpay/resultpay?code=500',
                             })
                         }
+                    },
+                    complete() {
+                        util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {})
                     }
                 })
             }
