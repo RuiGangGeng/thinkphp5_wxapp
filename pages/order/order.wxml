@@ -99,4 +99,20 @@
         </view>
     </view>
     <!-- 门店打分框结束 -->
+    <!-- 退款输入框开始 -->
+    <view class="ping" wx:if="{{is_refund}}">
+        <view class="pingbody">
+            <view class="pingtop">
+                <view class="hei40">退款申请</view>
+                <view class="hei40">
+                    <textarea placeholder="请输入您的退款理由" bindinput="bindinput"></textarea>
+                </view>
+            </view>
+            <view class="pingbottom">
+                <view class="centhei40" catchtap="grade_">取消</view>
+                <view class="centhei40 colorg" catchtap="onAskPayBack">提交</view>
+            </view>
+        </view>
+    </view>
+    <!-- 退款输入框结束 -->
 </view>

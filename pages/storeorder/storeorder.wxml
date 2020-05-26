@@ -4,6 +4,7 @@
 			{{item.name}}
 		</view>
 	</view>
+	<!-- 有数据 -->
 	<view class="order-list" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">
 		<view class="order" bindtap="order_details" data-id="{{item.id}}">
 			<view class="order-title">
@@ -44,4 +45,22 @@
 		<image src="/image/empty_order.png" class="no-order-img"></image>
 		<view class="text">还没有订单呢</view>
 	</view>
+
+
+    <!-- 拒绝退款输入框开始 -->
+    <view class="ping" wx:if="{{is_refund}}">
+        <view class="pingbody">
+            <view class="pingtop">
+                <view class="hei40">退款申请</view>
+                <view class="hei40">
+                    <textarea placeholder="请输入您的退款理由" bindinput="bindinput"></textarea>
+                </view>
+            </view>
+            <view class="pingbottom">
+                <view class="centhei40" catchtap="grade_">取消</view>
+                <view class="centhei40 colorg" catchtap="onRefuse">提交</view>
+            </view>
+        </view>
+    </view>
+    <!-- 拒绝退款输入框结束 -->
 </view>
