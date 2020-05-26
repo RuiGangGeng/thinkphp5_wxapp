@@ -2,7 +2,7 @@
 <view style="width:100%;padding-bottom: 75rpx;">
 	<view style="width:703rpx; margin:0px auto;">
 		<view style="height:30rpx;"></view>
-		<view style="margin-left:25rpx;font-size:30rpx;color:#FF7302;">
+		<view style="margin-left:25rpx;font-size:30rpx;color:#FF7302;font-weight:bold;">
 			{{info.status==0?'待付款':''}}
 			{{info.status==1?'待发货':''}}
 			{{info.status==3?'待收货':''}}

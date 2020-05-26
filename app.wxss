@@ -87,7 +87,7 @@ body {
 }
 
 .text-normal {
-  font-size: 33rpx;
+  font-size: 28rpx;
   color: #333;
 }
 
@@ -158,6 +158,8 @@ body {
 
 .line2 {
   display: -webkit-box;
+  font-weight: bold;
+  font-size: 30rpx;
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -8,7 +8,7 @@
     <view class="list" wx:if="{{list.length > 0}}">
         <view class="order-item" wx:for="{{list}}" wx:key="index">
             <view style="width:100%;height:95rpx;">
-                <view style="margin-left:25rpx;line-height:95rpx;display:inline-block;float:right;margin-right:38rpx;font-size:26rpx;color:#39A336;">
+                <view style="margin-left:25rpx;line-height:95rpx;display:inline-block;float:right;margin-right:38rpx;font-size:28rpx;color:#39A336;">
                     {{item.status == 0? "待付款":''}}
 					{{item.status == 1? "待接单":''}}
 					{{item.status == 2? "待发货":''}}

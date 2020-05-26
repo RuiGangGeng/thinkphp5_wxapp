@@ -82,6 +82,29 @@ Page({
         }
     },
 
+  videoPlay: function () {
+    util.wxRequest("wechat/index/getVideo", {
+    }, res => {
+      this.setData({
+        address: res.data
+      })
+      var _index = res.id
+      this.setData({
+        _index: _index
+      })
+      //停止正在播放的视频
+      var videoContextPrev = wx.createVideoContext(this.data._index)
+      console.log(videoContextPrev);
+      videoContextPrev.stop();
+      setTimeout(function () {
+        //将点击视频进行播放
+        var videoContext = wx.createVideoContext(_index)
+        videoContext.play();
+      }, 500)
+    })
+    
+  },
+
     // 前往商铺首页
     goshop: function(e) {
         wx.navigateTo({
