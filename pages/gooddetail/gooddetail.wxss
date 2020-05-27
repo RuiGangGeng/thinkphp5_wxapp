@@ -85,3 +85,6 @@
 .content{
   margin: 10rpx 0;
 }
+.price__big {
+  font-size: 32rpx;
+}

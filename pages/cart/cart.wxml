@@ -1,5 +1,5 @@
 <!--pages/cart/cart.wxml-->
-
+<wxs src="../../utils/format.wxs" module="wxs"></wxs>
 <view class="fadedf"></view>
 <view id="cart">
 
@@ -76,7 +76,7 @@
         <view class="account flex">
             <view class="font30" style="margin-left: 30rpx;">
                 <view>合计:
-                    <text class="price">￥{{accountInfo.allAccount}}</text>
+                    <text class="price">￥<text class="price__big">{{wxs.formatValue(accountInfo.allAccount, 'split')[0]}}</text>.<text>{{wxs.formatValue(accountInfo.allAccount, 'split')[1]}}</text></text>
                 </view>
                 <view>
                     <text class="text-a1a1" style="font-size: 26rpx;">共</text>

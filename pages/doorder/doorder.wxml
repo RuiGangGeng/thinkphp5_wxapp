@@ -1,4 +1,5 @@
 <!--pages/doorder/doorder.wxml-->
+<wxs src="../../utils/format.wxs" module="wxs"></wxs>
 <view class="faded"></view>
 
 <!-- 未选中地址展示开始 -->
@@ -38,8 +39,7 @@
             <view class="flexbetw colora8">
                 <text>数量:{{item.count}}</text>
                 <view class="pricemar3">
-                    <text class="bigprice">￥{{item.price*item.count}}</text>
-                    <text class="smalleprice">.00</text>
+                    <text class="bigprice">￥{{wxs.formatValue(item.price*item.count, 'split')[0]}}</text>.<text class="smalleprice">{{wxs.formatValue(item.price*item.count, 'split')[1]}}</text>
                 </view>
             </view>
         </view>
@@ -57,7 +57,7 @@
     <view class="account flex">
         <view class="font301">
             <view>合计:
-                <text class="price">￥{{oederInfo.totalPrice}}</text>
+                <text class="price">￥<text class="price__big">{{wxs.formatValue(oederInfo.totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(oederInfo.totalPrice, 'split')[1]}}</text></text>
             </view>
             <view>
                 <text style="color: #a1a1a1;">共</text>

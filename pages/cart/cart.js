@@ -51,6 +51,7 @@ Page({
         storage._reVoluationCart()
 
         var pdt = wx.getStorageSync('pdtincar')
+        console.log(pdt)
 
         if (pdt) {
             var ids = null
@@ -63,7 +64,6 @@ Page({
                 console.log(data)
                 goodsmsg = data.data
             })
-            console.log(goodsmsg)
 
             var commodities = pdt.commodities;
             for (let i of commodities) {
@@ -339,7 +339,7 @@ Page({
             accountInfo['allCount'] = accountInfo['allCount'] * 1 + allCount * 1;
             accountInfo['allAccount'] = accountInfo['allAccount'] * 1 + allAccount * 1;
         }
-
+      // accountInfo['allAccount'] = Number(accountInfo['allAccount']).toFixed(2).split('.');
         this.setData({
             commodities,
             accountInfo
@@ -425,7 +425,6 @@ Page({
             totalPrice: this.data.accountInfo.allAccount,
             commodity: commodity
         }
-        console.log(orderinfo)
         wx.setStorageSync('makeorder', orderinfo)
         wx.navigateTo({
             url: '/pages/doorder/doorder',

@@ -1,3 +1,4 @@
+<wxs src="../../utils/format.wxs" module="wxs"></wxs>
 <view class="fadedf">
 </view>
 <!--搜索栏 -->
@@ -49,7 +50,7 @@
 	<view class="payaccount">
 		<view style="font-size:28rpx">
 			合计:
-			<text class="colorr" wx:if="{{totalPrice}}">￥{{totalPrice}}</text>
+			<text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
 		</view>
 		<view class="colorg">
 			已优惠:

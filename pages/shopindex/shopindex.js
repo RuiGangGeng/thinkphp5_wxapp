@@ -64,7 +64,7 @@ Page({
 
     // 点击店内公告
     gonotice: function(e) {
-        var noticeid = e.currentTarget.dataset.cateid;
+        var noticeid = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '/pages/noticedel/noticedel?noticeid=' + noticeid,
         })
