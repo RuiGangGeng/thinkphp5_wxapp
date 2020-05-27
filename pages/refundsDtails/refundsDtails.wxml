@@ -68,7 +68,7 @@
         </view>
         <view class="msgitem">
             <text>交易流水号:</text>
-            <text>{{info.transaction}}</text>
+            <text class="textinline">{{info.transaction}}</text>
         </view>
         <view class="msgitem0">
             <text>订单备注:</text>

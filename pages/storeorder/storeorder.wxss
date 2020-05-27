@@ -2,16 +2,21 @@
     border-bottom: 0;
 }
 
+page {
+    height: 100%;
+}
+
 .container {
     width: 100%;
     padding-bottom: 75rpx;
+    height: calc(100% - 75rpx);
 }
 
 .ping {
     position: absolute;
     background-color: rgba(178, 178, 178, 0.8);
     width: 100%;
-    height: 1200rpx;
+    height: 100%;
     top: 0;
 }
 
@@ -31,13 +36,13 @@
     width: 88%;
     margin-left: 6%;
     margin-top: 30%;
+    padding-top: 20rpx;
 }
 
 .colorg {
     color: #39a335;
     border-left: 1rpx solid #f4f4f4;
 }
-
 
 .pingbottom {
     display: flex;
@@ -166,7 +171,7 @@
     margin-right: 5rpx;
 }
 
-.order-address open-data {
+.order-address image {
     width: 72rpx;
     height: 72rpx;
     border-radius: 10rpx;
