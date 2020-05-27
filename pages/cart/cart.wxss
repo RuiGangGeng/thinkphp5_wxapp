@@ -249,5 +249,5 @@
   color: #a1a1a1!important;
 }
 .price__big {
-  font-size: 34rpx;
+  font-size: 36rpx;
 }

@@ -66,16 +66,6 @@ Page({
             })
 
             var commodities = pdt.commodities;
-            for (let i of commodities) {
-                if (i && i.commodity) {
-                    for (let s of i.commodity) {
-                        if (s && s.price) {
-                            s.price0 = s.price.split('.')[0]
-                            s.price1 = s.price.split('.')[1]
-                        }
-                    }
-                }
-            }
             // commodities[0].ishow = true
             this.setData({
                 commodities: commodities

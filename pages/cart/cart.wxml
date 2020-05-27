@@ -46,8 +46,7 @@
                                         <view class="commodity-params text-sm" wx:if="{{commodity.id}}">送货上门</view>
                                         <view class="commodity-price flex">
                                             <view class="price text-normal">
-                                                <text class="text-sm price">￥</text>{{commodity.price0}}.
-                                                <text class="text-sm price">{{commodity.price1}}</text>
+                                                <text class="price">￥<text class="price__big">{{wxs.formatValue(commodity.price, 'split')[0]}}</text>.<text>{{wxs.formatValue(commodity.price, 'split')[1]}}</text></text>
                                                 <text class="text-sm gray">￥{{commodity.price_orig}}</text> </view>
                                             <view class="btn-group flex flex-center">
                                                 <view class="btn btn-decrease" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
