@@ -81,6 +81,7 @@
   display: flex;
   justify-content: space-between;
   margin-right: 1%;
+  line-height: 50rpx;
 }
 
 .goodcar {
@@ -115,7 +116,7 @@
 
 .colorg {
   color: #bbb;
-  margin-right: 30rpx;
+  margin-right: 10rpx;
 }
 
 .flex {
@@ -312,7 +313,7 @@
 
 .price {
   color: #ff5546;
-  font-size: 36rpx;
+  font-size: 26rpx;
 }
 
 .money {
@@ -337,5 +338,5 @@
   content: none;
 }
 .price__big {
-  font-size: 32rpx;
+  font-size: 36rpx;
 }

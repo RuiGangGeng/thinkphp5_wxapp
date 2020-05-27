@@ -21,7 +21,7 @@
 				<view class="goods-text">
 					<view class="sendpdt">送货上门</view>
 					<view class="price-wrapper">
-						<text class="price">￥{{item.price0}}<text class="money">.{{item.price1}}</text></text>
+						<text class="price">￥<text class="price__big">{{wxs.formatValue(item.price, 'split')[0]}}</text>.<text>{{wxs.formatValue(item.price, 'split')[1]}}</text></text>
 						<text class="oldprice">￥{{item.price_orig}}</text>
 						<image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{item}}"></image>
 						<block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
