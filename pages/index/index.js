@@ -82,28 +82,26 @@ Page({
         }
     },
 
-  videoPlay: function () {
-    util.wxRequest("wechat/index/getVideo", {
-    }, res => {
-      this.setData({
-        address: res.data
-      })
-      var _index = res.id
-      this.setData({
-        _index: _index
-      })
-      //停止正在播放的视频
-      var videoContextPrev = wx.createVideoContext(this.data._index)
-      console.log(videoContextPrev);
-      videoContextPrev.stop();
-      setTimeout(function () {
-        //将点击视频进行播放
-        var videoContext = wx.createVideoContext(_index)
-        videoContext.play();
-      }, 500)
-    })
-    
-  },
+    videoPlay: function() {
+        util.wxRequest("wechat/index/getVideo", {}, res => {
+            this.setData({
+                address: res.data
+            })
+            var _index = res.id
+            this.setData({
+                    _index: _index
+                })
+                //停止正在播放的视频
+            var videoContextPrev = wx.createVideoContext(this.data._index)
+            console.log(videoContextPrev);
+            videoContextPrev.stop();
+            setTimeout(function() {
+                //将点击视频进行播放
+                var videoContext = wx.createVideoContext(_index)
+                videoContext.play();
+            }, 500)
+        })
+    },
 
     // 前往商铺首页
     goshop: function(e) {
@@ -127,6 +125,26 @@ Page({
                 shops: shops
             })
         })
-    }
+    },
 
+    // 分享
+    onShareAppMessage: function() {
+        let that = this;
+        return {
+            title: '邻里快达.社区配送',
+            path: 'pages/index/index', // 路径，传递参数到指定页面。
+            imageUrl: that.data.banner_image, // 分享的封面图
+            success: function(res) {
+                wx.showToast({
+                    title: '转发成功',
+                })
+            },
+            fail: function(res) {
+                wx.showToast({
+                    title: '转发失败',
+                    icon: "none"
+                })
+            }
+        }
+    },
 })
