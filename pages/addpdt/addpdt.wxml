@@ -24,8 +24,8 @@
         </view>
         <view class="flexrow">
             <text>商品分类</text>
-            <picker class="colrgreen" bindchange="bindPicker" data-name="categorysSelectName" data-param="category_id" data-list="categories" range="{{categories}}" range-key="name">
-                <view>{{categorysSelectName}}</view>
+            <picker class="colrgreen" bindchange="bindPicker" data-name="categoriesSelectName" data-param="category_id" data-list="categories" range="{{categories}}" range-key="name">
+                <view>{{categoriesSelectName}}</view>
             </picker>
         </view>
         <view class="btnBox">

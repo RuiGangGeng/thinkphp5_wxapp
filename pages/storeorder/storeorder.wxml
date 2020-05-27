@@ -9,7 +9,7 @@
 		<view class="order" bindtap="order_details" data-id="{{item.id}}">
 			<view class="order-title">
 				<view class="order-address">
-					<open-data type="userAvatarUrl"></open-data>
+					<image src="{{item.user.avatarUrl}}"></image>
 					<text class="texttwoline">{{item.address}}</text>
 				</view>
 				<view class="order-phone" catchtap="makeCall" data-phone="{{item.phone}}">

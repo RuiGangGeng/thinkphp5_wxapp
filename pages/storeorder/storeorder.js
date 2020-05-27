@@ -124,15 +124,31 @@ Page({
             success: res => {
                 if (res.confirm) {
                     util.wxRequest("wechat/shop/agree_order", param, res => {
-                        wx.showToast({
-                            title: res.msg,
-                            icon: res.code == 200 ? "success" : "none"
-                        })
-                        this.setData({
-                            list: [],
-                            page: 0
-                        })
-                        this.loadData()
+                        if (res.code == 200) {
+                            wx.showToast({
+                                title: res.msg,
+                            })
+                            that.setData({
+                                list: [],
+                                page: 0
+                            })
+                            that.loadData()
+                        } else {
+                            wx.showModal({
+                                title: '警告',
+                                content: res.msg,
+                                showCancel: false,
+                                success(res) {
+                                    if (res.confirm) {
+                                        that.setData({
+                                            list: [],
+                                            page: 0
+                                        })
+                                        that.loadData()
+                                    }
+                                }
+                            })
+                        }
                     })
                 }
             },
