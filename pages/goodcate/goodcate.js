@@ -12,12 +12,14 @@ Page({
         shopname: false,
         select: 0,
         categories: [],
+        commodities: [],
         goodsList: [],
         goodsincar: [],
         page: 0,
     },
 
     onLoad: function(options) {
+      
         var that = this;
 
         app.globalData.shop_id = options.shop_id;
@@ -37,7 +39,7 @@ Page({
         that.setData({
             goodsincar: pagegoodsincar,
             shopid: shopid,
-            shopname: options.shopname
+            shopname: options.shopname,
         })
 
         that.countInfoAtThisShop(pdtincar, that, options.shop_id)
@@ -60,6 +62,58 @@ Page({
                 that.loadData()
             }
         })
+
+    },
+
+    onShow: function () {
+      storage._reVoluationCart()
+
+      var pdt = wx.getStorageSync('pdtincar')
+      console.log(pdt)
+
+      if (pdt) {
+        var ids = null
+        storage._getAllGoodidIncart(res => {
+          ids = res
+        })
+        console.log(ids)
+        var goodsmsg = null
+        util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
+          console.log(data)
+          goodsmsg = data.data
+        })
+
+        var commodities = pdt.commodities;
+        for (let i of commodities) {
+          if (i && i.commodity) {
+            for (let s of i.commodity) {
+              if (s && s.price) {
+                s.price0 = s.price.split('.')[0]
+                s.price1 = s.price.split('.')[1]
+              }
+            }
+          }
+        }
+        // commodities[0].ishow = true
+        this.setData({
+          commodities: commodities
+        })
+        var numstr = pdt.account.toString();
+      } else {
+        var numstr = '0';
+        this.setData({
+          flag: false
+        })
+      }
+
+      if (numstr - 0 > 0) {
+        this.setData({
+          flag: true,
+          account: numstr
+        })
+        app.setCartNum(numstr)
+      }
+
 
     },
 
@@ -147,6 +201,7 @@ Page({
 
         totalGoods = totalGoods * 1 + 1;
         totalPrice = (totalPrice * 1 + data.price * 1).toFixed(2);
+        console.log(totalPrice);
         totalFavorable = (totalFavorable * 1 + data.price_orig * 1 - data.price * 1).toFixed(2);
 
         var newgoodsincar = that.data.goodsincar;
@@ -178,8 +233,11 @@ Page({
     // 点击去结算
     godoorder: function() {
         wx.removeStorageSync('makeorder');
+        var commodity = [];
+      var orderinfo = [];
         //设置当前门店购物车商品为选中状态
         var shop_id = this.data.shopid;
+        console.log(shop_id);
         var arr = wx.getStorageSync('pdtincar').commodities;
         arr.forEach(function(item, index) {
             if (item.shopid == shop_id) {
@@ -187,9 +245,28 @@ Page({
                 (item.commodity).forEach(function(item, index) {
                     item.selected = true;
                 })
+            }else{
+              item.selected = false;
             }
         })
-        wx.setStorageSync('makeorder', arr)
+      console.log(arr);
+      for (let i of arr) {
+        if (i.selected) {
+          for (let s of i.commodity) {
+            if (s && s.selected) {
+              commodity = commodity.concat(s)
+            }
+          }
+        }
+      }
+      orderinfo = {
+        type: 'cart',
+        shop_id: shop_id,
+        account: this.data.totalGoods,
+        totalPrice: this.data.totalPrice,
+        commodity: commodity
+      }
+      wx.setStorageSync('makeorder', orderinfo)
         wx.redirectTo({
             url: '/pages/doorder/doorder',
         })

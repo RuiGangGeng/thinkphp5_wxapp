@@ -7,9 +7,8 @@
 
 <view class="noticebody">
   <view class="noticetil">{{notice.title}}</view>
-  <view class="timecolor">{{notice.createtime}}</view>
+  <view class="timecolor">{{notice.createTime}}</view>
   <!-- 富文本解析开始 -->
-  <image src="https://www.ananw.cn/public/shop/public/uploads/category/3.jpg" class="noticeimg"></image>
   <!--pages/about/about.wxml-->
   <import src="../../wxParse/wxParse.wxml" />
   <!-- 这一块是富文本 显示的内容区 -->

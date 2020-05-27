@@ -336,3 +336,6 @@
 .result-wrappers::after{
   content: none;
 }
+.price__big {
+  font-size: 32rpx;
+}

@@ -20,7 +20,7 @@ Page({
         var shops = app.globalData.shops;
         console.log(shops);
         var pdtincar = wx.getStorageSync('pdtincar');
-      console.log(pdtincar);
+        console.log(pdtincar);
 
         var myorder = wx.getStorageSync('makeorder');
         var shopInfo = {};
@@ -129,17 +129,22 @@ Page({
         util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
             var that = this
           console.log(wx.getStorageSync('makeorder'));
+          console.log(that.data)
             if (res.code == 200) {
-
+              console.log(wx.getStorageSync('makeorder'));
+              var clearCart = wx.getStorageSync('makeorder')
+              // var clearCart = wx.getStorageSync('makeorder').commodity
+              var acconutde = that.data.oederInfo.account
                 // 判断订单为什么来自商家还是购物车
-                if (that.data.cat) {
-                    var clearCart = wx.getStorageSync('makeorder').commodity
-                    var acconutde = that.data.oederInfo.account
-                } else {
-                    var clearCart = wx.getStorageSync('makeorder')[0];
-                    var acconutde = that.data.oederInfo.account
-                }
-
+                // if (that.data.cat) {
+                //     var clearCart = wx.getStorageSync('makeorder').commodity
+                //     var acconutde = that.data.oederInfo.account
+                // } else {
+                //   var clearCart = wx.getStorageSync('makeorder')[0];
+                //     var acconutde = that.data.oederInfo.account
+                // }
+                console.log(clearCart);
+                console.log(acconutde);
                 // 删除已下单的购物车商品
                 storage._clearPdtPay(clearCart, acconutde);
                 wx.setStorageSync('makeorder', null)
