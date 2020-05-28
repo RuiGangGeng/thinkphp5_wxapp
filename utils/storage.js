@@ -54,7 +54,7 @@ class Storage {
         if (!arr) {
             arr = [];
         }
-        arr.forEach(function(item, index) {
+        arr.forEach(function (item, index) {
             if (item && item.shopid == data.shop_id) {
                 item.account = item.account * 1 + 1;
                 item.shopName = data.shopname;
@@ -62,7 +62,7 @@ class Storage {
                 item.totalfav = (item.totalfav * 1 + data.price_orig * 1 - data.price * 1).toFixed(2);
                 var arr1 = item.commodity;
                 var s1 = false;
-                arr1.forEach(function(item1, index1) {
+                arr1.forEach(function (item1, index1) {
                     if (item1.id == data.id) {
                         item1.count = item1.count * 1 + 1;
                         s1 = true;
@@ -108,24 +108,26 @@ class Storage {
         if (pdtincar.account == 0) {
             pdtincar = null;
         } else {
-            (pdtincar.commodities).forEach(function(item, index) {
-                if (item.shopid == clearCart.shopid) {
-                    pdtincar.commodities[index].account = pdtincar.commodities[index].account - clearCart.account;
-                    if (pdtincar.commodities[index].account == 0) {
-                        delete pdtincar.commodities[index];
-                    } else {
-                        pdtincar.commodities[index].totalPrice = pdtincar.commodities[index].totalPrice - clearCart.totalPrice;
-                        pdtincar.commodities[index].totalfav = pdtincar.commodities[index].totalfav - clearCart.totalfav;
-                        (pdtincar.commodities[index].commodity).forEach(function(item, index) {
-                            clearCart.commodity.forEach(function(items, indexs) {
-                                if (item.id == items.id) {
-                                    pdtincar.commodities[index].commodity[index].count = pdtincar.commodities[index].commodity[index].count - clearCart.commodity[indexs];
-                                    if (pdtincar.commodities[index].commodity[index].count == 0) {
-                                        delete pdtincar.commodities[index].commodity[index];
+            (pdtincar.commodities).forEach(function (item, index) {
+                for (let i of clearCart) {
+                    if (item.shopid == i.shop_id) {
+                        pdtincar.commodities[index].account = pdtincar.commodities[index].account - i.count;
+                        if (pdtincar.commodities[index].account == 0) {
+                            delete pdtincar.commodities[index];
+                        } else {
+                            pdtincar.commodities[index].totalPrice = pdtincar.commodities[index].totalPrice - i.totalPrice;
+                            pdtincar.commodities[index].totalfav = pdtincar.commodities[index].totalfav - i.totalfav;
+                            (pdtincar.commodities[index].commodity).forEach(function (item1, index1) {
+                                clearCart.forEach(function (items, indexs) {
+                                    if (item1.id == items.id) {
+                                        pdtincar.commodities[index].commodity[index1].count -=clearCart[indexs].count
+                                        if (pdtincar.commodities[index].commodity[index1].count == 0) {
+                                            delete pdtincar.commodities[index].commodity[index1]
+                                        }
                                     }
-                                }
+                                })
                             })
-                        })
+                        }
                     }
                 }
             })
@@ -145,14 +147,14 @@ class Storage {
                 wx.setStorageSync('pdtincar', null)
             } else {
                 var commodities = pdt.commodities
-                commodities.forEach(function(item, index) {
+                commodities.forEach(function (item, index) {
                     if (item) {
                         newcommodities = newcommodities.concat(item)
                     }
                 })
-                newcommodities.forEach(function(item, index) {
+                newcommodities.forEach(function (item, index) {
                     var newcommodity = []
-                    item.commodity.forEach(function(items, indexs) {
+                    item.commodity.forEach(function (items, indexs) {
                         if (items) {
                             newcommodity = newcommodity.concat(items)
                         }
@@ -175,9 +177,9 @@ class Storage {
         var ids = ''
         if (pdt) {
             var commodities = pdt.commodities
-            commodities.forEach(function(item, index) {
+            commodities.forEach(function (item, index) {
                 var commodity = item.commodity
-                commodity.forEach(function(item, index) {
+                commodity.forEach(function (item, index) {
                     if (ids.length == 0) {
                         ids = item.id
                     } else {
@@ -195,7 +197,7 @@ class Storage {
         var ids = []
         if (makeorder) {
             var commodity = makeorder.commodity
-            commodity.forEach(function(item, index) {
+            commodity.forEach(function (item, index) {
                 if (ids.length == 0) {
                     ids = item.id
                 } else {
@@ -213,8 +215,8 @@ class Storage {
         var good = null
         if (pdt) {
             var commodities = pdt.commodities
-            commodities.forEach(function(item, index) {
-                item.commodity.forEach(function(item, index) {
+            commodities.forEach(function (item, index) {
+                item.commodity.forEach(function (item, index) {
                     if (item.id == id) {
                         good = item
                     }

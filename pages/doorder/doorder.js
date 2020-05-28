@@ -132,9 +132,9 @@ Page({
           console.log(that.data)
             if (res.code == 200) {
               console.log(wx.getStorageSync('makeorder'));
-              var clearCart = wx.getStorageSync('makeorder')
-              // var clearCart = wx.getStorageSync('makeorder').commodity
-              var acconutde = that.data.oederInfo.account
+            //   var clearCart = wx.getStorageSync('makeorder')
+              var clearCart = wx.getStorageSync('makeorder').commodity
+              var acconutde = wx.getStorageSync('makeorder').account
                 // 判断订单为什么来自商家还是购物车
                 // if (that.data.cat) {
                 //     var clearCart = wx.getStorageSync('makeorder').commodity
