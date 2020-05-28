@@ -18,7 +18,7 @@ Page({
 
     onLoad: function(options) {
         var shops = app.globalData.shops;
-        console.log(shops);
+        console.log(this.data);
         var pdtincar = wx.getStorageSync('pdtincar');
         console.log(pdtincar);
 
@@ -131,20 +131,20 @@ Page({
           console.log(wx.getStorageSync('makeorder'));
           console.log(that.data)
             if (res.code == 200) {
-              console.log(wx.getStorageSync('makeorder'));
-              var clearCart = wx.getStorageSync('makeorder')
+              var clearCart = wx.getStorageSync('makeorder');
               // var clearCart = wx.getStorageSync('makeorder').commodity
               var acconutde = that.data.oederInfo.account
                 // 判断订单为什么来自商家还是购物车
-                // if (that.data.cat) {
-                //     var clearCart = wx.getStorageSync('makeorder').commodity
-                //     var acconutde = that.data.oederInfo.account
-                // } else {
-                //   var clearCart = wx.getStorageSync('makeorder')[0];
-                //     var acconutde = that.data.oederInfo.account
-                // }
+                if (that.data.cat) {
+                    var clearCart = wx.getStorageSync('makeorder').commodity
+                    var acconutde = that.data.oederInfo.account
+                } else {
+                  var clearCart = wx.getStorageSync('makeorder')[0];
+                    var acconutde = that.data.oederInfo.account
+                }
                 console.log(clearCart);
                 console.log(acconutde);
+                // return;
                 // 删除已下单的购物车商品
                 storage._clearPdtPay(clearCart, acconutde);
                 wx.setStorageSync('makeorder', null)

@@ -38,13 +38,12 @@
             <view class="colora8">单价:{{item.price}}</view>
             <view class="flexbetw colora8">
                 <text>数量:{{item.count}}</text>
-                <view class="pricemar3">
-                    <text class="bigprice">￥{{wxs.formatValue(item.price*item.count, 'split')[0]}}</text>.<text class="smalleprice">{{wxs.formatValue(item.price*item.count, 'split')[1]}}</text>
+                <view class="pricemar3 price">
+                    <text class="price__big">￥{{wxs.formatValue(item.price*item.count, 'split')[0]}}</text>.<text class="smalleprice">{{wxs.formatValue(item.price*item.count, 'split')[1]}}</text>
                 </view>
             </view>
         </view>
     </view>
-
 </view>
 <form  bindsubmit="formSubmit" bindreset="formReset">
     <view class="msgleav">店家留言板:</view>

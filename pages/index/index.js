@@ -5,8 +5,8 @@ var storage = new Storage();
 Page({
 
     data: {
+        videoPlay: null,
         top_bg: app.globalData.api_host + "public/uploads/category/8e7e32c3ddbce7ea1839859e22a8d1dd.png",
-        banner_image: app.globalData.api_host + "public/uploads/category/f1bc7a59af3aa5c7eaf3f5bd7364c055.png",
         shop_list: [],
         address: '',
         titlmargintop: 0,
@@ -80,26 +80,11 @@ Page({
             })
             this.loadShops()
         }
-    },
 
-    videoPlay: function() {
         util.wxRequest("wechat/index/getVideo", {}, res => {
-            this.setData({
-                address: res.data
-            })
-            var _index = res.id
-            this.setData({
-                    _index: _index
-                })
-                //停止正在播放的视频
-            var videoContextPrev = wx.createVideoContext(this.data._index)
-            console.log(videoContextPrev);
-            videoContextPrev.stop();
-            setTimeout(function() {
-                //将点击视频进行播放
-                var videoContext = wx.createVideoContext(_index)
-                videoContext.play();
-            }, 500)
+          this.setData({
+            video: res
+          })
         })
     },
 
@@ -147,4 +132,21 @@ Page({
             }
         }
     },
+
+  videoPlay: function (e) {
+    console.log(e);
+    var _index = e.currentTarget.id
+    this.setData({
+      _index: _index
+    })
+    //停止正在播放的视频
+    var videoContextPrev = wx.createVideoContext(this.data._index)
+    videoContextPrev.stop();
+
+    setTimeout(function () {
+      //将点击视频进行播放
+      var videoContext = wx.createVideoContext(_index)
+      videoContext.play();
+    }, 500)
+  },
 })

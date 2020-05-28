@@ -8,10 +8,10 @@
     </view>
   </view>
   <image src="{{top_bg}}" class="imgback"></image>
-  <image src="{{banner_image}}" class="imgfront" style="margin-top:{{margintop}}rpx" bindtap="videoPlay"></image>
+  <image src="{{video.image}}" id="{{video.id}}" class="imgfront" style="margin-top:{{margintop}}rpx;display: {{ _index == video.id ? 'none' : 'inline-block' }}" bindtap="videoPlay"></image>
+  <video src="{{video.video}}" style="margin-top:{{margintop}}rpx" id="{{video.id}}" class='imgfront' wx:if="{{_index == video.id}}" ></video>
 </view>
 <!-- 头部图片样式结束-->
-
 <!-- 地址样式开始 -->
 <navigator url="/pages/address/address" class="address">
   <image src="/image/location.png" class="gtimg"></image>

@@ -20,36 +20,34 @@ Page({
     },
 
     onLoad: function(options) {
-
-        wx.setStorageSync('makeorder', null)
-        var pdt = wx.getStorageSync('pdtincar');
-        console.log(pdt)
-        var allCount = 0;
-        var allAccount = 0;
-        if (pdt) {
-            var arr = pdt.commodities;
-            arr.forEach(function(item, index) {
-                if (item != null) {
-                    (item.commodity).forEach(function(items, indexs) {
-                        if (items && items.selected) {
-                            allCount = allCount + items.count;
-                            allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
-                        }
-                    })
-                }
-            })
-        }
-        this.setData({
-            accountInfo: {
-                allCount: allCount,
-                allAccount: allAccount
-            },
-        })
+        // wx.setStorageSync('makeorder', null)
+        // var pdt = wx.getStorageSync('pdtincar');
+        // console.log(pdt)
+        // var allCount = 0;
+        // var allAccount = 0;
+        // if (pdt) {
+        //     var arr = pdt.commodities;
+        //     arr.forEach(function(item, index) {
+        //         if (item != null) {
+        //             (item.commodity).forEach(function(items, indexs) {
+        //                 if (items && items.selected) {
+        //                     allCount = allCount + items.count;
+        //                     allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
+        //                 }
+        //             })
+        //         }
+        //     })
+        // }
+        // this.setData({
+        //     accountInfo: {
+        //         allCount: allCount,
+        //         allAccount: allAccount
+        //     },
+        // })
     },
 
     onShow: function() {
         storage._reVoluationCart()
-
         var pdt = wx.getStorageSync('pdtincar')
         console.log(pdt)
 
@@ -66,6 +64,7 @@ Page({
             })
 
             var commodities = pdt.commodities;
+          console.log(commodities)
             // commodities[0].ishow = true
             this.setData({
                 commodities: commodities
@@ -86,7 +85,27 @@ Page({
             app.setCartNum(numstr)
         }
 
-
+        var allCount = 0;
+        var allAccount = 0;
+        if (pdt) {
+          var arr = pdt.commodities;
+          arr.forEach(function (item, index) {
+            if (item != null) {
+              (item.commodity).forEach(function (items, indexs) {
+                if (items && items.selected) {
+                  allCount = allCount + items.count;
+                  allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
+                }
+              })
+            }
+          })
+      }
+      this.setData({
+        accountInfo: {
+          allCount: allCount,
+          allAccount: allAccount
+        },
+      })
     },
 
     // 修改购买数量

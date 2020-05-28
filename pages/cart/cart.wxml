@@ -83,7 +83,8 @@
                     <text class="text-a1a1" style="font-size: 26rpx;">件商品</text>
                 </view>
             </view>
-            <view class="balance text-lg text-fff" catchtap="doorder">立即支付 </view>
+            <view wx:if="{{accountInfo.allCount>0}}" class="balance text-lg text-fff" catchtap="doorder">立即支付 </view>
+            <view wx:else class="balance2 text-lg text-fff">立即支付 </view>
         </view>
     </view>
     <!-- </block> -->
