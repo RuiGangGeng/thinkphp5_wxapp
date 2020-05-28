@@ -26,5 +26,5 @@
 <!-- 支付失败展示结束 -->
 
 <view class="btnBox">
-	<view class="btn" bindtap="goindex">返回首页</view>
+	<view class="btn" data-id="{{id}}" bindtap="goindex">订单详情</view>
 </view>
