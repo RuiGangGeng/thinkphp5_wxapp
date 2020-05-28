@@ -55,6 +55,7 @@
         <view class="sidebar">
             <view class="{{category_index == item.id ? 'active': ''}}" wx:for="{{categories}}" data-id="{{item.id}}" wx:key="index" bindtap='categoryClick'>
                 {{item.name}}
+                <image src="/image/delete.png" catchtap="categoryDel" data-id="{{item.id}}"></image>
             </view>
         </view>
         <!-- 结果列表 -->

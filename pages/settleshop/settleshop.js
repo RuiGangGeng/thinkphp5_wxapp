@@ -22,7 +22,7 @@ Page({
     formSubmit: function(res) {
         let that = this;
         let value = res.detail.value;
-        value.uid = app.data.user.id;
+        value.uid = app.globalData.user.id;
         if (!value.name) {
             wx.showToast({
                 title: '请输入店铺名称',
@@ -76,19 +76,17 @@ Page({
             })
             return;
         }
-        let url = app.globalData.domain + 'User/addJoin';
-        let params = {
-            value: value
-        };
-        util.wxRequest(url, params, data => {
-            wx.showToast({
-                title: '提交成功',
-                icon: 'success',
-            });
-            that.setData({
-                flag: true
-            })
-        }, data => {}, data => {});
+        util.wxRequest("wechat/User/addJoin", {
+          value: value
+        }, res => {
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+          });
+          that.setData({
+            flag: true
+          })
+        })
     },
     openConfirm: function() {
         wx.showModal({
