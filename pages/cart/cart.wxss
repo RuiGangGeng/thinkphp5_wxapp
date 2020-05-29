@@ -230,9 +230,18 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .balance {
   background: #ff5546;
+  width: 220rpx;
+  height: 110rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.balance2 {
+  background: #c8c8c8;
   width: 220rpx;
   height: 110rpx;
   display: flex;

@@ -18,7 +18,7 @@ Page({
 
     onLoad: function(options) {
         var shops = app.globalData.shops;
-        console.log(shops);
+        console.log(this.data);
         var pdtincar = wx.getStorageSync('pdtincar');
         console.log(pdtincar);
 
@@ -128,28 +128,22 @@ Page({
         //调用订单创建接口
         util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
             var that = this
-          console.log(wx.getStorageSync('makeorder'));
-          console.log(that.data)
             if (res.code == 200) {
-              console.log(wx.getStorageSync('makeorder'));
-            //   var clearCart = wx.getStorageSync('makeorder')
-              var clearCart = wx.getStorageSync('makeorder').commodity
-              var acconutde = wx.getStorageSync('makeorder').account
-                // 判断订单为什么来自商家还是购物车
-                // if (that.data.cat) {
-                //     var clearCart = wx.getStorageSync('makeorder').commodity
-                //     var acconutde = that.data.oederInfo.account
-                // } else {
-                //   var clearCart = wx.getStorageSync('makeorder')[0];
-                //     var acconutde = that.data.oederInfo.account
-                // }
-                console.log(clearCart);
-                console.log(acconutde);
-                // 删除已下单的购物车商品
+                // var clearCart = wx.getStorageSync('makeorder');
+                var clearCart = wx.getStorageSync('makeorder').commodity
+                var acconutde = that.data.oederInfo.account
+                    // 判断订单为什么来自商家还是购物车
+                    // if (that.data.cat) {
+                    //     var clearCart = wx.getStorageSync('makeorder').commodity
+                    //     var acconutde = that.data.oederInfo.account
+                    // } else {
+                    //   var clearCart = wx.getStorageSync('makeorder')[0];
+                    //     var acconutde = that.data.oederInfo.account
+                    // }
+                    // 删除已下单的购物车商品
                 storage._clearPdtPay(clearCart, acconutde);
                 wx.setStorageSync('makeorder', null)
-
-                // 发起支付
+                    // 发起支付
                 wx.requestPayment({
                     timeStamp: res.data.pay.timeStamp + '',
                     nonceStr: res.data.pay.nonceStr,
@@ -158,13 +152,13 @@ Page({
                     paySign: res.data.pay.sign,
                     success() {
                         wx.redirectTo({
-                            url: '/pages/resultpay/resultpay?code=200',
+                            url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=200',
                         })
                     },
                     fail(e) {
                         if (e.errMsg == "requestPayment:fail cancel") {
                             wx.redirectTo({
-                                url: '/pages/resultpay/resultpay?code=500',
+                                url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=500',
                             })
                         }
                     },

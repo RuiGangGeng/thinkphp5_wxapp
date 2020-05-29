@@ -256,7 +256,7 @@ Page({
         totalPrice: this.data.totalPrice,
         commodity: commodity
       }
-      wx.setStorageSync('makeorder', orderinfo)
+      wx.setStorageSync('makeorder', arr)
         wx.redirectTo({
             url: '/pages/doorder/doorder',
         })
