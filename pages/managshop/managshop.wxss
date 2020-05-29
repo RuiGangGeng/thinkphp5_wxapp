@@ -192,19 +192,28 @@ scroll-view {
 }
 
 .sidebar {
-    width: 200rpx;
+    width: 300rpx;
     height: 100%;
     background: #f4f4f4;
     overflow: hidden;
 }
 
+.sidebar image{
+    width: 35rpx;
+    height: 35rpx;
+    vertical-align:middle;
+    margin-left: 10rpx;
+}
+
 .sidebar view {
     height: 85rpx;
-    width: 100%;
-    display: flex;
+    line-height: 85rpx;
+    width: 80%;
+    padding: 0 10%;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; */
     color: #292929;
     font-size: 28rpx;
 }
@@ -240,7 +249,7 @@ scroll-view {
 }
 
 .goods_info {
-    width: 360rpx;
+    width: 320rpx;
     height: 130rpx;
     display: flex;
     justify-content: space-between;

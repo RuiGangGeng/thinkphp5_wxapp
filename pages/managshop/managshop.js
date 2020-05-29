@@ -123,6 +123,24 @@ Page({
         that.loadData();
     },
 
+    categoryDel: function (e) {
+      let that = this
+      wx.showModal({
+        title: '提示',
+        content: '您确定要删除该分类吗？',
+        success: function (res) {
+          res.confirm && util.wxRequest('wechat/Shop/categoryDel', { id: e.currentTarget.dataset.id }, res => {
+            wx.showToast({
+              title: res.msg,
+              icon: res.code == 200 ? 'success' : "none"
+            })
+          }, res => { }, res => {
+            that.onShow();
+          })
+        }
+      });
+    },
+
     // 加载数据
     loadData: function() {
         let that = this;
