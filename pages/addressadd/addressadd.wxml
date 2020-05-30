@@ -27,7 +27,6 @@
                     <input type="text" class="textinline" maxlength="12" value="{{addr.contact}}" bindinput="linkuwords" name="contact" placeholder="联系人姓名"></input>
                 </view>
             </view>
-            <image class="colorgray itemimg" src="/image/phonebook.png"></image>
         </view>
         <view class="addressthree">
             <view class="wide">

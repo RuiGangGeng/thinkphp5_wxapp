@@ -65,7 +65,7 @@ Page({
 
             var commodities = pdt.commodities;
           console.log(commodities)
-            // commodities[0].ishow = true
+            commodities[0].ishow = true
             this.setData({
                 commodities: commodities
             })

@@ -53,7 +53,7 @@
 /* 地址样式 */
 
 .addrleft {
-    font-size: 24rpx;
+    font-size: 26rpx;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -65,7 +65,7 @@
     border-radius: 6px;
     border:1px solid #eee;
     width: 700rpx;
-    height: 60rpx;
+    height: 70rpx;
     margin: 10rpx 24rpx 0 24rpx;
     box-sizing: border-box;
     padding: 0 25rpx;
@@ -154,7 +154,7 @@
 
 .shopmidd {
     display: flex;
-    font-size: 26rpx;
+    font-size: 28rpx;
     justify-content: space-between;
     color: #a8a8a8;
     height: 60rpx;
@@ -163,7 +163,7 @@
 
 .gap {
     color: #39a336;
-    font-size: 26rpx;
+    font-size: 28rpx;
 }
 
 .outgap {

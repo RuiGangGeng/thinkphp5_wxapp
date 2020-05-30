@@ -127,7 +127,7 @@ image {
 
 .shopnotice {
   background-color: #fff;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   border-radius: 10rpx;
 }
 
@@ -136,7 +136,7 @@ image {
   color: #39a336;
   align-items: center;
   font-weight: bold;
-  height: 60rpx;
+  height: 70rpx;
   font-size: 34rpx;
 }
 
