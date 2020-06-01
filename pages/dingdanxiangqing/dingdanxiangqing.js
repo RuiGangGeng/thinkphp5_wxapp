@@ -108,7 +108,7 @@ Page({
             id: e.currentTarget.dataset.id
         }
         wx.showModal({
-            confirmColor: '#39a335',
+            confirmColor: '#39a336',
             title: '温馨提示',
             content: '好不容易选好，确定要取消吗？',
             success: res => {

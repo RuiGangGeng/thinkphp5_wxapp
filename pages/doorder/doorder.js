@@ -164,6 +164,9 @@ Page({
                     },
                     complete() {
                         util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {})
+                        wx.redirectTo({
+                            url: '/pages/order/order',
+                        })
                     }
                 })
             }

@@ -1,21 +1,22 @@
 const app = getApp()
 const util = require('../../utils/util.js')
 import Storage from '../../utils/storage'
-var storage = new Storage();
+var storage = new Storage()
 Page({
 
     data: {
+        scrollTop: 0,
         videoPlay: null,
         top_bg: app.globalData.api_host + "public/uploads/category/8e7e32c3ddbce7ea1839859e22a8d1dd.png",
         shop_list: [],
         address: '',
         titlmargintop: 0,
         margintop: 0,
+        color: !0
     },
 
     // 小程序加载
     onLoad: function() {
-        storage._reVoluationCart()
         let that = this
             // 获取缓存设置 tabar 的数字角标
         var num = wx.getStorageSync('pdtincar')
@@ -82,9 +83,9 @@ Page({
         }
 
         util.wxRequest("wechat/index/getVideo", {}, res => {
-          this.setData({
-            video: res
-          })
+            this.setData({
+                video: res
+            })
         })
     },
 
@@ -101,8 +102,8 @@ Page({
             let shops = res.data
 
             for (let item of shops) {
-                item.can = (item.deliveryGap - item.distance).toFixed(2);
-                item.gap = (item.distance / 1000).toFixed(1);
+                item.can = (item.deliveryGap - item.distance).toFixed(2)
+                item.gap = (item.distance / 1000).toFixed(1)
             }
 
             app.globalData.shops = shops
@@ -114,7 +115,7 @@ Page({
 
     // 分享
     onShareAppMessage: function() {
-        let that = this;
+        let that = this
         return {
             title: '邻里快达.社区配送',
             path: 'pages/index/index', // 路径，传递参数到指定页面。
@@ -133,20 +134,48 @@ Page({
         }
     },
 
-  videoPlay: function (e) {
-    console.log(e);
-    var _index = e.currentTarget.id
-    this.setData({
-      _index: _index
-    })
-    //停止正在播放的视频
-    var videoContextPrev = wx.createVideoContext(this.data._index)
-    videoContextPrev.stop();
+    // 视频播放
+    videoPlay: function(e) {
+        console.log(e)
+        var _index = e.currentTarget.id
+        this.setData({
+                _index: _index
+            })
+            //停止正在播放的视频
+        var videoContextPre = wx.createideoContext(this.data._index)
+        videoContextPre.stop()
 
-    setTimeout(function () {
-      //将点击视频进行播放
-      var videoContext = wx.createVideoContext(_index)
-      videoContext.play();
-    }, 500)
-  },
+        setTimeout(function() {
+            //将点击视频进行播放
+            var videoContext = wx.createideoContext(_index)
+            videoContext.play()
+        }, 500)
+    },
+
+    // 滑动到顶部
+    bindscrolltoupper: function(e) {
+        this.setData({ color: !0 })
+    },
+
+    // 滑动
+    bindscroll: function(e) {
+        var that = this
+            //当滚动的top值最大或者最小时，为什么要做这一步是由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值   
+        if (e.detail.scrollTop <= 0) {
+            e.detail.scrollTop = 0
+        } else if (e.detail.scrollTop > wx.getSystemInfoSync().windowHeight) {
+            e.detail.scrollTop = wx.getSystemInfoSync().windowHeight
+        }
+        //判断浏览器滚动条上下滚动
+        if (e.detail.scrollTop > this.data.scrollTop || e.detail.scrollTop == wx.getSystemInfoSync().windowHeight) {
+            this.setData({ color: !1 })
+        }
+
+        //给scrollTop重新赋值
+        setTimeout(function() {
+            that.setData({
+                scrollTop: e.detail.scrollTop
+            })
+        })
+    }
 })

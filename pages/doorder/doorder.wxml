@@ -1,7 +1,7 @@
-<!--pages/doorder/doorder.wxml-->
 <wxs src="../../utils/format.wxs" module="wxs"></wxs>
-<view class="faded"></view>
+<view class="fadedf"></view>
 
+<view style="width:100%; height:20rpx;"></view>
 <!-- 未选中地址展示开始 -->
 <view class="address width94" bindtap="addaddress" hidden="t">
     <view class="itemleft colorgreen">收货地址</view>
@@ -26,8 +26,8 @@
 <!-- 订单展示开始 -->
 <view class="orderbody width94">
     <view class="columncenter">
-        <view class="colorgreen">{{shopInfo.name}}</view>
-        <view class="font31" style="font-size: 26rpx; margin: 10rpx;">超市地址：{{shopInfo.address}}</view>
+        <view class="colorgreen textinline">{{shopInfo.name}}</view>
+        <view class="font31 textinline" style="font-size: 26rpx; margin: 10rpx;">超市地址：{{shopInfo.address}}</view>
     </view>
 
     <view class="orderitem" wx:for="{{oederInfo.commodity}}" wx:key="index">
@@ -47,7 +47,7 @@
 </view>
 <form  bindsubmit="formSubmit" bindreset="formReset">
     <view class="msgleav">店家留言板:</view>
-    <textarea name="words" placeholder="请将您需要配送时间告知店家吧~" placeholder-style="font-size:26rpx;"></textarea>
+    <textarea name="words" placeholder="请将您自提或需要配送的时间告诉店家~~~" placeholder-style="font-size:26rpx;"></textarea>
 
 <!-- 订单展示结束 -->
 
@@ -60,7 +60,7 @@
             </view>
             <view>
                 <text style="color: #a1a1a1;">共</text>
-                <text class="price0">{{oederInfo.account}}</text>
+                <text class="price0"> {{oederInfo.account}} </text>
                 <text style="color: #a1a1a1;">件商品</text>
             </view>
         </view>

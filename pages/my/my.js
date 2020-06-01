@@ -8,7 +8,7 @@ Page({
         order_1: false,
         order_3: false,
         order_4: false,
-        auth: false
+        auth: !0
     },
     onLoad: function() {
         let that = this

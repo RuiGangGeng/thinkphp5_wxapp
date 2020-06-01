@@ -1,6 +1,6 @@
 <wxs src="../../utils/format.wxs" module="wxs"></wxs>
 <!-- 头图信息开始 -->
-<image src="{{good.detailimg}}" class="images"></image>
+<image src="{{good.detailimg}}" mode="center" class="images"></image>
 <!-- 头图信息结束 -->
 
 

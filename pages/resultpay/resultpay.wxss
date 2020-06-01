@@ -1,35 +1,39 @@
 /* pages/resultpay/resultpay.wxss */
 
 .msgbody {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 140rpx;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 140rpx;
 }
-icon{
-  margin-bottom: 40rpx;
+
+icon {
+    margin-bottom: 40rpx;
 }
-.colorbla{
-  color: #000;
+
+.colorbla {
+    color: #000;
 }
-.paymsg{
-  margin: 60rpx 0 135rpx 0;
+
+.paymsg {
+    margin: 60rpx 0 135rpx 0;
 }
-.paymsg text{
-  display: block;
-  width: 100%;
-  color: #a8a8a8;
+
+.paymsg text {
+    display: block;
+    width: 100%;
+    color: #a8a8a8;
 }
 
 .btn {
-  background-color: #39a335;
-  color: #fff;
-  width: 360rpx;
-  height: 100rpx;
-  border-radius: 10rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin:auto;
+    background-color: #39a336;
+    color: #fff;
+    width: 360rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }

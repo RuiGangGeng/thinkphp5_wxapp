@@ -1,22 +1,29 @@
 /**index.wxss**/
 
+
 /* 头部样式 */
 
 .weight700 {
     font-weight: bold;
 }
 
+.container,
+page {
+    height: 100%;
+}
+
 .txercont {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     color: #fff;
-    height: 44px;
-    width: 68%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 38px;
+    width: 100%;
     padding-left: 3%;
     padding-top: 4rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 34rpx;
 }
 
 .bodytitle {
@@ -50,10 +57,11 @@
     margin: 0 20rpx;
 }
 
+
 /* 地址样式 */
 
 .addrleft {
-    font-size: 26rpx;
+    font-size: 30rpx;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -63,7 +71,7 @@
 
 .address {
     border-radius: 6px;
-    border:1px solid #eee;
+    border: 1px solid #eee;
     width: 700rpx;
     height: 70rpx;
     margin: 10rpx 24rpx 0 24rpx;
@@ -74,8 +82,8 @@
     align-items: center;
 }
 
-.addrleft_title{
-  margin-left: 20rpx;
+.addrleft_title {
+    margin-left: 18rpx;
 }
 
 .addrtext {
@@ -95,6 +103,7 @@
     height: 35rpx;
 }
 
+
 /* 附近门店样式 */
 
 .bodyhead {
@@ -108,7 +117,7 @@
 .diamond {
     width: 2%;
     height: 40rpx;
-    background-color: #39a337;
+    background-color: #39a336;
     margin-right: 4%;
 }
 
@@ -135,10 +144,11 @@
 .padd5 {
     margin: 5% 2%;
 }
-.shopaddr{
-    width: 480rpx;
 
+.shopaddr {
+    width: 480rpx;
 }
+
 .buypdt {
     color: #fff;
     background-color: #39a336;
@@ -150,6 +160,7 @@
     justify-content: center;
     align-items: center;
     font-size: 28rpx;
+    font-weight: bold;
 }
 
 .shopmidd {
@@ -158,7 +169,7 @@
     justify-content: space-between;
     color: #a8a8a8;
     height: 60rpx;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .gap {
@@ -183,85 +194,101 @@
     justify-content: center;
     align-items: center;
     font-size: 28rpx;
+    font-weight: bold;
 }
-
-
 
 
 /* 边框 */
+
 .vv {
- width: 700rpx;
- height: 530rpx;
- border-left: gainsboro 1px solid;
- border-right: gainsboro 1px solid;
- border-top: gainsboro 1px solid;
- margin-bottom: 80rpx;
- border-radius: 15rpx;
- overflow: hidden;
- position: relative;
- top: 40rpx;
- left: 20rpx;
+    width: 700rpx;
+    height: 530rpx;
+    border-left: gainsboro 1px solid;
+    border-right: gainsboro 1px solid;
+    border-top: gainsboro 1px solid;
+    margin-bottom: 80rpx;
+    border-radius: 15rpx;
+    overflow: hidden;
+    position: relative;
+    top: 40rpx;
+    left: 20rpx;
 }
- 
- 
- 
+
+
 /* 小图标 */
+
 .img1 {
- width: 36rpx;
- height: 28rpx;
- margin-top: 30rpx;
+    width: 36rpx;
+    height: 28rpx;
+    margin-top: 30rpx;
 }
- 
- 
+
+
 /* 标题文字 */
+
 .text {
- font-size: 28rpx;
- color: #585858;
- margin-left: 10rpx;
+    font-size: 28rpx;
+    color: #585858;
+    margin-left: 10rpx;
 }
- 
+
+
 /* 视频 */
+
 .video {
- width: 100%;
- height: 450rpx;
- margin-top: 20rpx;
- border-bottom-left-radius: 15rpx;
- border-bottom-right-radius: 15rpx;
+    width: 100%;
+    height: 450rpx;
+    margin-top: 20rpx;
+    border-bottom-left-radius: 15rpx;
+    border-bottom-right-radius: 15rpx;
 }
+
 .videoVideo2 {
- width: 703rpx;
- height: 453rpx;
- position: absolute;
- top: 80rpx;
- left: 20rpx;
- z-index: 99;
+    width: 703rpx;
+    height: 453rpx;
+    position: absolute;
+    top: 80rpx;
+    left: 20rpx;
+    z-index: 99;
 }
-.videoPlay{
- position: absolute;
- width: 80rpx;
- height: 80rpx;
- top:45%;
- left: 45%;
- margin: -30rpx 0 0 -30rpx;
- z-index: 100;
+
+.videoPlay {
+    position: absolute;
+    width: 80rpx;
+    height: 80rpx;
+    top: 45%;
+    left: 45%;
+    margin: -30rpx 0 0 -30rpx;
+    z-index: 100;
 }
- 
+
+
 /* 底部盒子 */
+
 .bottom {
- width: 40rpx;
- height: 40rpx;
+    width: 40rpx;
+    height: 40rpx;
 }
- 
+
+
 /* 底部图片 */
+
 .di {
- display: flex;
- flex-direction: row;
- padding: 60rpx 0rpx 100rpx 280rpx;
+    display: flex;
+    flex-direction: row;
+    padding: 60rpx 0rpx 100rpx 280rpx;
 }
- 
+
+
 /* 底部文字 */
+
 .bottom_text {
- font-size: 34rpx;
- color: #d8d8d8;
- margin-left: 10rpx;
+    font-size: 34rpx;
+    color: #d8d8d8;
+    margin-left: 10rpx;
+}
+
+.down {
+    background-color: white;
+    color: #39a336;
 }

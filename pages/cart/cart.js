@@ -58,13 +58,13 @@ Page({
             })
             console.log(ids)
             var goodsmsg = null
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data:JSON.stringify(pdt.commodities)}, data => {
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
                 console.log(data)
                 goodsmsg = data.data
             })
 
             var commodities = pdt.commodities;
-          console.log(commodities)
+            console.log(commodities)
             commodities[0].ishow = true
             this.setData({
                 commodities: commodities
@@ -88,24 +88,24 @@ Page({
         var allCount = 0;
         var allAccount = 0;
         if (pdt) {
-          var arr = pdt.commodities;
-          arr.forEach(function (item, index) {
-            if (item != null) {
-              (item.commodity).forEach(function (items, indexs) {
-                if (items && items.selected) {
-                  allCount = allCount + items.count;
-                  allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
+            var arr = pdt.commodities;
+            arr.forEach(function(item, index) {
+                if (item != null) {
+                    (item.commodity).forEach(function(items, indexs) {
+                        if (items && items.selected) {
+                            allCount = allCount + items.count;
+                            allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
+                        }
+                    })
                 }
-              })
-            }
-          })
-      }
-      this.setData({
-        accountInfo: {
-          allCount: allCount,
-          allAccount: allAccount
-        },
-      })
+            })
+        }
+        this.setData({
+            accountInfo: {
+                allCount: allCount,
+                allAccount: allAccount
+            },
+        })
     },
 
     // 修改购买数量
@@ -225,7 +225,7 @@ Page({
             console.log(commodities[shopidx].shopid);
             if (shopchoose && shopchoose != commodities[shopidx].shopid) {
                 wx.showToast({
-                    title: '门店',
+                    title: '请单门店支付',
                 })
                 return;
             }
@@ -249,7 +249,7 @@ Page({
                 var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id;
                 if (shopchoose && shopchoose != shopsid) {
                     wx.showToast({
-                        title: '但门店',
+                        title: '单门店',
                     })
                     return;
                 }
@@ -348,7 +348,7 @@ Page({
             accountInfo['allCount'] = accountInfo['allCount'] * 1 + allCount * 1;
             accountInfo['allAccount'] = accountInfo['allAccount'] * 1 + allAccount * 1;
         }
-      // accountInfo['allAccount'] = Number(accountInfo['allAccount']).toFixed(2).split('.');
+        // accountInfo['allAccount'] = Number(accountInfo['allAccount']).toFixed(2).split('.');
         this.setData({
             commodities,
             accountInfo

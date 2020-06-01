@@ -1,307 +1,311 @@
 /* pages/collect/collect.wxss */
 
 .fadedcolor {
-  background: linear-gradient(#ccc, #fff);
-  background-color: #fff;
-  position: fixed;
-  height: 15rpx;
-  width: 100%;
-  z-index: 2;
+    background: linear-gradient(#ccc, #fff);
+    background-color: #fff;
+    position: fixed;
+    height: 15rpx;
+    width: 100%;
+    z-index: 2;
 }
 
 .numoncar {
-  position: absolute;
-  right: 0;
-  bottom: 45rpx;
-  width: 35rpx;
-  height: 35rpx;
-  background-color: #ff5546;
-  color: #fff;
-  text-align: center;
-  line-height: 35rpx;
-  border-radius: 100%;
-  font-size: 24rpx;
+    position: absolute;
+    right: 0;
+    bottom: 45rpx;
+    width: 35rpx;
+    height: 35rpx;
+    background-color: #ff5546;
+    color: #fff;
+    text-align: center;
+    line-height: 35rpx;
+    border-radius: 100%;
+    font-size: 24rpx;
 }
 
 .accounts {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 99;
-  width: 750rpx;
-  align-items: center;
-  background-color: #fff;
-  box-shadow: 0px 0px 30px 0px rgba(183, 183, 183, 0.4);
-  font-size: 26rpx;
-  justify-content: space-between;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+    width: 750rpx;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px 0px rgba(183, 183, 183, 0.4);
+    font-size: 26rpx;
+    justify-content: space-between;
 }
 
 .checkAll {
-  width: 15%;
-  align-items: center;
+    width: 15%;
+    align-items: center;
 }
 
 .text-normal {
-  font-size: 26rpx;
-  color: #333;
+    font-size: 26rpx;
+    color: #333;
 }
 
 .checkbox {
-  width: 90rpx;
-  height: 100rpx;
-  margin-top: 8rpx;
-  position: relative;
-  margin-left: 30rpx;
+    width: 90rpx;
+    height: 100rpx;
+    margin-top: 8rpx;
+    position: relative;
+    margin-left: 30rpx;
 }
 
 .account {
-  width: 32%;
-  flex: 1.5;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    width: 32%;
+    flex: 1.5;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cricle {
-  width: 40rpx;
-  height: 40rpx;
-  background-color: #ff5545;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  position: absolute;
-  bottom: 50rpx;
-  left: 40rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background-color: #ff5545;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 50rpx;
+    left: 40rpx;
 }
 
 .payaccount {
-  width: 56%;
-  display: flex;
-  justify-content: space-between;
-  margin-right: 1%;
-  line-height: 50rpx;
+    width: 56%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1%;
+    line-height: 50rpx;
 }
 
 .goodcar {
-  width: 65rpx;
-  height: 65rpx;
-  margin-top: 20%;
+    width: 65rpx;
+    height: 65rpx;
+    margin-top: 20%;
 }
 
 .balance {
-  background: #ff5546;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 210rpx;
-  height: 110rpx;
+    background: #ff5546;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210rpx;
+    height: 110rpx;
 }
 
 .nobalance {
-  width: 210rpx;
-  height: 110rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #c8c8c8;
-  color: #fff;
+    width: 210rpx;
+    height: 110rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #c8c8c8;
+    color: #fff;
 }
 
 .colorr {
-  color: #ff5546;
+    color: #ff5546;
+    font-weight: bold;
 }
 
 .colorg {
-  color: #bbb;
-  margin-right: 10rpx;
+    color: #bbb;
+    margin-right: 10rpx;
 }
 
 .flex {
-  display: flex !important;
-  display: -webkit-flex !important;
+    display: flex !important;
+    display: -webkit-flex !important;
 }
 
 .diamond {
-  width: 15rpx;
-  height: 37rpx;
-  margin-right: 10rpx;
-  background-color: #39a336;
+    width: 15rpx;
+    height: 37rpx;
+    margin-right: 10rpx;
+    background-color: #39a336;
 }
 
 .sendpdt {
-  width: 120rpx;
-  height: 45rpx;
-  font-size: 25rpx;
-  color: #39a336;
-  display: flex;
-  background-color: #f2f2f2;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15rpx;
+    width: 120rpx;
+    height: 45rpx;
+    font-size: 25rpx;
+    color: #39a336;
+    display: flex;
+    background-color: #f2f2f2;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15rpx;
+    font-weight: bold;
+    padding-bottom: 2rpx;
 }
 
 .goods-text {
-  height: 120rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
+    height: 120rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 .oldprice {
-  display: flex;
-  margin-left: 10%;
-  font-size: 26rpx;
-  align-items: flex-end;
-  color: #a1a1a1;
-  text-decoration: line-through;
+    display: flex;
+    margin-left: 10%;
+    font-size: 26rpx;
+    align-items: flex-end;
+    color: #a1a1a1;
+    text-decoration: line-through;
 }
 
 .hei150 {
-  font-weight: bold;
-  color: #434343;
+    font-weight: bold;
+    color: #434343;
 }
 
 .shopcar {
-  width: 65rpx;
-  height: 65rpx;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+    width: 65rpx;
+    height: 65rpx;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .nodiamond {
-  width: 15rpx;
-  height: 50rpx;
-  margin-right: 10rpx;
-  background-color: #fff;
+    width: 15rpx;
+    height: 50rpx;
+    margin-right: 10rpx;
+    background-color: #fff;
 }
 
 .search-wrapper {
-  margin-top: 15rpx;
-  position: fixed;
-  width: 100%;
-  height: 90rpx;
-  display: flex;
-  border-bottom: 2rpx solid #eee;
-  background: #fff;
-  z-index: 2;
+    margin-top: 15rpx;
+    position: fixed;
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    border-bottom: 2rpx solid #eee;
+    background: #fff;
+    z-index: 2;
 }
 
 .search-input {
-  width: 100%;
-  height: 70rpx;
-  border-radius: 18px;
-  background: #f0f0f0;
-  padding: 0 20rpx 0 90rpx;
-  font-size: 13px;
-  margin-left: 3%;
-  margin-right: 3%;
+    width: 100%;
+    height: 70rpx;
+    border-radius: 18px;
+    background: #f0f0f0;
+    padding: 0 20rpx 0 90rpx;
+    font-size: 13px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .icon-search {
-  position: absolute;
-  left: 50rpx;
-  width: 50rpx;
-  height: 50rpx;
-  top: 10rpx;
+    position: absolute;
+    left: 50rpx;
+    width: 50rpx;
+    height: 50rpx;
+    top: 10rpx;
 }
 
 .fadedf {
-  position: fixed;
-  top: 0;
-  z-index: 2;
-  background: white;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background: white;
 }
 
 .category-wrapper {
-  width: 100%;
-  height: calc(100% - 238rpx);
-  overflow: scroll;
-  position: fixed;
+    width: 100%;
+    height: calc(100% - 238rpx);
+    overflow: scroll;
+    position: fixed;
 }
 
 .sidebar-wrapper {
-  overflow: scroll;
-  height: 100%;
-  background-color: #fcfcfc;
-  position: fixed;
-  font-size: 30rpx;
+    overflow: scroll;
+    height: 100%;
+    background-color: #fcfcfc;
+    position: fixed;
+    font-size: 30rpx;
 }
 
 .category-item {
-  width: 160rpx;
-  height: 110rpx;
-  display: flex;
-  align-items: center;
-  color: #a1a1a1;
-  border-bottom: 1rpx solid #dedede;
+    width: 160rpx;
+    height: 110rpx;
+    display: flex;
+    align-items: center;
+    color: #a1a1a1;
+    border-bottom: 1rpx solid #dedede;
 }
 
 .result-wrapper {
-  background: #fff;
-  padding-bottom: 45rpx;
-  position: absolute;
-  right: 0;
-  width: 590rpx;
-  overflow: scroll;
+    background: #fff;
+    padding-bottom: 45rpx;
+    position: absolute;
+    right: 0;
+    width: 590rpx;
+    overflow: scroll;
 }
 
 .result-wrapper::after {
-  content: "我是有底线的";
-  position: absolute;
-  bottom: 10rpx;
-  /* left: 212rpx; */
-  text-align: center;
-  font-size: 26rpx;
-  color: #a1a1a1;
-  width: 99%;
-  display: block;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+    content: "我是有底线的";
+    position: absolute;
+    bottom: 10rpx;
+    /* left: 212rpx; */
+    text-align: center;
+    font-size: 26rpx;
+    color: #a1a1a1;
+    width: 99%;
+    display: block;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
 .hover {
-  background: #fff;
+    background: #fff;
 }
 
 .active {
-  background: #fff;
-  color: #39a336;
+    background: #fff;
+    color: #39a336;
 }
 
 .goods-item {
-  display: flex;
-  align-items: center;
-  height: 180rpx;
-  border-bottom: 1rpx solid #d7d7d7;
-  margin: 0 25rpx;
-  padding: 30rpx 0;
+    display: flex;
+    align-items: center;
+    height: 180rpx;
+    border-bottom: 1rpx solid #e8e8e8;
+    margin: 0 25rpx;
+    padding: 30rpx 0;
 }
 
 .goods-item:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .goods-image {
-  width: 180rpx;
-  height: 180rpx;
-  margin-right: 20rpx;
-  border-radius: 10rpx;
+    width: 180rpx;
+    height: 180rpx;
+    margin-right: 20rpx;
+    border-radius: 10rpx;
 }
 
 .goods-info {
-  display: flex;
-  flex: 1;
-  height: 180rpx;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-right: 20rpx;
-  position: relative;
+    display: flex;
+    flex: 1;
+    height: 180rpx;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 20rpx;
+    position: relative;
 }
+
 
 /* .title {
   font-size: 33rpx;
@@ -311,38 +315,40 @@
 } */
 
 .price-wrapper {
-  display: flex;
-  width: 100%;
-  align-items: flex-end;
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
 }
 
 .price {
-  color: #ff5546;
-  font-size: 26rpx;
-  font-weight: bold;
+    color: #ff5546;
+    font-size: 26rpx;
+    font-weight: bold;
 }
 
 .money {
-  font-size: 26rpx;
+    font-size: 26rpx;
 }
 
 .btn-add {
-  width: 170rpx;
-  height: 50rpx;
-  font-size: 10px;
-  line-height: 50rpx;
-  margin-bottom: 15rpx;
-  border: 1rpx solid #ed4040;
-  color: #ed4040;
-  background: #fff;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  padding: 0 10px;
+    width: 170rpx;
+    height: 50rpx;
+    font-size: 10px;
+    line-height: 50rpx;
+    margin-bottom: 15rpx;
+    border: 1rpx solid #ed4040;
+    color: #ed4040;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0 10px;
 }
-.result-wrappers::after{
-  content: none;
+
+.result-wrappers::after {
+    content: none;
 }
+
 .price__big {
-  font-size: 36rpx;
+    font-size: 36rpx;
 }

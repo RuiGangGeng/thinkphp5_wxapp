@@ -41,7 +41,7 @@ button {
 
 .item {
     width: 100%;
-    border-bottom: 1rpx solid #d7d7d7;
+    border-bottom: 1rpx solid #e8e8e8;
     min-height: 125rpx;
     display: flex;
     justify-content: space-between;

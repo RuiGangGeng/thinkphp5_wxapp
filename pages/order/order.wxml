@@ -19,7 +19,7 @@
                     {{item.shop.name}}
                 </view>
             </view>
-            <view style="height:1rpx;background-color:#D7D7D7;"></view>
+            <view style="height:1rpx;background-color:#e8e8e8;"></view>
             <view style="height:20rpx;"></view>
             <view style="width:650rpx;margin-left:25rpx; height:190rpx;" wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="in">
                 <view style="width:170rpx;display:inline-block;float:left;">

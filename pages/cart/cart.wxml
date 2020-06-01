@@ -50,7 +50,7 @@
                                                 <text class="text-sm gray">￥{{commodity.price_orig}}</text> </view>
                                             <view class="btn-group flex">
                                                 <view class="btn btn-decrease" style="color:#19a335;" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
-                                                <view class="btn btn-count text-normal">{{commodity.count}}</view>
+                                                <view class="btn btn-count text-normal" style="font-size:32rpx;">{{commodity.count}}</view>
                                                 <view class="btn btn-increase" style="background:#19a335;color:#fff" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'increase'}}" catchtap="change">+</view>
                                             </view>
                                         </view>
@@ -79,16 +79,13 @@
                 </view>
                 <view>
                     <text class="text-a1a1" style="font-size: 26rpx;">共</text>
-                    <text class="price" style="font-size: 26rpx;">{{accountInfo.allCount}}</text>
+                    <text class="price" style="font-size: 34rpx;"> {{accountInfo.allCount}} </text>
                     <text class="text-a1a1" style="font-size: 26rpx;">件商品</text>
                 </view>
             </view>
-            <view wx:if="{{accountInfo.allCount>0}}" class="balance text-lg text-fff" catchtap="doorder">立即支付 </view>
-            <view wx:else class="balance2 text-lg text-fff">立即支付 </view>
+            <view wx:if="{{accountInfo.allCount>0}}" class="balance text-lg text-fff" catchtap="doorder">去结算</view>
+            <view wx:else class="balance2 text-lg text-fff">去结算</view>
         </view>
     </view>
     <!-- </block> -->
-
-    <!-- </block> -->
-
 </view>

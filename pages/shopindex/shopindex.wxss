@@ -1,186 +1,188 @@
 /* pages/shopindex/shopindex.wxss */
 
 page {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
-
 .testnowarp {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 28rpx;
-  margin-top: 5rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 28rpx;
+    margin-bottom: 5rpx;
 }
 
 .shopIndItemImg {
-  width: 100%;
-  height: 360rpx;
+    width: 100%;
+    height: 360rpx;
 }
+
 
 /* 公共样式 */
 
 .width94 {
-  margin-left: 3%;
-  margin-right: 3%;
-  width: 94%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 94%;
 }
+
 
 /* 头图信息样式  */
 
 .shopheader {
-  margin-top: 20rpx;
-  height: 360rpx;
-  position: relative;
-  overflow: hidden;
-  border-radius: 10rpx;
+    margin-top: 20rpx;
+    height: 360rpx;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rpx;
 }
-swiper{
-  position: absolute;
-  top: 0;
-  height: 360rpx;
-  width: 100%;
+
+swiper {
+    position: absolute;
+    top: 0;
+    height: 360rpx;
+    width: 100%;
 }
 
 image {
-  width: 100%;
-  height: 75rpx;
-  font-size: 28rpx;
-  color: #444444;
+    width: 100%;
+    height: 75rpx;
+    font-size: 28rpx;
+    color: #444444;
 }
 
 .shopinfo {
-  background-color: white;
-  width: 100%;
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  opacity: 0.75;
+    margin: 20rpx;
+    width: 710rpx;
+    box-sizing: border-box;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
 }
 
 .location {
-  width: 70rpx;
-  height: 100%;
-  padding: 15rpx;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+    width: 80rpx;
+    height: 100%;
+    display: block;
+    margin: 0 15rpx;
 }
 
-
-.location > image {
-  width: 30rpx;
-  height: 38rpx;
+.location>image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
+    display: block;
 }
 
 .shopinfo-item {
-  height: 100%;
-  margin-top: 5rpx;
-  width: 630rpx;
-  font-size: 24rpx;
+    height: 100%;
+    margin-top: 5rpx;
+    width: 600rpx;
+    font-size: 24rpx;
 }
 
 
 /* 分类导航样式 */
 
 .shopcates {
-  background-color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 10rpx;
-  height: 360rpx;
-  padding: 20rpx 25rpx;
-  box-sizing: border-box;
-  margin: 20rpx 25rpx;
-  color: #434343;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10rpx;
+    height: 360rpx;
+    padding: 20rpx 25rpx;
+    box-sizing: border-box;
+    margin: 20rpx 25rpx;
+    color: #434343;
 }
-.shadow10{
+
+.shadow10 {
     box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
 }
 
 .cateitem {
-  width: 21%;
-  margin-left: 2%;
-  font-size: 30rpx;
-  text-align: center;
-  padding-bottom: 2%;
-  margin-right: 2%;
+    width: 21%;
+    margin-left: 2%;
+    font-size: 30rpx;
+    text-align: center;
+    padding-bottom: 2%;
+    margin-right: 2%;
 }
 
 .cateitem image {
-  border-radius: 10rpx;
-  width: 140rpx;
-  height: 105rpx;
+    border-radius: 10rpx;
+    width: 140rpx;
+    height: 105rpx;
 }
+
 
 /*直播图样式*/
 
 .online {
-  width: 100%;
-  height: 200rpx;
+    width: 100%;
+    height: 200rpx;
 }
+
 
 /* 店内公告样式 */
 
 .shopnotice {
-  background-color: #fff;
-  margin-top: 10rpx;
-  border-radius: 10rpx;
+    background-color: #fff;
+    margin-top: 10rpx;
+    border-radius: 10rpx;
 }
 
 .noticehesder {
-  display: flex;
-  color: #39a336;
-  align-items: center;
-  font-weight: bold;
-  height: 70rpx;
-  font-size: 34rpx;
+    display: flex;
+    color: #39a336;
+    align-items: center;
+    font-weight: bold;
+    height: 70rpx;
+    font-size: 34rpx;
 }
 
 .noticehesder image {
-  width: 40rpx;
-  height: 40rpx;
-  margin-left: 3%;
-  margin-right: 2%;
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 3%;
+    margin-right: 2%;
 }
 
 .noticebody {
-  background-color: #fff;
-  margin-top: 2%;
-  margin-bottom: 90rpx;
-  border-radius: 10rpx;
+    background-color: #fff;
+    margin-top: 2%;
+    margin-bottom: 90rpx;
+    border-radius: 10rpx;
 }
-.noticebody >view:last-child{
-  border-bottom: none;
+
+.noticebody>view:last-child {
+    border-bottom: none;
 }
 
 .noticeitem {
-  display: flex;
-  padding: 3%;
-  border-bottom: 1rpx solid #f2f2f2;
+    display: flex;
+    padding: 3%;
+    border-bottom: 1rpx solid #f2f2f2;
 }
 
 .noticemsg {
-  font-size: 33rpx;
-  width: 500rpx;
-  display: flex;
-  flex-direction: column;
-  font-weight: 550;
-  justify-content: space-between;
+    font-size: 33rpx;
+    width: 500rpx;
+    display: flex;
+    flex-direction: column;
+    font-weight: 550;
+    justify-content: space-between;
 }
 
 .itemimg {
-  width: 170rpx;
-  height: 150rpx;
-  margin-right: 3%;
-  border-radius: 10rpx;
+    width: 170rpx;
+    height: 150rpx;
+    margin-right: 3%;
+    border-radius: 10rpx;
 }
 
 .itemtime {
-  font-size: 26rpx;
-  color: #b6b6b6;
-  font-weight: normal;
+    font-size: 26rpx;
+    color: #b6b6b6;
+    font-weight: normal;
 }

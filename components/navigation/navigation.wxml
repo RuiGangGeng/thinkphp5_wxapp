@@ -1,4 +1,4 @@
-<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px">
+<view style="height:90rpx;padding-top:{{statusBarHeight}}rpx">
   <view class="header" style="height:{{titleBarHeight + 6}}px;">
     <view wx:if="{{showIcon}}" class="title-bar">
       <view class="back" bindtap="headerBack">

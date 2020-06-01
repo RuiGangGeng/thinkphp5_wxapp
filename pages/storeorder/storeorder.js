@@ -118,7 +118,7 @@ Page({
         }
 
         wx.showModal({
-            confirmColor: '#39a335',
+            confirmColor: '#39a336',
             title: '温馨提示',
             content: '确认同意退款申请么？',
             success: res => {

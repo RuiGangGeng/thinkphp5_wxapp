@@ -125,7 +125,7 @@ Page({
             id: e.currentTarget.dataset.id
         }
         wx.showModal({
-            confirmColor: '#39a335',
+            confirmColor: '#39a336',
             title: '温馨提示',
             content: '好不容易选好，确定要取消吗？',
             success: res => {
@@ -152,7 +152,7 @@ Page({
             id: e.currentTarget.dataset.id
         }
         wx.showModal({
-            confirmColor: '#39a335',
+            confirmColor: '#39a336',
             title: '温馨提示',
             content: '收货商品无误，确认已收货吗？',
             success: res => {
@@ -179,7 +179,7 @@ Page({
     askpayback: function(e) {
         let that = this
         wx.showModal({
-            confirmColor: '#39a335',
+            confirmColor: '#39a336',
             title: '温馨提示',
             content: '好不容易选好，确定要向商家申请退款吗？',
             success: res => {

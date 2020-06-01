@@ -73,22 +73,22 @@
 			<view style="float:right;font-size:25rpx;color:#666666;line-height:72rpx;margin-right:25rpx;">{{info.createTime}}</view>
 			<view style="float:left;font-size:28rpx;color:#666666;line-height:72rpx;margin-left:25rpx;">下单时间:</view>
 		</view>
-		<view style="height:1px;background-color:#D7D7D7;"></view>
+		<view style="height:1px;background-color:#e8e8e8;"></view>
 		<view style="width:100%;height:64rpx;">
 			<view style="float:right;font-size:25rpx;color:#666666;line-height:64rpx;margin-right:25rpx;">{{info.order_number}}</view>
 			<view style="float:left;font-size:28rpx;color:#666666;line-height:64rpx;margin-left:25rpx;">订单编号:</view>
 		</view>
-		<view style="height:1px;background-color:#D7D7D7;"></view>
+		<view style="height:1px;background-color:#e8e8e8;"></view>
 		<view style="width:100%;height:64rpx;">
 			<view style="float:right;font-size:25rpx;color:#666666;line-height:64rpx;margin-right:25rpx;">微信</view>
 			<view style="float:left;font-size:28rpx;color:#666666;line-height:64rpx;margin-left:25rpx;">支付方式:</view>
 		</view>
-		<view style="height:1px;background-color:#D7D7D7;"></view>
+		<view style="height:1px;background-color:#e8e8e8;"></view>
 		<view style="width:100%;height:72rpx;">
 			<view style="float:right;font-size:25rpx;color:#666666;line-height:72rpx;margin-right:25rpx;">{{info.transaction}}</view>
 			<view style="float:left;font-size:28rpx;color:#666666;line-height:72rpx;margin-left:25rpx;">交易流水号:</view>
 		</view>
-		<view style="height:1px;background-color:#D7D7D7;"></view>
+		<view style="height:1px;background-color:#e8e8e8;"></view>
 		<view style="width:100%;height:72rpx;">
 			<view style="float:right;font-size:25rpx;color:#666666;line-height:72rpx;margin-right:25rpx;">{{info.remark==null?info.remark:'无'}}</view>
 			<view style="float:left;font-size:28rpx;color:#666666;line-height:72rpx;margin-left:25rpx;">备注:</view>
@@ -98,8 +98,8 @@
 	<view style="height:20rpx;"></view>
 
 	<view style="height:60rpx">
-		<view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:140rpx;height:50rpx;background-color:#39A335;border-radius:25px;float:right;margin-right:25rpx;font-size:25rpx;text-align:center;line-height:50rpx;color:#FFFFFF;" bindtap="pay">继续支付</view>
-		<view wx:if="{{info.status==4}}" data-id="{{info.id}}" style="width:140rpx;height:50rpx;background-color:#39A335;border-radius:25px;float:right;margin-right:25rpx;font-size:25rpx;text-align:center;line-height:50rpx;color:#FFFFFF;" catchtap="givewords">去评价</view>
+		<view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:140rpx;height:50rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:25rpx;text-align:center;line-height:50rpx;color:#FFFFFF;" bindtap="pay">继续支付</view>
+		<view wx:if="{{info.status==4}}" data-id="{{info.id}}" style="width:140rpx;height:50rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:25rpx;text-align:center;line-height:50rpx;color:#FFFFFF;" catchtap="givewords">去评价</view>
 		<view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:140rpx;height:50rpx;background-color:#FFFFFF;border-radius:25px;float:right;margin-right:25rpx;font-size:25rpx;text-align:center;line-height:50rpx;color:#777777;border:1rpx solid #777777;" bindtap="canclorder">取消订单</view>
 	</view>
 

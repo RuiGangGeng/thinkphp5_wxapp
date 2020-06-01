@@ -40,7 +40,7 @@ page {
 }
 
 .colorg {
-    color: #39a335;
+    color: #39a336;
     border-left: 1rpx solid #f4f4f4;
 }
 

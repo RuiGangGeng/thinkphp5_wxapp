@@ -11,19 +11,19 @@
         </block>
     </swiper>
     <!-- 轮播图结束 -->
-    <!-- 商家地址电话 开始 -->
-    <view class="shopinfo">
-        <view class="location">
-            <image class="shoplogo" src="/image/location.png"></image>
-        </view>
-        <view class="shopinfo-item">
-            <view class="testnowarp">{{shopdata.address}}</view>
-            <view>配送约{{shopdata.deliveryTime}} {{shopdata.phone}}</view>
-        </view>
-    </view>
-    <!-- 商家地址电话 开始 -->
 </view>
 <!-- 头图信息结束 -->
+<!-- 商家地址电话 开始 -->
+<view class="shopinfo">
+    <view class="location">
+        <image class="shoplogo" src="{{shopdata.logo}}"></image>
+    </view>
+    <view class="shopinfo-item">
+        <view class="testnowarp">{{shopdata.address}}</view>
+        <view>配送约{{shopdata.deliveryTime}} {{shopdata.phone}}</view>
+    </view>
+</view>
+<!-- 商家地址电话 开始 -->
 <!-- 分类导航开始 -->
 <view class="shopcates shadow10 width94">
     <view class="cateitem" wx:for="{{categories}}" wx:key="index" bindtap="navito" data-cateid="{{item.id}}">

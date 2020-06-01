@@ -1,56 +1,51 @@
-<!--index.wxml-->
-
-<!-- 头部图片样式开始 -->
-<view class="header">
-  <view class="txercont" style="margin-top:{{titlmargintop}}rpx">
-    <view>
-      <text class="weight700">邻里快达.社区配送</text>
+<scroll-view class='container' scroll-y='true' bindscroll="bindscroll" bindscrolltoupper="bindscrolltoupper">
+    <!-- 头部图片样式开始 -->
+    <view class="header">
+        <view class="txercont {{color?'':'down'}}" style="padding-top:{{titlmargintop}}rpx" animation="{{slide_up1}}">
+            <view>
+                <text class="weight700">喜来稻科技</text>
+            </view>
+        </view>
+        <image src="{{top_bg}}" class="imgback"></image>
+        <image src="{{video.image}}" id="{{video.id}}" class="imgfront" style="margin-top:{{margintop}}rpx;display: {{ _index == video.id ? 'none' : 'inline-block' }}" bindtap="videoPlay"></image>
+        <video src="{{video.video}}" style="margin-top:{{margintop}}rpx" id="{{video.id}}" class='imgfront' wx:if="{{_index == video.id}}"></video>
     </view>
-  </view>
-  <image src="{{top_bg}}" class="imgback"></image>
-  <image src="{{video.image}}" id="{{video.id}}" class="imgfront" style="margin-top:{{margintop}}rpx;display: {{ _index == video.id ? 'none' : 'inline-block' }}" bindtap="videoPlay"></image>
-  <video src="{{video.video}}" style="margin-top:{{margintop}}rpx" id="{{video.id}}" class='imgfront' wx:if="{{_index == video.id}}" ></video>
-</view>
-<!-- 头部图片样式结束-->
-<!-- 地址样式开始 -->
-<navigator url="/pages/address/address" class="address">
-  <image src="/image/location.png" class="gtimg"></image>
-  <view class="addrleft">
-    <text class="addrleft_title">送货地址:</text>
-    <text class="addrtext textinline">{{address}}</text>
-  </view>
-  <image src="/image/gt.png" class="gtimg1"></image>
-</navigator>
-<!-- 地址样式结束 -->
-
-<!-- 附近门店展示开始 -->
-<view class="bodyhead">
-  <view class="diamond"></view>
-  <view class="bodytitle">附近门店</view>
-</view>
-
-<block wx:if="{{shops}}" wx:for="{{shops}}" wx:for-item="item" wx:key="index">
-
-  <view class="shopitem" bindtap="goshop" data-shopid="{{item.id}}"  wx:if="{{item.can>=-100}}">
-    <view class="textinline shoptitle">{{item.name}}</view>
-    <view class="shopmidd">
-      <view class="shopaddr textinline">{{item.address}}</view>
-      <view class="buypdt">进店购物</view>
+    <!-- 头部图片样式结束 -->
+    <!-- 地址样式开始 -->
+    <navigator url="/pages/address/address" class="address">
+        <image src="/image/location.png" class="gtimg"></image>
+        <view class="addrleft">
+            <text class="addrleft_title">送货地址:</text>
+            <text class="addrtext textinline">{{address}}</text>
+        </view>
+        <image src="/image/gt.png" class="gtimg1"></image>
+    </navigator>
+    <!-- 地址样式结束 -->
+    <!-- 附近门店展示开始 -->
+    <view class="bodyhead">
+        <view class="diamond"></view>
+        <view class="bodytitle">附近门店</view>
     </view>
-    <view class="gap">距离{{item.gap}}公里</view>
-  </view>
-
-  <view class="shopitem" wx:else  bindtap="goshop" data-shopid="{{item.id}}">
-    <view class="textinline shoptitle">{{item.name}}</view>
-    <view class="shopmidd">
-      <view>{{item.address}}</view>
-      <view class="scanpdt">去逛逛</view>
-    </view>
-    <view class="outgap">
-      <view>距离{{item.gap}}公里</view>
-      <view class="outline">超出配送范围</view>
-    </view>
-  </view>
-</block>
-
-<!-- 附近门店展示结束 -->
+    <block wx:if="{{shops}}" wx:for="{{shops}}" wx:for-item="item" wx:key="index">
+        <view class="shopitem" bindtap="goshop" data-shopid="{{item.id}}" wx:if="{{item.can>=-100}}">
+            <view class="textinline shoptitle">{{item.name}}</view>
+            <view class="shopmidd">
+                <view class="shopaddr textinline">{{item.address}}</view>
+                <view class="buypdt">进店购物</view>
+            </view>
+            <view class="gap">距离{{item.gap}}公里</view>
+        </view>
+        <view class="shopitem" wx:else bindtap="goshop" data-shopid="{{item.id}}">
+            <view class="textinline shoptitle">{{item.name}}</view>
+            <view class="shopmidd">
+                <view>{{item.address}}</view>
+                <view class="scanpdt">去逛逛</view>
+            </view>
+            <view class="outgap">
+                <view>距离{{item.gap}}公里</view>
+                <view class="outline">超出配送范围</view>
+            </view>
+        </view>
+    </block>
+    <!-- 附近门店展示结束 -->
+</scroll-view>

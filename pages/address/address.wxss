@@ -40,8 +40,8 @@ radio {
 }
 
 .addressitem {
-    padding:30rpx 10rpx;
-    border-bottom: 1rpx solid #d7d7d7;
+    padding: 30rpx 10rpx;
+    border-bottom: 1rpx solid #e8e8e8;
 }
 
 .fristitem {
