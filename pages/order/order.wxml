@@ -8,14 +8,14 @@
     <view class="list" wx:if="{{list.length > 0}}">
         <view class="order-item" wx:for="{{list}}" wx:key="index">
             <view style="width:100%;height:95rpx;">
-                <view style="margin-left:25rpx;line-height:95rpx;display:inline-block;float:right;margin-right:38rpx;font-size:28rpx;color:#39A336;">
+                <view style="margin-left:28rpx;line-height:95rpx;display:inline-block;float:right;margin-right:38rpx;font-size:30rpx;color:#39A336;">
                     {{item.status == 0? "待付款":''}}
 					{{item.status == 1? "待接单":''}}
 					{{item.status == 2? "待发货":''}}
 					{{item.status == 3? "待收货":''}}
 					{{item.status == 4? "待评价":''}}
                 </view>
-                <view class="textinline" style="width: 530rpx; margin-left:25rpx;line-height:95rpx;display:inline-block;font-size:37rpx;font-weight:bold;color:#252525;">
+                <view class="textinline" style="width: 514rpx; margin-left:25rpx;line-height:95rpx;display:inline-block;font-size:37rpx;font-weight:bold;color:#252525;">
                     {{item.shop.name}}
                 </view>
             </view>
@@ -26,7 +26,7 @@
                     <image src="{{i.good.image}}" style="width:170rpx;height:170rpx;border-radius:5px;"></image>
                 </view>
                 <view style="width:450rpx;margin-left:22rpx;float:left;">
-                    <view style="font-size: 34rpx;color:#424242;">{{i.good.name}}</view>
+                    <view style="font-size: 34rpx;color:#424242; font-weight:bold;">{{i.good.name}}</view>
                     <view style="height:10rpx;"></view>
                     <view style="font-size:28rpx;color:#A1A1A1;">规格：{{i.good.specifications}}</view>
                     <view style="font-size:28rpx;color:#A1A1A1;">单价：￥{{i.price}}元</view>
@@ -35,9 +35,10 @@
             </view>
             <view>
                 <view style="height:20rpx;"></view>
-                <view style="text-align:right;padding-right:25rpx;font-size:27rpx;">
+                <view style="text-align:right;padding-right:25rpx;font-size:30rpx;">
                     合计:
-                    <text style="color:#FD5548;">￥{{item.price}}</text>
+                    <text style="color:#FD5548;">￥</text>
+                    <text style="color:#FD5548; font-weight:bold; font-size:40rpx;">{{item.price}}</text>
                 </view>
                 <view style="height:20rpx;"></view>
                 <view wx:if="{{item.createTime!==false && item.status == 0}}" style="text-align:right;padding-right:25rpx;font-size:24rpx;color:#A1A1A1;">
@@ -49,7 +50,7 @@
                     订单超时已经关闭
                 </view>
                 <view style="height:20rpx;"></view>
-                <view style="height:50rpx">
+                <view style="height:60rpx">
                     <view data-id="{{item.id}}" class="fuck" wx:if="{{item.status == 0}}" catchtap="paycontinue">
                         继续支付
                     </view>

@@ -14,7 +14,7 @@
     width: 150rpx;
     height: 100%;
     text-align: center;
-    font-size: 30rpx;
+    font-size: 32rpx;
     color: #353535;
     box-sizing: border-box;
     position: relative;
@@ -22,6 +22,7 @@
 
 .status-box .status-label.active {
     color: #39a336;
+    font-weight: bold;
     border-bottom: 6rpx solid #39a336;
 }
 
@@ -67,7 +68,6 @@ page {
     height: 80rpx;
     line-height: 80rpx;
     padding: 0 30rpx;
-    margin-bottom: 10rpx;
     border-bottom: 1rpx solid #e8e8e8;
 }
 
@@ -78,10 +78,11 @@ page {
 }
 
 .itemmsg {
-    padding: 0 25rpx;
+    padding: 10rpx 25rpx;
     display: flex;
     align-items: center;
-    margin: 10rpx 0;
+    padding-bottom: 25rpx;
+    border-bottom: 1rpx solid #e8e8e8;
 }
 
 .msgin {
@@ -92,6 +93,7 @@ page {
     text-align: right;
     margin-right: 3%;
     font-size: 31rpx;
+    padding-top: 20rpx;
 }
 
 .size25 {
@@ -99,17 +101,18 @@ page {
 }
 
 .dingdan {
-    height: 50rpx;
-    border: 1rpx solid #bfbfbf;
-    width: 140rpx;
+    height: 60rpx;
+    width: 160rpx;
     border-radius: 140rpx;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20rpx;
     margin-right: 15rpx;
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: #777777;
+    background: #f2f2f2;
+    font-weight: bold;
 }
 
 .dingdanBox {
@@ -135,7 +138,7 @@ page {
 
 .colorgreen {
     color: #39a336;
-    font-size: 31rpx;
+    font-size: 30rpx;
 }
 
 .img {
@@ -169,7 +172,9 @@ page {
 }
 
 .text-danger {
-    color: #ff7202;
+    color: #FD5548;
+    font-weight: bold;
+    font-size: 40rpx;
 }
 
 .address {

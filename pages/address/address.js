@@ -15,28 +15,25 @@ Page({
     onLoad: function(options) {
         let that = this
         if (app.globalData.user.phone == null) {
-            that.setData({
-                has_login: false
-            })
+            that.setData({ has_login: false })
         } else {
-            util.wxRequest("wechat/User/getAddress", {
-                uid: app.globalData.user.id,
-            }, data => {
+
+            wx.showLoading({ title: '加载中', mask: true })
+
+            // 获取地址
+            util.wxRequest("wechat/User/getAddress", { uid: app.globalData.user.id }, data => {
                 if (data.code == 200) {
-                    that.setData({
-                        has_address: true,
-                        address: data.data
-                    })
+                    that.setData({ has_address: true, address: data.data })
 
                     // 设置默认地址
                     for (let i of data.data) {
                         i.is_default === 1 ? app.globalData.user_address = i.address + i.house : ''
                     }
                     if (data.length > 4) {
-                        this.setData({
-                            can_add_address: false
-                        })
+                        that.setData({ can_add_address: false })
                     }
+
+                    wx.hideLoading()
                 }
             })
         }

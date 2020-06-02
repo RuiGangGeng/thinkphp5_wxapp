@@ -12,8 +12,8 @@ Page({
     },
     onLoad: function() {
         let that = this
-
-        // 检查是否授权
+        wx.hideLoading()
+            // 检查是否授权
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']) {

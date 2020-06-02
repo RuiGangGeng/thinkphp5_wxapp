@@ -278,3 +278,17 @@ page {
 .price__big {
     font-size: 38rpx;
 }
+
+.btn_go {
+    color: #fff!important;
+    background-color: #39a336;
+    height: 50rpx;
+    line-height: 50rpx;
+    width: 160rpx;
+    border-radius: 12rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28rpx;
+    font-weight: bold;
+}

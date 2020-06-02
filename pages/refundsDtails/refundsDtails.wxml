@@ -1,15 +1,15 @@
 <!-- 待退款内容开始 -->
 <view class="inorder">
     <block wx:if="{{info.status==6}}">
-        <view class="mar20 text-danger">待退款</view>
+        <view style="margin-left:25rpx;font-size:34rpx;color:#FF7302;font-weight:bold;">待退款</view>
         <view class="mar20" style="font-size: 28rpx;">订单正在等待商家同意退款，请耐心等待</view>
     </block>
     <block wx:if="{{info.status==7}}">
-        <view class="mar20 text-danger">退款成功</view>
+        <view style="margin-left:25rpx;font-size:34rpx;color:#FF7302;font-weight:bold;">退款成功</view>
         <view class="mar20" style="font-size: 28rpx;">订单已退款成功，欢迎下次光临</view>
     </block>
     <block wx:if="{{info.status==8}}">
-        <view class="mar20 text-danger">拒绝退款</view>
+        <view style="margin-left:25rpx;font-size:34rpx;color:#FF7302;font-weight:bold;">拒绝退款</view>
         <view class="mar20" style="font-size: 28rpx;">商家已拒绝您的退款，如有疑问请与商家沟通</view>
     </block>
     <view class="address">
@@ -17,7 +17,7 @@
             <image src="/image/location1.png" class="img"></image>
             收货人：{{info.contact}} {{info.phone}}
         </view>
-        <view class="mar40 mar15">{{info.address}}</view>
+        <view class="mar40 mar15 line2" style="color:#A1A1A1; font-weight:unset;">{{info.address}}</view>
     </view>
     <view class="shopmsg">
         <view class="order-details-text">
@@ -64,7 +64,7 @@
         </view>
         <view class="msgitem">
             <text>订单编号:</text>
-            <text>{{info.order_number}}</text>
+            <text class="textinline">{{info.order_number}}</text>
         </view>
         <view class="msgitem">
             <text>交易流水号:</text>

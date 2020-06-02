@@ -1,5 +1,5 @@
 const app = getApp()
-const util = require('../../utils/util.js');
+const util = require('../../utils/util.js')
 Page({
     data: {
         id: 0,
@@ -139,7 +139,7 @@ Page({
                             list: [],
                             page: 0
                         })
-                        this.loadData();
+                        this.loadData()
                     })
                 }
             },
@@ -166,7 +166,7 @@ Page({
                             list: [],
                             page: 0
                         })
-                        this.loadData();
+                        this.loadData()
                     })
                 }
             },
@@ -202,7 +202,7 @@ Page({
                 title: '请输入退款理由',
                 icon: 'none'
             })
-            return false;
+            return false
         }
 
         let param = {
@@ -237,16 +237,16 @@ Page({
 
     // 评分星级
     score: function(e) {
-        var that = this;
+        var that = this
         for (var i = 0; i < that.data.stars.length; i++) {
-            var allItem = 'stars[' + i + '].flag';
+            var allItem = 'stars[' + i + '].flag'
             that.setData({
                 [allItem]: 1
             })
         }
-        var index = e.currentTarget.dataset.index;
+        var index = e.currentTarget.dataset.index
         for (var i = 0; i <= index; i++) {
-            var item = 'stars[' + i + '].flag';
+            var item = 'stars[' + i + '].flag'
             that.setData({
                 [item]: 2
             })
@@ -274,7 +274,7 @@ Page({
     // 提交评价打分
     grade: function(e) {
         let that = this
-        let val = 0;
+        let val = 0
         let temp_start = that.data.stars
         for (let i of temp_start) {
             i.flag == 2 ? val++ : ''
@@ -284,14 +284,14 @@ Page({
                 title: '请输入评价',
                 icon: 'none'
             })
-            return false;
+            return false
         }
         if (val == 0) {
             wx.showToast({
                 title: '请选择评分',
                 icon: 'none'
             })
-            return false;
+            return false
         }
         let param = {
             id: that.data.id,
@@ -310,7 +310,7 @@ Page({
                 comment: '',
                 refund_msg: '',
             })
-            that.loadData();
+            that.loadData()
         })
     },
 
@@ -323,7 +323,12 @@ Page({
 
     // 加载数据
     loadData: function() {
-        let that = this;
+        let that = this
+
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
 
         let param = {
             status: this.data.statusType[this.data.currentType].status,
@@ -331,7 +336,7 @@ Page({
             id: app.globalData.user.id
         }
 
-        Object.assign(param, that.data.param);
+        Object.assign(param, that.data.param)
 
         util.wxRequest("wechat/Order/waitPayOrders", param, res => {
             let temp = that.data.list.concat(res.data.data)
@@ -340,11 +345,7 @@ Page({
                 page: res.data.current_page,
                 list: temp
             })
-
-            res.data.data.length == 0 ? wx.showToast({
-                title: '暂无更多数据',
-                icon: "none"
-            }) : ''
+            wx.hideLoading()
         })
     },
 })

@@ -8,7 +8,7 @@
                 <image src="{{shop_info.image}}"></image>
             </view>
             <view class="shop_text">
-                <view class="textinline">{{shop_info.name}}</view>
+                <view class="textinline" style="font-weight:bold;">{{shop_info.name}}</view>
                 <view class="shop_detail">
                     <view class="textinline">{{shop_info.address}}</view>
                     <view class="textinline">{{shop_info.deliveryTime}}</view>

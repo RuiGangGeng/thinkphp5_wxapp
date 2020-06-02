@@ -1,43 +1,44 @@
 const app = getApp()
-const util = require('../../utils/util.js');
+const util = require('../../utils/util.js')
 Page({
-  data: {
-    list: [],
-    page: 0,
-  },
-  
-  onLoad: function () {
-    this.loadData()
-  },
+    data: {
+        list: [],
+        page: 0,
+    },
 
-  // 上拉加载
-  onReachBottom: function () {
-    this.loadData()
-  },
+    onLoad: function() {
+        this.loadData()
+    },
 
-  // 加载数据
-  loadData: function () {
-    let that = this;
+    // 上拉加载
+    onReachBottom: function() {
+        this.loadData()
+    },
 
-    let param = {
-      page: that.data.page + 1,
-      id: app.globalData.user.id
-    }
+    // 加载数据
+    loadData: function() {
+        let that = this
 
-    Object.assign(param, that.data.param);
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
 
-    util.wxRequest("wechat/Order/getEvaluates", param, res => {
-      let temp = that.data.list.concat(res.data.data)
+        let param = {
+            page: that.data.page + 1,
+            id: app.globalData.user.id
+        }
 
-      that.setData({
-        page: res.data.current_page,
-        list: temp
-      })
+        Object.assign(param, that.data.param)
 
-      res.data.data.length == 0 ? wx.showToast({
-        title: '暂无更多数据',
-        icon: "none"
-      }) : ''
-    })
-  },
+        util.wxRequest("wechat/Order/getEvaluates", param, res => {
+            let temp = that.data.list.concat(res.data.data)
+
+            that.setData({
+                page: res.data.current_page,
+                list: temp
+            })
+            wx.hideLoading()
+        })
+    },
 })

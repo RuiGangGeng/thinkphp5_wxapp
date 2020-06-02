@@ -20,7 +20,7 @@
 		<view class="itemmsg" wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="in">
 			<image src="{{i.good.image}}" class="itemimg"></image>
 			<view class="msgin">
-				<view class="name">{{i.good.name}}</view>
+				<view class="name" style="font-weight:bold;">{{i.good.name}}</view>
 				<view class="colorg mar30">规格：{{i.good.specifications}}</view>
 				<view class="colorg">单价：￥{{i.price}}元</view>
 				<view class="colorg">数量：{{i.number}}</view>

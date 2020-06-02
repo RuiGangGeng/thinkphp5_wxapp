@@ -1,5 +1,5 @@
 const app = getApp()
-const util = require('../../utils/util.js');
+const util = require('../../utils/util.js')
 Page({
     data: {
         statusType: [{
@@ -45,7 +45,12 @@ Page({
 
     // 加载数据
     loadData: function() {
-        let that = this;
+        let that = this
+
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
 
         let param = {
             status: this.data.statusType[this.data.currentType].status,
@@ -53,7 +58,7 @@ Page({
             id: app.globalData.user.id
         }
 
-        Object.assign(param, that.data.param);
+        Object.assign(param, that.data.param)
 
         util.wxRequest("wechat/Order/getRefunds", param, res => {
             let temp = that.data.list.concat(res.data.data)
@@ -62,11 +67,7 @@ Page({
                 page: res.data.current_page,
                 list: temp
             })
-
-            res.data.data.length == 0 ? wx.showToast({
-                title: '暂无更多数据',
-                icon: "none"
-            }) : ''
+            wx.hideLoading()
         })
     },
 })

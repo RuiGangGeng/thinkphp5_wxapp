@@ -135,7 +135,9 @@ page {
     justify-content: center;
     align-items: center;
 }
-
+.operateone>view:first-child{
+    justify-content: flex-start;
+}
 .operateone>view:last-child {
     width: 500rpx;
     height: 100%;
@@ -146,13 +148,15 @@ page {
 
 .operateone>view:last-child text {
     display: flex;
-    width: 100rpx;
+    width: 135rpx;
     height: 45rpx;
     justify-content: center;
     align-items: center;
     margin: 0 10rpx;
     font-size: 28rpx;
     padding: 5rpx;
+    background: #f2f2f2f2;
+    color: #777777;
 }
 
 .operatetwo {
@@ -167,7 +171,7 @@ page {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 450rpx;
+    width: 490rpx;
     height: 50rpx;
     border-radius: 8rpx;
     background: #39a336;
@@ -177,7 +181,6 @@ page {
 
 .mini {
     width: 150rpx;
-    margin-left: 22rpx;
 }
 
 scroll-view {
@@ -197,7 +200,12 @@ scroll-view {
     background: #f4f4f4;
     overflow: hidden;
 }
-
+.texttwoline{
+    font-weight: bold;
+}
+.goods_price{
+    font-weight: bold;
+}
 .sidebar image{
     width: 35rpx;
     height: 35rpx;
@@ -277,7 +285,7 @@ scroll-view {
 }
 
 .select {
-    background: #39a336;
+    background: #39a336!important;
     color: white !important;
     border-radius: 10rpx;
 }

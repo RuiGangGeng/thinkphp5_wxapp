@@ -29,7 +29,7 @@
                         <view class="shop flex">
                             <view class="shop-name text-sm text-333">全选</view>
                         </view>
-                        <view class="eidt text-sm text-333 text-a1a1 small" data-shopid="{{shop.shopid}}" catchtap="goshop">再逛逛</view>
+                        <view class="eidt text-sm text-333 text-a1a1 small btn_go" data-shopid="{{shop.shopid}}" catchtap="goshop">再逛逛</view>
                     </view>
                     <view class="box-body flex">
                         <block wx:for="{{shop.commodity}}" wx:for-item="commodity" wx:for-index="idx" wx:key="idx">

@@ -76,10 +76,11 @@ page {
 }
 
 .itemmsg {
-    padding: 0 25rpx;
+    padding: 10rpx 25rpx;
     display: flex;
     align-items: center;
-    margin-top: 20rpx;
+    padding-bottom: 25rpx;
+    border-bottom: 1rpx solid #e8e8e8;
 }
 
 .msgin {
@@ -90,6 +91,7 @@ page {
     text-align: right;
     margin-right: 3%;
     font-size: 31rpx;
+    padding-top: 25rpx;
 }
 
 .size25 {
@@ -157,12 +159,14 @@ page {
 
 .mar20 {
     margin-left: 20rpx;
-    margin-bottom: 10rpx;
-    font-size: 33rpx;
+    margin-bottom: 16rpx;
+    font-size: 30rpx;
 }
 
 .text-danger {
-    color: #ff7202;
+    color: #FD5548;
+    font-weight: bold;
+    font-size: 40rpx;
 }
 
 .address {

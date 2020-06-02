@@ -1,7 +1,7 @@
-const util = require('../../utils/util.js');
-const app = getApp();
-import Storage from '../../utils/storage';
-var storage = new Storage();
+const util = require('../../utils/util.js')
+const app = getApp()
+import Storage from '../../utils/storage'
+var storage = new Storage()
 Page({
 
     data: {
@@ -19,16 +19,16 @@ Page({
     },
 
     onLoad: function(options) {
-      
-        var that = this;
 
-        app.globalData.shop_id = options.shop_id;
+        var that = this
+
+        app.globalData.shop_id = options.shop_id
         var shopid = options.shop_id
 
-        var pdtincar = wx.getStorageSync('pdtincar');
+        var pdtincar = wx.getStorageSync('pdtincar')
         if (pdtincar) {
-            var pagearr = pdtincar.commodities;
-            var pagegoodsincar = [];
+            var pagearr = pdtincar.commodities
+            var pagegoodsincar = []
             pagearr.forEach(function(item, index) {
                 if (item && item.shopid == options.shop_id) {
                     pagegoodsincar = item.commodity
@@ -65,44 +65,44 @@ Page({
 
     },
 
-    onShow: function () {
-      storage._reVoluationCart()
+    onShow: function() {
+        storage._reVoluationCart()
 
-      var pdt = wx.getStorageSync('pdtincar')
-      console.log(pdt)
+        var pdt = wx.getStorageSync('pdtincar')
+        console.log(pdt)
 
-      if (pdt) {
-        var ids = null
-        storage._getAllGoodidIncart(res => {
-          ids = res
-        })
-        console.log(ids)
-        var goodsmsg = null
-        util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
-          console.log(data)
-          goodsmsg = data.data
-        })
+        if (pdt) {
+            var ids = null
+            storage._getAllGoodidIncart(res => {
+                ids = res
+            })
+            console.log(ids)
+            var goodsmsg = null
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
+                console.log(data)
+                goodsmsg = data.data
+            })
 
-        var commodities = pdt.commodities;
-        // commodities[0].ishow = true
-        this.setData({
-          commodities: commodities
-        })
-        var numstr = pdt.account.toString();
-      } else {
-        var numstr = '0';
-        this.setData({
-          flag: false
-        })
-      }
+            var commodities = pdt.commodities
+                // commodities[0].ishow = true
+            this.setData({
+                commodities: commodities
+            })
+            var numstr = pdt.account.toString()
+        } else {
+            var numstr = '0'
+            this.setData({
+                flag: false
+            })
+        }
 
-      if (numstr - 0 > 0) {
-        this.setData({
-          flag: true,
-          account: numstr
-        })
-        app.setCartNum(numstr)
-      }
+        if (numstr - 0 > 0) {
+            this.setData({
+                flag: true,
+                account: numstr
+            })
+            app.setCartNum(numstr)
+        }
 
 
     },
@@ -112,21 +112,21 @@ Page({
         if (!pdtincar) {
             var arr = []
         } else {
-            var arr = pdtincar.commodities;
+            var arr = pdtincar.commodities
         }
-        var totalGoods = false;
-        var totalPrice = false;
-        var totalFavorable = false;
+        var totalGoods = false
+        var totalPrice = false
+        var totalFavorable = false
         if (arr) {
-            var num = arr.length;
+            var num = arr.length
         } else {
-            num = 0;
+            num = 0
         }
         for (let i = 0; i < num; i++) {
             if (arr[i] && arr[i].shopid == id) {
-                totalGoods = arr[i].account;
-                totalPrice = arr[i].totalPrice;
-                totalFavorable = arr[i].totalfav;
+                totalGoods = arr[i].account
+                totalPrice = arr[i].totalPrice
+                totalFavorable = arr[i].totalfav
             }
         }
         that.setData({
@@ -164,7 +164,7 @@ Page({
 
     // 查看商品详情
     gooddetail: e => {
-        var id = e.currentTarget.dataset.id;
+        var id = e.currentTarget.dataset.id
         wx.navigateTo({
             url: '/pages/gooddetail/gooddetail?id=' + id,
         })
@@ -172,44 +172,44 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
-        var data = e.currentTarget.dataset.msg;
+        var data = e.currentTarget.dataset.msg
 
-        var oldnum = this.data.totalGoods ? this.data.totalGoods : 0;
-        var newnum = 1 * oldnum + 1;
-        var numstr = newnum.toString();
+        var oldnum = this.data.totalGoods ? this.data.totalGoods : 0
+        var newnum = 1 * oldnum + 1
+        var numstr = newnum.toString()
         this.setData({
             num: numstr
         })
-        var that = this;
-        data.shopname = that.data.shopname;
+        var that = this
+        data.shopname = that.data.shopname
         storage.operateCar(data, that)
 
         //改变当前页底部购物车展示
-        var totalGoods = that.data.totalGoods;
-        var totalPrice = that.data.totalPrice;
-        var totalFavorable = that.data.totalFavorable;
+        var totalGoods = that.data.totalGoods
+        var totalPrice = that.data.totalPrice
+        var totalFavorable = that.data.totalFavorable
 
-        totalGoods = totalGoods * 1 + 1;
-        totalPrice = (totalPrice * 1 + data.price * 1).toFixed(2);
-        console.log(totalPrice);
-        totalFavorable = (totalFavorable * 1 + data.price_orig * 1 - data.price * 1).toFixed(2);
+        totalGoods = totalGoods * 1 + 1
+        totalPrice = (totalPrice * 1 + data.price * 1).toFixed(2)
+        console.log(totalPrice)
+        totalFavorable = (totalFavorable * 1 + data.price_orig * 1 - data.price * 1).toFixed(2)
 
-        var newgoodsincar = that.data.goodsincar;
+        var newgoodsincar = that.data.goodsincar
         if (newgoodsincar) {
-            var s = false;
+            var s = false
             newgoodsincar.forEach(function(item, index) {
                 if (item.id == data.id) {
-                    item.count = item.count * 1 + 1;
-                    s = true;
+                    item.count = item.count * 1 + 1
+                    s = true
                 }
             })
             if (!s) {
-                data.count = 1;
+                data.count = 1
                 newgoodsincar = newgoodsincar.concat(data)
             }
         } else {
-            data.count = 1;
-            newgoodsincar = [data];
+            data.count = 1
+            newgoodsincar = [data]
         }
 
         that.setData({
@@ -222,41 +222,41 @@ Page({
 
     // 点击去结算
     godoorder: function() {
-        wx.removeStorageSync('makeorder');
-        var commodity = [];
-      var orderinfo = [];
-        //设置当前门店购物车商品为选中状态
-        var shop_id = this.data.shopid;
-        console.log(shop_id);
-        var arr = wx.getStorageSync('pdtincar').commodities;
+        wx.removeStorageSync('makeorder')
+        var commodity = []
+        var orderinfo = []
+            //设置当前门店购物车商品为选中状态
+        var shop_id = this.data.shopid
+        console.log(shop_id)
+        var arr = wx.getStorageSync('pdtincar').commodities
         arr.forEach(function(item, index) {
             if (item.shopid == shop_id) {
                 item.selected = true;
                 (item.commodity).forEach(function(item, index) {
-                    item.selected = true;
+                    item.selected = true
                 })
-            }else{
-              item.selected = false;
+            } else {
+                item.selected = false
             }
         })
-      console.log(arr);
-      for (let i of arr) {
-        if (i.selected) {
-          for (let s of i.commodity) {
-            if (s && s.selected) {
-              commodity = commodity.concat(s)
+        console.log(arr)
+        for (let i of arr) {
+            if (i.selected) {
+                for (let s of i.commodity) {
+                    if (s && s.selected) {
+                        commodity = commodity.concat(s)
+                    }
+                }
             }
-          }
         }
-      }
-      orderinfo = {
-        type: 'cart',
-        shop_id: shop_id,
-        account: this.data.totalGoods,
-        totalPrice: this.data.totalPrice,
-        commodity: commodity
-      }
-      wx.setStorageSync('makeorder', arr)
+        orderinfo = {
+            type: 'cart',
+            shop_id: shop_id,
+            account: this.data.totalGoods,
+            totalPrice: this.data.totalPrice,
+            commodity: commodity
+        }
+        wx.setStorageSync('makeorder', arr)
         wx.redirectTo({
             url: '/pages/doorder/doorder',
         })
@@ -269,7 +269,12 @@ Page({
 
     // 加载数据
     loadData: function() {
-        let that = this;
+        let that = this
+
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
 
         let param = {
             status: 1,
@@ -278,7 +283,7 @@ Page({
             category_id: that.data.categories[that.data.select].id
         }
 
-        Object.assign(param, that.data.param);
+        Object.assign(param, that.data.param)
 
         util.wxRequest("wechat/Shop/get_goods", param, res => {
             let temp = that.data.goodsList.concat(res.data.data)
@@ -292,11 +297,7 @@ Page({
                 page: res.data.current_page,
                 goodsList: temp
             })
-
-            res.data.data.length == 0 ? wx.showToast({
-                title: '暂无更多数据',
-                icon: "none"
-            }) : ''
+            wx.hideLoading()
         })
     },
 

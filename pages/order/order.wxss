@@ -8,30 +8,32 @@ page {
 }
 
 .fuck {
-    width: 140rpx;
-    height: 50rpx;
+    width: 160rpx;
+    height: 60rpx;
     background-color: #39A336;
     border-radius: 25px;
     float: right;
     margin-right: 25rpx;
-    font-size: 25rpx;
+    font-size: 28rpx;
     text-align: center;
-    line-height: 50rpx;
+    line-height: 60rpx;
     color: #FFFFFF;
+    font-weight: bold;
 }
 
 .fuck_all {
-    width: 140rpx;
-    height: 50rpx;
+    width: 160rpx;
+    height: 60rpx;
     background-color: #FFFFFF;
     border-radius: 25px;
     float: right;
     margin-right: 25rpx;
-    font-size: 25rpx;
+    font-size: 28rpx;
     text-align: center;
-    line-height: 50rpx;
+    line-height: 60rpx;
     color: #777777;
-    border: 1rpx solid #bfbfbf;
+    background: #f5f5f5;
+    font-weight: bold;
 }
 
 .container {
@@ -137,7 +139,7 @@ textarea {
     width: 110rpx;
     height: 100%;
     text-align: center;
-    font-size: 28rpx;
+    font-size: 32rpx;
     color: #353535;
     box-sizing: border-box;
     position: relative;
@@ -145,11 +147,12 @@ textarea {
 
 .status-box .status-label.active {
     color: #39a336;
+    font-weight: bold;
     border-bottom: 6rpx solid #39a336;
 }
 
 .order-item {
-    width: 710rpx;
+    width: 700rpx;
     margin: 0 25rpx;
     background-color: #ffffff;
     border-radius: 5px;

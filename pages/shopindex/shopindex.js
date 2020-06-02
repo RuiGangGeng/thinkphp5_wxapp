@@ -1,6 +1,6 @@
 // pages/shopindex/shopindex.js
 const app = getApp()
-const util = require('../../utils/util.js');
+const util = require('../../utils/util.js')
 Page({
 
     data: {
@@ -13,6 +13,11 @@ Page({
     },
 
     onLoad: function(options) {
+
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
 
         this.setData({
             shopid: options.shopid
@@ -40,6 +45,7 @@ Page({
                 this.setData({
                     categories: res.data
                 })
+                wx.hideLoading()
             }
         })
 
@@ -51,12 +57,11 @@ Page({
                 })
             }
         })
-
     },
 
     // 点击分类导航事件
     navito: function(e) {
-        var cateid = e.currentTarget.dataset.cateid;
+        var cateid = e.currentTarget.dataset.cateid
         wx.navigateTo({
             url: '/pages/goodcate/goodcate?cateid=' + cateid + '&shop_id=' + this.data.shopid + '&shopname=' + this.data.shopname,
         })
@@ -64,7 +69,7 @@ Page({
 
     // 点击店内公告
     gonotice: function(e) {
-        var noticeid = e.currentTarget.dataset.id;
+        var noticeid = e.currentTarget.dataset.id
         wx.navigateTo({
             url: '/pages/noticedel/noticedel?noticeid=' + noticeid,
         })
