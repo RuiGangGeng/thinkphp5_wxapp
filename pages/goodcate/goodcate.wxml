@@ -33,6 +33,7 @@
 			</view>
 		</view>
 	</view>
+	<image class="icon_top" src="/image/icon_top.png" />
 	<!-- 无数据展示效果 -->
 	<view class="noData result-wrapper result-wrappers" wx:if="{{goodsList.length == 0}}">
 		暂无数据

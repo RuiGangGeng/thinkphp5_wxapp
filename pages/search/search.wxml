@@ -6,7 +6,7 @@
 	<view class="type-header-menu">
 		<view class="type-search">
 			<image src="/image/search.png" />
-			<input class="input active" type="text" confirm-type="search" maxlength="8" value="{{searchKey}}" placeholder="请输入您要找的商品" bindfocus="searchFocus" bindconfirm="search" bindblur="getvalue" bindinput="chanage"></input>
+			<input class="input active" type="text" confirm-type="search" maxlength="8" value="{{searchKey}}" placeholder="请输入您要找的商品" bindfocus="searchFocus" bindconfirm="search" bindblur="getvalue" bindinput="chanage" bindconfirm="bindconfirm"></input>
 			<view bindtap="tapsearch" class="header-search-btn">搜索</view>
 		</view>
 	</view>

@@ -151,21 +151,28 @@ Page({
                     signType: res.data.pay.signType,
                     paySign: res.data.pay.sign,
                     success() {
+                        // wx.redirectTo({
+                        //     url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=200',
+                        // })
                         wx.redirectTo({
-                            url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=200',
+                            url: '/pages/order/order',
                         })
                     },
                     fail(e) {
-                        if (e.errMsg == "requestPayment:fail cancel") {
-                            wx.redirectTo({
-                                url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=500',
-                            })
-                        }
-                    },
-                    complete() {
-                        util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {})
+                        // if (e.errMsg == "requestPayment:fail cancel") {
+                        //     wx.redirectTo({
+                        //         url: '/pages/resultpay/resultpay?id=' + res.data.id + '&code=500',
+                        //     })
+                        // }
                         wx.redirectTo({
                             url: '/pages/order/order',
+                        })
+                    },
+                    complete() {
+                        util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {
+                            wx.redirectTo({
+                                url: '/pages/order/order',
+                            })
                         })
                     }
                 })

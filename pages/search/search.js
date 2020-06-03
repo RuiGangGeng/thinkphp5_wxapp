@@ -62,7 +62,7 @@ Page({
     // 搜索框输入事件
     chanage: function(e) {
         this.setData({
-            searchHidden: false,
+            searchHidden: true,
             searchKey: e.detail.value,
         })
     },
@@ -154,6 +154,11 @@ Page({
         })
     },
 
+    // 点击键盘的搜索
+    bindconfirm:function(){
+        this.tapsearch()
+    },
+    
     // 点击搜索
     tapsearch: function() {
         this.setData({

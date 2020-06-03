@@ -65,6 +65,9 @@ page {
     width: 100%;
     background: #dadada;
     box-shadow: 1rpx 1rpx 10rpx #858585;
+    position: fixed;
+    top: 0;
+    z-index: 99999;
 }
 
 body {

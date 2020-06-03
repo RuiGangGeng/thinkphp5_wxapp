@@ -1,5 +1,3 @@
-/* pages/collect/collect.wxss */
-
 .fadedcolor {
     background: linear-gradient(#ccc, #fff);
     background-color: #fff;
@@ -7,6 +5,14 @@
     height: 15rpx;
     width: 100%;
     z-index: 2;
+}
+
+.icon_top {
+    width: 85rpx;
+    height: 85rpx;
+    position: fixed;
+    bottom: 300rpx;
+    right: 25rpx;
 }
 
 .numoncar {

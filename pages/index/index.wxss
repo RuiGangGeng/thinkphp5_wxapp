@@ -291,4 +291,23 @@ page {
 .down {
     background-color: white;
     color: #39a336;
+    box-shadow: 1rpx 1rpx 10rpx #858585;
+}
+.no_data{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #a8a8a8;
+    height: 70rpx;
+    font-size: 28rpx;
+    padding: 0 150rpx;
+    box-sizing: border-box;
+}
+.no_data::after,.no_data::before{
+    content: '';
+    display: block;
+    width: 100rpx;
+    height: 1rpx;
+    background: #e1e1e1;
 }

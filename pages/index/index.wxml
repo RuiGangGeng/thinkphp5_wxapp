@@ -47,5 +47,6 @@
             </view>
         </view>
     </block>
+    <view class="no_data">到底啦</view>
     <!-- 附近门店展示结束 -->
 </scroll-view>

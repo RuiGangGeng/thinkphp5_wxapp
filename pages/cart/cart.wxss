@@ -199,9 +199,9 @@ page {
 .btn-decrease,
 .btn-increase {
     color: #878787;
-    width: 30rpx;
-    height: 30rpx;
-    line-height: 30rpx;
+    width: 50rpx;
+    height: 50rpx;
+    line-height: 20rpx;
     border: 1rpx solid;
     display: flex;
     align-items: center;
@@ -290,5 +290,11 @@ page {
     justify-content: center;
     align-items: center;
     font-size: 28rpx;
-    font-weight: bold;
+    /* font-weight: bold; */
+}
+.btn-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }

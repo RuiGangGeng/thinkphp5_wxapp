@@ -1,5 +1,4 @@
-<!-- pages/shopindex/shopindex.wxml -->
-<view class="faded"></view>
+<view class="fadedf"></view>
 <!-- 头图信息开始 -->
 <view class="shopheader shadow10 width94">
     <!-- 轮播图开始 -->
