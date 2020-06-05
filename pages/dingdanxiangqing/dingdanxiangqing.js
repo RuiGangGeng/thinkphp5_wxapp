@@ -95,9 +95,9 @@ Page({
                     title: res.msg,
                     icon: 'none'
                 })
-                setTimeout(function() {
-                    wx.navigateBack()
-                }, 500)
+                // setTimeout(function() {
+                //     wx.navigateBack()
+                // }, 500)
             }
         })
     },

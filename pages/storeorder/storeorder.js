@@ -27,7 +27,7 @@ Page({
         answer_msg: ''
     },
 
-    onLoad: function(e) {
+    onLoad: function (e) {
         this.setData({
             'param.shop_id': e.shop_id
         })
@@ -35,7 +35,7 @@ Page({
     },
 
     // tab切换
-    statusTap: function(e) {
+    statusTap: function (e) {
         this.setData({
             currentType: e.currentTarget.dataset.index,
             list: [],
@@ -45,7 +45,7 @@ Page({
     },
 
     // 点击跳转订单详情页面
-    order_details: function(e) {
+    order_details: function (e) {
         wx.navigateTo({
             url: '/pages/shoporderdetail/shoporderdetail?id=' + e.currentTarget.dataset.id,
         })
@@ -54,7 +54,7 @@ Page({
 
 
     // 点击 退单
-    order_back: function(e) {
+    order_back: function (e) {
         let param = {
             id: e.currentTarget.dataset.id
         }
@@ -72,7 +72,7 @@ Page({
     },
 
     // 点击 接单
-    order_confirm: function(e) {
+    order_confirm: function (e) {
         let param = {
             id: e.currentTarget.dataset.id
         }
@@ -90,7 +90,7 @@ Page({
     },
 
     // 点击 发货【放弃使用】
-    send_order: function(e) {
+    send_order: function (e) {
         let param = {
             id: e.currentTarget.dataset.id
         }
@@ -110,7 +110,7 @@ Page({
 
 
     // 点击 同意退款
-    agree_order: function(e) {
+    agree_order: function (e) {
         let that = this
 
         let param = {
@@ -156,7 +156,7 @@ Page({
     },
 
     // 点击 弹出拒绝退款输入框
-    refuse_order: function(e) {
+    refuse_order: function (e) {
         let that = this
         that.setData({
             is_refund: true,
@@ -165,14 +165,14 @@ Page({
     },
 
     // 监听拒绝理由输入
-    bindinput: function(e) {
+    bindinput: function (e) {
         this.setData({
             answer_msg: e.detail.value,
         })
     },
 
     // 提交拒绝退款理由
-    onRefuse: function() {
+    onRefuse: function () {
         let that = this
 
         if (that.data.answer_msg == '') {
@@ -203,7 +203,7 @@ Page({
     },
 
     // 取消拒绝退款
-    grade_: function() {
+    grade_: function () {
         this.setData({
             is_refund: false,
             answer_msg: '',
@@ -212,19 +212,19 @@ Page({
 
 
     // 点击 拨打电话
-    makeCall: function(e) {
+    makeCall: function (e) {
         wx.makePhoneCall({
             phoneNumber: e.currentTarget.dataset.phone
         });
     },
 
     // 上拉加载
-    onReachBottom: function() {
+    onReachBottom: function () {
         this.loadData()
     },
 
     // 加载数据
-    loadData: function() {
+    loadData: function () {
         let that = this;
 
         let param = {
@@ -242,7 +242,7 @@ Page({
                 list: temp
             })
 
-            res.data.data.length == 0 ? wx.showToast({
+            res.data.data.length == 0 && res.data.current_page !== 1 ? wx.showToast({
                 title: '暂无更多数据',
                 icon: "none"
             }) : ''

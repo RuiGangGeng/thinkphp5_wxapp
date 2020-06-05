@@ -22,4 +22,5 @@
 }
 .mycolor{
   color: #797979;
+  padding: unset;
 }

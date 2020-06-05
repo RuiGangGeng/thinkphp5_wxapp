@@ -16,6 +16,7 @@ Page({
             allCount: 0,
             allAccount: 0,
         },
+        deliveryPrice: false,
         checkedAll: false,
     },
 
@@ -86,12 +87,8 @@ Page({
         var allCount = this.data.accountInfo.allCount;
         var allAccount = this.data.accountInfo.allAccount;
 
-        // 判断增加还是减去
+        // 判断increase增加还是decrease减去
         if (event === 'decrease') {
-            if (allCount - 1 > 0) {
-                allCount = allCount - 1;
-                allAccount = allAccount - commodities[shopidx]['commodity'][commodityidx].price * 1;
-            }
             if (count - 1 == 0) {
                 commodities[shopidx].totalPrice = (commodities[shopidx].totalPrice * 1 - commodities[shopidx]['commodity'][commodityidx].price * 1).toFixed(0);
 
@@ -116,11 +113,7 @@ Page({
                 }
                 var numstr = this.data.account * 1 - 1;
             }
-            allCount = 0;
-            allAccount = 0;
         } else if (event === 'increase') {
-            allCount = allCount * 1 + 1;
-            allAccount = allAccount * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1;
             commodities[shopidx].totalPrice = (commodities[shopidx].totalPrice * 1 + commodities[shopidx]['commodity'][commodityidx].price * 1).toFixed(0);
 
             commodities[shopidx].totalfav = (commodities[shopidx].totalfav * 1 - commodities[shopidx]['commodity'][commodityidx].price * 1 + commodities[shopidx]['commodity'][commodityidx].price_orig * 1).toFixed(0);
@@ -131,10 +124,19 @@ Page({
             var numstr = this.data.account * 1 + 1;
         }
 
-        this.setData({ commodities: commodities, account: numstr });
-        var pdtincar = { account: numstr, commodities: commodities }
+        // 计算价格 判断是否到达了起送价格
+        for (let i of commodities[shopidx].commodity) {
 
-        numstr = numstr.toString();
+        }
+
+        this.setData({
+            commodities: commodities,
+            account: numstr,
+            accountInfo: { allCount: allCount, allAccount: allAccount },
+        })
+
+        var pdtincar = { account: numstr, commodities: commodities }
+        numstr = numstr.toString()
 
         if (numstr < 1) {
             pdtincar = null;
@@ -144,15 +146,15 @@ Page({
             })
         }
 
-        numstr = numstr.toString();
+        numstr = numstr.toString()
         app.setCartNum(numstr)
+
+        // 设置缓存
         if (pdtincar) {
             wx.setStorageSync('pdtincar', pdtincar);
         } else {
             wx.setStorageSync('pdtincar', null);
         }
-
-        this.onLoad();
     },
 
 
@@ -186,6 +188,7 @@ Page({
             if (shopchoose && shopchoose != commodities[shopidx].shopid) {
                 wx.showToast({
                     title: '请单门店支付',
+                    icon: 'none'
                 })
                 return;
             }
@@ -207,7 +210,8 @@ Page({
                 var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id;
                 if (shopchoose && shopchoose != shopsid) {
                     wx.showToast({
-                        title: '单门店',
+                        title: '请单门店支付',
+                        icon: 'none'
                     })
                     return;
                 }
@@ -363,22 +367,10 @@ Page({
                     if (s && s.selected) {
                         shop_id = s.shop_id
                         commodity = commodity.concat(s)
-                            // totalnumber = totalnumber + s.count*1
-                            // totalprice = (totalprice - 0 + s.count*s.price).toFixed(2)
                     }
                 }
             }
         }
-        // var shopname = null
-        // var shopaddr = null
-        // for(let i of cart){
-        //     if(i){
-        //         if(i.shopid == shop_id){
-        //             shopname = i.shopname
-        //             shopaddr = i.shopaddress
-        //         }
-        //     }
-        // }
         orderinfo = {
             type: 'cart',
             shop_id: shop_id,

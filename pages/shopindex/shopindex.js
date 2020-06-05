@@ -14,10 +14,8 @@ Page({
 
     onLoad: function(options) {
 
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        })
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
 
         this.setData({
             shopid: options.shopid
@@ -63,7 +61,7 @@ Page({
     navito: function(e) {
         var cateid = e.currentTarget.dataset.cateid
         wx.navigateTo({
-            url: '/pages/goodcate/goodcate?cateid=' + cateid + '&shop_id=' + this.data.shopid + '&shopname=' + this.data.shopname,
+            url: '/pages/goodcate/goodcate?cateid=' + cateid + '&shop_id=' + this.data.shopid + '&shopname=' + this.data.shopname + '&deliveryPrice=' + this.data.shopdata.deliveryPrice,
         })
     },
 

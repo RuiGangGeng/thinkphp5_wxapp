@@ -121,9 +121,8 @@ Page({
         }
 
         // 上传图片
-        wx.showLoading({
-            title: '提交中',
-        })
+        wx.showLoading({ title: '提交中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
         wx.uploadFile({
             url: app.globalData.api_host + "wechat/Util/upload",
             filePath: that.data.param.image,

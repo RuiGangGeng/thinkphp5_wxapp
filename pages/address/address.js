@@ -18,7 +18,8 @@ Page({
             that.setData({ has_login: false })
         } else {
 
-            wx.showLoading({ title: '加载中', mask: true })
+            wx.showLoading({ title: '加载中' })
+            setTimeout(function() { wx.hideLoading() }, 3000)
 
             // 获取地址
             util.wxRequest("wechat/User/getAddress", { uid: app.globalData.user.id }, data => {
@@ -33,8 +34,8 @@ Page({
                         that.setData({ can_add_address: false })
                     }
 
-                    wx.hideLoading()
                 }
+                wx.hideLoading()
             })
         }
     },

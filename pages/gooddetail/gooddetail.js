@@ -11,6 +11,7 @@ Page({
         totalGoods: false,
         totalPrice: false,
         totalFavorable: false,
+        deliveryPrice: false,
         shopname: false,
         goodsList: [],
         goodsincar: [],
@@ -29,13 +30,11 @@ Page({
             var pagearr = pdtincar.commodities;
             var pagegoodsincar = [];
             pagearr.forEach(function(item, index) {
-                console.log(item);
                 if (item && item.shopid == app.globalData.shop_id) {
                     pagegoodsincar = item.commodity
                 }
             })
         }
-        console.log(pagegoodsincar);
         that.countInfoAtThisShop(pdtincar, that, app.globalData.shop_id)
 
         storage._getGoodInCart(e.id, data => {
@@ -51,7 +50,8 @@ Page({
                 }
             }
             that.setData({
-                cargood: cargood
+                cargood: cargood,
+                deliveryPrice: e.deliveryPrice
             })
         })
 
@@ -120,7 +120,6 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
-        console.log(e);
         var data = e.currentTarget.dataset.msg;
 
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0;
@@ -130,9 +129,8 @@ Page({
             num: numstr
         })
         var that = this;
-        console.log(that.data.shopname);
         data.shopname = that.data.shopname;
-
+        data.deliveryPrice = that.data.deliveryPrice
         storage.operateCar(data, that)
 
         //改变当前页底部购物车展示

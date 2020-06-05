@@ -64,7 +64,7 @@
                 <text style="color: #a1a1a1;">件商品</text>
             </view>
         </view>
-        <button class="balance text-lg text-fff"  form-type="submit">提交订单 </button>
+        <button class="{{flag?'block':''}} balance text-lg text-fff "  form-type="submit" disabled="{{flag}}">提交订单</button>
     </view>
 </view>
 <!-- 底部结算栏结束 -->

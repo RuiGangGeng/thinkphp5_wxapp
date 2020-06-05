@@ -10,6 +10,7 @@ Page({
         totalFavorable: false,
         shopid: false,
         shopname: false,
+        deliveryPrice: false,
         select: 0,
         categories: [],
         commodities: [],
@@ -40,6 +41,7 @@ Page({
             goodsincar: pagegoodsincar,
             shopid: shopid,
             shopname: options.shopname,
+            deliveryPrice: options.deliveryPrice
         })
 
         that.countInfoAtThisShop(pdtincar, that, options.shop_id)
@@ -162,8 +164,9 @@ Page({
     // 查看商品详情
     gooddetail: e => {
         var id = e.currentTarget.dataset.id
+        let that = this
         wx.navigateTo({
-            url: '/pages/gooddetail/gooddetail?id=' + id,
+            url: '/pages/gooddetail/gooddetail?id=' + id + "&deliveryPrice=" + that.data.deliveryPrice,
         })
     },
 
@@ -179,6 +182,7 @@ Page({
         })
         var that = this
         data.shopname = that.data.shopname
+        data.deliveryPrice = that.data.deliveryPrice
         storage.operateCar(data, that)
 
         //改变当前页底部购物车展示
@@ -265,10 +269,8 @@ Page({
     loadData: function() {
         let that = this
 
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        })
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
 
         let param = {
             status: 1,

@@ -163,6 +163,7 @@ Page({
                             icon: res.code == 200 ? 'success' : 'none'
                         })
                         this.setData({
+                            currentType: 4,
                             list: [],
                             page: 0
                         })
@@ -325,10 +326,8 @@ Page({
     loadData: function() {
         let that = this
 
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        })
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
 
         let param = {
             status: this.data.statusType[this.data.currentType].status,

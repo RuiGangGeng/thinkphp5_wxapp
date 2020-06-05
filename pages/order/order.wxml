@@ -10,8 +10,8 @@
             <view style="width:100%;height:95rpx;">
                 <view style="margin-left:28rpx;line-height:95rpx;display:inline-block;float:right;margin-right:38rpx;font-size:30rpx;color:#39A336;">
                     {{item.status == 0? "待付款":''}}
-					{{item.status == 1? "待接单":''}}
-					{{item.status == 2? "待发货":''}}
+					<!-- {{item.status == 1? "待接单":''}} -->
+					{{item.status == 2||item.status == 1? "待发货":''}}
 					{{item.status == 3? "待收货":''}}
 					{{item.status == 4? "待评价":''}}
                 </view>

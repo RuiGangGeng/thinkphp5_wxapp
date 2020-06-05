@@ -30,6 +30,7 @@ class Storage {
             shopid: data.shop_id,
             shopName: data.shopname,
             account: 1,
+            deliveryPrice: data.deliveryPrice,
             totalPrice: data.price,
             totalfav: (data.price_orig * 1 - data.price * 1).toFixed(2),
             selected: false, //店铺全选
@@ -84,6 +85,7 @@ class Storage {
                 shopName: data.shopname,
                 account: 1,
                 totalPrice: data.price,
+                deliveryPrice: data.deliveryPrice,
                 totalfav: (data.price_orig * 1 - data.price * 1).toFixed(2),
                 selected: false,
                 commodity: [

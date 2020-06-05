@@ -17,7 +17,7 @@ page {
 }
 
 #cart {
-    margin-bottom: 270rpx;
+    padding-bottom: 270rpx;
     padding-top: 10rpx;
 }
 

@@ -40,7 +40,7 @@ Page({
                 app.globalData.addrss_id = res.data.id
 
                 that.setData({
-                    address: res.data.address
+                    address: app.globalData.user_address
                 })
 
                 // 获取商家列表
@@ -77,10 +77,7 @@ Page({
         // 是否更换了默认地址 更换则重新拉取商家列表
         if (app.globalData.refresh) {
             app.globalData.refresh = false
-            this.setData({
-                address: app.globalData.user_address
-            })
-            this.loadShops()
+            this.checkAddress()
         }
 
         util.wxRequest("wechat/index/getVideo", {}, res => {
@@ -99,7 +96,8 @@ Page({
 
     loadShops: function() {
 
-        wx.showLoading({ title: '加载中', mask: true })
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
 
         util.wxRequest('wechat/user/loadShops', { id: app.globalData.addrss_id }, res => {
             // 计算门店显示进店购物或者去逛逛
