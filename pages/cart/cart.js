@@ -19,52 +19,19 @@ Page({
         checkedAll: false,
     },
 
-    onLoad: function(options) {
-        // wx.setStorageSync('makeorder', null)
-        // var pdt = wx.getStorageSync('pdtincar');
-        // console.log(pdt)
-        // var allCount = 0;
-        // var allAccount = 0;
-        // if (pdt) {
-        //     var arr = pdt.commodities;
-        //     arr.forEach(function(item, index) {
-        //         if (item != null) {
-        //             (item.commodity).forEach(function(items, indexs) {
-        //                 if (items && items.selected) {
-        //                     allCount = allCount + items.count;
-        //                     allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
-        //                 }
-        //             })
-        //         }
-        //     })
-        // }
-        // this.setData({
-        //     accountInfo: {
-        //         allCount: allCount,
-        //         allAccount: allAccount
-        //     },
-        // })
-    },
-
     onShow: function() {
         storage._reVoluationCart()
         var pdt = wx.getStorageSync('pdtincar')
-        console.log(pdt)
 
         if (pdt) {
             var ids = null
             storage._getAllGoodidIncart(res => {
                 ids = res
             })
-            console.log(ids)
-            var goodsmsg = null
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
-                console.log(data)
-                goodsmsg = data.data
-            })
+
+            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {})
 
             var commodities = pdt.commodities;
-            console.log(commodities)
             commodities[0].ishow = true
             this.setData({
                 commodities: commodities
@@ -82,8 +49,8 @@ Page({
                 flag: true,
                 account: numstr
             })
-            app.setCartNum(numstr)
         }
+        app.setCartNum(numstr)
 
         var allCount = 0;
         var allAccount = 0;
@@ -118,6 +85,8 @@ Page({
             count = commodities[shopidx]['commodity'][commodityidx].count;
         var allCount = this.data.accountInfo.allCount;
         var allAccount = this.data.accountInfo.allAccount;
+
+        // 判断增加还是减去
         if (event === 'decrease') {
             if (allCount - 1 > 0) {
                 allCount = allCount - 1;
@@ -159,18 +128,12 @@ Page({
             commodities[shopidx].account = commodities[shopidx].account * 1 + 1;
             commodities[shopidx]['commodity'][commodityidx].count = count + 1;
 
-
             var numstr = this.data.account * 1 + 1;
-        };
-        console.log(commodities)
-        this.setData({
-            commodities: commodities,
-            account: numstr,
-        });
-        var pdtincar = {
-            account: numstr,
-            commodities: commodities
         }
+
+        this.setData({ commodities: commodities, account: numstr });
+        var pdtincar = { account: numstr, commodities: commodities }
+
         numstr = numstr.toString();
 
         if (numstr < 1) {
@@ -196,7 +159,6 @@ Page({
     // 选择 店铺 或 商品
     checked: function(ev) {
         let dataset = ev.currentTarget.dataset;
-        console.log(dataset)
         var commodities = [].slice.call(this.data.commodities);
         var shopchoose = '';
         commodities.forEach(function(item, index) {
@@ -218,11 +180,9 @@ Page({
                 }
             }
         })
-        console.log(shopchoose);
         var type = dataset.type;
         var shopidx = dataset.shopidx;
         if (type === 'shop') {
-            console.log(commodities[shopidx].shopid);
             if (shopchoose && shopchoose != commodities[shopidx].shopid) {
                 wx.showToast({
                     title: '请单门店支付',
@@ -230,7 +190,6 @@ Page({
                 return;
             }
             let selected = commodities[shopidx]['selected'];
-            console.log(selected)
             if (selected) {
                 // 取消选中当前店铺包括商品全部
                 this.setSelected(commodities, shopidx, null, false);
@@ -245,7 +204,6 @@ Page({
                 // 取消选中当前店铺包括商品全部
                 this.setSelected(commodities, shopidx, commodityIdx, false);
             } else {
-                console.log(commodities[shopidx]['commodity'][commodityIdx].shop_id)
                 var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id;
                 if (shopchoose && shopchoose != shopsid) {
                     wx.showToast({
@@ -296,7 +254,6 @@ Page({
 
             if (!boolean) {
                 commodities[shopidx].commodity.forEach(item => {
-                    console.log('全取消', item)
                     if (item) {
                         item['selected'] = boolean;
                         allCount = 0;
@@ -310,7 +267,6 @@ Page({
 
             } else {
                 commodities[shopidx].commodity.forEach(item => {
-                    console.log('全选', item)
                     if (item) {
                         item['selected'] = boolean;
                         allCount = allCount * 1 + item['count'] * 1;
@@ -339,7 +295,6 @@ Page({
             }
             let result = true;
             commodities[shopidx].commodity.forEach(item => {
-                console.log('单一选中', item)
                 if (item) {
                     result = result && item['selected']
                 }
@@ -365,9 +320,8 @@ Page({
         });
     },
 
-    //开闭订单商店
+    // 开闭订单商店
     changeT: function(e) {
-        console.log(e.currentTarget.dataset.shopid)
         var shopid = e.currentTarget.dataset.shopid;
         var shoplist = this.data.commodities;
         shoplist.forEach(function(item, index) {
@@ -381,22 +335,20 @@ Page({
                 }
             }
         })
-        console.log(shoplist)
         this.setData({
             commodities: shoplist
         })
     },
 
-    //再逛逛
+    // 再逛逛
     goshop: function(e) {
-        console.log(e)
         var shopid = e.currentTarget.dataset.shopid;
         wx.navigateTo({
             url: '/pages/shopindex/shopindex?shopid=' + shopid,
         })
     },
 
-    //提交订单
+    // 提交订单
     doorder: function() {
         var cart = this.data.commodities
         var shop_id = null

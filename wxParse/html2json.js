@@ -35,8 +35,10 @@ var fillAttrs = makeMap("checked,compact,declare,defer,disabled,ismap,multiple,n
 
 // Special Elements (can contain anything)
 var special = makeMap("wxxxcode-style,script,style,view,scroll-view,block");
+
 function makeMap(str) {
-    var obj = {}, items = str.split(",");
+    var obj = {},
+        items = str.split(",");
     for (var i = 0; i < items.length; i++)
         obj[items[i]] = true;
     return obj;
@@ -54,7 +56,7 @@ function removeDOCTYPE(html) {
 }
 
 function trimHtml(html) {
-  return html
+    return html
         .replace(/\r?\n+/g, '')
         .replace(/<!--.*?-->/ig, '')
         .replace(/\/\*.*?\*\//ig, '')
@@ -72,12 +74,12 @@ function html2json(html, bindName) {
     var results = {
         node: bindName,
         nodes: [],
-        images:[],
-        imageUrls:[]
+        images: [],
+        imageUrls: []
     };
     var index = 0;
     HTMLParser(html, {
-        start: function (tag, attrs, unary) {
+        start: function(tag, attrs, unary) {
             //debug(tag, attrs, unary);
             // node for this element
             var node = {
@@ -105,25 +107,22 @@ function html2json(html, bindName) {
             }
 
             if (attrs.length !== 0) {
-                node.attr = attrs.reduce(function (pre, attr) {
+                node.attr = attrs.reduce(function(pre, attr) {
                     var name = attr.name;
                     var value = attr.value;
                     if (name == 'class') {
-                        console.dir(value);
                         //  value = value.join("")
                         node.classStr = value;
                     }
                     // has multi attibutes
                     // make it array of attribute
                     if (name == 'style') {
-                        console.dir(value);
                         //  value = value.join("")
                         node.styleStr = value;
                     }
                     if (value.match(/ /)) {
                         value = value.split(' ');
                     }
-                    
 
                     // if attr already exists
                     // merge it
@@ -157,7 +156,7 @@ function html2json(html, bindName) {
                 results.images.push(node);
                 results.imageUrls.push(imgUrl);
             }
-            
+
             // 处理font标签样式属性
             if (node.tag === 'font') {
                 var fontSize = ['x-small', 'small', 'medium', 'large', 'x-large', 'xx-large', '-webkit-xxx-large'];
@@ -170,7 +169,7 @@ function html2json(html, bindName) {
                 if (!node.styleStr) node.styleStr = '';
                 for (var key in styleAttrs) {
                     if (node.attr[key]) {
-                        var value = key === 'size' ? fontSize[node.attr[key]-1] : node.attr[key];
+                        var value = key === 'size' ? fontSize[node.attr[key] - 1] : node.attr[key];
                         node.attr.style.push(styleAttrs[key]);
                         node.attr.style.push(value);
                         node.styleStr += styleAttrs[key] + ': ' + value + ';';
@@ -179,10 +178,10 @@ function html2json(html, bindName) {
             }
 
             //临时记录source资源
-            if(node.tag === 'source'){
+            if (node.tag === 'source') {
                 results.source = node.attr.src;
             }
-            
+
             if (unary) {
                 // if this tag doesn't have end tag
                 // like <img src="hoge.png"/>
@@ -196,18 +195,18 @@ function html2json(html, bindName) {
                 bufArray.unshift(node);
             }
         },
-        end: function (tag) {
+        end: function(tag) {
             //debug(tag);
             // merge into parent tag
             var node = bufArray.shift();
             if (node.tag !== tag) console.error('invalid state: mismatch end tag');
 
             //当有缓存source资源时于于video补上src资源
-            if(node.tag === 'video' && results.source){
+            if (node.tag === 'video' && results.source) {
                 node.attr.src = results.source;
                 delete results.source;
             }
-            
+
             if (bufArray.length === 0) {
                 results.nodes.push(node);
             } else {
@@ -218,14 +217,14 @@ function html2json(html, bindName) {
                 parent.nodes.push(node);
             }
         },
-        chars: function (text) {
+        chars: function(text) {
             //debug(text);
             var node = {
                 node: 'text',
                 text: text,
-                textArray:transEmojiStr(text)
+                textArray: transEmojiStr(text)
             };
-            
+
             if (bufArray.length === 0) {
                 node.index = index.toString()
                 index += 1
@@ -239,7 +238,7 @@ function html2json(html, bindName) {
                 parent.nodes.push(node);
             }
         },
-        comment: function (text) {
+        comment: function(text) {
             //debug(text);
             // var node = {
             //     node: 'comment',
@@ -255,49 +254,48 @@ function html2json(html, bindName) {
     return results;
 };
 
-function transEmojiStr(str){
-  // var eReg = new RegExp("["+__reg+' '+"]");
-//   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  
-  var emojiObjs = [];
-  //如果正则表达式为空
-  if(__emojisReg.length == 0 || !__emojis){
-      var emojiObj = {}
-      emojiObj.node = "text";
-      emojiObj.text = str;
-      array = [emojiObj];
-      return array;
-  }
-  //这个地方需要调整
-  str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  var eReg = new RegExp("[:]");
-  var array = str.split(eReg);
-  for(var i = 0; i < array.length; i++){
-    var ele = array[i];
-    var emojiObj = {};
-    if(__emojis[ele]){
-      emojiObj.node = "element";
-      emojiObj.tag = "emoji";
-      emojiObj.text = __emojis[ele];
-      emojiObj.baseSrc= __emojisBaseSrc;
-    }else{
-      emojiObj.node = "text";
-      emojiObj.text = ele;
+function transEmojiStr(str) {
+    // var eReg = new RegExp("["+__reg+' '+"]");
+    //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
+
+    var emojiObjs = [];
+    //如果正则表达式为空
+    if (__emojisReg.length == 0 || !__emojis) {
+        var emojiObj = {}
+        emojiObj.node = "text";
+        emojiObj.text = str;
+        array = [emojiObj];
+        return array;
     }
-    emojiObjs.push(emojiObj);
-  }
-  
-  return emojiObjs;
+    //这个地方需要调整
+    str = str.replace(/\[([^\[\]]+)\]/g, ':$1:')
+    var eReg = new RegExp("[:]");
+    var array = str.split(eReg);
+    for (var i = 0; i < array.length; i++) {
+        var ele = array[i];
+        var emojiObj = {};
+        if (__emojis[ele]) {
+            emojiObj.node = "element";
+            emojiObj.tag = "emoji";
+            emojiObj.text = __emojis[ele];
+            emojiObj.baseSrc = __emojisBaseSrc;
+        } else {
+            emojiObj.node = "text";
+            emojiObj.text = ele;
+        }
+        emojiObjs.push(emojiObj);
+    }
+
+    return emojiObjs;
 }
 
-function emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis){
+function emojisInit(reg = '', baseSrc = "/wxParse/emojis/", emojis) {
     __emojisReg = reg;
-    __emojisBaseSrc=baseSrc;
-    __emojis=emojis;
+    __emojisBaseSrc = baseSrc;
+    __emojis = emojis;
 }
 
 module.exports = {
     html2json: html2json,
-    emojisInit:emojisInit
+    emojisInit: emojisInit
 };
-

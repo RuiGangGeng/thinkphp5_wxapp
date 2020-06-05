@@ -69,17 +69,14 @@ Page({
         storage._reVoluationCart()
 
         var pdt = wx.getStorageSync('pdtincar')
-        console.log(pdt)
 
         if (pdt) {
             var ids = null
             storage._getAllGoodidIncart(res => {
                 ids = res
             })
-            console.log(ids)
             var goodsmsg = null
             util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {
-                console.log(data)
                 goodsmsg = data.data
             })
 
@@ -191,7 +188,6 @@ Page({
 
         totalGoods = totalGoods * 1 + 1
         totalPrice = (totalPrice * 1 + data.price * 1).toFixed(2)
-        console.log(totalPrice)
         totalFavorable = (totalFavorable * 1 + data.price_orig * 1 - data.price * 1).toFixed(2)
 
         var newgoodsincar = that.data.goodsincar
@@ -227,7 +223,6 @@ Page({
         var orderinfo = []
             //设置当前门店购物车商品为选中状态
         var shop_id = this.data.shopid
-        console.log(shop_id)
         var arr = wx.getStorageSync('pdtincar').commodities
         arr.forEach(function(item, index) {
             if (item.shopid == shop_id) {
@@ -239,7 +234,6 @@ Page({
                 item.selected = false
             }
         })
-        console.log(arr)
         for (let i of arr) {
             if (i.selected) {
                 for (let s of i.commodity) {

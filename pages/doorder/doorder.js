@@ -18,13 +18,10 @@ Page({
 
     onLoad: function(options) {
         var shops = app.globalData.shops;
-        console.log(this.data);
         var pdtincar = wx.getStorageSync('pdtincar');
-        console.log(pdtincar);
 
         var myorder = wx.getStorageSync('makeorder');
         var shopInfo = {};
-        console.log(myorder);
         if (myorder.hasOwnProperty('type')) {
 
             var shopid = myorder.shop_id
@@ -77,7 +74,6 @@ Page({
 
     //获取留言
     makewords: function(e) {
-        console.log(e)
         this.setData({
             leaveawords: e.detail.value
         })

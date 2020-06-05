@@ -18,18 +18,7 @@ Page({
     // 小程序加载
     onLoad: function() {
         let that = this
-            // 获取缓存设置 tabar 的数字角标
-        var num = wx.getStorageSync('pdtincar')
-        if (num) {
-            var numstr = num.account.toString()
-            if (numstr - 0 > 0) {
-                this.setData({
-                    flag: true
-                })
-            }
-            app.setCartNum(numstr)
-        }
-        // 判断是否获取到用户信息
+            // 判断是否获取到用户信息
         if (app.globalData.user) {
             that.checkAddress(app.globalData.user.id)
         } else {
@@ -63,6 +52,18 @@ Page({
     },
 
     onShow: function() {
+        // 获取缓存设置 tabar 的数字角标
+        var num = wx.getStorageSync('pdtincar')
+        if (num) {
+            var numstr = num.account.toString()
+            if (numstr - 0 > 0) {
+                this.setData({
+                    flag: true
+                })
+            }
+            app.setCartNum(numstr)
+        }
+
         // 设置顶部偏移
         var titlehei = app.globalData.status_bar_height
         var margintop = titlehei * 2 - 0 + 44 + 52
@@ -140,7 +141,6 @@ Page({
 
     // 视频播放
     videoPlay: function(e) {
-        console.log(e)
         var _index = e.currentTarget.id
         this.setData({
                 _index: _index

@@ -6,17 +6,16 @@ Page({
     onLoad: function(options) {
         this.setData({
             flag: options.code == 500 ? false : true,
-            id:options.id
+            id: options.id
         })
     },
 
     goindex: function(e) {
-      console.log(e);
         // wx.switchTab({
         //     url: '/pages/index/index',
         // })
         wx.navigateTo({
-          url: '/pages/dingdanxiangqing/dingdanxiangqing?act=detail&id=' + e.currentTarget.dataset.id,
+            url: '/pages/dingdanxiangqing/dingdanxiangqing?act=detail&id=' + e.currentTarget.dataset.id,
         })
     },
 

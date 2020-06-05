@@ -30,7 +30,6 @@ Page({
         })
 
         var pdtincar = wx.getStorageSync('pdtincar');
-        console.log(app.globalData.shop_id);
         if (pdtincar) {
             var pagearr = pdtincar.commodities;
             var pagegoodsincar = [];
@@ -76,8 +75,6 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
-        console.log(e);
-        console.log(this.data);
         var data = e.currentTarget.dataset.msg;
 
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0;
@@ -155,10 +152,10 @@ Page({
     },
 
     // 点击键盘的搜索
-    bindconfirm:function(){
+    bindconfirm: function() {
         this.tapsearch()
     },
-    
+
     // 点击搜索
     tapsearch: function() {
         this.setData({

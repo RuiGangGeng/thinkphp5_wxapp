@@ -40,6 +40,17 @@ Page({
     },
 
     onShow: function() {
+        // 获取缓存设置 tabar 的数字角标
+        var num = wx.getStorageSync('pdtincar')
+        if (num) {
+            var numstr = num.account.toString()
+            if (numstr - 0 > 0) {
+                this.setData({
+                    flag: true
+                })
+            }
+            app.setCartNum(numstr)
+        }
 
         this.setData({
             order_0: false,

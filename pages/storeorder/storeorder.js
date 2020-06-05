@@ -213,7 +213,6 @@ Page({
 
     // 点击 拨打电话
     makeCall: function(e) {
-        console.log(e)
         wx.makePhoneCall({
             phoneNumber: e.currentTarget.dataset.phone
         });
