@@ -17,7 +17,9 @@
             <image src="/image/location1.png" class="img"></image>
             收货人：{{info.contact}} {{info.phone}}
         </view>
-        <view class="mar40 mar15 line2" style="color:#A1A1A1; font-weight:unset;">{{info.address}}</view>
+        <view class="mar40 mar15 line2" style="color:#A1A1A1; font-weight:unset;">
+            {{info.address}}
+        </view>
     </view>
     <view class="shopmsg">
         <view class="order-details-text">
@@ -47,22 +49,6 @@
             <text>{{info.createTime}}</text>
         </view>
         <view class="msgitem">
-            <text>申请退款时间:</text>
-            <text>{{info.refundTime}}</text>
-        </view>
-        <view class="msgitem">
-            <text>申请退款理由:</text>
-            <text>{{info.refund_msg}}</text>
-        </view>
-        <view class="msgitem" wx:if="{{info.answer_msg!==''}}">
-            <text>拒绝理由:</text>
-            <text>{{info.answer_msg}}</text>
-        </view>
-        <view class="msgitem">
-            <text>支付方式:</text>
-            <text>微信</text>
-        </view>
-        <view class="msgitem">
             <text>订单编号:</text>
             <text class="textinline">{{info.order_number}}</text>
         </view>
@@ -70,13 +56,31 @@
             <text>交易流水号:</text>
             <text class="textinline">{{info.transaction}}</text>
         </view>
-        <view class="msgitem0">
+        <view class="msgitem">
+            <text>支付方式:</text>
+            <text>微信</text>
+        </view>
+        <view class="msgitem">
+            <text>配送方式:</text>
+            <text>{{info.type==1?'商家配送':'到店自取'}}</text>
+        </view>
+        <view class="msgitem">
             <text>订单备注:</text>
             <text>{{info.remark}}</text>
         </view>
+        <view class="msgitem">
+            <text>申请退款时间:</text>
+            <text>{{info.refundTime}}</text>
+        </view>
+        <view class="msgitem">
+            <text>申请退款理由:</text>
+            <text>{{info.refund_msg}}</text>
+        </view>
+        <view class="msgitem0" wx:if="{{info.answer_msg!==''}}">
+            <text>拒绝理由:</text>
+            <text>{{info.answer_msg}}</text>
+        </view>
     </view>
-    <button type="primary" wx:if="{{info.answer_msg!==''}}" bindtap="goFeedback">
-        申请客服介入
-    </button>
+    <button type="primary" wx:if="{{info.answer_msg!==''}}" bindtap="goFeedback">申请客服介入</button>
 </view>
 <!-- 待退款内容结束 -->

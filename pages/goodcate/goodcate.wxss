@@ -1,5 +1,5 @@
 .fadedcolor {
-    background: linear-gradient(#ccc, #fff);
+    background: linear-gradient(#d7d7d7, #fff);
     background-color: #fff;
     position: fixed;
     height: 15rpx;
@@ -13,6 +13,33 @@
     position: fixed;
     bottom: 300rpx;
     right: 25rpx;
+}
+
+.icon_top image {
+    width: 85rpx;
+    height: 85rpx;
+    display: block;
+}
+
+.no_data {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #a8a8a8;
+    height: 70rpx;
+    font-size: 28rpx;
+    padding: 0 80rpx;
+    box-sizing: border-box;
+}
+
+.no_data::after,
+.no_data::before {
+    content: '';
+    display: block;
+    width: 80rpx;
+    height: 1rpx;
+    background: #e1e1e1;
 }
 
 .numoncar {
@@ -252,25 +279,11 @@
 
 .result-wrapper {
     background: #fff;
-    padding-bottom: 45rpx;
     position: absolute;
     right: 0;
     width: 590rpx;
+    height: 100%;
     overflow: scroll;
-}
-
-.result-wrapper::after {
-    content: "我是有底线的";
-    position: absolute;
-    bottom: 10rpx;
-    /* left: 212rpx; */
-    text-align: center;
-    font-size: 26rpx;
-    color: #a1a1a1;
-    width: 99%;
-    display: block;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
 }
 
 .hover {

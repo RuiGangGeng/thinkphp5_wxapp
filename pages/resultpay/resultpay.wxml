@@ -16,7 +16,7 @@
 
 	<!-- 支付失败展示结束 -->
 	<view class="msgbody" hidden="{{flag}}">
-		<icon type="warn" size="70" color="#ccc"></icon>
+		<icon type="warn" size="70" color="#d7d7d7"></icon>
 		<view>支付失败</view>
 		<view class="paymsg">
 			<text>尊敬的顾客，请重新发起支付吧！</text>

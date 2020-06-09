@@ -151,7 +151,6 @@ image {
 .noticebody {
     background-color: #fff;
     margin-top: 2%;
-    margin-bottom: 90rpx;
     border-radius: 10rpx;
 }
 

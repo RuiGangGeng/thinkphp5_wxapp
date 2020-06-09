@@ -42,10 +42,6 @@ page {
     background-color: #f2f2f2;
 }
 
-.itemmsg {
-    padding-bottom: 5rpx;
-}
-
 .gray {
     color: #797979;
     font-size: 30rpx;
@@ -124,10 +120,10 @@ page {
 }
 
 .reviews {
-    border: 1rpx solid #c4c4c4;
+    border: 1rpx solid #d7d7d7;
     border-radius: 10rpx;
     height: 130rpx;
-    color: #969696;
+    color: #666666;
 }
 
 .raisetitle {

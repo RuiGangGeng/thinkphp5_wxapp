@@ -13,7 +13,7 @@
 		</view>
 	</view>
 	<!--结果列表  -->
-	<view class="result-wrapper" wx:if="{{goodsList.length > 0}}">
+	<scroll-view bindscrolltolower="onReachBottom" scroll-top="{{scroll}}" bindscroll="bindscroll" scroll-y="{{true}}" class="result-wrapper asdasdasdasd" wx:if="{{goodsList.length > 0}}">
 		<view class="goods-item" wx:for="{{goodsList}}" wx:key="index" catchtap="gooddetail" data-id="{{item.id}}">
 			<image src="{{item.image}}" class="goods-image"></image>
 			<view class="goods-info">
@@ -32,12 +32,13 @@
 
 			</view>
 		</view>
-	</view>
-	<image class="icon_top" src="/image/icon_top.png" />
+		<!-- 数据到底展示效果 -->
+		<view wx:if="{{goodsList.length > 0}}" class="no_data">到底啦</view>
+	</scroll-view>
+	<!-- 返回顶部 -->
+	<view bindtap="bindTop" class="icon_top" hidden="{{scrollTop<100}}"><image src="/image/icon_top.png"/></view>
 	<!-- 无数据展示效果 -->
-	<view class="noData result-wrapper result-wrappers" wx:if="{{goodsList.length == 0}}">
-		暂无数据
-	</view>
+	<view class="noData result-wrapper result-wrappers" wx:if="{{goodsList.length == 0}}">暂无数据</view>
 </view>
 
 <!-- 底部购物车开始 -->
@@ -50,17 +51,14 @@
 	</view>
 	<view class="payaccount">
 		<view style="font-size:28rpx">
-			合计:
-			<text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
+			合计:<text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
 		</view>
-		<view class="colorg">
-			已优惠:
-			<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text>
+		<view class="colorg">已优惠:<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text>
 		</view>
 	</view>
 
-	<view wx:if="{{!totalPrice}}" class="nobalance text-lg text-fff">去结算</view>
+	<view wx:if="{{!is_show}}" class="nobalance text-lg text-fff">去结算</view>
 
-	<view bindtap="godoorder" wx:if="{{totalPrice}}" class="balance text-lg text-fff">去结算</view>
+	<view bindtap="godoorder" wx:if="{{is_show}}" class="balance text-lg text-fff">去结算</view>
 </view>
 <!-- 底部购物车结束 -->

@@ -93,19 +93,40 @@ Page({
     changegood: function(e) {
         let that = this
         let act = e.currentTarget.dataset.act
+        let msg = '';
+        switch (act) {
+            case 'up_goods':
+                msg = '确认上架产品么？'
+                break
+            case 'down_goods':
+                msg = '确认下架产品么？'
+                break
+            case 'delete_goods':
+                msg = '确认删除产品么？'
+                break
+        }
 
-        util.wxRequest("wechat/shop/" + act, { id: e.currentTarget.dataset.id }, res => {
-            wx.showToast({
-                title: res.msg,
-                icon: res.code == 200 ? 'success' : "none"
-            })
-        }, res => {}, res => {
-            that.setData({
-                list: [],
-                page: 0
-            })
-            that.loadData()
-        });
+        // 确认框
+        wx.showModal({
+            confirmColor: '#39a336',
+            title: '温馨提示',
+            content: msg,
+            success: res => {
+                if (res.confirm) {
+                    util.wxRequest("wechat/shop/" + act, { id: e.currentTarget.dataset.id }, res => {
+                        wx.showToast({
+                            title: res.msg,
+                            icon: res.code == 200 ? 'success' : "none"
+                        })
+                    }, res => {}, res => {
+                        setTimeout(function() {
+                            that.setData({ list: [], page: 0 })
+                            that.loadData()
+                        }, 1000)
+                    });
+                }
+            },
+        })
     },
 
     // 点击分类
@@ -123,27 +144,28 @@ Page({
         that.loadData();
     },
 
-    categoryDel: function (e) {
-      let that = this
-      wx.showModal({
-        title: '提示',
-        content: '您确定要删除该分类吗？',
-        success: function (res) {
-          res.confirm && util.wxRequest('wechat/Shop/categoryDel', { id: e.currentTarget.dataset.id }, res => {
-            wx.showToast({
-              title: res.msg,
-              icon: res.code == 200 ? 'success' : "none"
-            })
-          }, res => { }, res => {
-            that.onShow();
-          })
-        }
-      });
+    categoryDel: function(e) {
+        let that = this
+        wx.showModal({
+            title: '提示',
+            content: '您确定要删除该分类吗？',
+            success: function(res) {
+                res.confirm && util.wxRequest('wechat/Shop/categoryDel', { id: e.currentTarget.dataset.id }, res => {
+                    wx.showToast({
+                        title: res.msg,
+                        icon: res.code == 200 ? 'success' : "none"
+                    })
+                }, res => {}, res => { setTimeout(function() { that.onShow() }, 1000) })
+            }
+        });
     },
 
     // 加载数据
     loadData: function() {
         let that = this;
+
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
 
         let param = {
             shop_id: that.data.shop_id,
@@ -160,7 +182,9 @@ Page({
                 list: temp
             })
 
-            res.data.data.length == 0 ? wx.showToast({
+            wx.hideLoading()
+
+            res.data.data.length == 0 && res.data.current_page !== 1 ? wx.showToast({
                 title: '暂无更多数据',
                 icon: "none"
             }) : ''

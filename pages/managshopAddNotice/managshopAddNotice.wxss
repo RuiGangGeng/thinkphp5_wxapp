@@ -15,16 +15,11 @@ button {
 }
 
 .image {
-    font-size: 200rpx;
-    width: 200rpx;
-    height: 200rpx;
+    width: 300rpx;
+    height: 300rpx;
     border: 1rpx dashed #d7d7d7;
-    text-align: center;
-    line-height: 170rpx;
-    color: #d7d7d7;
     margin-top: 25rpx;
     border-radius: 10rpx;
-    background: #f8f7fc;
     overflow: hidden;
 }
 
@@ -70,4 +65,14 @@ button {
 
 .noneBorder {
     border: none;
+}
+
+textarea {
+    width: 100%;
+    border: 1rpx solid #d7d7d7;
+    height: 200rpx;
+    padding: 15rpx;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+    margin-bottom: 15rpx;
 }

@@ -42,24 +42,16 @@ Page({
 
     // 设置默认地址
     setDefault: function(e) {
-        var that = this;
-        let addrId = e.currentTarget.dataset.id;
-        let url = 'wechat/User/set_default';
-        let params = {
-            uid: app.globalData.user.id,
-            addrid: addrId,
-        };
-        this.setData({
-            addrId: addrId
-        })
+        var that = this
+        let addrId = e.currentTarget.dataset.id
+        let url = 'wechat/User/set_default'
+        let params = { uid: app.globalData.user.id, addrid: addrId }
+        this.setData({ addrId: addrId })
+
         util.wxRequest(url, params, data => {
-            var cartId = that.data.cartId;
+            var cartId = that.data.cartId
             if (data.code == 1) {
-                wx.showToast({
-                    title: data.msg,
-                    icon: 'success',
-                    duration: 2000
-                });
+                wx.showToast({ title: data.msg, icon: 'success', duration: 2000 })
                 let addrId = that.data.addrId
                 let temp = that.data.address
                 for (let i of temp) {
@@ -72,16 +64,10 @@ Page({
                         i.is_default = ''
                     }
                 }
-                this.setData({
-                    address: temp
-                })
+                this.setData({ address: temp })
                 app.globalData.refresh = true
             } else {
-                wx.showToast({
-                    title: data.msg,
-                    icon: 'warn',
-                    duration: 2000
-                });
+                wx.showToast({ title: data.msg, icon: 'warn', duration: 2000 })
             }
         });
     },

@@ -49,9 +49,9 @@
                                                 <text class="price">￥<text class="price__big" style="font-weight:bold;">{{wxs.formatValue(commodity.price, 'split')[0]}}</text>.<text>{{wxs.formatValue(commodity.price, 'split')[1]}}</text></text>
                                                 <text class="text-sm gray">￥{{commodity.price_orig}}</text> </view>
                                             <view class="btn-group">
-                                                <view class="btn-decrease" style="color:#19a335;" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
+                                                <view class="btn-decrease" style="color:#19a335;" data-shopidx="{{index}}" data-id="{{commodity.id}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
                                                 <view class="btn btn-count text-normal" style="font-size:32rpx;">{{commodity.count}}</view>
-                                                <view class="btn-increase" style="background:#19a335;color:#fff" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'increase'}}" catchtap="change">+</view>
+                                                <view class="btn-increase" style="background:#19a335;color:#fff" data-shopidx="{{index}}"data-id="{{commodity.id}}" data-index="{{idx}}" data-event="{{'increase'}}" catchtap="change">+</view>
                                             </view>
                                         </view>
                                     </view>
@@ -69,7 +69,7 @@
     <!-- 底部结算栏 -->
     <view class="accounts" hidden="{{!flag}}">
         <view class="colorgray" hidden="t">请进行单门店支付,避免出现错误哦~</view>
-        <view class="colorgray" hidden="t">消费满￥20直接上门配送</view>
+        <view class="colorgray" hidden="{{!is_show_deliveryPrice}}">消费满￥{{deliveryPrice}}直接上门配送</view>
         <view class="colorgray" hidden="t">消费满￥20上门配送，还差
             <text class="price">10</text>元哦~</view>
         <view class="account flex">
@@ -83,7 +83,7 @@
                     <text class="text-a1a1" style="font-size: 26rpx;">件商品</text>
                 </view>
             </view>
-            <view wx:if="{{accountInfo.allCount>0}}" class="balance text-lg text-fff" catchtap="doorder">去结算</view>
+            <view wx:if="{{is_show}}" class="balance text-lg text-fff" catchtap="doorder">去结算</view>
             <view wx:else class="balance2 text-lg text-fff">去结算</view>
         </view>
     </view>

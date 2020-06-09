@@ -1,99 +1,82 @@
 <wxs src="../../utils/format.wxs" module="wxs"></wxs>
 <view class="fadedf"></view>
 <view class="container">
-
-	<!-- 搜索框开始 -->
-	<view class="type-header-menu">
-		<view class="type-search">
-			<image src="/image/search.png" />
-			<input class="input active" type="text" confirm-type="search" maxlength="8" value="{{searchKey}}" placeholder="请输入您要找的商品" bindfocus="searchFocus" bindconfirm="search" bindblur="getvalue" bindinput="chanage" bindconfirm="bindconfirm"></input>
-			<view bindtap="tapsearch" class="header-search-btn">搜索</view>
-		</view>
-	</view>
-	<!-- 搜索狂结束 -->
-
-	<view hidden="{{!searchHidden}}" class="search-cont-box" wx:if="{{recentSearch.length && searchHidden}}">
-		<view class="title-and-btn">
-			<view class="title">搜索历史</view>
-			<view class="btn" bindtap="clearHistory">
-				<image src="/image/del.png" />
-			</view>
-		</view>
-		<view class="keywords-li">
-			<block wx:for="{{recentSearch}}" wx:key="recent">
-				<view bindtap="goSearch" class="item" data-text="{{item}}">{{item}}</view>
-			</block>
-		</view>
-	</view>
-
+    <!-- 搜索框开始 -->
+    <view class="type-header-menu">
+        <view class="type-search">
+            <image src="/image/search.png" />
+            <input class="input active" type="text" confirm-type="search" maxlength="8" value="{{searchKey}}" placeholder="请输入您要找的商品" bindfocus="searchFocus" bindconfirm="search" bindblur="getvalue" bindinput="chanage" bindconfirm="bindconfirm"></input>
+            <view bindtap="tapsearch" class="header-search-btn">搜索</view>
+        </view>
+    </view>
+    <!-- 搜索框结束 -->
+    <view hidden="{{!searchHidden}}" class="search-cont-box" wx:if="{{recentSearch.length && searchHidden}}">
+        <view class="title-and-btn">
+            <view class="title">搜索历史</view>
+            <view class="btn" bindtap="clearHistory"><image src="/image/del.png" /></view>
+        </view>
+        <view class="keywords-li">
+            <block wx:for="{{recentSearch}}" wx:key="recent">
+                <view bindtap="goSearch" class="item" data-text="{{item}}">{{item}}</view>
+            </block>
+        </view>
+    </view>
 </view>
 
 <view hidden="{{!searchHidden}}" wx:if="{{!recentSearch.length || !searchHidden}}" class="search-cont-box">
-	<view class="title-and-btn">
-		<view class="title">搜索历史</view>
-		<view class="btn" bindtap="clearHistory">
-			<image src="/image/del.png" />
-		</view>
-	</view>
-	<view class="keywords-li">
-		暂无搜索历史
-	</view>
+    <view class="title-and-btn">
+        <view class="title">搜索历史</view>
+        <view class="btn" bindtap="clearHistory">
+            <image src="/image/del.png" />
+        </view>
+    </view>
+    <view class="keywords-li">暂无搜索历史</view>
 </view>
-
 
 <view class="search-box {{iponesc}}">
-
-	<!--结果列表  -->
-	<view class="goods-item" wx:for="{{list}}" wx:key="index" catchtap="toDetailTap" data-id="{{item.id}}">
-		<image src="{{item.image}}" class="goods-image"></image>
-		<view class="goods-info">
-			<view class="textinline hei150">{{item.name}}</view>
-			<view class="goods-text">
-				<view class="sendpdt">送货上门</view>
-				<view class="price-wrapper">
-          <text class="price">￥<text class="price__big">{{wxs.formatValue(item.price, 'split')[0]}}</text>.<text>{{wxs.formatValue(item.price, 'split')[1]}}</text></text>
-					<text class="oldprice">￥{{item.price_orig}}</text>
-					<image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{item}}"></image>
-					<block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
-						<view wx:if="{{dayItem.id == item.id}}" class="numoncar">{{dayItem.count}}</view>
-					</block>
-				</view>
-			</view>
-
-		</view>
-	</view>
-
-	<!-- 没有找到搜索信息开始 -->
-	<view class="goods-none" hidden="{{noneHidden}}">
-		<image src="/image/search_empty.png" />
-		<text style="color:#000">抱歉，没有找到"{{searchKey}}"的相关查询结果</text>
-		<text>请尝试搜索其他关键词</text>
-	</view>
-	<!-- 没有找到搜索信息结束 -->
+    <!-- 结果列表 -->
+    <view class="goods-item" wx:for="{{list}}" wx:key="index" catchtap="toDetailTap" data-id="{{item.id}}">
+        <image src="{{item.image}}" class="goods-image"></image>
+        <view class="goods-info">
+            <view class="textinline hei150">{{item.name}}</view>
+            <view class="goods-text">
+                <view class="sendpdt">送货上门</view>
+                <view class="price-wrapper">
+                    <text class="price">￥<text class="price__big">{{wxs.formatValue(item.price, 'split')[0]}}</text>.<text>{{wxs.formatValue(item.price, 'split')[1]}}</text></text>
+                    <text class="oldprice">￥{{item.price_orig}}</text>
+                    <image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{item}}"></image>
+                    <block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
+                        <view wx:if="{{dayItem.id == item.id}}" class="numoncar">
+                            {{dayItem.count}}
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 没有找到搜索信息开始 -->
+    <view class="goods-none" hidden="{{noneHidden}}">
+        <image src="/image/search_empty.png" />
+        <text style="color:#000">抱歉，没有找到"{{searchKey}}"的相关查询结果</text>
+        <text>请尝试搜索其他关键词</text>
+    </view>
+    <!-- 没有找到搜索信息结束 -->
 </view>
-
-
 <!-- 底部购物车开始 -->
 <view class="accounts flex">
-	<view class="checkAll flex text-normal">
-		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
-			<image src="/image/goodcar.png" class="goodcar"></image>
-			<view class="cricle" wx:if="{{totalGoods}}">{{totalGoods}}</view>
-		</navigator>
-	</view>
-	<view class="payaccount">
-		<view style="font-size:28rpx">
-			合计:
-      <text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
-		</view>
-		<view class="colorg">
-			已优惠:
-			<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text>
-		</view>
-	</view>
-
-	<view wx:if="{{!totalPrice}}" class="nobalance text-lg text-fff">去结算</view>
-
-	<view bindtap="godoorder" wx:if="{{totalPrice}}" class="balance text-lg text-fff">去结算</view>
+    <view class="checkAll flex text-normal">
+        <navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
+            <image src="/image/goodcar.png" class="goodcar"></image>
+            <view class="cricle" wx:if="{{totalGoods}}">{{totalGoods}}</view>
+        </navigator>
+    </view>
+    <view class="payaccount">
+        <view style="font-size:28rpx">
+            合计:<text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
+        </view>
+        <view class="colorg">已优惠:<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text></view>
+    </view>
+    <view wx:if="{{!is_show}}" class="nobalance text-lg text-fff">去结算</view>
+    <view bindtap="godoorder" wx:if="{{is_show}}" class="balance text-lg text-fff">去结算</view>
 </view>
 <!-- 底部购物车结束 -->

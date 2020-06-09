@@ -78,8 +78,8 @@
 		</view>
 	</view>
 
-	<view wx:if="{{!totalPrice}}" class="nobalance text-lg text-fff">去结算</view>
+	<view wx:if="{{!is_show}}" class="nobalance text-lg text-fff">去结算</view>
 
-	<view bindtap="godoorder" wx:if="{{totalPrice}}" class="balance text-lg text-fff">去结算</view>
+	<view bindtap="godoorder" wx:if="{{is_show}}" class="balance text-lg text-fff">去结算</view>
 </view>
 <!-- 底部购物车结束 -->

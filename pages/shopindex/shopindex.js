@@ -1,4 +1,3 @@
-// pages/shopindex/shopindex.js
 const app = getApp()
 const util = require('../../utils/util.js')
 Page({
@@ -10,6 +9,8 @@ Page({
         swiper: [],
         shopid: false,
         shopname: false,
+        page: 0,
+        onAsync: false,
     },
 
     onLoad: function(options) {
@@ -47,14 +48,7 @@ Page({
             }
         })
 
-        // 获取门店公告
-        util.wxRequest('wechat/Shop/getNotice', { shop_id: options.shopid }, res => {
-            if (res.code == 200) {
-                this.setData({
-                    notice: res.data,
-                })
-            }
-        })
+        this.loadData()
     },
 
     // 点击分类导航事件
@@ -73,4 +67,37 @@ Page({
         })
     },
 
+    // 上拉加载
+    onReachBottom: function() {
+        this.loadData()
+    },
+
+    // 加载数据
+    loadData: function() {
+        let that = this
+        if (that.data.onAsync) return false
+
+        that.setData({ onAsync: true })
+
+        let param = {
+            page: that.data.page + 1,
+            shop_id: that.data.shopid
+        }
+
+        util.wxRequest("wechat/Shop/getNotice", param, res => {
+            let temp = that.data.notice.concat(res.data.data)
+
+            that.setData({
+                notice: temp,
+                page: res.data.current_page,
+                onAsync: false
+            })
+
+            res.data.data.length == 0 && res.data.current_page !== 1 ? wx.showToast({
+                title: '暂无更多公告信息',
+                icon: "none"
+            }) : ''
+
+        })
+    },
 })

@@ -139,10 +139,11 @@ page {
 }
 
 .gray {
-    /* color: #ccc; */
+    color: #a1a1a1;
     text-decoration: line-through;
     margin-left: 10rpx;
-    font-weight: 100;
+    font-size: 26rpx;
+    font-weight: normal;
 }
 
 .btn-remove.show {
@@ -223,7 +224,7 @@ page {
     align-items: center;
     background-color: #fff;
     border-top: 2rpx solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 30rpx #ccc;
+    box-shadow: 0 0 30rpx #d7d7d7;
 }
 
 .checkAll {
@@ -292,9 +293,9 @@ page {
     font-size: 28rpx;
     /* font-weight: bold; */
 }
-.btn-group{
+
+.btn-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }

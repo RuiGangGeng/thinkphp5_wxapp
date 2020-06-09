@@ -21,7 +21,7 @@ page {
     width: 135rpx;
     height: 135rpx;
     border-radius: 8rpx;
-    border: 1rpx solid #CCC;
+    border: 1rpx solid #d7d7d7;
     overflow: hidden;
 }
 
@@ -100,16 +100,17 @@ page {
 
 .search_box input {
     font-size: 28rpx;
-    height: 55rpx;
+    height: 65rpx;
     width: 100%;
     background: #f1f1f1;
     border-radius: 100rpx;
     padding: 0 35rpx 0 65rpx;
+    line-height: 65rpx;
 }
 
 .search_box icon {
     position: absolute;
-    top: 38rpx;
+    top: 33rpx;
     left: 25rpx;
 }
 
@@ -135,9 +136,11 @@ page {
     justify-content: center;
     align-items: center;
 }
-.operateone>view:first-child{
+
+.operateone>view:first-child {
     justify-content: flex-start;
 }
+
 .operateone>view:last-child {
     width: 500rpx;
     height: 100%;
@@ -157,6 +160,7 @@ page {
     padding: 5rpx;
     background: #f2f2f2f2;
     color: #777777;
+    font-weight: bold;
 }
 
 .operatetwo {
@@ -177,6 +181,7 @@ page {
     background: #39a336;
     color: white;
     font-size: 26rpx;
+    font-weight: bold;
 }
 
 .mini {
@@ -200,16 +205,19 @@ scroll-view {
     background: #f4f4f4;
     overflow: hidden;
 }
-.texttwoline{
+
+.texttwoline {
     font-weight: bold;
 }
-.goods_price{
+
+.goods_price {
     font-weight: bold;
 }
-.sidebar image{
+
+.sidebar image {
     width: 35rpx;
     height: 35rpx;
-    vertical-align:middle;
+    vertical-align: middle;
     margin-left: 10rpx;
 }
 
@@ -218,12 +226,9 @@ scroll-view {
     line-height: 85rpx;
     width: 80%;
     padding: 0 10%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; */
-    color: #292929;
+    color: #434343;
     font-size: 28rpx;
+    font-weight: bold;
 }
 
 .list {

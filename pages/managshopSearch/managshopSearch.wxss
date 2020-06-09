@@ -24,3 +24,18 @@
     height: 170rpx;
     display: block;
 }
+
+.no_data {
+    width: 239rpx;
+    height: 256rpx;
+    display: block;
+    margin: 0 auto;
+}
+
+.no_data_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 500rpx;
+}

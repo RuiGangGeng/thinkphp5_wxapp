@@ -163,7 +163,7 @@ page {
 }
 
 .disabled {
-    background-color: #ccc;
+    background-color: #d7d7d7;
 }
 
 .loginShadow {

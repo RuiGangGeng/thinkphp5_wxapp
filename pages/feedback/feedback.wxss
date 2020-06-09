@@ -1,50 +1,51 @@
 /* pages/feedback/feedback.wxss */
 
 page {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .width90 {
-  width: 90%;
-  padding: 20rpx;
-  border-radius: 15rpx;
-  background-color: #fff;
-  margin: 20rpx;
-  border:1rpx solid #ccc; 
+    width: 90%;
+    padding: 20rpx;
+    border-radius: 15rpx;
+    background-color: #fff;
+    margin: 20rpx;
+    border: 1rpx solid #d7d7d7;
 }
 
-.btn{
-  width: 360rpx;
-  height: 90rpx;
-  position: fixed;
-  bottom: 180rpx;
-  display: flex;
-  width: 100%;
-  justify-content: center;
+.btn {
+    width: 360rpx;
+    height: 90rpx;
+    position: fixed;
+    bottom: 180rpx;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
+
 button {
-  width: 360rpx;
-  height: 90rpx;
-  background: #39a336;
+    width: 360rpx;
+    height: 90rpx;
+    background: #39a336;
 }
 
 .sucview {
-  text-align: center;
-  padding-top: 20%;
-  position: absolute;
-  z-index: 20;
-  background-color: #fff;
-  width: 100%;
-  top: 0;
-  height: calc(100% - 15rpx);
+    text-align: center;
+    padding-top: 20%;
+    position: absolute;
+    z-index: 20;
+    background-color: #fff;
+    width: 100%;
+    top: 0;
+    height: calc(100% - 15rpx);
 }
 
 .mar20 {
-  margin: 20rpx auto;
+    margin: 20rpx auto;
 }
 
 .colorgray {
-  color: #a8a8a8;
-  margin-top: 8%;
-  font-size: 30rpx;
+    color: #a8a8a8;
+    margin-top: 8%;
+    font-size: 30rpx;
 }

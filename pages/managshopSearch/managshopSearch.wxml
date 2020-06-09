@@ -19,7 +19,8 @@
 		</view>
 	</scroll-view>
 
-	<view wx:if="{{list.length == 0 && noSearch}}">
-		<text class="noData" style="font-size: 28rpx;">抱歉，没有找到"{{searchKey}}"的相关查询结果</text>
+	<view class="no_data_box" wx:if="{{list.length == 0 && noSearch}}">
+		<image class="no_data" src="/image/search_empty.png" />
+		<text class="noData" style="font-size: 28rpx; margin:unset;">抱歉，没有找到"{{searchKey}}"的相关查询结果</text>
 	</view>
 </view>

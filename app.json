@@ -28,7 +28,8 @@
         "pages/settleshop/settleshop",
         "pages/comments/comments",
         "pages/refundsDtails/refundsDtails",
-        "pages/managshopSearch/managshopSearch"
+        "pages/managshopSearch/managshopSearch",
+        "pages/managshopAddNotice/managshopAddNotice"
     ],
     "window": {
         "backgroundTextStyle": "light",

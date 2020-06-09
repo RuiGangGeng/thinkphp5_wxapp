@@ -1,0 +1,19 @@
+<view class="fadedf"></view>
+<view class="form">
+    <view class="item">
+        <label>公告标题：</label>
+        <input placeholder="请输入标题" maxlength="150" bindinput="bindInput" data-field="title" value="{{param.title}}"></input>
+    </view>
+    <view class="item column">
+        <label>公告图片</label>
+        <view class="image" bindtap="chooseImage">
+            <image src="{{param.image}}"></image>
+        </view>
+    </view>
+    <view class="item noneBorder" style="margin-top:40rpx;">
+        <textarea cols="30" rows="10" placeholder="请输入公告内容" bindinput="bindInput" data-field="content" value="{{param.content}}"></textarea>
+    </view>
+</view>
+<view class="btnBox">
+    <button type="primary" bindtap="onSubmit" disabled="{{onAsync}}">确定</button>
+</view>

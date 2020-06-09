@@ -8,7 +8,7 @@
     border-radius: 10rpx;
     padding: 15rpx;
     height: 200rpx;
-    border: 1rpx solid #CCC;
+    border: 1rpx solid #d7d7d7;
 }
 
 .padd5 {
@@ -42,10 +42,10 @@ input {
     font-size: 200rpx;
     width: 200rpx;
     height: 200rpx;
-    border: 1rpx dashed #ccc;
+    border: 1rpx dashed #d7d7d7;
     text-align: center;
     line-height: 170rpx;
-    color: #ccc;
+    color: #d7d7d7;
     margin: 30rpx 0;
     border-radius: 10rpx;
     background: #f8f7fc;

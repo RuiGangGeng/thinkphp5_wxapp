@@ -40,6 +40,7 @@ App({
         status_bar_height: wx.getSystemInfoSync()['statusBarHeight'], // 主页顶部偏移量
 
         shop_id: false, // 用户产品搜索传参
+        deliveryPrice: false, // 用户产品搜索传参
         refresh: false, // 用户切换了收货地址是否需要更新首页商家列表
     },
 

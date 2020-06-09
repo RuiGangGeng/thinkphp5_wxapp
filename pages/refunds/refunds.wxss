@@ -181,7 +181,7 @@ page {
     background-color: #fff;
     padding: 20rpx;
     border-radius: 10rpx;
-    border: 1rpx solid #ccc;
+    border: 1rpx solid #d7d7d7;
 }
 
 .ordermsg {
@@ -196,7 +196,7 @@ page {
     display: flex;
     justify-content: space-between;
     height: 70rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #d7d7d7;
     line-height: 70rpx;
     color: #666666;
 }

@@ -1,13 +1,11 @@
-<!--pages/noticedel/noticedel.wxml-->
-
 <!-- 颜色渐变样式开始 -->
-<view class="fadedcolor">
-</view>
+<view class="fadedf"></view>
 <!-- 颜色渐变样式结束 -->
 
 <view class="noticebody">
   <view class="noticetil">{{notice.title}}</view>
   <view class="timecolor">{{notice.createTime}}</view>
+  <image src="{{notice.image}}"></image>
   <!-- 富文本解析开始 -->
   <!--pages/about/about.wxml-->
   <import src="../../wxParse/wxParse.wxml" />

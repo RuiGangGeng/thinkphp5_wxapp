@@ -93,6 +93,34 @@
 					"pathName": "pages/refundsDtails/refundsDtails",
 					"query": "id=165",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/doorder/doorder",
+					"pathName": "pages/doorder/doorder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/goodcate/goodcate",
+					"pathName": "pages/goodcate/goodcate",
+					"query": "shop_id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/managshopAddNotice/managshopAddNotice",
+					"pathName": "pages/managshopAddNotice/managshopAddNotice",
+					"query": "shop_id=2",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "pages/refundsDtails/refundsDtails",
+					"pathName": "pages/refundsDtails/refundsDtails",
+					"query": "id=2",
+					"scene": null
 				}
 			]
 		}

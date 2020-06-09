@@ -22,14 +22,14 @@ Page({
     },
 
     onLoad: function(options) {
-        var that = this;
-        util.wxRequest('wechat/Shop/getShopName', { shop_id: app.globalData.shop_id }, res => {
-            that.setData({
-                shopname: res.name
-            })
-        })
+        var that = this
+        util.wxRequest('wechat/Shop/getShopName', { shop_id: app.globalData.shop_id }, res => { that.setData({ shopname: res.name }) })
 
-        var pdtincar = wx.getStorageSync('pdtincar');
+        this.setData({ shop_id: app.globalData.shop_id })
+    },
+
+    onShow: function() {
+        var pdtincar = wx.getStorageSync('pdtincar')
         if (pdtincar) {
             var pagearr = pdtincar.commodities;
             var pagegoodsincar = [];
@@ -39,14 +39,9 @@ Page({
                 }
             })
         }
-
-        that.countInfoAtThisShop(pdtincar, that, app.globalData.shop_id)
-        this.setData({
-            goodsincar: pagegoodsincar,
-            shop_id: app.globalData.shop_id
-        })
+        this.setData({ goodsincar: pagegoodsincar })
+        this.countInfoAtThisShop(pdtincar, this, app.globalData.shop_id)
     },
-
     // 搜索框获取焦点
     searchFocus: function() {
         let recentSearch = wx.getStorageSync('recentSearch') || [];
@@ -75,16 +70,16 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
+        var that = this
         var data = e.currentTarget.dataset.msg;
 
+        let is_show = false
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0;
         var newnum = 1 * oldnum + 1;
         var numstr = newnum.toString();
-        this.setData({
-            num: numstr
-        })
-        var that = this;
-        data.shopname = that.data.shopname;
+        this.setData({ num: numstr })
+        data.shopname = that.data.shopname
+        data.deliveryPrice = app.globalData.deliveryPrice
         storage.operateCar(data, that)
 
         //改变当前页底部购物车展示
@@ -114,7 +109,12 @@ Page({
             newgoodsincar = [data];
         }
 
+        if (app.globalData.deliveryPrice <= totalPrice) {
+            is_show = true
+        }
+
         that.setData({
+            is_show: is_show,
             goodsincar: newgoodsincar,
             totalGoods: totalGoods,
             totalPrice: totalPrice,
@@ -127,11 +127,12 @@ Page({
         if (!pdtincar) {
             var arr = []
         } else {
-            var arr = pdtincar.commodities;
+            var arr = pdtincar.commodities
         }
-        var totalGoods = false;
-        var totalPrice = false;
-        var totalFavorable = false;
+        var totalGoods = false
+        var totalPrice = false
+        var totalFavorable = false
+        let is_show = false
         if (arr) {
             var num = arr.length;
         } else {
@@ -139,12 +140,18 @@ Page({
         }
         for (let i = 0; i < num; i++) {
             if (arr[i] && arr[i].shopid == id) {
-                totalGoods = arr[i].account;
-                totalPrice = arr[i].totalPrice;
-                totalFavorable = arr[i].totalfav;
+                totalGoods = arr[i].account
+                totalPrice = arr[i].totalPrice
+                totalFavorable = arr[i].totalfav
             }
         }
+
+        if (app.globalData.deliveryPrice <= totalPrice) {
+            is_show = true
+        }
+
         that.setData({
+            is_show: is_show,
             totalGoods: totalGoods,
             totalPrice: totalPrice,
             totalFavorable: totalFavorable
@@ -207,7 +214,7 @@ Page({
     // 跳转商品详情
     toDetailTap: function(e) {
         wx.navigateTo({
-            url: "/pages/gooddetail/gooddetail?id=" + e.currentTarget.dataset.id
+            url: "/pages/gooddetail/gooddetail?id=" + e.currentTarget.dataset.id + "&deliveryPrice=" + app.globalData.deliveryPrice
         })
     },
 

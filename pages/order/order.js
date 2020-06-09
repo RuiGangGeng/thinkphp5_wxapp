@@ -67,6 +67,8 @@ Page({
         this.setData({
             list: [],
             page: 0,
+            is_refund: false,
+            is_score: !1,
         })
         this.loadData()
     },
@@ -216,12 +218,16 @@ Page({
                 title: res.msg,
                 icon: res.code == 200 ? 'success' : 'none'
             })
-            this.setData({
-                list: [],
-                page: 0,
-                is_refund: false
-            })
-            this.loadData()
+            if (res.code == 200) {
+                setTimeout(() => { wx.navigateTo({ url: "/pages/refunds/refunds" }) }, 1000)
+            } else {
+                this.setData({
+                    list: [],
+                    page: 0,
+                    is_refund: false
+                })
+                this.loadData()
+            }
         })
     },
 
@@ -304,14 +310,18 @@ Page({
                 title: res.msg,
                 icon: res.code == 200 ? 'success' : 'none'
             })
-            that.setData({
-                list: [],
-                page: 0,
-                is_score: !1,
-                comment: '',
-                refund_msg: '',
-            })
-            that.loadData()
+            if (res.code == 200) {
+                setTimeout(() => { wx.navigateTo({ url: "/pages/myappraise/myappraise" }) }, 1000)
+            } else {
+                that.setData({
+                    list: [],
+                    page: 0,
+                    is_score: !1,
+                    comment: '',
+                    refund_msg: '',
+                })
+                that.loadData()
+            }
         })
     },
 

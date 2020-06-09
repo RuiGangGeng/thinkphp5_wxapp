@@ -11,51 +11,39 @@ Page({
         comment: '',
         stars: [{
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host + "public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host + "public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host + "public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host + "public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             },
             {
                 flag: 1,
-                bgImg: "/image/star.png",
-                bgfImg: "/image/fstar.png"
+                bgImg: app.globalData.api_host + "public/uploads/category/star.png",
+                bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             }
         ],
     },
 
     onLoad: function(e) {
-        this.setData({
-            id: e.id,
-            act: e.act
-        })
-        util.wxRequest("wechat/order/orderDetail", {
-            id: e.id,
-        }, res => {
-            this.setData({
-                info: res.data,
-                goods: res.data.order_detail
-            })
+        this.setData({ id: e.id, act: e.act })
+        util.wxRequest("wechat/order/orderDetail", { id: e.id, }, res => {
+            this.setData({ info: res.data, goods: res.data.order_detail })
             if (res.data.createTimes === false && res.data.status == 0) {
-                this.setData({
-                    act: 'pay_'
-                })
-                util.wxRequest("wechat/Order/cancelOrder", {
-                    id: e.id
-                }, res => {})
+                this.setData({ act: 'pay_' })
+                util.wxRequest("wechat/Order/cancelOrder", { id: e.id }, res => {})
             }
         })
     },
@@ -74,39 +62,23 @@ Page({
                     package: res.data.pay.package,
                     signType: res.data.pay.signType,
                     paySign: res.data.pay.sign,
-                    success() {
-                        wx.redirectTo({
-                            url: '/pages/resultpay/resultpay?code=200',
-                        })
-                    },
-                    fail(e) {
-                        if (e.errMsg == "requestPayment:fail cancel") {
-                            wx.redirectTo({
-                                url: '/pages/resultpay/resultpay?code=500',
-                            })
-                        }
-                    },
                     complete() {
-                        util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {})
+                        wx.showLoading({ title: '查询订单状态', mask: true })
+                        util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {
+                            wx.hideLoading()
+                            wx.navigateBack()
+                        })
                     }
                 })
             } else {
-                wx.showToast({
-                    title: res.msg,
-                    icon: 'none'
-                })
-                // setTimeout(function() {
-                //     wx.navigateBack()
-                // }, 500)
+                wx.showToast({ title: res.msg, icon: 'none' })
             }
         })
     },
 
     //点击取消订单
     canclorder: function(e) {
-        let param = {
-            id: e.currentTarget.dataset.id
-        }
+        let param = { id: e.currentTarget.dataset.id }
         wx.showModal({
             confirmColor: '#39a336',
             title: '温馨提示',
@@ -114,13 +86,8 @@ Page({
             success: res => {
                 if (res.confirm) {
                     util.wxRequest("wechat/Order/cancelOrder", param, res => {
-                        wx.showToast({
-                            title: res.msg,
-                            icon: res.code == 200 ? 'success' : 'none'
-                        })
-                        setTimeout(function() {
-                            wx.navigateBack()
-                        })
+                        wx.showToast({ title: res.msg, icon: res.code == 200 ? 'success' : 'none' })
+                        setTimeout(function() { wx.navigateBack() }, 1000)
                     })
                 }
             },
@@ -128,41 +95,26 @@ Page({
     },
 
     //点击去评价
-    givewords: function(e) {
-        this.setData({
-            is_score: true,
-            id: e.currentTarget.dataset.id
-        })
-    },
+    givewords: function(e) { this.setData({ is_score: true, id: e.currentTarget.dataset.id }) },
 
     // 监听评价输入
-    bindinput: function(e) {
-        this.setData({
-            comment: e.detail.value
-        })
-    },
+    bindinput: function(e) { this.setData({ comment: e.detail.value }) },
 
     // 打分
     grade: function(e) {
         let that = this
-        let val = 0;
+        let val = 0
         let temp_start = that.data.stars
-        for (let i of temp_start) {
-            i.flag == 2 ? val++ : ''
-        }
+
+        for (let i of temp_start) i.flag == 2 ? val++ : ''
+
         if (that.data.comment == '') {
-            wx.showToast({
-                title: '请输入评价',
-                icon: 'none'
-            })
-            return false;
+            wx.showToast({ title: '请输入评价', icon: 'none' })
+            return false
         }
         if (val == 0) {
-            wx.showToast({
-                title: '请选择评分',
-                icon: 'none'
-            })
-            return false;
+            wx.showToast({ title: '请选择评分', icon: 'none' })
+            return false
         }
         let param = {
             id: that.data.id,
@@ -170,38 +122,33 @@ Page({
             comment: that.data.comment,
         }
         util.wxRequest("wechat/Order/evaluateOrder", param, res => {
-            wx.showToast({
-                title: res.msg,
-                icon: res.code == 200 ? 'success' : 'none'
-            })
-            setTimeout(function() {
-                wx.navigateBack()
-            }, 1500)
+            wx.showToast({ title: res.msg, icon: res.code == 200 ? 'success' : 'none' })
+
+            if (res.code == 200) {
+                setTimeout(() => { wx.navigateTo({ url: "/pages/myappraise/myappraise" }) }, 1000)
+            } else {
+                this.setData({ list: [], page: 0, is_refund: false })
+                this.loadData()
+            }
         })
     },
 
     // 取消打分
-    grade_: function() {
-        this.setData({
-            is_score: false
-        })
-    },
+    grade_: function() { this.setData({ is_score: false }) },
 
     // 评分星级
     score: function(e) {
-        var that = this;
+        var that = this
         for (var i = 0; i < that.data.stars.length; i++) {
-            var allItem = 'stars[' + i + '].flag';
+            var allItem = 'stars[' + i + '].flag'
             that.setData({
-                [allItem]: 1
-            })
+                [allItem]: 1 })
         }
         var index = e.currentTarget.dataset.index;
         for (var i = 0; i <= index; i++) {
-            var item = 'stars[' + i + '].flag';
+            var item = 'stars[' + i + '].flag'
             that.setData({
-                [item]: 2
-            })
+                [item]: 2 })
         }
     },
 })

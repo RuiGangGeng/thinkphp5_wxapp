@@ -1,51 +1,49 @@
-/* pages/addcoupon/addcoupon.wxss */
 @import '../managshop/managshop.wxss';
-
 .mar20 {
-  margin-top: 30rpx;
-  padding: 25rpx 20rpx 0 20rpx;
+    margin-top: 30rpx;
+    padding: 25rpx 20rpx 0 20rpx;
 }
 
 .bottomb {
-  padding-bottom: 30rpx;
-  width: 94%;
-  margin-left: 3%;
-  border-bottom: 0.5px solid #ccc;
+    padding-bottom: 30rpx;
+    width: 94%;
+    margin-left: 3%;
+    border-bottom: 0.5px solid #d7d7d7;
 }
 
 .bodycou {
-  width: 94%;
-  margin-left: 3%;
+    width: 94%;
+    margin-left: 3%;
 }
 
 .item {
-  border-top: 1rpx solid #f4f4f4;
-  display: flex;
-  align-items: center;
-  width: 700rpx;
-  margin: 0 25rpx;
-  height: 85rpx;
+    border-top: 1rpx solid #f4f4f4;
+    display: flex;
+    align-items: center;
+    width: 700rpx;
+    margin: 0 25rpx;
+    height: 85rpx;
 }
 
 .bond {
-  width: 35rpx;
-  height: 35rpx;
-  border: 1rpx solid #39a336;
-  color: #39a336;
-  margin-right: 40rpx;
-  line-height: 35rpx;
-  text-align: center;
+    width: 35rpx;
+    height: 35rpx;
+    border: 1rpx solid #39a336;
+    color: #39a336;
+    margin-right: 40rpx;
+    line-height: 35rpx;
+    text-align: center;
 }
 
 button {
-  width: 360rpx;
-  height: 90rpx;
-  background-color: #39a336;
+    width: 360rpx;
+    height: 90rpx;
+    background-color: #39a336;
 }
 
 .btnBox {
-  margin-top: 150rpx;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    margin-top: 150rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

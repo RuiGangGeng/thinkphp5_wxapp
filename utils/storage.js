@@ -25,7 +25,7 @@ class Storage {
             commodities: []
         };
         data.count = 1;
-        data.selected = false;
+        data.selected = true;
         goodsIncar.commodities[0] = {
             shopid: data.shop_id,
             shopName: data.shopname,
@@ -33,7 +33,7 @@ class Storage {
             deliveryPrice: data.deliveryPrice,
             totalPrice: data.price,
             totalfav: (data.price_orig * 1 - data.price * 1).toFixed(2),
-            selected: false, //店铺全选
+            selected: true, //店铺全选
             //商品详情 array
             commodity: [
                 data
@@ -61,15 +61,19 @@ class Storage {
                 item.totalfav = (item.totalfav * 1 + data.price_orig * 1 - data.price * 1).toFixed(2);
                 var arr1 = item.commodity;
                 var s1 = false;
+                let s2 = false;
                 arr1.forEach(function(item1, index1) {
                     if (item1.id == data.id) {
                         item1.count = item1.count * 1 + 1;
                         s1 = true;
                     }
+                    if (item1.selected) {
+                        s2 = true
+                    }
                 })
                 if (!s1) {
                     data.count = 1;
-                    data.selected = false;
+                    data.selected = s2;
                     arr1.push(data);
                 }
                 arr.commodity = arr1;
@@ -78,8 +82,17 @@ class Storage {
             }
         })
         if (!s) {
+            let s2 = true
+            for (let i of arr) {
+                for (let j of i.commodity) {
+                    if (j.selected) {
+                        s2 = false
+                    }
+                }
+            }
+
             data.count = 1;
-            data.selected = false;
+            data.selected = s2;
             var newUnit = {
                 shopid: data.shop_id,
                 shopName: data.shopname,
@@ -87,7 +100,7 @@ class Storage {
                 totalPrice: data.price,
                 deliveryPrice: data.deliveryPrice,
                 totalfav: (data.price_orig * 1 - data.price * 1).toFixed(2),
-                selected: false,
+                selected: s2,
                 commodity: [
                     data
                 ]

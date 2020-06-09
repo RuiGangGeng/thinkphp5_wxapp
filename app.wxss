@@ -51,15 +51,6 @@ page {
     box-shadow: 0 0 10rpx #a8a8a8;
 }
 
-.faded {
-    height: 15rpx;
-    width: 100%;
-    background: linear-gradient(#ccc, #f2f2f2);
-    position: fixed;
-    top: 0;
-    z-index: 99999;
-}
-
 .fadedf {
     height: 1rpx;
     width: 100%;
@@ -132,7 +123,7 @@ body {
 }
 
 .text-ccc {
-    color: #ccc !important;
+    color: #d7d7d7 !important;
 }
 
 .text-fff {

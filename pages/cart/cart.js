@@ -1,7 +1,6 @@
 import Storage from '../../utils/storage'
 var storage = new Storage();
 const util = require('../../utils/util.js')
-    // pages/cart/cart.js
 const app = getApp();
 Page({
 
@@ -18,6 +17,8 @@ Page({
         },
         deliveryPrice: false,
         checkedAll: false,
+        is_show: false,
+        is_show_deliveryPrice: false
     },
 
     onShow: function() {
@@ -53,26 +54,45 @@ Page({
         }
         app.setCartNum(numstr)
 
-        var allCount = 0;
-        var allAccount = 0;
+        let allCount = 0
+        let allAccount = 0
+        let is_show = false
+        let is_show_deliveryPrice = false
+        let deliveryPrice = false
+
         if (pdt) {
             var arr = pdt.commodities;
-            arr.forEach(function(item, index) {
+            for (let item of arr) {
                 if (item != null) {
+                    let con = false;
                     (item.commodity).forEach(function(items, indexs) {
                         if (items && items.selected) {
+                            con = true
                             allCount = allCount + items.count;
                             allAccount = (allAccount * 1 + items.price * items.count).toFixed(2);
                         }
                     })
+                    deliveryPrice = item.deliveryPrice
+                    if (allAccount * 1 >= item.deliveryPrice * 1) {
+                        is_show = true
+                    } else {
+                        is_show_deliveryPrice = true
+                    }
+                    if (allAccount == 0) {
+                        is_show_deliveryPrice = false
+                    }
+                    if (con) {
+                        break
+                    }
                 }
-            })
+            }
         }
+
         this.setData({
-            accountInfo: {
-                allCount: allCount,
-                allAccount: allAccount
-            },
+            accountInfo: { allCount: allCount, allAccount: allAccount },
+            is_show: is_show,
+            is_show_deliveryPrice: is_show_deliveryPrice,
+            deliveryPrice: deliveryPrice
         })
     },
 
@@ -80,12 +100,13 @@ Page({
     change(ev) {
         let dataset = ev.currentTarget.dataset,
             event = dataset['event'],
+            id = dataset['id'],
             shopidx = dataset['shopidx'],
             commodityidx = dataset['index'],
             commodities = [].concat(this.data.commodities),
             count = commodities[shopidx]['commodity'][commodityidx].count;
         var allCount = this.data.accountInfo.allCount;
-        var allAccount = this.data.accountInfo.allAccount;
+        var allAccount = this.data.accountInfo.allAccount * 1;
 
         // 判断increase增加还是decrease减去
         if (event === 'decrease') {
@@ -96,7 +117,14 @@ Page({
 
                 commodities[shopidx].account = commodities[shopidx].account * 1 - 1;
 
-                delete commodities[shopidx]['commodity'][commodityidx];
+                let chanpin = commodities[shopidx]['commodity'][commodityidx]
+                if (chanpin.selected) {
+                    allCount -= chanpin.count * 1
+                    allAccount -= (chanpin.count * 1) * (chanpin.price * 1)
+                }
+
+                delete commodities[shopidx]['commodity'][commodityidx]
+
                 if (commodities[shopidx].account == 0) {
                     delete commodities[shopidx];
                 }
@@ -124,15 +152,43 @@ Page({
             var numstr = this.data.account * 1 + 1;
         }
 
-        // 计算价格 判断是否到达了起送价格
-        for (let i of commodities[shopidx].commodity) {
+        let is_show = false
+        let is_show_deliveryPrice = false
 
+        // 计算价格 判断是否到达了起送价格
+        if (commodities[shopidx]) {
+            if (commodities[shopidx].commodity) {
+                for (let i of commodities[shopidx].commodity) {
+                    if (i) {
+                        if (i.selected && id == i.id) {
+                            if (event === 'increase') {
+                                allCount += 1
+                                allAccount += i.price * 1
+                            } else {
+                                allCount -= 1
+                                allAccount -= i.price * 1
+                            }
+                        }
+                    }
+                }
+                if (allAccount >= commodities[shopidx].deliveryPrice) {
+                    is_show = true
+                } else {
+                    is_show_deliveryPrice = true
+                }
+                if (allAccount == 0) {
+                    is_show_deliveryPrice = false
+                }
+            }
         }
 
         this.setData({
             commodities: commodities,
             account: numstr,
             accountInfo: { allCount: allCount, allAccount: allAccount },
+            is_show: is_show,
+            is_show_deliveryPrice: is_show_deliveryPrice,
+            deliveryPrice: commodities[shopidx] ? commodities[shopidx].deliveryPrice : false
         })
 
         var pdtincar = { account: numstr, commodities: commodities }
@@ -156,7 +212,6 @@ Page({
             wx.setStorageSync('pdtincar', null);
         }
     },
-
 
     // 选择 店铺 或 商品
     checked: function(ev) {
@@ -218,7 +273,7 @@ Page({
                 // 全部选中当前店铺包括商品
                 this.setSelected(commodities, shopidx, commodityIdx, true);
             }
-        };
+        }
 
     },
 
@@ -307,10 +362,33 @@ Page({
             accountInfo['allCount'] = accountInfo['allCount'] * 1 + allCount * 1;
             accountInfo['allAccount'] = accountInfo['allAccount'] * 1 + allAccount * 1;
         }
-        // accountInfo['allAccount'] = Number(accountInfo['allAccount']).toFixed(2).split('.');
+
+        let is_show = false
+        let is_show_deliveryPrice = false
+
+
+        if (accountInfo['allAccount'] >= commodities[shopidx].deliveryPrice) {
+            is_show = true
+        } else {
+            is_show_deliveryPrice = true
+        }
+
+        if (accountInfo['allAccount'] == 0) {
+            is_show_deliveryPrice = false
+        }
+
+        let temp = wx.getStorageSync('pdtincar');
+        var pdtincar = { account: temp.account, commodities: commodities }
+
+        // 设置缓存
+        wx.setStorageSync('pdtincar', pdtincar);
+
         this.setData({
             commodities,
-            accountInfo
+            accountInfo,
+            is_show: is_show,
+            is_show_deliveryPrice: is_show_deliveryPrice,
+            deliveryPrice: commodities[shopidx] ? commodities[shopidx].deliveryPrice : false
         })
     },
 

@@ -39,7 +39,7 @@
 .btn {
     width: 140rpx;
     height: 50rpx;
-    border: 1rpx solid #ccc;
+    border: 1rpx solid #d7d7d7;
     float: right;
     margin-right: 25rpx;
     border-radius: 25px;
@@ -51,7 +51,6 @@
 
 .pay {
     width: 703rpx;
-    height: 400rpx;
     margin: 0px auto;
     background-color: #fff;
     border-radius: 5px;
@@ -90,7 +89,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1rpx solid #CCC;
+    border-bottom: 1rpx solid #d7d7d7;
 }
 
 page {
@@ -145,7 +144,7 @@ page {
 
 textarea {
     width: 100%;
-    border: 1rpx solid #ccc;
+    border: 1rpx solid #d7d7d7;
     height: 150rpx;
     padding: 15rpx;
     border-radius: 10rpx;

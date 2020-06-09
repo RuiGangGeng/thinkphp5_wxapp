@@ -43,19 +43,27 @@
 
 <view class="backcorx">
 	<view class="flexrow">
-		<view>订单编号</view>
-		<view>{{info.order_number}}</view>
-	</view>
-	<view class="flexrow">
-		<view>支付方式</view>
-		<view>微信</view>
-	</view>
-	<view class="flexrow">
 		<view>下单时间</view>
 		<view>{{info.createTime}}</view>
 	</view>
 	<view class="flexrow">
-		<view>备注</view>
-		<view>{{info.remark==null?info.remark:'无'}}</view>
+		<view>订单编号</view>
+		<view>{{info.order_number}}</view>
+	</view>
+	     <view class="flexrow">
+            <text>交易流水号:</text>
+            <text class="textinline">{{info.transaction}}</text>
+        </view>
+	<view class="flexrow">
+		<view>支付方式</view>
+		<view>微信</view>
+	</view>
+	 <view class="flexrow">
+            <text>配送方式:</text>
+            <text>{{info.type==1?'商家配送':'到店自取'}}</text>
+        </view>
+	<view class="flexrow">
+		<view>订单备注</view>
+		<view>{{info.remark!=null?info.remark:'无'}}</view>
 	</view>
 </view>

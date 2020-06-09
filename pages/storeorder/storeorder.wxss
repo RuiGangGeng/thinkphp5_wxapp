@@ -13,7 +13,7 @@ page {
 }
 
 .ping {
-    position: absolute;
+    position: fixed;
     background-color: rgba(178, 178, 178, 0.8);
     width: 100%;
     height: 100%;
@@ -129,7 +129,7 @@ page {
 .order {
     width: 100%;
     height: 420rpx;
-    border-top: 1rpx solid #ccc;
+    border-top: 1rpx solid #d7d7d7;
 }
 
 .order-title {
@@ -197,8 +197,6 @@ page {
 .order-details-img {
     width: 475rpx;
     height: 155rpx;
-    display: flex;
-    justify-content: space-between;
     font-size: 28rpx;
 }
 
@@ -209,6 +207,12 @@ page {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+    float: left;
+    margin-right: 25rpx;
+}
+
+.order-details-img view:last-child {
+    margin: unset;
 }
 
 .order-details-text {
@@ -226,6 +230,8 @@ page {
     height: 50%;
     display: flex;
     align-items: flex-end;
+    font-size: 28rpx;
+    font-weight: bold;
 }
 
 .textoneline {
@@ -343,7 +349,7 @@ page {
 }
 
 .a-order .price-box .cancel-btn {
-    border: 1rpx solid #ccc;
+    border: 1rpx solid #d7d7d7;
     position: absolute;
     right: 216rpx;
     top: 20rpx;
@@ -407,10 +413,41 @@ page {
 
 textarea {
     width: 100%;
-    border: 1rpx solid #ccc;
+    border: 1rpx solid #d7d7d7;
     height: 150rpx;
     padding: 15rpx;
     border-radius: 10rpx;
     box-sizing: border-box;
     margin-bottom: 15rpx;
+}
+
+.fuck {
+    width: 160rpx;
+    height: 60rpx;
+    background-color: #39A336;
+    border-radius: 25px;
+    float: right;
+    margin-right: 25rpx;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-left: unset;
+}
+
+.fuck_all {
+    width: 160rpx;
+    height: 60rpx;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    float: right;
+    margin-right: 25rpx;
+    font-size: 28rpx;
+    text-align: center;
+    margin-left: unset;
+    line-height: 60rpx;
+    color: #777777;
+    background: #f5f5f5;
+    font-weight: bold;
 }

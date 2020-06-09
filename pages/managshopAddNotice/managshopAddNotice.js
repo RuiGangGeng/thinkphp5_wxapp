@@ -7,7 +7,7 @@ Page({
         param: {
             image: '/image/add_goods.png'
         },
-        onSync: false
+        onAsync: false
     },
 
     onLoad: function(e) {
@@ -52,15 +52,24 @@ Page({
         let that = this
 
         // 立即进入异步状态
-        that.setData({
-            onAsync: true
-        })
+        that.setData({ onAsync: true })
 
         // 验证
         if (!this.Validate.checkForm(that.data.param)) {
             const error = this.Validate.errorList[0]
             wx.showToast({
                 title: error.msg,
+                icon: "none"
+            })
+            that.setData({
+                onAsync: false
+            })
+            return false
+        }
+
+        if (that.data.param.image == '/image/add_goods.png') {
+            wx.showToast({
+                title: '请上传公告图片',
                 icon: "none"
             })
             that.setData({
@@ -82,17 +91,18 @@ Page({
                     })
 
                     // 提交数据
-                    util.wxRequest('wechat/Shop/setShopsCategory', that.data.param, res => {
+                    util.wxRequest('wechat/Shop/add_notice', that.data.param, res => {
                         wx.showToast({
                             title: res.msg,
-                            icon: res.code == 200 ? 'success' : 'none'
+                            icon: res.code == 200 ? 'success' : 'none',
+                            mask: true
                         })
 
                         if (res.code = 200) {
-                            wx.navigateBack()
+                            setTimeout(function() { wx.navigateBack() }, 1000)
                         } else {
                             that.setData({
-                                onASync: false
+                                onAsync: false
                             })
                         }
                     })
@@ -104,19 +114,19 @@ Page({
     // 验证规则
     initValidate: function() {
         const rules = {
-            name: {
+            title: {
                 required: true,
             },
-            image: {
+            content: {
                 required: true,
             },
         }
         const messages = {
-            name: {
-                required: "请输入分类名称",
+            content: {
+                required: "请输入公告内容",
             },
-            image: {
-                required: "请上传分类图片",
+            title: {
+                required: "请输入公告标题",
             },
 
         }
