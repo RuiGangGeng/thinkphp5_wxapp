@@ -11,7 +11,7 @@
     <view class="item column noneBorder">
         <label>分类图片</label>
         <view class="image" bindtap="chooseImage">
-            <image src="{{param.image}}"></image>
+            <image mode="aspectFill" src="{{param.image}}"></image>
         </view>
     </view>
 </view>

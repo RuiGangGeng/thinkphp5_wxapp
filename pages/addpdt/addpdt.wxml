@@ -4,11 +4,11 @@
     <view class="padd5">
         <view>上传商品缩略图</view>
         <view class="bond" bindtap="chooseImage">
-            <image src="{{param.image}}"></image>
+            <image mode="aspectFill" src="{{param.image}}"></image>
         </view>
         <view>上传商品图片</view>
         <view class="bond" bindtap="choosedetailimg">
-            <image src="{{param.detailimg}}"></image>
+            <image mode="aspectFill" src="{{param.detailimg}}"></image>
         </view>
         <view class="flexrow">
             <text>售价:</text>

@@ -42,19 +42,15 @@ App({
         shop_id: false, // 用户产品搜索传参
         deliveryPrice: false, // 用户产品搜索传参
         refresh: false, // 用户切换了收货地址是否需要更新首页商家列表
+        shop_type: 1,
     },
 
     // 购物车底部导航数字
     setCartNum: function(accountincart) {
         if (accountincart * 1 > 0) {
-            wx.setTabBarBadge({
-                index: 1,
-                text: accountincart
-            })
+            wx.setTabBarBadge({ index: 1, text: accountincart })
         } else {
-            wx.hideTabBarRedDot({
-                index: 1
-            })
+            wx.hideTabBarRedDot({ index: 1 })
         }
     },
 

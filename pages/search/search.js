@@ -11,8 +11,8 @@ Page({
         searchValue: '',
         shop_id: false,
         totalGoods: false,
-        totalPrice: false,
-        totalFavorable: false,
+        totalPrice: '0.00',
+        totalFavorable: '0.00',
         shopname: false,
         list: [],
         page: 0,
@@ -70,6 +70,14 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
+        if (app.globalData.shop_type != 1) {
+            wx.showToast({
+                title: '超出距离，不可添加购物车',
+                icon: 'none'
+            })
+            return false
+        }
+
         var that = this
         var data = e.currentTarget.dataset.msg;
 
@@ -130,8 +138,8 @@ Page({
             var arr = pdtincar.commodities
         }
         var totalGoods = false
-        var totalPrice = false
-        var totalFavorable = false
+        var totalPrice = '0.00'
+        var totalFavorable = '0.00'
         let is_show = false
         if (arr) {
             var num = arr.length;
@@ -159,26 +167,18 @@ Page({
     },
 
     // 点击键盘的搜索
-    bindconfirm: function() {
-        this.tapsearch()
-    },
+    bindconfirm: function() { this.tapsearch() },
 
     // 点击搜索
     tapsearch: function() {
-        this.setData({
-            noneHidden: false,
-            list: [],
-            page: 0
-        })
+        this.setData({ noneHidden: false, list: [], page: 0 })
         this.loadData()
     },
 
     // 清楚缓存
     clearHistory: function() {
         wx.clearStorageSync('recentSearch')
-        this.setData({
-            recentSearch: []
-        })
+        this.setData({ recentSearch: [] })
     },
 
     // 点击去结算
@@ -191,7 +191,7 @@ Page({
             if (item.shopid == shop_id) {
                 item.selected = true;
                 (item.commodity).forEach(function(item, index) {
-                    item.selected = true;
+                    item.selected = true
                 })
             }
         })
@@ -203,11 +203,7 @@ Page({
 
     // 点击缓存搜索
     goSearch: function(e) {
-        this.setData({
-            searchKey: e.currentTarget.dataset.text,
-            list: [],
-            page: 0
-        })
+        this.setData({ searchKey: e.currentTarget.dataset.text, list: [], page: 0 })
         this.loadData()
     },
 
@@ -219,9 +215,7 @@ Page({
     },
 
     // 上拉加载
-    onReachBottom: function() {
-        this.loadData()
-    },
+    onReachBottom: function() { this.loadData() },
 
     // 加载数据
     loadData: function() {

@@ -23,7 +23,7 @@
             <view style="height:20rpx;"></view>
             <view style="width:650rpx;margin-left:25rpx; height:190rpx;" wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="in">
                 <view style="width:170rpx;display:inline-block;float:left;">
-                    <image src="{{i.good.image}}" style="width:170rpx;height:170rpx;border-radius:5px;"></image>
+                    <image mode="aspectFill" src="{{i.good.image}}" style="width:170rpx;height:170rpx;border-radius:5px;"></image>
                 </view>
                 <view style="width:450rpx;margin-left:22rpx;float:left;">
                     <view style="font-size: 34rpx;color:#424242; font-weight:bold;">{{i.good.name}}</view>

@@ -6,8 +6,8 @@ Page({
 
     data: {
         totalGoods: false,
-        totalPrice: false,
-        totalFavorable: false,
+        totalPrice: '0.00',
+        totalFavorable: '0.00',
         shopid: false,
         shopname: false,
         deliveryPrice: false,
@@ -20,6 +20,7 @@ Page({
         is_show: false,
         scrollTop: false,
         scroll: '',
+        cateid: false
     },
 
     onLoad: function(options) {
@@ -30,30 +31,30 @@ Page({
         app.globalData.deliveryPrice = options.deliveryPrice * 1
 
         that.setData({
+            cateid: options.cateid,
             shopid: options.shop_id,
             shopname: options.shopname,
             deliveryPrice: options.deliveryPrice * 1
         })
+    },
 
+    onShow: function() {
+        let that = this
 
         // 获取门店分类  回调之后再获取产品
-        util.wxRequest('wechat/Shop/getCategories', { shop_id: options.shop_id }, res => {
+        util.wxRequest('wechat/Shop/getCategories', { shop_id: that.data.shopid }, res => {
             if (res.code == 200) {
                 that.setData({ categories: res.data })
 
                 for (let i = 0; i < that.data.categories.length; i++) {
-                    if (that.data.categories[i].id == options.cateid) {
-                        that.setData({ select: i })
+                    if (that.data.categories[i].id == that.data.cateid) {
+                        that.setData({ select: i, page: 0, goodsList: [] })
                     }
                 }
-
                 that.loadData()
             }
         })
 
-    },
-
-    onShow: function() {
         storage._reVoluationCart()
 
         var pdt = wx.getStorageSync('pdtincar')
@@ -72,11 +73,6 @@ Page({
         this.setData({ goodsincar: pagegoodsincar ? pagegoodsincar : [] })
 
         if (pdt) {
-            var ids = null
-            storage._getAllGoodidIncart(res => { ids = res })
-            var goodsmsg = null
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => { goodsmsg = data.data })
-
             var commodities = pdt.commodities
             this.setData({ commodities: commodities })
             var numstr = pdt.account.toString()
@@ -127,8 +123,8 @@ Page({
             var arr = pdtincar.commodities
         }
         var totalGoods = false
-        var totalPrice = false
-        var totalFavorable = false
+        var totalPrice = '0.00'
+        var totalFavorable = '0.00'
         let is_show = false
         if (arr) {
             var num = arr.length
@@ -192,8 +188,15 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
-        var that = this
+        if (app.globalData.shop_type != 1) {
+            wx.showToast({
+                title: '超出距离，不可添加购物车',
+                icon: 'none'
+            })
+            return false
+        }
 
+        var that = this
         let is_show = false
         var data = e.currentTarget.dataset.msg
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0
@@ -262,9 +265,7 @@ Page({
     },
 
     // 上拉加载
-    onReachBottom: function() {
-        this.loadData()
-    },
+    onReachBottom: function() { this.loadData() },
 
     // 加载数据
     loadData: function() {
@@ -290,10 +291,8 @@ Page({
                 i.price0 = i.price.split('.')[0]
             }
 
-            that.setData({
-                page: res.data.current_page,
-                goodsList: temp
-            })
+            that.setData({ page: res.data.current_page, goodsList: temp })
+
             wx.hideLoading()
         })
     },

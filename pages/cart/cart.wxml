@@ -39,7 +39,7 @@
                                         <cus-checkbox checked="{{commodity.selected}}"></cus-checkbox>
                                     </view>
                                     <view class="commodity-img">
-                                        <image class="img1" src="{{commodity.image}}"></image>
+                                        <image class="img1" mode="aspectFill" src="{{commodity.image}}"></image>
                                     </view>
                                     <view class="commodity-info flex">
                                         <view class="commodity-name line2 text-sm text-333">{{commodity.name}}</view>
@@ -70,8 +70,7 @@
     <view class="accounts" hidden="{{!flag}}">
         <view class="colorgray" hidden="t">请进行单门店支付,避免出现错误哦~</view>
         <view class="colorgray" hidden="{{!is_show_deliveryPrice}}">消费满￥{{deliveryPrice}}直接上门配送</view>
-        <view class="colorgray" hidden="t">消费满￥20上门配送，还差
-            <text class="price">10</text>元哦~</view>
+        <view class="colorgray" hidden="t">消费满￥20上门配送，还差<text class="price">10</text>元哦~</view>
         <view class="account flex">
             <view class="font30" style="margin-left: 30rpx;">
                 <view>合计:

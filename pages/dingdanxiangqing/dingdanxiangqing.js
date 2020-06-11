@@ -35,6 +35,7 @@ Page({
                 bgfImg: app.globalData.api_host + "public/uploads/category/fstar.png"
             }
         ],
+        onAsync: false,
     },
 
     onLoad: function(e) {
@@ -50,10 +51,10 @@ Page({
 
     // 拉起支付
     pay: function(e) {
+        wx.showLoading({ titile: '加载中', mask: !0 })
 
         //调用订单创建接口
         util.wxRequest('wechat/order/payOrder', { id: e.currentTarget.dataset.id }, res => {
-            var that = this
             if (res.code == 200) {
                 // 发起支付
                 wx.requestPayment({
@@ -71,7 +72,7 @@ Page({
                     }
                 })
             } else {
-                wx.showToast({ title: res.msg, icon: 'none' })
+                wx.showModal({ titile: '警告', content: res.msg, showCancel: false })
             }
         })
     },
@@ -142,13 +143,15 @@ Page({
         for (var i = 0; i < that.data.stars.length; i++) {
             var allItem = 'stars[' + i + '].flag'
             that.setData({
-                [allItem]: 1 })
+                [allItem]: 1
+            })
         }
         var index = e.currentTarget.dataset.index;
         for (var i = 0; i <= index; i++) {
             var item = 'stars[' + i + '].flag'
             that.setData({
-                [item]: 2 })
+                [item]: 2
+            })
         }
     },
 })

@@ -22,7 +22,7 @@
 			<view class="order-details">
 				<view class="order-details-img">
 					<view wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="index">
-						<image src="{{i.good.image}}"></image><text class="textoneline">{{i.good.name}}</text>
+						<image mode="aspectFill" src="{{i.good.image}}"></image><text class="textoneline">{{i.good.name}}</text>
 					</view>
 				</view>
 				<view class="order-details-text">

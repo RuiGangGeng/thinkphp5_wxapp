@@ -143,9 +143,7 @@ Page({
 
             if (data.code == 1) {
                 setTimeout(function() {
-                    wx.navigateTo({
-                        url: '/pages/address/address',
-                    })
+                    wx.navigateBack()
                 }, 1000)
             }
         })

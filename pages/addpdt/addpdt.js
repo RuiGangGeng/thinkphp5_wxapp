@@ -157,7 +157,7 @@ Page({
             res.code == 200 ? (wx.showToast({
                 title: res.msg,
             }), setTimeout(function() {
-                wx.navigateBack({})
+                wx.navigateBack()
             }, 1500)) : (
                 wx.showToast({
                     title: res.msg,

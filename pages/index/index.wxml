@@ -27,7 +27,7 @@
         <view class="bodytitle">附近门店</view>
     </view>
     <block wx:if="{{shops}}" wx:for="{{shops}}" wx:for-item="item" wx:key="index">
-        <view class="shopitem" bindtap="goshop" data-shopid="{{item.id}}" wx:if="{{item.can>=-100}}">
+        <view class="shopitem" bindtap="goshop" data-type='1' data-shopid="{{item.id}}" wx:if="{{item.can>=-100}}">
             <view class="textinline shoptitle">{{item.name}}</view>
             <view class="shopmidd">
                 <view class="shopaddr textinline">{{item.address}}</view>
@@ -35,7 +35,7 @@
             </view>
             <view class="gap">距离{{item.gap}}公里</view>
         </view>
-        <view class="shopitem" wx:else bindtap="goshop" data-shopid="{{item.id}}">
+        <view class="shopitem" wx:else bindtap="goshop" data-type='2' data-shopid="{{item.id}}">
             <view class="textinline shoptitle">{{item.name}}</view>
             <view class="shopmidd">
                 <view>{{item.address}}</view>

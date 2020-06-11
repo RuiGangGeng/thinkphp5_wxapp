@@ -5,7 +5,7 @@
     <swiper autoplay="true" interval="3000" duration="500" circular="true">
         <block wx:for="{{swiper}}" wx:key="index">
             <swiper-item>
-                <image src="{{item}}" class="shopIndItemImg"></image>
+                <image  src="{{item}}" mode="aspectFill" class="shopIndItemImg"></image>
             </swiper-item>
         </block>
     </swiper>
@@ -15,7 +15,7 @@
 <!-- 商家地址电话 开始 -->
 <view class="shopinfo">
     <view class="location">
-        <image class="shoplogo" src="{{shopdata.logo}}"></image>
+        <image  class="shoplogo" mode="aspectFill" src="{{shopdata.logo}}"></image>
     </view>
     <view class="shopinfo-item">
         <view class="testnowarp">{{shopdata.address}}</view>
@@ -26,7 +26,7 @@
 <!-- 分类导航开始 -->
 <view class="shopcates shadow10 width94">
     <view class="cateitem" wx:for="{{categories}}" wx:key="index" bindtap="navito" data-cateid="{{item.id}}">
-        <image src="{{item.image}}"></image>
+        <image src="{{item.image}}" mode="aspectFill"></image>
         <view>{{item.name}}</view>
     </view>
 </view>
@@ -37,13 +37,13 @@
 <!-- 店内公告开始 -->
 <view class="shopnotice shadow10 width94">
     <view class="noticehesder">
-        <image src="/image/house.png"></image>
+        <image src="/image/house.png" ></image>
         <view>店内公告</view>
     </view>
 </view>
 <view class="noticebody shadow10 width94">
     <view class="noticeitem" bindtap="gonotice" wx:if="{{notice}}" wx:for="{{notice}}" wx:key="index" data-id="{{item.id}}">
-        <image src="{{item.image}}" class="itemimg"></image>
+        <image src="{{item.image}}" mode="aspectFill" class="itemimg"></image>
         <view class="noticemsg">
             <view>
                 <view class="texttwoline">{{item.title}}</view>

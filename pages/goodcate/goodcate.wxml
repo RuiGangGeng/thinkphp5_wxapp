@@ -15,7 +15,7 @@
 	<!--结果列表  -->
 	<scroll-view bindscrolltolower="onReachBottom" scroll-top="{{scroll}}" bindscroll="bindscroll" scroll-y="{{true}}" class="result-wrapper asdasdasdasd" wx:if="{{goodsList.length > 0}}">
 		<view class="goods-item" wx:for="{{goodsList}}" wx:key="index" catchtap="gooddetail" data-id="{{item.id}}">
-			<image src="{{item.image}}" class="goods-image"></image>
+			<image src="{{item.image}}" mode="aspectFill" class="goods-image"></image>
 			<view class="goods-info">
 				<view class="textinline hei150">{{item.name}}</view>
 				<view class="goods-text">
@@ -42,23 +42,24 @@
 </view>
 
 <!-- 底部购物车开始 -->
-<view class="accounts flex">
+
+<view class="colorgray" hidden="{{totalPrice>=deliveryPrice}}">消费满￥{{deliveryPrice}}直接上门配送</view>
+<view class="accounts flex {{totalPrice<=deliveryPrice?'no_shadow':''}}">
 	<view class="checkAll flex text-normal">
 		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
 			<image src="/image/goodcar.png" class="goodcar"></image>
 			<view class="cricle" wx:if="{{totalGoods}}">{{totalGoods}}</view>
 		</navigator>
 	</view>
+
 	<view class="payaccount">
 		<view style="font-size:28rpx">
 			合计:<text class="colorr" wx:if="{{totalPrice}}">￥<text class="price__big">{{wxs.formatValue(totalPrice, 'split')[0]}}</text>.<text>{{wxs.formatValue(totalPrice, 'split')[1]}}</text></text>
 		</view>
-		<view class="colorg">已优惠:<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text>
-		</view>
+		<view class="colorg">已优惠:<text wx:if="{{totalFavorable}}">￥{{totalFavorable}}</text></view>
 	</view>
 
 	<view wx:if="{{!is_show}}" class="nobalance text-lg text-fff">去结算</view>
-
 	<view bindtap="godoorder" wx:if="{{is_show}}" class="balance text-lg text-fff">去结算</view>
 </view>
 <!-- 底部购物车结束 -->

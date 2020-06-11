@@ -1,90 +1,136 @@
-/* pages/gooddetail/gooddetail.wxss */
 @import '../shopindex/shopindex.wxss';
 @import '../goodcate/goodcate.wxss';
-
 .flexrow {
-  width: 100%;
-  /* height: 240rpx; */
-  box-sizing: border-box;
-  padding: 25rpx;
-  margin: 15rpx 0;
-  display: flex;
-  background-color: #fff;
-  align-items: center;
+    width: 100%;
+    height: 300rpx;
+    box-sizing: border-box;
+    background-color: #fff;
 }
 
 .name {
-  font-size: 36rpx;
+    font-size: 36rpx;
+    font-weight: bold;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #4b4b4b;
+}
+.hot{
+    width: 226rpx;
+    height: 41rpx;
+    background: #52b54e;
+    color: white;
+    font-size: 26rpx;
+    border-radius: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    position: absolute;
+    top: 30rpx;
+    right: 25rpx;
 }
 
 .floatr {
-  float: right;
+    float: right;
 }
 
 .mar20 {
-  margin-left: 20rpx;
-  color: #808080;
-  font-size: 28rpx;
+    margin-left: 20rpx;
+    font-size: 28rpx;
 }
-
+.text-green{
+    font-size: 45rpx;
+    font-weight: bold;
+}
+.text-green text{
+    font-size: 28rpx;
+}
 .shopcar {
-  width: 77rpx;
-  height: 77rpx;
-  position: absolute;
-  right: 15rpx;
-  bottom: 0;
+    width: 77rpx;
+    height: 77rpx;
+    position: absolute;
+    right: 34rpx;
+    bottom: 26rpx;
 }
-
+.asdasd{
+    position: absolute;
+    top: 128rpx;
+    left: 200rpx;
+}
 .flexspace {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 700rpx;
-  font-size: 28rpx;
-  position: relative;
-  height: 230rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 750rpx;
+    height: 200rpx;
+    font-size: 28rpx;
+    position: relative;
+    padding: 0 25rpx;
+    box-sizing: border-box;
 }
 
-.prrice{
-  font-size: 28rpx;
+.prrice {
+    font-size: 28rpx;
 }
+
 .priceBox {
-  font-size: 40rpx;
+    font-size: 40rpx;
 }
 
 .googimg {
-  width: 180rpx;
-  height: 180rpx;
-  margin-left: 10rpx;
-  border-radius: 10rpx;
+    width: 180rpx;
+    height: 180rpx;
+    margin-left: 10rpx;
+    border-radius: 10rpx;
 }
 
 .images {
-  width: 750rpx;
-  height: 750rpx;
-  display: block;
+    width: 750rpx;
+    height: 750rpx;
+    display: block;
 }
 
 .show {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 15rpx auto 110rpx auto;
-  padding: 25rpx;
-  font-size: 24rpx;
-  background: white;
-  color: #808080;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 15rpx auto 110rpx auto;
+    padding: 25rpx;
+    font-size: 24rpx;
+    background: white;
+    color: #808080;
 }
-.title{
-  font-size: 30rpx;
-  color: #434343;
+
+.title {
+    font-size: 30rpx;
+    color: #434343;
 }
-.content text{
-  font-weight: bold;
-  color: #434343;
+
+.content text {
+    font-weight: bold;
+    color: #434343;
 }
-.content{
-  margin: 10rpx 0;
+
+.content {
+    margin: 10rpx 0;
 }
+
 .price__big {
-  font-size: 32rpx;
+    font-size: 32rpx;
+}
+
+.flexPrice {
+    position: relative;
+    width: 750rpx;
+    height: 100rpx;
+    background: #39a336;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 25rpx;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.numoncar{
+    position: absolute;
+    bottom: 80rpx;
+    right: 33rpx;
 }

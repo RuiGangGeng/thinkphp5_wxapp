@@ -1,4 +1,3 @@
-// pages/address/address.js
 const app = getApp();
 const util = require('../../utils/util.js');
 Page({
@@ -9,10 +8,17 @@ Page({
         address: [],
         addrId: false,
         delete_: false,
-        has_login: true
+        has_login: true,
+        type: false,
+        shop_id: false,
     },
 
     onLoad: function(options) {
+        let that = this
+        this.setData({ type: options.type, shop_id: options.shop_id })
+    },
+
+    onShow: function() {
         let that = this
         if (app.globalData.user.phone == null) {
             that.setData({ has_login: false })
@@ -43,33 +49,67 @@ Page({
     // 设置默认地址
     setDefault: function(e) {
         var that = this
-        let addrId = e.currentTarget.dataset.id
-        let url = 'wechat/User/set_default'
-        let params = { uid: app.globalData.user.id, addrid: addrId }
-        this.setData({ addrId: addrId })
+        var addrId = e.currentTarget.dataset.id
+        var url = 'wechat/User/set_default'
+        var params = { uid: app.globalData.user.id, addrid: addrId }
 
-        util.wxRequest(url, params, data => {
-            var cartId = that.data.cartId
-            if (data.code == 1) {
-                wx.showToast({ title: data.msg, icon: 'success', duration: 2000 })
-                let addrId = that.data.addrId
-                let temp = that.data.address
-                for (let i of temp) {
-                    if (i.id == addrId) {
-                        i.is_default = 1
-                        app.globalData.user_address = i.address + i.house
-                        app.globalData.defaultaddress = i
-                        app.globalData.addrss_id = i.id
-                    } else {
-                        i.is_default = ''
-                    }
+        // 判断是要选择收货地址还是切换收货地址
+        if (that.data.type) {
+            util.wxRequest('wechat/User/checkAddressForShop', { shop_id: that.data.shop_id, id: addrId }, res => {
+                if (res.code == 200) {
+                    that.setData({ addrId: addrId })
+                    util.wxRequest(url, params, data => {
+                        if (data.code == 1) {
+                            wx.showToast({ title: data.msg, icon: 'success', duration: 2000 })
+                            let addrId = that.data.addrId
+                            let temp = that.data.address
+                            for (let i of temp) {
+                                if (i.id == addrId) {
+                                    i.is_default = 1
+                                    app.globalData.user_address = i.address + i.house
+                                    app.globalData.defaultaddress = i
+                                    app.globalData.addrss_id = i.id
+                                } else {
+                                    i.is_default = ''
+                                }
+                            }
+                            that.setData({ address: temp })
+                            app.globalData.refresh = true
+                            wx.navigateBack()
+                        } else {
+                            wx.showToast({ title: data.msg, icon: 'warn', duration: 2000 })
+                        }
+                    })
+                } else {
+                    wx.showModal({ title: '警告', content: res.msg })
                 }
-                this.setData({ address: temp })
-                app.globalData.refresh = true
-            } else {
-                wx.showToast({ title: data.msg, icon: 'warn', duration: 2000 })
-            }
-        });
+            })
+        } else {
+            that.setData({ addrId: addrId })
+            util.wxRequest(url, params, data => {
+                if (data.code == 1) {
+                    wx.showToast({ title: data.msg, icon: 'success', duration: 2000 })
+                    let addrId = that.data.addrId
+                    let temp = that.data.address
+                    for (let i of temp) {
+                        if (i.id == addrId) {
+                            i.is_default = 1
+                            app.globalData.user_address = i.address + i.house
+                            app.globalData.defaultaddress = i
+                            app.globalData.addrss_id = i.id
+                        } else {
+                            i.is_default = ''
+                        }
+                    }
+                    that.setData({ address: temp })
+                    app.globalData.refresh = true
+                } else {
+                    wx.showToast({ title: data.msg, icon: 'warn', duration: 2000 })
+                }
+            })
+        }
+
+        that.setData({ address: that.data.address })
     },
 
     //删除地址
@@ -87,48 +127,30 @@ Page({
             title: '提示',
             content: '您确定要删除该收获地址吗？',
             success: function(res) {
-                let url = 'wechat/User/del_address';
-                let params = {
-                    uid: app.globalData.user.id,
-                    addrid: addrId
-                };
+                let url = 'wechat/User/del_address'
+                let params = { uid: app.globalData.user.id, addrid: addrId }
                 res.confirm && util.wxRequest(url, params, data => {
                     if (data.code == 1) {
-                        that.onLoad();
+                        that.onShow()
                     } else {
-                        wx.showToast({
-                            title: data.msg,
-                            icon: 'loading',
-                            duration: 2000
-                        });
+                        wx.showToast({ title: data.msg, icon: 'loading', duration: 2000 })
                     }
-                }, data => {}, data => {});
+                })
             }
-        });
+        })
     },
 
     //编辑地址
     editaddress: function(e) {
         var addrId = e.currentTarget.dataset.id;
-        wx.navigateTo({
-            url: '/pages/addressadd/addressadd?id=' + addrId,
-        })
+        wx.navigateTo({ url: '/pages/addressadd/addressadd?id=' + addrId })
     },
 
     //点击去购物
-    goshopping: function() {
-        wx.switchTab({
-            url: '/pages/index/index',
-        })
-    },
+    goshopping: function() { wx.switchTab({ url: '/pages/index/index', }) },
 
     // 提示不可新增地址
-    no_add_address: function() {
-        wx.showToast({
-            title: '不可超过五个收货地址',
-            icon: 'none'
-        })
-    },
+    no_add_address: function() { wx.showToast({ title: '不可超过五个收货地址', icon: 'none' }) },
 
     // 授权手机号
     bindgetphonenumber: function(e) {
@@ -140,13 +162,8 @@ Page({
         }
         util.wxRequest("wechat/User/wx_auth_phone", param, data => {
             if (data.code == 200) {
-                that.setData({
-                    has_login: true
-                })
-                wx.showToast({
-                    title: data.msg,
-                    icon: data.code == 200 ? 'success' : 'none'
-                })
+                that.setData({ has_login: true })
+                wx.showToast({ title: data.msg, icon: data.code == 200 ? 'success' : 'none' })
                 app.globalData.user.phone = data.data
             }
         })

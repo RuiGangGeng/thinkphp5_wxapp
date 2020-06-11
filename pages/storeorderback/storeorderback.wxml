@@ -16,7 +16,7 @@
 		<label class="checkbox" wx:for="{{items}}" wx:key="index">
 			<checkbox value="{{index}}" checked="{{item.checked}}"/>
 			<view class="order-details-img">
-				<image src="{{item.url}}"></image>
+				<image mode="aspectFill" src="{{item.url}}"></image>
 			</view>
 			<view class="order-details-name">
 				<text class="textoneline">{{item.name}}</text>

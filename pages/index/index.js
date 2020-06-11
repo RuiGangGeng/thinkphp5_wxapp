@@ -74,9 +74,10 @@ Page({
 
     // 前往商铺首页
     goshop: function(e) {
-        wx.navigateTo({
-            url: '/pages/shopindex/shopindex?shopid=' + e.currentTarget.dataset.shopid,
-        })
+        app.globalData.shop_type = e.currentTarget.dataset.type,
+            wx.navigateTo({
+                url: '/pages/shopindex/shopindex?shopid=' + e.currentTarget.dataset.shopid,
+            })
     },
 
     loadShops: function() {
@@ -132,9 +133,7 @@ Page({
     },
 
     // 滑动到顶部
-    bindscrolltoupper: function(e) {
-        this.setData({ color: !0 })
-    },
+    bindscrolltoupper: function(e) { this.setData({ color: !0 }) },
 
     // 滑动
     bindscroll: function(e) {
@@ -152,8 +151,6 @@ Page({
         }
 
         //给scrollTop重新赋值
-        setTimeout(function() {
-            that.setData({ scrollTop: e.detail.scrollTop })
-        })
+        setTimeout(function() { that.setData({ scrollTop: e.detail.scrollTop }) })
     }
 })

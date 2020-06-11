@@ -5,12 +5,8 @@
 <view class="noticebody">
   <view class="noticetil">{{notice.title}}</view>
   <view class="timecolor">{{notice.createTime}}</view>
-  <image src="{{notice.image}}"></image>
+  <image mode="aspectFill" src="{{notice.image}}"></image>
   <!-- 富文本解析开始 -->
-  <!--pages/about/about.wxml-->
-  <import src="../../wxParse/wxParse.wxml" />
-  <!-- 这一块是富文本 显示的内容区 -->
-  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-
+  <view class="content">{{notice.content}}</view>
   <!-- 富文本解析结束 -->
 </view>

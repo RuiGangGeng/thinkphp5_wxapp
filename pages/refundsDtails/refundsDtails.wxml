@@ -29,7 +29,7 @@
             <view class="shop_name">{{info.shop.name}}</view>
         </view>
         <view class="itemmsg" wx:for="{{goods}}" wx:key="index">
-            <image src="{{item.good.image}}" class="itemimg"></image>
+            <image mode="aspectFill" src="{{item.good.image}}" class="itemimg"></image>
             <view class="msgin">
                 <view style="font-size: 34rpx;">{{item.good.name}}</view>
                 <view class="colorg mar30">规格：{{item.good.specifications}}</view>
@@ -62,7 +62,7 @@
         </view>
         <view class="msgitem">
             <text>配送方式:</text>
-            <text>{{info.type==1?'商家配送':'到店自取'}}</text>
+            <text>{{info.type==1?'送货上门':'到店自取'}}</text>
         </view>
         <view class="msgitem">
             <text>订单备注:</text>

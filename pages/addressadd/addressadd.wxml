@@ -1,4 +1,3 @@
-<!-- pages/addressadd/addressadd.wxml -->
 <form bindsubmit="formSubmit">
     <view class="fadedf"></view>
     <view class="body">

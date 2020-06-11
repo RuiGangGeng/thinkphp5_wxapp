@@ -9,8 +9,8 @@ Page({
         cargood: null,
         shop_id: false,
         totalGoods: false,
-        totalPrice: false,
-        totalFavorable: false,
+        totalPrice: '0.00',
+        totalFavorable: '0.00',
         deliveryPrice: false,
         shopname: false,
         goodsList: [],
@@ -71,8 +71,8 @@ Page({
             var arr = pdtincar.commodities
         }
         var totalGoods = false
-        var totalPrice = false
-        var totalFavorable = false
+        var totalPrice = '0.00'
+        var totalFavorable = '0.00'
         let is_show = false
         if (arr) {
             var num = arr.length
@@ -122,8 +122,15 @@ Page({
 
     // 加入购物车
     addToCart: function(e) {
-        var that = this
+        if (app.globalData.shop_type != 1) {
+            wx.showToast({
+                title: '超出距离，不可添加购物车',
+                icon: 'none'
+            })
+            return false
+        }
 
+        var that = this
         var data = e.currentTarget.dataset.msg
         var oldnum = this.data.totalGoods ? this.data.totalGoods : 0
         var newnum = 1 * oldnum + 1

@@ -23,7 +23,7 @@
         继续添加+
     </navigator>
     <view class="btn disabled" wx:if="{{!can_add_address}}" bindtap="no_add_address">继续添加+</view>
-    <view class="btnBox">
+    <view class="btnBox" wx:if="{{!type}}">
         <view class="goshopping" bindtap="goshopping">去购物</view>
     </view>
 </view>

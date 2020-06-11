@@ -64,7 +64,7 @@
             <view style="height:20rpx;"></view>
             <view style="height:190rpx;width:650rpx;margin-left:25rpx;" wx:for="{{goods}}" wx:key="index">
                 <view style="width:170rpx;height:170rpx;display:inline-block;float:left; font-size: 0;">
-                    <image src="{{item.good.image}}" style="line-height:0; dispaly:block; width:170rpx;height:170rpx;border-radius:5px;"></image>
+                    <image mode="aspectFill" src="{{item.good.image}}" style="line-height:0; dispaly:block; width:170rpx;height:170rpx;border-radius:5px;"></image>
                 </view>
                 <view style="height:172rpx;width:430rpx;margin-left:22rpx;float:left; overflow: hidden;">
                     <view style="font-size:34rpx;color:#424242;font-weight:bold;">
@@ -127,7 +127,7 @@
         <view style="height:1px;background-color:#e8e8e8;"></view>
         <view style="width:100%;height:72rpx;">
             <view style="float:right;font-size:25rpx;color:#666666;line-height:72rpx;margin-right:25rpx;">
-                {{info.type==1?'商家配送':'到店自取'}}
+                {{info.type==1?'送货上门':'到店自取'}}
             </view>
             <view style="float:left;font-size:28rpx;color:#666666;line-height:72rpx;margin-left:25rpx;">
                 配送方式:
@@ -145,13 +145,13 @@
     </view>
     <view style="height:20rpx;"></view>
     <view style="height:60rpx">
-        <view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#FFFFFF;" bindtap="pay">
+        <view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#FFFFFF;font-weight:bold;" bindtap="pay">
             继续支付
         </view>
-        <view wx:if="{{info.status==4}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#FFFFFF;" catchtap="givewords">
+        <view wx:if="{{info.status==4}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#39A336;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#FFFFFF;font-weight:bold;" catchtap="givewords">
             去评价
         </view>
-        <view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#FFFFFF;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#777777;" bindtap="canclorder">
+        <view wx:if="{{info.createTimes!==false && info.status==0}}" data-id="{{info.id}}" style="width:160rpx;height:60rpx;background-color:#FFFFFF;border-radius:25px;float:right;margin-right:25rpx;font-size:28rpx;text-align:center;line-height:60rpx;color:#777777;font-weight:bold;" bindtap="canclorder">
             取消订单
         </view>
     </view>

@@ -10,15 +10,7 @@ Page({
     onLoad: function(options) {
         var that = this;
         util.wxRequest('wechat/shop/getNoticeDetail', { id: options.noticeid }, res => {
-            var article = res.data.content;
-            WxParse.wxParse('article', 'html', article, that, 5);
             that.setData({ notice: res.data });
-            /*** WxParse.wxParse(bindName , type, data, target,imagePadding)
-             * 1.bindName绑定的数据名(必填)
-             * 2.type可以为html或者md(必填)
-             * 3.data为传入的具体数据(必填)
-             * 4.target为Page对象,一般为this(必填)
-             * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)*/
         });
     },
 

@@ -13,7 +13,7 @@
 
 <view class="mar1 backcor">
 	<view class="orderitem" wx:for="{{goods}}" wx:key="index">
-		<image src="{{item.good.image}}" class="imgdetail"></image>
+		<image mode="aspectFill" src="{{item.good.image}}" class="imgdetail"></image>
 		<view class="width75">
 			<view class="textinline">{{item.good.name}}</view>
 			<view class="colorgray textinline small">{{item.good.specifications}}</view>
@@ -60,7 +60,7 @@
 	</view>
 	 <view class="flexrow">
             <text>配送方式:</text>
-            <text>{{info.type==1?'商家配送':'到店自取'}}</text>
+            <text>{{info.type==1?'送货上门':'到店自取'}}</text>
         </view>
 	<view class="flexrow">
 		<view>订单备注</view>

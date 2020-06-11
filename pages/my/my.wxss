@@ -112,16 +112,16 @@
     position: absolute;
     top: 16px;
     left: 55%;
-    width: 30rpx;
+    min-width: 30rpx;
     height: 30rpx;
-    line-height: 30rpx;
-    text-align: center;
     background-color: #ff464e;
     border-radius: 13px;
     color: #fff;
     font-size: 12px;
-    display: none;
-    box-sizing: content-box;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sup_show {

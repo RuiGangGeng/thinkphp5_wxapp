@@ -48,7 +48,7 @@ Page({
                 flag: false,
             })
             setTimeout(function() {
-                wx.navigateBack({})
+                wx.navigateBack()
             }, 1500)
         });
     },

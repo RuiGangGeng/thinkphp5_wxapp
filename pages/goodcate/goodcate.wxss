@@ -277,6 +277,25 @@
     border-bottom: 1rpx solid #dedede;
 }
 
+.colorgray {
+    color: #797979;
+    font-size: 31rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+    position: fixed;
+    bottom: 110rpx;
+    background: white;
+    padding: 0 25rpx;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0px 0px 30px 0px rgba(183, 183, 183, 0.4);
+}
+
+.no_shadow {
+    box-shadow: none;
+}
+
 .result-wrapper {
     background: #fff;
     position: absolute;

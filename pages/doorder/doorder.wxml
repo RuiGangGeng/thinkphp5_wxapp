@@ -31,7 +31,7 @@
     </view>
 
     <view class="orderitem" wx:for="{{oederInfo.commodity}}" wx:key="index">
-        <image src="{{item.image}}" class="goodimg"></image>
+        <image mode="aspectFill" src="{{item.image}}" class="goodimg"></image>
         <view class="goodmsg">
             <view class="infoheader">{{item.name}}</view>
             <view class="colora8">规格:{{item.specifications}}</view>
@@ -46,7 +46,11 @@
     </view>
 </view>
 <form  bindsubmit="formSubmit" bindreset="formReset">
-    <view class="msgleav">店家留言板:</view>
+    <view class="msgleav">
+        店家留言板:
+        <view class="{{type==2?'buypdt':'scanpdt'}}" data-type='2' bindtap="changeType">到店自取</view>
+        <view class="{{type==1?'buypdt':'scanpdt'}}" data-type='1' bindtap="changeType">送货上门</view>
+    </view>
     <textarea name="words" placeholder="请将您自提或需要配送的时间告诉店家~~~" placeholder-style="font-size:26rpx;"></textarea>
 
 <!-- 订单展示结束 -->

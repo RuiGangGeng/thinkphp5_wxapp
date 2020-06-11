@@ -1,5 +1,3 @@
-/* pages/address/address.wxss */
-
 .inmiddle {
     text-align: center;
     margin-top: 5%;

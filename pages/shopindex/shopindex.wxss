@@ -102,11 +102,14 @@ image {
 
 .cateitem {
     width: 21%;
-    margin-left: 2%;
     font-size: 30rpx;
     text-align: center;
     padding-bottom: 2%;
-    margin-right: 2%;
+    margin-right: 5.15%;
+}
+
+.cateitem:nth-child(4n) {
+    margin: unset;
 }
 
 .cateitem image {

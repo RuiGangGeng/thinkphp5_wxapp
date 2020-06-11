@@ -7,7 +7,7 @@
     <view class="item column">
         <label>公告图片</label>
         <view class="image" bindtap="chooseImage">
-            <image src="{{param.image}}"></image>
+            <image mode="aspectFill" src="{{param.image}}"></image>
         </view>
     </view>
     <view class="item noneBorder" style="margin-top:40rpx;">

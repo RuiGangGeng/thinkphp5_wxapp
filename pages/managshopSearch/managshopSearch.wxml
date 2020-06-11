@@ -6,7 +6,7 @@
 	</view>
 	<scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
 		<view class="item" wx:for="{{list}}" wx:key="index">
-			<image src="{{item.image}}" class="goods-image"></image>
+			<image mode="aspectFill" src="{{item.image}}" class="goods-image"></image>
 			<view class="goods_info">
 				<view class="texttwoline">{{item.name}} </view>
 				<view class="goods_price">

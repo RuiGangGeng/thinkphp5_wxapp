@@ -5,7 +5,7 @@
     <view class="header">
         <view class="shop_info">
             <view class="logo">
-                <image src="{{shop_info.logo}}"></image>
+                <image mode="aspectFill" src="{{shop_info.logo}}"></image>
             </view>
             <view class="shop_text">
                 <view class="textinline" style="font-weight:bold;">{{shop_info.name}}</view>
@@ -58,7 +58,7 @@
         <!-- 结果列表 -->
         <scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
             <view class="item" wx:for="{{list}}" wx:key="index" bindtap="navEdit" data-id="{{item.id}}">
-                <image src="{{item.image}}" class="goods-image"></image>
+                <image mode="aspectFill" src="{{item.image}}" class="goods-image"></image>
                 <view class="goods_info">
                     <view class="texttwoline">{{item.name}}</view>
                     <view class="goods_price">

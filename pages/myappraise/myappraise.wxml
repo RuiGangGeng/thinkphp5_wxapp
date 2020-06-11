@@ -4,7 +4,7 @@
 			<view style="font-weight:bold;">{{item.shop.name}}</view>
 		</view>
 		<view class="itemmsg" wx:for="{{item.order_detail}}" wx:for-item="i" wx:key="in">
-			<image src="{{i.good.image}}" class="itemimg"></image>
+			<image mode="aspectFill" src="{{i.good.image}}" class="itemimg"></image>
 			<view class="msgin">
 				<view  style="font-size:34rpx;">{{i.good.name}}</view>
 				<view class="colorg mart10">规格：{{i.good.specifications}}</view>

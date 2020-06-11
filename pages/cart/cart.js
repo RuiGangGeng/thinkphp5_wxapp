@@ -5,7 +5,7 @@ const app = getApp();
 Page({
 
     data: {
-        flag: true, //购物车存在或者不存在展示的主体
+        flag: true, // 购物车存在或者不存在展示的主体
         cart_img: "http://gw.alicdn.com/tfscom/TB1xdQSJFXXXXcuXXXXy7S8WFXX-176-176.png",
 
         // 加入购物车的商品
@@ -26,32 +26,17 @@ Page({
         var pdt = wx.getStorageSync('pdtincar')
 
         if (pdt) {
-            var ids = null
-            storage._getAllGoodidIncart(res => {
-                ids = res
-            })
-
-            util.wxRequest('wechat/shop/getGoodsIncart', { ids: ids, data: JSON.stringify(pdt.commodities) }, data => {})
-
             var commodities = pdt.commodities;
             commodities[0].ishow = true
-            this.setData({
-                commodities: commodities
-            })
-            var numstr = pdt.account.toString();
+            this.setData({ commodities: commodities })
+            var numstr = pdt.account.toString()
         } else {
-            var numstr = '0';
-            this.setData({
-                flag: false
-            })
+            var numstr = '0'
+            this.setData({ flag: false })
         }
 
-        if (numstr - 0 > 0) {
-            this.setData({
-                flag: true,
-                account: numstr
-            })
-        }
+        if (numstr - 0 > 0) { this.setData({ flag: true, account: numstr }) }
+
         app.setCartNum(numstr)
 
         let allCount = 0
@@ -241,37 +226,31 @@ Page({
         var shopidx = dataset.shopidx;
         if (type === 'shop') {
             if (shopchoose && shopchoose != commodities[shopidx].shopid) {
-                wx.showToast({
-                    title: '请单门店支付',
-                    icon: 'none'
-                })
-                return;
+                wx.showToast({ title: '请单门店支付', icon: 'none' })
+                return
             }
             let selected = commodities[shopidx]['selected'];
             if (selected) {
                 // 取消选中当前店铺包括商品全部
-                this.setSelected(commodities, shopidx, null, false);
+                this.setSelected(commodities, shopidx, null, false)
             } else {
                 // 全部选中当前店铺包括商品
-                this.setSelected(commodities, shopidx, null, true);
+                this.setSelected(commodities, shopidx, null, true)
             }
         } else {
             let commodityIdx = dataset.index;
             var selected = commodities[shopidx]['commodity'][commodityIdx].selected;
             if (selected) {
                 // 取消选中当前店铺包括商品全部
-                this.setSelected(commodities, shopidx, commodityIdx, false);
+                this.setSelected(commodities, shopidx, commodityIdx, false)
             } else {
-                var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id;
+                var shopsid = commodities[shopidx]['commodity'][commodityIdx].shop_id
                 if (shopchoose && shopchoose != shopsid) {
-                    wx.showToast({
-                        title: '请单门店支付',
-                        icon: 'none'
-                    })
+                    wx.showToast({ title: '请单门店支付', icon: 'none' })
                     return;
                 }
                 // 全部选中当前店铺包括商品
-                this.setSelected(commodities, shopidx, commodityIdx, true);
+                this.setSelected(commodities, shopidx, commodityIdx, true)
             }
         }
 
@@ -282,7 +261,7 @@ Page({
         let checked = this.data.checkedAll,
             commodities = [].slice.call(this.data.commodities),
             allCount = 0,
-            allAccount = 0;
+            allAccount = 0
         commodities.forEach(shop => {
             shop['selected'] = !checked;
             shop['commodity'].forEach(i => {
@@ -436,9 +415,6 @@ Page({
         var shop_id = null
         var orderinfo = {}
         var commodity = []
-        var totalnumber = 0
-        var totalprice = 0
-        var flag = false
         for (let i of cart) {
             if (i) {
                 for (let s of i.commodity) {

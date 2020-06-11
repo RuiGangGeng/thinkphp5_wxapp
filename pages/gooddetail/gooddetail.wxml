@@ -5,18 +5,20 @@
 
 
 <view class="flexrow">
+    <view class="flexPrice">
+        <view class="text-green"><text>￥</text>{{good.price}}</view>
+        <view class="lineThrough mar20"><text>￥</text>{{good.price_orig}}</view>
+        <view class="hot">火热抢购中</view>
+    </view>
     <view class="flexspace">
-        <view class="texttwoline name">{{good.name}}</view>
-        <view class="texttwoline">{{good.specifications}}</view>
+        <view class="textinline name">{{good.name}} {{good.specifications}}</view>
         <view class="sendpdt">送货上门</view>
+        <view class="sendpdt asdasd">到店自取</view>
         <view class="priceBox">
-            <text class="text-danger">￥{{good.price0}}<text class="prrice">.{{good.price1}}</text></text>
-            <text class="lineThrough mar20">￥{{good.price_orig}}</text>
             <image src="/image/shopcar.png" class="shopcar" catchtap="addToCart" data-msg="{{good}}"></image>
             <block wx:for="{{goodsincar}}" wx:for-item="dayItem" wx:key="index">
                 <view wx:if="{{dayItem.id == good.id}}" class="numoncar">{{dayItem.count}}</view>
             </block>
-            <!-- <text class="mar20 floatr" bindtap="addToCart" data-msg="{{good}}">加入购物车</text> -->
         </view>
     </view>
 </view>
@@ -34,32 +36,6 @@
 
 
 <!-- 底部购物车开始 -->
-<!-- <view class="accounts flex">
-    <view class="checkAll flex text-normal">
-        <navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">
-            <image src="/image/goodcar.png" class="goodcar"></image>
-            <view class="cricle" wx:if="{{cargood}}">{{cargood.goodcount}}</view>
-        </navigator>
-    </view>
-    <view class="payaccount">
-        <view>
-            合计:
-            <text class="colorr" wx:if="{{cargood}}">￥{{cargood.goodPrice}}</text>
-        </view>
-        <view class="colorg">
-            已优惠:
-            <text wx:if="{{cargood}}">￥{{cargood.goodFavorable}}</text>
-        </view>
-    </view>
-
-    <view class="flex" wx:if="{{!pdtincar.totalPrice}}">
-        <view class="nobalance text-lg text-fff">去结算</view>
-    </view>
-
-    <view class="flex" bindtap="godoorder" wx:if="{{pdtincar.totalPrice}}">
-        <view class="balance text-lg text-fff">去结算</view>
-    </view>
-</view> -->
 <view class="accounts flex">
 	<view class="checkAll flex text-normal">
 		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">

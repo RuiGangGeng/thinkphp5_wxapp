@@ -36,7 +36,7 @@
 <view class="search-box {{iponesc}}">
     <!-- 结果列表 -->
     <view class="goods-item" wx:for="{{list}}" wx:key="index" catchtap="toDetailTap" data-id="{{item.id}}">
-        <image src="{{item.image}}" class="goods-image"></image>
+        <image mode="aspectFill" src="{{item.image}}" class="goods-image"></image>
         <view class="goods-info">
             <view class="textinline hei150">{{item.name}}</view>
             <view class="goods-text">

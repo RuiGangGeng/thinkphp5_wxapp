@@ -13,7 +13,8 @@ Page({
     onLoad: function() {
         let that = this
         wx.hideLoading()
-            // 检查是否授权
+
+        // 检查是否授权
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']) {
@@ -40,14 +41,15 @@ Page({
     },
 
     onShow: function() {
+        wx.showLoading({ title: '加载中' })
+        setTimeout(function() { wx.hideLoading() }, 3000)
+
         // 获取缓存设置 tabar 的数字角标
         var num = wx.getStorageSync('pdtincar')
         if (num) {
             var numstr = num.account.toString()
             if (numstr - 0 > 0) {
-                this.setData({
-                    flag: true
-                })
+                this.setData({ flag: true })
             }
             app.setCartNum(numstr)
         }
@@ -67,14 +69,11 @@ Page({
                 i.status == 3 ? this.setData({ order_3: i.number }) : false
                 i.status == 4 ? this.setData({ order_4: i.number }) : false
             }
-            this.setData({
-                shop: res.data.shop,
-            })
+            this.setData({ shop: res.data.shop })
+            wx.hideLoading()
         })
     },
 
     // 点击授权
-    authorization: function(e) {
-        this.onLoad()
-    }
+    authorization: function(e) { this.onLoad() }
 })
