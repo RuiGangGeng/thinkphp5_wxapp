@@ -42,8 +42,9 @@ Page({
             that.setData({ onAsync: false })
             return false
         }
-        if (that.data.param.full < that.data.param.full_reduction) {
+        if (Number(that.data.param.full) < Number(that.data.param.full_reduction)) {
             wx.showToast({ title: "满减不能大于满额", icon: "none" })
+            that.setData({ onAsync: false })
             return false
         }
 

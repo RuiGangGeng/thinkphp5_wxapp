@@ -189,6 +189,10 @@ image {
     font-weight: normal;
 }
 
+.fuck {
+    float: left;
+}
+
 .couponBox {
     width: 750rpx;
     padding: 0 25rpx;
@@ -196,12 +200,11 @@ image {
     font-size: 26rpx;
     box-sizing: border-box;
     line-height: 45rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
 }
 
 .green {
+    float: left;
     background: #39a336;
     border-radius: 8rpx;
     margin: 0 15rpx;

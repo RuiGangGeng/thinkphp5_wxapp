@@ -4,6 +4,9 @@
     background-color: #f4f4f4;
 }
 
+page{
+    height: 100%;
+}
 .user_nickname view {
     margin-top: 15rpx;
 }

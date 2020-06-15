@@ -17,9 +17,9 @@ Page({
         setTimeout(function() { wx.hideLoading() }, 2000)
 
         // 请求公告
-        util.wxRequest('wechat/Shop/getNotice', { shop_id: that.data.shop_id }, res => {
+        util.wxRequest('wechat/Shop/getNotices', { shop_id: that.data.shop_id }, res => {
             res.code == 200 && function() {
-                that.setData({ list: res.data.data })
+                that.setData({ list: res.data })
                 wx.hideLoading()
             }()
         })

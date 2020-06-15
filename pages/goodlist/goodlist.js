@@ -18,10 +18,24 @@ Page({
     },
 
     onShow: function() {
-        let that = this;
+        let that = this
+
+        // 请求分类
+        util.wxRequest('wechat/Shop/getCategories', { shop_id: that.data.shop_id }, res => {
+            res.code == 500 && function() {
+                wx.showModal({
+                    title: '提示',
+                    content: '暂无分类，请先添加分类在添加商品',
+                    showCancel: false,
+                    success: function(res) {
+                        res.confirm && wx.navigateTo({ url: '/pages/addcate/addcate?shop_id=' + that.data.shop_id })
+                    }
+                })
+            }()
+        })
 
         that.setData({ list: [], page: 0 })
-        that.loadData();
+        that.loadData()
     },
 
     // 点击筛选条件

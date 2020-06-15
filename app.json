@@ -31,7 +31,6 @@
         "pages/managshopSearch/managshopSearch",
         "pages/managshopAddNotice/managshopAddNotice",
         "pages/noticelist/noticelist",
-        "pages/noticeadd/noticeadd",
         "pages/couponlist/couponlist",
         "pages/goodlist/goodlist",
         "pages/catelist/catelist"

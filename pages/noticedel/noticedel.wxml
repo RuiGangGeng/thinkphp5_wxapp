@@ -5,7 +5,7 @@
 <view class="noticebody">
   <view class="noticetil">{{notice.title}}</view>
   <view class="timecolor">{{notice.createTime}}</view>
-  <image mode="aspectFill" src="{{notice.image}}"></image>
+  <image mode="aspectFill" src="{{notice.image_}}"></image>
   <!-- 富文本解析开始 -->
   <text class="content">{{notice.content}}</text>
   <!-- 富文本解析结束 -->
