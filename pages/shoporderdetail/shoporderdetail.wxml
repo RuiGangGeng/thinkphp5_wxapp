@@ -27,11 +27,11 @@
 	<view class="margin1 small">
 		<view class="flexrow">
 			<view>商品金额</view>
-			<view>￥{{info.price}}</view>
+			<view>￥{{all}}</view>
 		</view>
 		<view class="flexrow">
 			<view>优惠券</view>
-			<view>￥-0.00</view>
+			<view>￥{{coupon}}</view>
 		</view>
 	</view>
 

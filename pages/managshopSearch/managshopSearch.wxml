@@ -11,6 +11,7 @@
 				<view class="texttwoline">{{item.name}} </view>
 				<view class="goods_price">
 					<text>￥{{item.price}}</text>
+					<text>￥{{item.price_orig}}</text>
 					<image src="/image/pdtup.png" catchtap="changegood" data-act="up_goods" data-id="{{item.id}}"></image>
 					<image src="/image/pdtdown.png" catchtap="changegood" data-act="down_goods" data-id="{{item.id}}"></image>
 					<image src="/image/del.png" catchtap="changegood" data-act="delete_goods" data-id="{{item.id}}"></image>

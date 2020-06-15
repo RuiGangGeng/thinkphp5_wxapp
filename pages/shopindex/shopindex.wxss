@@ -52,7 +52,7 @@ image {
 }
 
 .shopinfo {
-    margin: 20rpx;
+    margin: 20rpx 20rpx 10rpx 20rpx;
     width: 710rpx;
     box-sizing: border-box;
     height: 80rpx;
@@ -92,7 +92,7 @@ image {
     height: 360rpx;
     padding: 20rpx 25rpx;
     box-sizing: border-box;
-    margin: 20rpx 25rpx;
+    margin: 10rpx 25rpx 20rpx 25rpx;
     color: #434343;
 }
 
@@ -187,4 +187,35 @@ image {
     font-size: 26rpx;
     color: #b6b6b6;
     font-weight: normal;
+}
+
+.couponBox {
+    width: 750rpx;
+    padding: 0 25rpx;
+    height: 45rpx;
+    font-size: 26rpx;
+    box-sizing: border-box;
+    line-height: 45rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.green {
+    background: #39a336;
+    border-radius: 8rpx;
+    margin: 0 15rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 80rpx;
+    height: 45rpx;
+}
+
+.couponBox>view:last-child {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 680rpx;
 }

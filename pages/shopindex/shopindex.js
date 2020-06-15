@@ -11,6 +11,7 @@ Page({
         shopname: false,
         page: 0,
         onAsync: false,
+        coupons: []
     },
 
     onLoad: function(options) {
@@ -20,6 +21,15 @@ Page({
 
         this.setData({
             shopid: options.shopid
+        })
+
+        // 获取满减信息
+        util.wxRequest("wechat/Shop/getCouponInfo", { shop_id: options.shopid }, res => {
+            if (res.code == 200) {
+                this.setData({
+                    coupons: res.data
+                })
+            }
         })
 
         // 获取门店信息

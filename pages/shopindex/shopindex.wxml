@@ -13,13 +13,19 @@
 </view>
 <!-- 头图信息结束 -->
 <!-- 商家地址电话 开始 -->
-<view class="shopinfo">
+<view class="shopinfo" style="{{coupons.length>0?'':'margin-bottom:20rpx;'}}">
     <view class="location">
         <image  class="shoplogo" mode="aspectFill" src="{{shopdata.logo}}"></image>
     </view>
     <view class="shopinfo-item">
         <view class="testnowarp">{{shopdata.address}}</view>
         <view>配送约{{shopdata.deliveryTime}} {{shopdata.phone}}</view>
+    </view>
+</view>
+<view class="couponBox" wx:if="{{coupons.length>0}}">
+<view class="green">满减</view>
+    <view wx:for="{{coupons}}" wx:key="index">
+    {{item.name}}{{index!=0?',':''}}
     </view>
 </view>
 <!-- 商家地址电话 开始 -->

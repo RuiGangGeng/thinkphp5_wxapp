@@ -159,6 +159,15 @@ Page({
                     }
                 })
             } else {
+                // 计算满减
+                let coupon = that.data.coupon
+                let s = that.data.oederInfo.totalPrice
+                for (let i of coupon) {
+                    if (Number(i.full) <= that.data.oederInfo.totalPrice) {
+                        s = Number(s) - Number(i.full_reduction)
+                        that.setData({ 'oederInfo.totalPrice': s })
+                    }
+                }
                 var order = {
                     remark: e.detail.value.words,
                     uid: app.globalData.user.id,

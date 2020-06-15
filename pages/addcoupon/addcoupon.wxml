@@ -1,53 +1,15 @@
-<!--pages/addcoupon/addcoupon.wxml-->
-<view class="fadedf"></view>
-<view class="shop_info">
-	<view class="logo">
-		<image src="{{info.image}}" class="headl"></image>
-	</view>
-	<view class="shop_text">
-		<view class="textinline">{{info.name}}</view>
-		<view class="shop_detail">
-			<view class="textinline">{{info.address}}</view>
-			<view class="textinline">{{info.deliveryTime}}</view>
-		</view>
-	</view>
-</view>
-
-
-<view class="item">
-	<view class="bond">√</view>
-	<view>满100减5</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满100减5</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满100减5</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满150减10</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满200减20</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满100减6</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满150减12</view>
-</view>
-<view class="item">
-	<view class="bond">√</view>
-	<view>满200减15</view>
-</view>
-
-
-<view class="btnBox">
-	<button type="primary">确定</button>
+<view class="container">
+    <view class="item">
+        <label for="name">名称:</label>
+        <input type="text" placeholder="请输入名称" bindinput="bindInput" maxlength="15" data-field="name" value="{{param.name}}"></input>
+    </view>
+    <view class="item">
+        <label for="name">满额:</label>
+        <input type="digit" placeholder="请输入满额" bindinput="bindInput" maxlength="15" data-field="full" value="{{param.full}}"></input>
+    </view>
+    <view class="item">
+        <label for="name">满减:</label>
+        <input type="digit" placeholder="请输入满减" bindinput="bindInput" maxlength="15" data-field="full_reduction" value="{{param.full_reduction}}"></input>
+    </view>
+    <button type="primary" bindtap="onSubmit" disabled="{{onAsync}}">提交</button>
 </view>

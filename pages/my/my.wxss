@@ -4,6 +4,10 @@
     background-color: #f4f4f4;
 }
 
+.user_nickname view {
+    margin-top: 15rpx;
+}
+
 .myo {
     font-size: 30rpx;
     font-weight: bold;
@@ -295,7 +299,7 @@
     position: absolute;
     z-index: 2;
     left: 170rpx;
-    top: 70rpx;
+    top: 60rpx;
 }
 
 .look_all {

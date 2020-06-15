@@ -1,0 +1,13 @@
+<view class="container">
+    <navigator url="/pages/managshopAddNotice/managshopAddNotice?shop_id={{shop_id}}">添加公告</navigator>
+    <view class="list" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">
+        <view class="item">
+            <image src="{{item.image}}" mode="aspectFill" />
+            <view class="textinline">{{item.title}}</view>
+            <image src="/image/delete.png" bindtap="categoryDel" data-id="{{item.id}}" />
+        </view>
+    </view>
+    <view wx:if="{{list.length == 0}}">
+        <text class="noData">暂无数据</text>
+    </view>
+</view>

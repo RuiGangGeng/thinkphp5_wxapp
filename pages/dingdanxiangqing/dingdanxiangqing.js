@@ -72,7 +72,15 @@ Page({
                     }
                 })
             } else {
-                wx.showModal({ titile: '警告', content: res.msg, showCancel: false })
+                wx.hideLoading()
+                wx.showModal({
+                    titile: '警告',
+                    content: res.msg,
+                    showCancel: false,
+                    success: function(res) {
+                        res.confirm ? wx.navigateBack() : ''
+                    }
+                })
             }
         })
     },

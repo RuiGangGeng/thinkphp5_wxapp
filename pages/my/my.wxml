@@ -5,6 +5,7 @@
 		</view>
 		<view class="user_nickname">
 			<open-data type="userNickName"></open-data>
+			<view class="phone">{{phone.phone}}</view>
 		</view>
 		<image src="/image/index_PC.jpg" class="header_bg"></image>
 	</view>
@@ -79,7 +80,7 @@
 				<text>商铺退单订单</text>
 			</view>
 			<text class="angle"></text>
-		</navigator> -->
+		</navigator>
 
 		<navigator wx:if="{{shop.id}}" url="/pages/storeorder/storeorder?shop_id={{shop.id}}" class="nav_item">
 			<view class="nav_item_text">
@@ -87,7 +88,8 @@
 				<text>商铺全部订单</text>
 			</view>
 			<text class="angle"></text>
-		</navigator>
+		</navigator> -->
+
 		<navigator wx:if="{{shop.id}}" url="/pages/managshop/managshop?shop_id={{shop.id}}" class="nav_item">
 			<view class="nav_item_text">
 				<image src="../../image/logo/word.png" style="width: 41rpx; height: 41rpx;"></image>

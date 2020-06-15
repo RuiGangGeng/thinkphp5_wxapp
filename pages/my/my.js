@@ -8,7 +8,8 @@ Page({
         order_1: false,
         order_3: false,
         order_4: false,
-        auth: !0
+        auth: !0,
+        phone: ''
     },
     onLoad: function() {
         let that = this
@@ -29,14 +30,18 @@ Page({
 
                             // 更新用户信息
                             util.wxRequest("/wechat/User/wx_auth_user", param, res => {
-                                if (res.code === 200) {
-                                    that.setData({ auth: true })
-                                }
+                                if (res.code === 200) { that.setData({ auth: true }) }
                             })
                         }
                     })
                 }
             }
+        })
+
+        // 获取手机号
+        util.wxRequest("wechat/user/getPhone", { id: app.globalData.user.id }, res => {
+            this.setData({ phone: res.data })
+            wx.hideLoading()
         })
     },
 

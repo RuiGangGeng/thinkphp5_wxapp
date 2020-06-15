@@ -115,13 +115,16 @@ page {
 }
 
 .operate {
-    height: 180rpx;
+    height: 90rpx;
     width: 700rpx;
     margin: 0 25rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .operateone {
-    width: 100%;
+    width: 50%;
     height: 90rpx;
     display: flex;
     align-items: center;
@@ -164,7 +167,7 @@ page {
 }
 
 .operatetwo {
-    width: 100%;
+    width: 50%;
     height: 90rpx;
     display: flex;
     align-items: center;
@@ -194,7 +197,7 @@ scroll-view {
 
 .content {
     width: 100%;
-    height: calc(100% - 545rpx);
+    height: calc(100% - 190rpx);
     display: flex;
     justify-content: space-between;
 }
@@ -246,7 +249,7 @@ scroll-view {
     padding-right: 20rpx;
     border-bottom: 2rpx solid #ededed;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -259,10 +262,11 @@ scroll-view {
     width: 130rpx;
     height: 130rpx;
     border-radius: 10rpx;
+    margin-right: 20rpx;
 }
 
 .goods_info {
-    width: 320rpx;
+    width: 520rpx;
     height: 130rpx;
     display: flex;
     justify-content: space-between;
@@ -282,11 +286,17 @@ scroll-view {
     align-items: center;
 }
 
-.goods_price>text {
+.goods_price>text:first-child {
     color: #ee6054;
     display: block;
     width: 155rpx;
     height: 100%;
+}
+.goods_price>text:nth-child(2) {
+    color: #a1a1a1;
+    font-weight: normal;
+    font-size: 28rpx;
+    text-decoration: line-through;
 }
 
 .select {
@@ -298,4 +308,32 @@ scroll-view {
 .active {
     background: #39a336;
     color: white !important;
+}
+
+.my_order {
+    background: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(183, 183, 183, 0.8);
+    box-sizing: border-box;
+}
+.angle {
+    display: inline-block;
+    transform: rotate(45deg);
+    height: 8px;
+    width: 8px;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    position: relative;
+    margin-left: 0.3em;
+}
+.nav_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120rpx;
+    width: 100%;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    border-bottom: 1rpx solid #e8e8e8;
+    color: #4c4c4c;
+    font-size: 28rpx;
 }

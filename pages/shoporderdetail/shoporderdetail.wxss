@@ -99,7 +99,6 @@ page {
 
 .flexrow {
     height: 55rpx;
-    width: 710rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;

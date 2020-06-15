@@ -12,9 +12,7 @@ Page({
 
     onLoad: function(e) {
 
-        this.setData({
-            'param.shop_id': e.shop_id
-        })
+        this.setData({ 'param.shop_id': e.shop_id })
 
         // 初始化验证
         this.initValidate()

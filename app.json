@@ -29,7 +29,12 @@
         "pages/comments/comments",
         "pages/refundsDtails/refundsDtails",
         "pages/managshopSearch/managshopSearch",
-        "pages/managshopAddNotice/managshopAddNotice"
+        "pages/managshopAddNotice/managshopAddNotice",
+        "pages/noticelist/noticelist",
+        "pages/noticeadd/noticeadd",
+        "pages/couponlist/couponlist",
+        "pages/goodlist/goodlist",
+        "pages/catelist/catelist"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -41,7 +46,8 @@
         "selectedColor": "#39a336",
         "borderStyle": "white",
         "backgroundColor": "#f2f2f2",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/index/index",
                 "iconPath": "image/index.png",
                 "selectedIconPath": "image/indexed.png",
