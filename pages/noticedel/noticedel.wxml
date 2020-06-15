@@ -7,6 +7,6 @@
   <view class="timecolor">{{notice.createTime}}</view>
   <image mode="aspectFill" src="{{notice.image}}"></image>
   <!-- 富文本解析开始 -->
-  <view class="content">{{notice.content}}</view>
+  <text class="content">{{notice.content}}</text>
   <!-- 富文本解析结束 -->
 </view>

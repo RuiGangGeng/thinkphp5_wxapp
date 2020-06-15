@@ -14,6 +14,7 @@ Page({
         leaveawords: null, //留言板
         myorder: null,
         type: 1,
+        coupon: []
     },
 
     onLoad: function() {
@@ -56,6 +57,11 @@ Page({
                 myorder: myorder,
             })
         }
+
+        // 获取满减信息
+        util.wxRequest('wechat/shop/getCouponInfo', { shop_id: this.data.shopid }, res => {
+            this.setData({ coupon: res.data })
+        })
     },
 
     onShow: function() {

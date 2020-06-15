@@ -23,7 +23,17 @@ button {
     overflow: hidden;
 }
 
-.image image {
+.image_ {
+    width: 650rpx;
+    height: 300rpx;
+    border: 1rpx dashed #d7d7d7;
+    margin-top: 25rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+
+.image image,
+.image_ image {
     width: 100%;
     height: 100%;
     display: block;

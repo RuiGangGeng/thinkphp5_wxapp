@@ -21,13 +21,13 @@
 
 .noticebody {
     width: 750rpx;
-    padding: 50rpx;
+    padding: 40rpx 50rpx 50rpx 50rpx;
     box-sizing: border-box;
 }
 
 .timecolor {
     color: #a8a8a8;
-    margin-top: 20rpx;
+    margin-top: 15rpx;
     font-size: 32rpx;
 }
 
@@ -37,8 +37,9 @@
 
 image {
     width: 650rpx;
-    height: 270rpx;
+    height: 325rpx;
     margin: 20rpx 0;
     border-radius: 10rpx;
     overflow: hidden;
+    display: block;
 }

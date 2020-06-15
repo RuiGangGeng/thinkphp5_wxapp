@@ -5,7 +5,8 @@ Page({
 
     data: {
         param: {
-            image: '/image/add_goods.png'
+            image: '/image/add_goods.png',
+            image_: '/image/add_.png',
         },
         onAsync: false
     },
@@ -47,6 +48,22 @@ Page({
         })
     },
 
+    // 选择图片
+    chooseImage_() {
+        let that = this
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['compressed'],
+            sourceType: ['album'],
+            success: function(res) {
+                let image_ = res.tempFilePaths[0]
+                that.setData({
+                    'param.image_': image_,
+                })
+            },
+        })
+    },
+
     // 提交
     onSubmit: function() {
         let that = this
@@ -69,12 +86,18 @@ Page({
 
         if (that.data.param.image == '/image/add_goods.png') {
             wx.showToast({
-                title: '请上传公告图片',
+                title: '请上传公告缩略图',
                 icon: "none"
             })
-            that.setData({
-                onAsync: false
+            that.setData({ onAsync: false })
+            return false
+        }
+        if (that.data.param.image_ == '/image/add_goods.png') {
+            wx.showToast({
+                title: '请上传公告大图',
+                icon: "none"
             })
+            that.setData({ onAsync: false })
             return false
         }
 
@@ -90,20 +113,35 @@ Page({
                         'param.image': JSON.parse(res.data).data,
                     })
 
-                    // 提交数据
-                    util.wxRequest('wechat/Shop/add_notice', that.data.param, res => {
-                        wx.showToast({
-                            title: res.msg,
-                            icon: res.code == 200 ? 'success' : 'none',
-                            mask: true
-                        })
+                    // 上传图片
+                    wx.uploadFile({
+                        url: app.globalData.api_host + "wechat/Util/upload",
+                        filePath: that.data.param.image_,
+                        name: 'file',
+                        success: function(res) {
+                            if (JSON.parse(res.data).code == 200) {
 
-                        if (res.code = 200) {
-                            setTimeout(function() { wx.navigateBack() }, 1000)
-                        } else {
-                            that.setData({
-                                onAsync: false
-                            })
+                                that.setData({
+                                    'param.image_': JSON.parse(res.data).data,
+                                })
+
+                                // 提交数据
+                                util.wxRequest('wechat/Shop/add_notice', that.data.param, res => {
+                                    wx.showToast({
+                                        title: res.msg,
+                                        icon: res.code == 200 ? 'success' : 'none',
+                                        mask: true
+                                    })
+
+                                    if (res.code = 200) {
+                                        setTimeout(function() { wx.navigateBack() }, 1000)
+                                    } else {
+                                        that.setData({
+                                            onAsync: false
+                                        })
+                                    }
+                                })
+                            }
                         }
                     })
                 }

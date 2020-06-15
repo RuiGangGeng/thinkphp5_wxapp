@@ -68,9 +68,7 @@ Page({
     },
 
     // 上拉加载
-    onReachBottom: function() {
-        this.loadData()
-    },
+    onReachBottom: function() { this.loadData() },
 
     // 加载数据
     loadData: function() {

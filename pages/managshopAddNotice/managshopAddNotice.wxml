@@ -5,9 +5,15 @@
         <input placeholder="请输入标题" maxlength="150" bindinput="bindInput" data-field="title" value="{{param.title}}"></input>
     </view>
     <view class="item column">
-        <label>公告图片</label>
+        <label>公告缩略图</label>
         <view class="image" bindtap="chooseImage">
             <image mode="aspectFill" src="{{param.image}}"></image>
+        </view>
+    </view>
+        <view class="item column">
+        <label>公告大图</label>
+        <view class="image_" bindtap="chooseImage_">
+            <image mode="aspectFill" src="{{param.image_}}"></image>
         </view>
     </view>
     <view class="item noneBorder" style="margin-top:40rpx;">

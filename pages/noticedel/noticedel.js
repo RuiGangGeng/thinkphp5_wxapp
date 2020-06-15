@@ -1,4 +1,3 @@
-// pages/noticedel/noticedel.js
 var WxParse = require('../../wxParse/wxParse.js');
 const util = require('../../utils/util.js');
 const app = getApp();
@@ -8,9 +7,9 @@ Page({
     },
 
     onLoad: function(options) {
-        var that = this;
+        var that = this
         util.wxRequest('wechat/shop/getNoticeDetail', { id: options.noticeid }, res => {
-            that.setData({ notice: res.data });
+            that.setData({ notice: res.data })
         });
     },
 

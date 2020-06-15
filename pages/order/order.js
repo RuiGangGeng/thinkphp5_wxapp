@@ -214,20 +214,20 @@ Page({
         }
 
         util.wxRequest("wechat/Order/askForRefund", param, res => {
-            wx.showToast({
-                title: res.msg,
-                icon: res.code == 200 ? 'success' : 'none'
-            })
-            if (res.code == 200) {
-                setTimeout(() => { wx.navigateTo({ url: "/pages/refunds/refunds" }) }, 1000)
-            } else {
-                this.setData({
-                    list: [],
-                    page: 0,
-                    is_refund: false
-                })
-                this.loadData()
-            }
+            wx.showToast({ title: res.msg, icon: res.code == 200 ? 'success' : 'none' })
+
+            setTimeout(function() {
+                if (res.code == 200) {
+                    wx.navigateTo({ url: "/pages/refunds/refunds" })
+                } else {
+                    that.setData({
+                        list: [],
+                        page: 0,
+                        is_refund: false
+                    })
+                    that.loadData()
+                }
+            }, 2000)
         })
     },
 
