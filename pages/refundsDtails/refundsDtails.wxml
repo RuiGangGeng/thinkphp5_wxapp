@@ -38,6 +38,11 @@
             </view>
         </view>
         <view class="textright">
+            优惠金额:
+            <text style="color:#a1a1a1;">￥{{c}}</text>
+            <!-- <text class="text-danger size25">00</text> -->
+        </view>
+        <view class="textright">
             合计:
             <text class="text-danger">￥{{info.price}}</text>
             <!-- <text class="text-danger size25">00</text> -->
@@ -70,7 +75,7 @@
         </view>
         <view class="msgitem">
             <text>申请退款时间:</text>
-            <text>{{info.refundTime}}</text>
+            <text>{{info.refundTime==null?"":info.refundTime}}</text>
         </view>
         <view class="msgitem">
             <text>申请退款理由:</text>

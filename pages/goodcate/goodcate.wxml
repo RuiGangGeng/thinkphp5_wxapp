@@ -43,7 +43,7 @@
 
 <!-- 底部购物车开始 -->
 
-<view class="colorgray" hidden="{{totalPrice>=deliveryPrice}}">消费满￥{{deliveryPrice}}直接上门配送</view>
+<view class="colorgray" hidden="{{totalPrice>=deliveryPrice}}">消费满￥{{deliveryPrice}}元方可下单</view>
 <view class="accounts flex {{totalPrice<=deliveryPrice?'no_shadow':''}}">
 	<view class="checkAll flex text-normal">
 		<navigator url="/pages/cart/cart" open-type="switchTab" class="checkbox">

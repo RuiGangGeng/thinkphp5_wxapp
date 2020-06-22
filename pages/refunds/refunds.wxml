@@ -14,6 +14,7 @@
 				{{item.status == 6 ? '待退款':''}}
 				{{item.status == 7 ? '退款成功':''}}
 				{{item.status == 8 ? '拒绝退款':''}}
+				{{item.status == 10 ? '商家退单':''}}
 			</view>
 		</view>
 

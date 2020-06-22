@@ -38,7 +38,7 @@
 </view>
 <!-- 分类导航结束 -->
 <!-- 直播插图开始 -->
-<image src="https://www.ananw.cn/public/shop/public/uploads/category/bbee80bcbed4a9569b4471713e82a52e.png" class="online"></image>
+<image src="https://api.happytocome.com/public/uploads/category/bbee80bcbed4a9569b4471713e82a52e.png" class="online"></image>
 <!-- 直播插图开始 -->
 <!-- 店内公告开始 -->
 <view class="shopnotice shadow10 width94">

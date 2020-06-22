@@ -30,7 +30,7 @@
 			<view>￥{{all}}</view>
 		</view>
 		<view class="flexrow">
-			<view>优惠券</view>
+			<view>优惠金额</view>
 			<view>￥{{coupon}}</view>
 		</view>
 	</view>
@@ -50,20 +50,48 @@
 		<view>订单编号</view>
 		<view>{{info.order_number}}</view>
 	</view>
-	     <view class="flexrow">
-            <text>交易流水号:</text>
-            <text class="textinline">{{info.transaction}}</text>
-        </view>
+	<view class="flexrow">
+		<text>交易流水号</text>
+		<text class="textinline">{{info.transaction}}</text>
+	</view>
 	<view class="flexrow">
 		<view>支付方式</view>
 		<view>微信</view>
 	</view>
-	 <view class="flexrow">
-            <text>配送方式:</text>
-            <text>{{info.type==1?'送货上门':'到店自取'}}</text>
-        </view>
+	<view class="flexrow">
+		<text>配送方式</text>
+		<text>{{info.type==1?'送货上门':'到店自取'}}</text>
+	</view>
 	<view class="flexrow">
 		<view>订单备注</view>
 		<view>{{info.remark!=null?info.remark:'无'}}</view>
+	</view>
+	<view class="flexrow">
+		<view>评分</view>
+		<view>{{info.starlevel==0?'':info.starlevel}}</view>
+	</view>
+	<view class="flexrow">
+		<view>评论</view>
+		<view class="textinline">{{info.comment==null?'':info.comment}}</view>
+	</view>
+	<view class="flexrow">
+		<view>评论时间</view>
+		<view>{{info.evaluateTime==null?'':info.evaluateTime}}</view>
+	</view>
+		<view class="flexrow">
+		<view>申请退款时间</view>
+		<view>{{info.refundTime==null?'':info.refundTime}}</view>
+	</view>
+			<view class="flexrow">
+		<view>申请退款理由</view>
+		<view>{{info.refund_msg}}</view>
+	</view>
+			<view class="flexrow">
+		<view>商家拒绝理由</view>
+		<view>{{info.answer_msg}}</view>
+	</view>
+			<view class="flexrow">
+		<view>退款时间</view>
+		<view>{{info.refundTime_==null?'':info.refundTime_}}</view>
 	</view>
 </view>

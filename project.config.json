@@ -65,6 +65,13 @@
 					"pathName": "pages/managshop/managshop",
 					"query": "shop_id=2",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/doorder/doorder",
+					"pathName": "pages/doorder/doorder",
+					"query": "shop_id=2",
+					"scene": null
 				}
 			]
 		}

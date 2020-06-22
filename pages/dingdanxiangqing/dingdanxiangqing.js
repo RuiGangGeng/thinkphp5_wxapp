@@ -36,12 +36,19 @@ Page({
             }
         ],
         onAsync: false,
+        c: false,
     },
 
     onLoad: function(e) {
         this.setData({ id: e.id, act: e.act })
         util.wxRequest("wechat/order/orderDetail", { id: e.id, }, res => {
             this.setData({ info: res.data, goods: res.data.order_detail })
+            let s = res.data.order_detail
+            let c = 0;
+            for (let i of s) {
+                c += i.number * i.price
+            }
+            this.setData({ c: (c - Number(res.data.price)).toFixed(2) })
             if (res.data.createTimes === false && res.data.status == 0) {
                 this.setData({ act: 'pay_' })
                 util.wxRequest("wechat/Order/cancelOrder", { id: e.id }, res => {})

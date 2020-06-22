@@ -220,5 +220,4 @@ image {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 680rpx;
 }

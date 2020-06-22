@@ -81,6 +81,9 @@
             <view>
                 <view style="height:20rpx;"></view>
                 <view style="text-align:right;padding-right:25rpx;font-size:30rpx;">
+                    优惠金额:<text style="color:#a1a1a1;">￥</text><text style="color:#a1a1a1;">{{c}}</text>
+                </view>
+                <view style="text-align:right;padding-right:25rpx;font-size:30rpx;">
                     合计:<text style="color:#FD5548;">￥</text><text style="color:#FD5548; font-weight:bold; font-size:40rpx;">{{info.price}}</text>
                 </view>
                 <view style="height:20rpx;"></view>

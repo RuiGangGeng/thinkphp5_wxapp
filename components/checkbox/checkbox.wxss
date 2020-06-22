@@ -2,10 +2,10 @@
     width: 40rpx;
     height: 40rpx;
     display: inline-block;
-    background-image: url("https://www.ananw.cn/public/shop/public/uploads/category/ck.png");
+    background-image: url("https://api.happytocome.com/public/uploads/category/ck.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 .checkbox.checked {
-    background-image: url("https://www.ananw.cn/public/shop/public/uploads/category/cked.png");
+    background-image: url("https://api.happytocome.com/public/uploads/category/cked.png");
 }

@@ -49,9 +49,9 @@ Page({
                 for (let i = 0; i < that.data.categories.length; i++) {
                     if (that.data.categories[i].id == that.data.cateid) {
                         that.setData({ select: i, page: 0, goodsList: [] })
+                            that.loadData()
                     }
                 }
-                that.loadData()
             }
         })
 
@@ -166,13 +166,14 @@ Page({
             if (that.data.categories[i].id == event.target.id) {
                 that.setData({
                     select: i,
+                    cateid:i
                 })
             }
         }
 
         this.setData({
             goodsList: [],
-            page: 0
+            page: 0,
         })
         this.loadData()
     },

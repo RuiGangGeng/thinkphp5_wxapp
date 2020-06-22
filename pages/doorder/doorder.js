@@ -161,64 +161,92 @@ Page({
             } else {
                 // 计算满减
                 let coupon = that.data.coupon
-                let s = that.data.oederInfo.totalPrice
-                for (let i of coupon) {
-                    if (Number(i.full) <= that.data.oederInfo.totalPrice) {
-                        s = Number(s) - Number(i.full_reduction)
+                let s = Number(that.data.oederInfo.totalPrice)
+                let mes = false
+
+                for (let i = 0, legth = coupon.length; i < legth; i++) {
+                    // 大于前一位 小于后一位
+                    if (i + 1 < legth) {
+                        if (Number(coupon[i].full) <= s && Number(coupon[i + 1].full) > s) {
+                            s = s - Number(coupon[i].full_reduction)
+                            that.setData({ 'oederInfo.totalPrice': s })
+                            mes = coupon[i]
+                        }
+                    } else if (Number(coupon[i].full) <= s) {
+                        s = s - Number(coupon[i].full_reduction)
                         that.setData({ 'oederInfo.totalPrice': s })
+                        mes = coupon[i]
                     }
                 }
-                var order = {
-                    remark: e.detail.value.words,
-                    uid: app.globalData.user.id,
-                    shop_id: that.data.shopid,
-                    contact: that.data.userdefaultAddress.contact,
-                    phone: that.data.userdefaultAddress.phone,
-                    address: that.data.userdefaultAddress.address + that.data.userdefaultAddress.house,
-                    number: that.data.oederInfo.account,
-                    price: that.data.oederInfo.totalPrice,
-                    type: that.data.type
+
+                if (mes) {
+                    wx.showModal({
+                        title: '提示',
+                        content: mes.name,
+                        showCancel: false,
+                        success: function(res) {
+                            if (res.confirm) {
+                                wxPay(e)
+                            }
+                        }
+                    })
+                } else {
+                    wxPay(e)
                 }
 
-                var order_detail = { order_detail: that.data.oederInfo.commodity }
-                that.setData({ flag: true })
-
-                //调用订单创建接口
-                util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
-                    if (res.code == 200) {
-                        var clearCart = wx.getStorageSync('makeorder').commodity
-                        var acconutde = that.data.oederInfo.account
-                        storage._clearPdtPay(clearCart, acconutde)
-                        wx.setStorageSync('makeorder', null)
-
-                        // 发起支付
-                        wx.requestPayment({
-                            timeStamp: res.data.pay.timeStamp + '',
-                            nonceStr: res.data.pay.nonceStr,
-                            package: res.data.pay.package,
-                            signType: res.data.pay.signType,
-                            paySign: res.data.pay.sign,
-                            complete() {
-                                wx.showLoading({ title: '查询订单状态', mask: true })
-                                util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {
-                                    wx.hideLoading()
-                                    wx.redirectTo({ url: '/pages/order/order' })
-                                })
-                            }
-                        })
-                    } else {
-                        wx.showModal({
-                            title: '提示',
-                            content: res.msg,
-                            success: function(res) {
-                                var clearCart = wx.getStorageSync('makeorder').commodity
-                                var acconutde = that.data.oederInfo.account
-                                storage._clearPdtPay(clearCart, acconutde)
-                                wx.navigateBack()
-                            }
-                        })
+                function wxPay(e) {
+                    var order = {
+                        remark: e.detail.value.words,
+                        uid: app.globalData.user.id,
+                        shop_id: that.data.shopid,
+                        contact: that.data.userdefaultAddress.contact,
+                        phone: that.data.userdefaultAddress.phone,
+                        address: that.data.userdefaultAddress.address + that.data.userdefaultAddress.house,
+                        number: that.data.oederInfo.account,
+                        price: that.data.oederInfo.totalPrice,
+                        type: that.data.type
                     }
-                })
+
+                    var order_detail = { order_detail: that.data.oederInfo.commodity }
+                    that.setData({ flag: true })
+
+                    //调用订单创建接口
+                    util.wxRequest('wechat/order/createOrder', { order: order, order_detail: order_detail }, res => {
+                        if (res.code == 200) {
+                            var clearCart = wx.getStorageSync('makeorder').commodity
+                            var acconutde = that.data.oederInfo.account
+                            storage._clearPdtPay(clearCart, acconutde)
+                            wx.setStorageSync('makeorder', null)
+
+                            // 发起支付
+                            wx.requestPayment({
+                                timeStamp: res.data.pay.timeStamp + '',
+                                nonceStr: res.data.pay.nonceStr,
+                                package: res.data.pay.package,
+                                signType: res.data.pay.signType,
+                                paySign: res.data.pay.sign,
+                                complete() {
+                                    wx.showLoading({ title: '查询订单状态', mask: true })
+                                    util.wxRequest('wechat/order/orderQuery', { id: res.data.id }, res => {
+                                        wx.hideLoading()
+                                        wx.redirectTo({ url: '/pages/order/order' })
+                                    })
+                                }
+                            })
+                        } else {
+                            wx.showModal({
+                                title: '提示',
+                                content: res.msg,
+                                success: function(res) {
+                                    var clearCart = wx.getStorageSync('makeorder').commodity
+                                    var acconutde = that.data.oederInfo.account
+                                    storage._clearPdtPay(clearCart, acconutde)
+                                    wx.navigateBack()
+                                }
+                            })
+                        }
+                    })
+                }
             }
         })
     }
