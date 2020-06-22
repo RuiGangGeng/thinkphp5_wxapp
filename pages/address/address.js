@@ -20,9 +20,9 @@ Page({
 
     onShow: function() {
         let that = this
-        if (app.globalData.user.phone == null) {
-            that.setData({ has_login: false })
-        } else {
+        // if (app.globalData.user.phone == null) {
+        //     that.setData({ has_login: false })
+        // } else {
 
             wx.showLoading({ title: '加载中' })
             setTimeout(function() { wx.hideLoading() }, 3000)
@@ -43,7 +43,7 @@ Page({
                 }
                 wx.hideLoading()
             })
-        }
+        // }
     },
 
     // 设置默认地址

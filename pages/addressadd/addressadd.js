@@ -8,7 +8,8 @@ Page({
         no: false,
         addr: {},
         has_location: true,
-        onAsync: false
+        onAsync: false,
+        has_login: false
     },
 
     onLoad: function(options) {
@@ -25,6 +26,11 @@ Page({
                 no: this.ValidateName.checkForm(that.data.addr)
             })
         }, 300);
+
+        if (app.globalData.user.phone) {
+            that.setData({ has_login: true })
+        }
+
     },
 
     // 修改地址场景=》填充数据
@@ -162,7 +168,26 @@ Page({
 
     // 获取用户授权 回调新增地址
     bindgetuserinfo: function(e) {
-        this.formSubmit()
+
+        let that = this
+
+        if (app.globalData.user.phone) {
+            that.formSubmit()
+        } else {
+            let param = {
+                user_id: app.globalData.user.id,
+                encryptedData: e.detail.encryptedData,
+                iv: e.detail.iv,
+            }
+            util.wxRequest("wechat/User/wx_auth_phone", param, data => {
+                if (data.code == 200) {
+                    that.setData({ has_login: true })
+                    wx.showToast({ title: data.msg, icon: data.code == 200 ? 'success' : 'none' })
+                    app.globalData.user.phone = data.data
+                    that.formSubmit()
+                }
+            })
+        }
     },
 
     // 验证
