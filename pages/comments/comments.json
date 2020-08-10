@@ -1,6 +1,4 @@
 {
-    "navigationBarTitleText": "评价",
-    "usingComponents": {
-      "comment": "/components/comment/comment"
-    }
+    "navigationBarTitleText": "评价"
+
   }
